@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go Swagger on YeongCheon Tech Blog</title>
-    <link>http://yeongcheon.github.io/categories/go-swagger/</link>
+    <link>https://yeongcheon.github.io/categories/go-swagger/</link>
     <description>Recent content in Go Swagger on YeongCheon Tech Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-ko</language>
     <lastBuildDate>Sat, 14 Oct 2017 14:50:00 +0900</lastBuildDate>
     
-	<atom:link href="http://yeongcheon.github.io/categories/go-swagger/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://yeongcheon.github.io/categories/go-swagger/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>go swagger 서버파일 구조 분석</title>
-      <link>http://yeongcheon.github.io/posts/2017-10-14-go-swagger02/</link>
+      <link>https://yeongcheon.github.io/posts/2017-10-14-go-swagger02/</link>
       <pubDate>Sat, 14 Oct 2017 14:50:00 +0900</pubDate>
       
-      <guid>http://yeongcheon.github.io/posts/2017-10-14-go-swagger02/</guid>
+      <guid>https://yeongcheon.github.io/posts/2017-10-14-go-swagger02/</guid>
       <description>Intro 지난번 포스트에서 만든 hello world 프로젝트의 구성요소들을 분석해보자.
 폴더 구조 ├── cmd │ └── helloworld-server │ └── main.go ├── github.com ├── golang.org ├── gopkg.in ├── models │ └── item.go ├── restapi │ ├── configure_helloworld.go │ ├── doc.go │ ├── embedded_spec.go │ ├── operations │ │ ├── get.go │ │ ├── get_parameters.go │ │ ├── get_responses.go │ │ ├── get_urlbuilder.go │ │ └── helloworld_api.go │ └── server.go └── swagger.yml 지난번 포스트를 처음부터 끝까지 다 따라했다면 $GOPATH/src 폴더가 위와 같은 구조로 이루어져 있을 것이다.</description>
     </item>
     
     <item>
       <title>go swagger 사용법</title>
-      <link>http://yeongcheon.github.io/posts/2017-10-06-go-swagger01/</link>
+      <link>https://yeongcheon.github.io/posts/2017-10-06-go-swagger01/</link>
       <pubDate>Fri, 06 Oct 2017 11:40:00 +0900</pubDate>
       
-      <guid>http://yeongcheon.github.io/posts/2017-10-06-go-swagger01/</guid>
+      <guid>https://yeongcheon.github.io/posts/2017-10-06-go-swagger01/</guid>
       <description>Intro 이 문서는 goswagger를 이용해 golang으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 ubuntu 16.04LTS, golang 1.8을 사용중이다.
 이 문서를 작성하며 참고한 사이트는 아래와 같다. 사실 이 문서 안보고 아래 목록만 살펴봐도 된다. * swagger 공식 사이트 * goswagger.io * yundream님의 사이트, 상당히 정리가 잘 되어있다. * 구글링&amp;hellip;
 goSwagger 설치 github 페이지의 README 파일을 보면 아래의 명령어를 쓰라고 한다.

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go Swagger Gae Gcp on YeongCheon Tech Blog</title>
-    <link>http://yeongcheon.github.io/categories/go-swagger-gae-gcp/</link>
+    <link>https://yeongcheon.github.io/categories/go-swagger-gae-gcp/</link>
     <description>Recent content in Go Swagger Gae Gcp on YeongCheon Tech Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-ko</language>
     <lastBuildDate>Tue, 05 Dec 2017 17:00:00 +0900</lastBuildDate>
     
-	<atom:link href="http://yeongcheon.github.io/categories/go-swagger-gae-gcp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://yeongcheon.github.io/categories/go-swagger-gae-gcp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Google App Engine(GAE)에서 go swagger server 실행하기</title>
-      <link>http://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/</link>
+      <link>https://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/</link>
       <pubDate>Tue, 05 Dec 2017 17:00:00 +0900</pubDate>
       
-      <guid>http://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/</guid>
+      <guid>https://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/</guid>
       <description>Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
 spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
 swagger: &amp;#34;2.0&amp;#34; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &amp;#34;result : helloworld&amp;#34; items: $ref: &amp;#34;#/definitions/item&amp;#34; definitions: item: type: object required: - result properties: result: type: string swagger.</description>
