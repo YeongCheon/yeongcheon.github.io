@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>YeongCheon Blog  | datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.54.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.955516233bcafa4d2a1c13cea63c7b50.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기" />
+<meta property="og:description" content="요구사항 datastore에 내 프로필을 방문한 사용자의 ID와 방문시간을 각각 string, time.Time 형식으로 저장하고 있다. 구조체로 보면 다음과 같다.
+type Visitor struct { UserId string //조회한 프로필의 Id VisitorId string //방문자 Id VisitTime time.Time }  이 데이터를 단순히 조회하면 한 사용자가 나를 여러번 방문할 경우 결과 리스트에 그 방문자가 여러번 출력된다. 나는 동일한 사용자가 여러번 반복해도 가장 최근에 방문한 기록만 보길 원했다. 즉 datastore에서 SQL 문법의 group by를 사용하고 싶었다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yeongcheon.github.io/posts/2018-05-12-datastore-projection-error/" />
+<meta property="article:published_time" content="2018-05-12T13:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2018-05-12T13:00:00&#43;09:00"/>
+
+<meta itemprop="name" content="datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기">
+<meta itemprop="description" content="요구사항 datastore에 내 프로필을 방문한 사용자의 ID와 방문시간을 각각 string, time.Time 형식으로 저장하고 있다. 구조체로 보면 다음과 같다.
+type Visitor struct { UserId string //조회한 프로필의 Id VisitorId string //방문자 Id VisitTime time.Time }  이 데이터를 단순히 조회하면 한 사용자가 나를 여러번 방문할 경우 결과 리스트에 그 방문자가 여러번 출력된다. 나는 동일한 사용자가 여러번 반복해도 가장 최근에 방문한 기록만 보길 원했다. 즉 datastore에서 SQL 문법의 group by를 사용하고 싶었다.">
+
+
+<meta itemprop="datePublished" content="2018-05-12T13:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2018-05-12T13:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="410">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기"/>
+<meta name="twitter:description" content="요구사항 datastore에 내 프로필을 방문한 사용자의 ID와 방문시간을 각각 string, time.Time 형식으로 저장하고 있다. 구조체로 보면 다음과 같다.
+type Visitor struct { UserId string //조회한 프로필의 Id VisitorId string //방문자 Id VisitTime time.Time }  이 데이터를 단순히 조회하면 한 사용자가 나를 여러번 방문할 경우 결과 리스트에 그 방문자가 여러번 출력된다. 나는 동일한 사용자가 여러번 반복해도 가장 최근에 방문한 기록만 보길 원했다. 즉 datastore에서 SQL 문법의 group by를 사용하고 싶었다."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="http://yeongcheon.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      YeongCheon Blog
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        POSTS
+      </p>
+      <h1 class="f1 athelas mb1">datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2018-05-12T13:00:00&#43;09:00">May 12, 2018</time>      
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
+
+<h2 id="요구사항">요구사항</h2>
+
+<p>datastore에 내 프로필을 방문한 사용자의 ID와 방문시간을 각각 <code>string</code>, <code>time.Time</code> 형식으로 저장하고 있다. 구조체로 보면 다음과 같다.</p>
+
+<pre><code class="language-go">type Visitor struct {
+	UserId string //조회한 프로필의 Id
+	VisitorId string //방문자 Id
+	VisitTime time.Time
+}
+</code></pre>
+
+<p>이 데이터를 단순히 조회하면 한 사용자가 나를 여러번 방문할 경우 결과 리스트에 그 방문자가 여러번 출력된다. 나는 동일한 사용자가 여러번 반복해도 가장 최근에 방문한 기록만 보길 원했다. 즉 datastore에서 SQL 문법의 <strong>group by</strong>를 사용하고 싶었다.  내 요구사항을 SQL로 표현하자면 아래와 같다.</p>
+
+<pre><code class="language-sql">SELECT VisitorId, MAX(VisitTime) WHERE UserId = ? GROUP BY VisitorId Order by VisitTime desc
+</code></pre>
+
+<h2 id="projection-query-사용하기">Projection Query 사용하기</h2>
+
+<p><a href="https://godoc.org/cloud.google.com/go/datastore">datastore client</a>에서 Group by를 사용하기 위해선 <a href="https://cloud.google.com/appengine/docs/standard/go/datastore/projectionqueries">Projection Query</a>를 사용해야 한다. 앞에 링크된 문서를 참고해서 아래와 같은 코드를 작성했다.</p>
+
+<pre><code class="language-go">dsClient, _ := datastore.NewClient(ctx, projectID)
+
+query := datastore.NewQuery(userDao.VisitorEntity).
+		Filter(&quot;UserId =&quot;, userId).
+		Project(&quot;VisitorId&quot;, &quot;VisitTime&quot;).
+		DistinctOn(&quot;VisitorId&quot;).
+		Order(&quot;-VisitTime&quot;).Order(&quot;VisitorId&quot;)
+		
+visitorList := make([]models.Visitor, 0, 1)
+_, err := dsClient.GetAll(ctx, query, &amp;visitorList)
+</code></pre>
+
+<p>자세하게 설명하기에 앞서 미리 얘기하자면 이 쿼리가 맞는 쿼리인지는 솔직히 확신이 서지 않는다. 일단 더미데이터를 이용해서 테스트를 했을때 잘 나오기는 했는데 VisitTime이 항상 최신 내용(Max)으로 나올지 자신이 없다. 추 후 관련 내용을 좀 더 찾아보고 업데이트 하겠다.</p>
+
+<p>아무튼 위 코드를 실행하면 아래와 같은 에러메세지를 내뿜는다.</p>
+
+<pre><code class="language-text">datastore: cannot load field &quot;VisitTime&quot; into a &quot;model.Visitor&quot;: type mismatch: int versus time.Time
+</code></pre>
+
+<p>내용을 살펴보면 VisitTime 필드의 내용이 int형인데 time.Time 형식으로 받으려고 했기 때문에 에러가 났다는 내용이다. 하지만 데이터를 입력할 때도 동일한 구조체를 사용했고 실제로 클라우드 콘솔에서 데이터를 조회해봐도 날짜형식으로 이쁘게 데이터가 입력되어 있었다. 열심히 검색을 해보니 <a href="https://github.com/GoogleCloudPlatform/google-cloud-python/issues/1770">나와 같은 문제를 겪은 분이 있었다</a>.</p>
+
+<p>원인을 설명하자면 <code>time.Time</code>를 datastore 내부에 저장할 때 timestamp 형식으로 저장되는데 이게 projection query를 사용하면 저장되어 있는 int값 그대로 나온다는 것이다. 개발진들이 의도한 것인지 버그인지는 모르겠지만 일단 나름대로 해결책을 찾았다. 아래의 코드를 보자.</p>
+
+<pre><code class="language-go">
+func (visitor *Visitor) Save() ([]datastore.Property, error) {
+	return []datastore.Property{
+		{
+			Name:  &quot;UserId&quot;,
+			Value: visitor.UserId,
+		},
+		{
+			Name:  &quot;VisitorId&quot;,
+			Value: visitor.VisitorId,
+		},
+		{
+			Name:  &quot;VisitTime&quot;,
+			Value: visitor.VisitTime,
+		},
+	}, nil
+}
+
+func (visitor *Visitor) Load(ps []datastore.Property) error {
+	for idx, property := range ps {
+		if property.Name == &quot;VisitTime&quot; {
+			if s, isInt := property.Value.(int64); isInt {
+				t := time.Unix(0, int64(s)*int64(time.Microsecond))
+				ps[idx].Value = t
+			}
+		}
+	}
+
+	return datastore.LoadStruct(visitor, ps)
+}
+
+</code></pre>
+
+<p>위 코드는 <a href="https://cloud.google.com/appengine/docs/standard/go/datastore/reference#hdr-The_PropertyLoadSaver_Interface">공식 예제</a>를 참고해서 만든것이다. <code>Visitor</code> 구조체에 <a href="https://cloud.google.com/appengine/docs/standard/go/datastore/reference#PropertyLoadSaver">PropertyLoadSaver</a> 인터페이스를 구현해놓은 것인데 위 코드에서는 <code>Load</code> 함수를 중점으로 보면 된다. 간단한게 설명하자면 <code>datastore.LoadStruct</code> 함수는 구조체의 각 필드이름과 <code>property.Name</code>의 값을 비교에서 동일할 경우 해당 필드에 <code>property.Value</code> 값을 넣는다. 이 때 타입이 서로 다를 경우 아까와 같은 에러가 발생하기 때문에 반복문을 이용해 VisitTime을 찾아 직접 timestamp를 <code>time.Time</code> 형식으로 바꿔준다. 이 후 다시 쿼리문을 실행시켜보면 정상적으로 작동한다. 간혹 Index 관련 에러가 발생할 수 있는데 그건 <a href="/2018/04/29/gae-datastore-indexes/">이전 포스트</a>를 참고하자.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6">
+        
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://yeongcheon.github.io/" >
+    &copy; 2019 YeongCheon Blog
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

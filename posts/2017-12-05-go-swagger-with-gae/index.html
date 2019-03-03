@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>YeongCheon Blog  | Google App Engine(GAE)에서 go swagger server 실행하기</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.54.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.955516233bcafa4d2a1c13cea63c7b50.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Google App Engine(GAE)에서 go swagger server 실행하기" />
+<meta property="og:description" content="Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
+spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
+swagger: &quot;2.0&quot; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &quot;result : helloworld&quot; items: $ref: &quot;#/definitions/item&quot; definitions: item: type: object required: - result properties: result: type: string  swagger." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/" />
+<meta property="article:published_time" content="2017-12-05T17:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2017-12-05T17:00:00&#43;09:00"/>
+
+<meta itemprop="name" content="Google App Engine(GAE)에서 go swagger server 실행하기">
+<meta itemprop="description" content="Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
+spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
+swagger: &quot;2.0&quot; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &quot;result : helloworld&quot; items: $ref: &quot;#/definitions/item&quot; definitions: item: type: object required: - result properties: result: type: string  swagger.">
+
+
+<meta itemprop="datePublished" content="2017-12-05T17:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2017-12-05T17:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="585">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Google App Engine(GAE)에서 go swagger server 실행하기"/>
+<meta name="twitter:description" content="Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
+spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
+swagger: &quot;2.0&quot; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &quot;result : helloworld&quot; items: $ref: &quot;#/definitions/item&quot; definitions: item: type: object required: - result properties: result: type: string  swagger."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="http://yeongcheon.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      YeongCheon Blog
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        POSTS
+      </p>
+      <h1 class="f1 athelas mb1">Google App Engine(GAE)에서 go swagger server 실행하기</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2017-12-05T17:00:00&#43;09:00">December 5, 2017</time>      
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
+
+<h1 id="intro">Intro</h1>
+
+<p>[지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 <a href="https://cloud.google.com/appengine/">Google App Engine(이하 GAE)</a>에서 실행시켜보자.</p>
+
+<hr />
+
+<h2 id="spec을-이용해-서버코드-생성하기">spec을 이용해 서버코드 생성하기</h2>
+
+<p>[지난번 포스트][last-post]에서 작성한 <code>swagger.yaml</code>을 이용해 서버코드를 생성해보자. <code>swagger.yaml</code> 내용은 아래와 같다.</p>
+
+<pre><code class="language-yaml">swagger: &quot;2.0&quot;
+info:
+  description: hello go swagger
+  title: hello world application
+  version: 1.0.0
+produces:
+  - application/json
+consumes:
+  - application/json
+schemes:
+  - http
+paths:
+  /:
+    get:
+      responses:
+        200:
+          description: list the todo operations
+          schema:
+            type: array
+            description: &quot;result : helloworld&quot;
+            items:
+              $ref: &quot;#/definitions/item&quot;
+definitions:
+  item:
+    type: object
+    required:
+      - result
+    properties:
+      result:
+        type: string
+
+</code></pre>
+
+<p><code>swagger.yaml</code> 파일을 생성했으면 이제 <code>swagger generate</code> 명령을 이용해 실제로 서버에서 구동될 코드를 생성해보자. [지난번 포스트][last-post]와 동일한 명령어지만 <code>--flag-strategy pflag</code> 옵션이 추가됐다. 코드 생성이 완료되었으면 지난번 포스트를 참고하여 <code>/</code>에 접근 시 hello world가 출력되도록 코드를 수정해놓자.</p>
+
+<pre><code class="language-command">swagger generate server -A helloworld -f ./swagger.yml --flag-strategy pflag
+</code></pre>
+
+<p><code>swagger generate</code> 명령어를 쓰기전엔 <code>swagger validate</code> 명령어를 이용해 <code>swagger.yaml</code> 파일의 유효성 검사를 진행하는게 보통이지만 이번 예제에선 생략하도록 한다.</p>
+
+<h3 id="flag-strategy-pflag-옵션을-주는-이유">flag-strategy pflag 옵션을 주는 이유</h3>
+
+<blockquote>
+<p>이 옵션을 생략하고 generate 명령어를 실행할 경우 생성된 서버코드에 <a href="http://github.com/jessevdk/go-flags">github.com/jessevdk/go-flags</a>에 의존성이 생긴다. 이 패키지에서는 GAE에서 사용할 수 없는 syscall 패키지를 사용하기 때문에 GAE 환경에서는 실행할 수 없다. 그래서 <code>--flag-strategy pflag</code> 옵션을 이용해 위의 패키지 대신 <a href="github.com/spf13/pflag">github.com/spf13/pflag</a>를 대신 사용하도록 한다. 좀 더 자세한 내용은 <a href="https://goswagger.io/generate/server.html">공식 사이트의 문서</a>를 참고하자.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="main-go-코드-수정하기">main.go 코드 수정하기</h2>
+
+<p>본래 <code>main.go</code> 파일은 수정하지 않는게 원칙이다. 하지만 GAE라는 조금 특수한 상황에서 코드가 동작하게 하려면 수정이 불가피하다. 이 내용은 <a href="https://github.com/go-swagger/go-swagger/issues/925">이 링크</a>에서 얻은 정보를 바탕으로 작성하였다.</p>
+
+<ol>
+<li>우선 <code>main</code> 함수의 이름을 <code>init</code>로 교체한다.</li>
+<li><code>net/http</code> 패키지를 import 한다.</li>
+<li>server.ConfigureAPI() 구문 바로 다음줄에 http.Handle(&ldquo;/&rdquo;, server.GetHandler()) 을 입력한다.</li>
+<li>flag와 기타 다른 코드들을 삭제한다.</li>
+<li>위 단계를 모두 수행한 코드의 결과는 아래와 같다.</li>
+</ol>
+
+<pre><code class="language-golang">// Code generated by go-swagger; DO NOT EDIT.
+
+package main
+
+import (
+	&quot;log&quot;
+
+	loads &quot;github.com/go-openapi/loads&quot;
+
+	&quot;net/http&quot;
+	&quot;test/restapi&quot;
+	&quot;test/restapi/operations&quot;
+)
+
+// This file was generated by the swagger tool.
+// Make sure not to overwrite this file after you generated it because all your edits would be lost!
+
+func init() {
+
+	swaggerSpec, err := loads.Analyzed(restapi.SwaggerJSON, &quot;&quot;)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	var server *restapi.Server // make sure init is called
+	api := operations.NewHelloworldAPI(swaggerSpec)
+	// get server with flag values filled out
+	server = restapi.NewServer(api)
+	defer server.Shutdown()
+	server.ConfigureAPI()
+	http.Handle(&quot;/&quot;, server.GetHandler())
+}
+</code></pre>
+
+<p>여기까지 진행했다면 이제 GAE 환경에서 코드를 실행할 준비가 모두 완료된 것이다. 참고로 import된 restapi의 경로는 환경에 따라 달라질 수 있다.</p>
+
+<hr />
+
+<h2 id="로컬서버를-구동하여-테스트해보기">로컬서버를 구동하여 테스트해보기</h2>
+
+<p>GAE에서는 개발자의 PC에서 먼저 테스트를 해볼 수 있도록 SDK를 배포하고 있다. <a href="https://cloud.google.com/appengine/docs/go/">이 곳</a>을 참고하여 우선 GAE 개발환경을 셋팅해보자.(생각보다 되게 간단하다)</p>
+
+<p>환경셋팅이 끝났다면 <code>main.go</code> 파일과 같은 위치에 <code>app.yaml</code>을 생성하자. 내용은 <a href="https://raw.githubusercontent.com/GoogleCloudPlatform/appengine-guestbook-go/part1-helloworld/app.yaml">이 파일</a>과 동일하다.</p>
+
+<p>마지막으로 로컬서버를 구동하기 전에 우리가 생성한 코드의 의존 패키지들을 내려받아야 한다. 명령창에서 아래의 명령어들을 실행한다. 참고로 <a href="https://github.com/golang/dep">dep</a>를 이용할 시 로컬서버에서는 제대로 동작하지만 deploy가 제대로 되지 않는다. 2017-12-05 현재 원인은 파악하지 못했는데 파악되는대로 내용을 업데이트 하겠다.</p>
+
+<pre><code class="language-shell">go get -u github.com/go-openapi/loads
+go get -u github.com/go-openapi/errors
+go get -u github.com/go-openapi/runtime
+go get -u github.com/go-openapi/runtime/flagext
+go get -u github.com/go-openapi/runtime/middleware
+go get -u github.com/go-openapi/swag
+go get -u github.com/spf13/pflag
+go get -u github.com/tylerb/graceful
+go get -u github.com/go-openapi/spec
+go get -u github.com/go-openapi/strfmt
+go get -u github.com/go-openapi/validate
+</code></pre>
+
+<p>서버 실행 후  <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>에 접근하면 hello world가 json 형태로 제대로 반환되는 모습을 확인할 수 있다.</p>
+
+<h2 id="gae에-실제로-배포하기">GAE에 실제로 배포하기</h2>
+
+<p>테스트까지 무사히 마쳤으니 이제 실제 GAE에 코드를 올리는 일만 남았다. 아래의 명령어를 실행해서 코드를 배포해보자.</p>
+
+<pre><code class="language-shell">gcloud app deploy
+</code></pre>
+
+<p>GAE 공식 가이드를 잘 따랐다면 위 명령어가 정상동작 할 것이다. 만약에 에러가 발생했다면 <a href="https://cloud.google.com/appengine/docs/standard/go/quickstart">GAE quickStart 문서</a>를 보고 다시 시도해보길 바란다.</p>
+
+<hr />
+
+<h2 id="마치며">마치며</h2>
+
+<p>이번 포스트는 일단 실행에는 성공했지만 원인을 제대로 파악하지 못한 이슈들이 제법있다. <strong>일단 나는 위 가이드를 따라하며 앱 배포까지 성공했지만 다른사람들도 성공할 수 있을지 솔직히 자신이 없다.</strong> 만약 위 가이드에 잘못되거나 추가할 내용이 있다면 작성자에게 <a href="mailto:kyc1682@gmail.com">메일</a>을 보내주거나 문서를 직접 수정해서 push request를 해주시길 바란다.</p>
+
+<p>[last-post]: {% post_url 2017-10-06-go-swagger01 %}</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6">
+        
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://yeongcheon.github.io/" >
+    &copy; 2019 YeongCheon Blog
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

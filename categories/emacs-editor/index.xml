@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emacs Editor on YeongCheon Blog</title>
+    <link>http://yeongcheon.github.io/categories/emacs-editor/</link>
+    <description>Recent content in Emacs Editor on YeongCheon Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 04 Feb 2018 00:30:00 +0900</lastBuildDate>
+    
+	<atom:link href="http://yeongcheon.github.io/categories/emacs-editor/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>emacs 명령어 목록</title>
+      <link>http://yeongcheon.github.io/posts/2018-02-08-emacs-command/</link>
+      <pubDate>Sun, 04 Feb 2018 00:30:00 +0900</pubDate>
+      
+      <guid>http://yeongcheon.github.io/posts/2018-02-08-emacs-command/</guid>
+      <description>emacs 명령어 목록  이맥스를 쓰면서 개인적으로 유용하게 쓰고있는 명령어 리스트, 대부분 M-x를 누른 후 실행한다.
+ common  grep : grep을 이용한 문자열 검색 (lgrep, rgrep도 있다.). 위키링크 find-name-dired : 특정 폴더 아래에서 지정된 파일이름 패턴과 동일한 목록을 뽑아 dired모드로 출력해주는 명령어. 폴더 아래의 모든 파일에서 replace 명령어를 수행할 때 유용하다. 링크  특정폴더 아래의 모든 파일(하위폴더 포함)에서 replace를 실행하는 방법 1. M-x find-name-dired 명령어 실행 후 폴더 지정, 파일패턴 지정 2.</description>
+    </item>
+    
+    <item>
+      <title>emacs 단축키 목록</title>
+      <link>http://yeongcheon.github.io/posts/2017-12-26-emacs-shortcut/</link>
+      <pubDate>Tue, 26 Dec 2017 16:00:00 +0900</pubDate>
+      
+      <guid>http://yeongcheon.github.io/posts/2017-12-26-emacs-shortcut/</guid>
+      <description>emacs 단축키 목록  아래의 단축키들은 그누 이맥스 시작하기(한빛미디어) 책을 보면서 정리한 내용들입니다.
+ common  C-x s : 모든 버퍼 저장(y, n 또는 !) C-x C-q : 버퍼 읽기/쓰기 전용상태로 swap C-x C-x : 선택영역 끝간 이동 C-t : 글자 순서 바꾸기(toggle) M-t : 단어 순서 바꾸기 C-x C-t : 문장 순서 바꾸기 M-c : 단어의 첫 글자만 대문자로 바꾸기 M-u : 한 단어를 대문자로 바꾼다. M-l : 한 단어를 소문자로 바꾼다.</description>
+    </item>
+    
+  </channel>
+</rss>

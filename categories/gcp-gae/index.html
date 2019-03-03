@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>YeongCheon Blog </title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.54.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.955516233bcafa4d2a1c13cea63c7b50.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+      <link href="http://yeongcheon.github.io/categories/gcp-gae/index.xml" rel="alternate" type="application/rss+xml" title="YeongCheon Blog" />
+      <link href="http://yeongcheon.github.io/categories/gcp-gae/index.xml" rel="feed" type="application/rss+xml" title="YeongCheon Blog" />
+    
+
+    <meta property="og:title" content="Gcp Gae" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://yeongcheon.github.io/categories/gcp-gae/" />
+
+<meta property="og:updated_time" content="2018-04-29T21:30:00&#43;09:00"/>
+
+<meta itemprop="name" content="Gcp Gae">
+<meta itemprop="description" content="">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Gcp Gae"/>
+<meta name="twitter:description" content=""/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="http://yeongcheon.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      YeongCheon Blog
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Gcp Gae
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links nested-img mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Gcp Gae”</p>
+    </div>
+  </article>
+  <div class="mw8 center">    
+    <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2018-04-29-gae-datastore-indexes/" class="link black dim">
+        Googlde App Engine(GAE) datastore index 관련 에러 해결하기
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      들어가며 google app engine을 이용해 REST API를 작성하던 중 발생했던 datastore의 index 관련 이슈와 그 해결법에 대해 기록한다. 참고, 여기도 참고
+에러발생 상황 내 프로필을 조회한 사람들의 목록을 반환해주는 API를 작성했다. 코드는 딱히 별거 없고 그냥 datastore에 있는 데이터들을 불러오는 내용이다. 핵심코드는 아래와 같다.
+q := datastore.NewQuery(userDao.VisitorEntity).Filter(&quot;UserId=&quot;, userId).Order(&quot;-VisitTime&quot;)  UserId 필드의 값을 기준으로 필터링을 하고 VisitTime을 최근순으로 정렬하는 간단한 코드다. 위 쿼리문을 베이스로 한 API는 로컬테스트는 무사히 통과하고 배포까지 정상적으로 완료, 이 후 클라우드에 올라간 API를 테스트 했는데 다음과 같은 에러로그를 내뿜었다.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://yeongcheon.github.io/" >
+    &copy; 2019 YeongCheon Blog
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

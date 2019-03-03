@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emacs on YeongCheon Blog</title>
+    <link>http://yeongcheon.github.io/categories/emacs/</link>
+    <description>Recent content in Emacs on YeongCheon Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Sep 2018 21:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="http://yeongcheon.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>emacs에서 커서이동 없이 buffer 전체 복사하기</title>
+      <link>http://yeongcheon.github.io/posts/2018-09-27-emacs-selectall/</link>
+      <pubDate>Thu, 27 Sep 2018 21:00:00 +0900</pubDate>
+      
+      <guid>http://yeongcheon.github.io/posts/2018-09-27-emacs-selectall/</guid>
+      <description>보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
+원래는 어떻게 쓰고 있었어요? 내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와 같다.
+M - &amp;lt;, M - SPC, M - &amp;gt;, M - w
+이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다.</description>
+    </item>
+    
+  </channel>
+</rss>
