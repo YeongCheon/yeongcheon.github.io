@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gae Golang Geometry S2 on YeongCheon Blog</title>
+    <title>Gae Golang Geometry S2 on YeongCheon Tech Blog</title>
     <link>http://yeongcheon.github.io/categories/gae-golang-geometry-s2/</link>
-    <description>Recent content in Gae Golang Geometry S2 on YeongCheon Blog</description>
+    <description>Recent content in Gae Golang Geometry S2 on YeongCheon Tech Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ko-ko</language>
     <lastBuildDate>Sun, 05 Aug 2018 18:00:00 +0900</lastBuildDate>
     
 	<atom:link href="http://yeongcheon.github.io/categories/gae-golang-geometry-s2/index.xml" rel="self" type="application/rss+xml" />

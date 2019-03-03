@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Emacs Typescript Angular on YeongCheon Blog</title>
+    <title>Emacs Typescript Angular on YeongCheon Tech Blog</title>
     <link>http://yeongcheon.github.io/categories/emacs-typescript-angular/</link>
-    <description>Recent content in Emacs Typescript Angular on YeongCheon Blog</description>
+    <description>Recent content in Emacs Typescript Angular on YeongCheon Tech Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ko-ko</language>
     <lastBuildDate>Fri, 21 Sep 2018 12:00:00 +0900</lastBuildDate>
     
 	<atom:link href="http://yeongcheon.github.io/categories/emacs-typescript-angular/index.xml" rel="self" type="application/rss+xml" />

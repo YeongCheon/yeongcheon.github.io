@@ -1,120 +1,43 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>YeongCheon Blog  | emacs에서 커서이동 없이 buffer 전체 복사하기</title>
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <title>emacs에서 커서이동 없이 buffer 전체 복사하기 // YeongCheon Tech Blog</title>
+    <meta charset="utf-8" />
     <meta name="generator" content="Hugo 0.54.0" />
-    
-    
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    
-
-    
-    
-      <link href="/dist/css/app.955516233bcafa4d2a1c13cea63c7b50.css" rel="stylesheet">
-    
-
-    
-
-    
-      
-    
-
-    
-
-    <meta property="og:title" content="emacs에서 커서이동 없이 buffer 전체 복사하기" />
-<meta property="og:description" content="보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
-원래는 어떻게 쓰고 있었어요? 내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와 같다.
-M - &lt;, M - SPC, M - &gt;, M - w
-이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://yeongcheon.github.io/posts/2018-09-27-emacs-selectall/" />
-<meta property="article:published_time" content="2018-09-27T21:00:00&#43;09:00"/>
-<meta property="article:modified_time" content="2018-09-27T21:00:00&#43;09:00"/>
-
-<meta itemprop="name" content="emacs에서 커서이동 없이 buffer 전체 복사하기">
-<meta itemprop="description" content="보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
-원래는 어떻게 쓰고 있었어요? 내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와 같다.
-M - &lt;, M - SPC, M - &gt;, M - w
-이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다.">
-
-
-<meta itemprop="datePublished" content="2018-09-27T21:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2018-09-27T21:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="175">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="emacs에서 커서이동 없이 buffer 전체 복사하기"/>
-<meta name="twitter:description" content="보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
-원래는 어떻게 쓰고 있었어요? 내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와 같다.
-M - &lt;, M - SPC, M - &gt;, M - w
-이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다."/>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="YeongCheon Kim" />
+    <meta name="description" content="" />
+    <base href="http://yeongcheon.github.io/" />
+    <link rel="stylesheet" href="http://yeongcheon.github.io/css/main.min.3bf813d46763420c83fb33c51950b4fc582483efcfddb34b4e4e8d6b811e3208.css" />
   </head>
-
-  <body class="ma0 avenir bg-near-white">
-
-    
-   
-  
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="http://yeongcheon.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
-      YeongCheon Blog
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-      
-
-
-
-
-
-
-
-
-
-    </div>
-  </div>
-</nav>
-
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-      
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-
-    <header class="mt4 w-100">
-      <p class="f6 b helvetica tracked">
-          
-        POSTS
-      </p>
-      <h1 class="f1 athelas mb1">emacs에서 커서이동 없이 buffer 전체 복사하기</h1>
-      
-      <time class="f6 mv4 dib tracked" datetime="2018-09-27T21:00:00&#43;09:00">September 27, 2018</time>      
-      
-      
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
+      <h1>YeongCheon Tech Blog</h1>
+      <p>잡탕 웹개발자, 이맥스를 좋아해요</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/yeongcheon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+        
+      </div>
     </header>
-
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">emacs에서 커서이동 없이 buffer 전체 복사하기</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Sep 27, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          1 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
 
 <p>보편적인 현대 에디터에서 <code>ctrl-a</code> <code>ctrl-c</code>, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.</p>
 
@@ -137,46 +60,10 @@ M - &lt;, M - SPC, M - &gt;, M - w
 <h2 id="후기">후기</h2>
 
 <p>현대 에디터에서는 단순하기 그지없는 작업인데 이맥스는 너무 복잡하다는 생각이 든다. 하지만 뭐 자주 쓸 단축키도 아니고 현재까지는 실보단 득이 많으니 일단은 참고 넘어가도록 하자. 그래도 첨부된 링크의 expand-region 패키지를 활용하면 좀 더 단순하게 할 수 있지 않을까 싶다.</p>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6">
-        
-      </div>
-    </section>
 
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
+    </div>
   </article>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://yeongcheon.github.io/" >
-    &copy; 2019 YeongCheon Blog
-  </a>
-    <div>
-
-
-
-
-
-
-
-
-</div>
-  </div>
-</footer>
-
-    
-
-  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
-
-
   </body>
 </html>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Spring Jpa Gae on YeongCheon Blog</title>
+    <title>Spring Jpa Gae on YeongCheon Tech Blog</title>
     <link>http://yeongcheon.github.io/categories/spring-jpa-gae/</link>
-    <description>Recent content in Spring Jpa Gae on YeongCheon Blog</description>
+    <description>Recent content in Spring Jpa Gae on YeongCheon Tech Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ko-ko</language>
     <lastBuildDate>Sun, 11 Nov 2018 19:00:00 +0900</lastBuildDate>
     
 	<atom:link href="http://yeongcheon.github.io/categories/spring-jpa-gae/index.xml" rel="self" type="application/rss+xml" />
