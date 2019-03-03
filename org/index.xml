@@ -20,5 +20,15 @@
 현재 사용자가 shelter 정보를 조회하는 API를 호출할 경우 쉘터 정보 안에 쉘터 소유자의 상세한 정보가 포함되어 있다고 한다.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://yeongcheon.github.io/org/2019-03-03-github&#43;hugo&#43;orgmode_setup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yeongcheon.github.io/org/2019-03-03-github&#43;hugo&#43;orgmode_setup/</guid>
+      <description>hugo + github + org-mode를 이용해 블로그를 운영하는 법을 알아보자. github에 hugo를 올리는 방법은 웹에 가이드가 이미 많이 있기 때문에 이 포스트에서는 org-mode를 이용해 hugo에 글을 어떻게 쓰는지를 중점적으로 설명한다.
+hugo를 적용하게 된 계기 orgmode에 대한 호기심 jekyll에서 orgmode 적용 실패 원래 jekyll + github 조합으로 블로그를 운영하고 있었다. github 블로그를 운영할 때 가장 대중적인 조합이고 나 초기 셋팅이 좀 번거로웠던거 빼곤 불만이 없었기에 그대로 사용하고 있었다. 블로그에 포스트를 작성할 때 markdown을 이용해서 글을 작성했었는데 최근에 emacs의 킬러 콘텐츠로 불리는 org-mode에 관심이 가기 시작했다.</description>
+    </item>
+    
   </channel>
 </rss>

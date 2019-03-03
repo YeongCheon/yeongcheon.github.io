@@ -6,10 +6,20 @@
     <description>Recent content on YeongCheon Tech Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-ko</language>
-    <lastBuildDate>Fri, 01 Mar 2019 19:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 03 Mar 2019 19:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yeongcheon.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hugo &#43; org-mode &#43; github 를 이용해 블로그 셋팅하기</title>
+      <link>https://yeongcheon.github.io/posts/2019-03-03-github&#43;hugo&#43;orgmode_setup/</link>
+      <pubDate>Sun, 03 Mar 2019 19:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2019-03-03-github&#43;hugo&#43;orgmode_setup/</guid>
+      <description>hugo + github + org-mode를 이용해 블로그를 운영하는 법을 알아보자. github에 hugo를 올리는 방법은 웹에 가이드가 이미 많이 있기 때문에 이 포스트에서는 org-mode를 이용해 hugo에 글을 어떻게 쓰는지를 중점적으로 설명한다.
+hugo를 적용하게 된 계기 orgmode에 대한 호기심 원래 jekyll + github 조합으로 블로그를 운영하고 있었다. github 블로그를 운영할 때 가장 대중적인 조합이고 나 초기 셋팅이 좀 번거로웠던거 빼곤 불만이 없었기에 그대로 사용하고 있었다. 블로그에 포스트를 작성할 때 markdown을 이용해서 글을 작성했었는데 최근에 emacs의 킬러 콘텐츠로 불리는 org-mode에 관심이 가기 시작했다.</description>
+    </item>
     
     <item>
       <title>jackson을 이용해 json 변환 시 JPA entity의 id값만 추출하기</title>
@@ -155,6 +165,16 @@ echo &amp;#34;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main
       <guid>https://yeongcheon.github.io/org/2019-03-01-jpa-jackson/</guid>
       <description>들어가며 요구사항 REST API 서버를 java언어에서 사용되는 대표적인 json(또는 xml, yaml, etc...) 라이브러리인 jackson 은 kotlin에서도 사용이 가능하다. JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경우가 있다. 이 문제를 jackson을 이용해 json형식으로 이쁘게 변환하는 법을 알아보자. 데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자.
 현재 사용자가 shelter 정보를 조회하는 API를 호출할 경우 쉘터 정보 안에 쉘터 소유자의 상세한 정보가 포함되어 있다고 한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://yeongcheon.github.io/org/2019-03-03-github&#43;hugo&#43;orgmode_setup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yeongcheon.github.io/org/2019-03-03-github&#43;hugo&#43;orgmode_setup/</guid>
+      <description>hugo + github + org-mode를 이용해 블로그를 운영하는 법을 알아보자. github에 hugo를 올리는 방법은 웹에 가이드가 이미 많이 있기 때문에 이 포스트에서는 org-mode를 이용해 hugo에 글을 어떻게 쓰는지를 중점적으로 설명한다.
+hugo를 적용하게 된 계기 orgmode에 대한 호기심 jekyll에서 orgmode 적용 실패 원래 jekyll + github 조합으로 블로그를 운영하고 있었다. github 블로그를 운영할 때 가장 대중적인 조합이고 나 초기 셋팅이 좀 번거로웠던거 빼곤 불만이 없었기에 그대로 사용하고 있었다. 블로그에 포스트를 작성할 때 markdown을 이용해서 글을 작성했었는데 최근에 emacs의 킬러 콘텐츠로 불리는 org-mode에 관심이 가기 시작했다.</description>
     </item>
     
   </channel>

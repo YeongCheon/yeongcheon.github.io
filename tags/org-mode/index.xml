@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Org Mode on YeongCheon Tech Blog</title>
+    <link>https://yeongcheon.github.io/tags/org-mode/</link>
+    <description>Recent content in Org Mode on YeongCheon Tech Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-ko</language>
+    <lastBuildDate>Sun, 03 Mar 2019 19:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://yeongcheon.github.io/tags/org-mode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hugo &#43; org-mode &#43; github 를 이용해 블로그 셋팅하기</title>
+      <link>https://yeongcheon.github.io/posts/2019-03-03-github&#43;hugo&#43;orgmode_setup/</link>
+      <pubDate>Sun, 03 Mar 2019 19:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2019-03-03-github&#43;hugo&#43;orgmode_setup/</guid>
+      <description>hugo + github + org-mode를 이용해 블로그를 운영하는 법을 알아보자. github에 hugo를 올리는 방법은 웹에 가이드가 이미 많이 있기 때문에 이 포스트에서는 org-mode를 이용해 hugo에 글을 어떻게 쓰는지를 중점적으로 설명한다.
+hugo를 적용하게 된 계기 orgmode에 대한 호기심 원래 jekyll + github 조합으로 블로그를 운영하고 있었다. github 블로그를 운영할 때 가장 대중적인 조합이고 나 초기 셋팅이 좀 번거로웠던거 빼곤 불만이 없었기에 그대로 사용하고 있었다. 블로그에 포스트를 작성할 때 markdown을 이용해서 글을 작성했었는데 최근에 emacs의 킬러 콘텐츠로 불리는 org-mode에 관심이 가기 시작했다.</description>
+    </item>
+    
+  </channel>
+</rss>
