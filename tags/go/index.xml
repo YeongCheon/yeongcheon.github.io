@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on YeongCheon Tech Blog</title>
+    <link>https://yeongcheon.github.io/tags/go/</link>
+    <description>Recent content in Go on YeongCheon Tech Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-ko</language>
+    <lastBuildDate>Tue, 05 Dec 2017 17:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://yeongcheon.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Google App Engine(GAE)에서 go swagger server 실행하기</title>
+      <link>https://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/</link>
+      <pubDate>Tue, 05 Dec 2017 17:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/</guid>
+      <description>Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
+spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
+swagger: &amp;#34;2.0&amp;#34; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &amp;#34;result : helloworld&amp;#34; items: $ref: &amp;#34;#/definitions/item&amp;#34; definitions: item: type: object required: - result properties: result: type: string swagger.</description>
+    </item>
+    
+    <item>
+      <title>go swagger 서버파일 구조 분석</title>
+      <link>https://yeongcheon.github.io/posts/2017-10-14-go-swagger02/</link>
+      <pubDate>Sat, 14 Oct 2017 14:50:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2017-10-14-go-swagger02/</guid>
+      <description>Intro 지난번 포스트에서 만든 hello world 프로젝트의 구성요소들을 분석해보자.
+폴더 구조 ├── cmd │ └── helloworld-server │ └── main.go ├── github.com ├── golang.org ├── gopkg.in ├── models │ └── item.go ├── restapi │ ├── configure_helloworld.go │ ├── doc.go │ ├── embedded_spec.go │ ├── operations │ │ ├── get.go │ │ ├── get_parameters.go │ │ ├── get_responses.go │ │ ├── get_urlbuilder.go │ │ └── helloworld_api.go │ └── server.go └── swagger.yml 지난번 포스트를 처음부터 끝까지 다 따라했다면 $GOPATH/src 폴더가 위와 같은 구조로 이루어져 있을 것이다.</description>
+    </item>
+    
+    <item>
+      <title>go swagger 사용법</title>
+      <link>https://yeongcheon.github.io/posts/2017-10-06-go-swagger01/</link>
+      <pubDate>Fri, 06 Oct 2017 11:40:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2017-10-06-go-swagger01/</guid>
+      <description>Intro 이 문서는 goswagger를 이용해 golang으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 ubuntu 16.04LTS, golang 1.8을 사용중이다.
+이 문서를 작성하며 참고한 사이트는 아래와 같다. 사실 이 문서 안보고 아래 목록만 살펴봐도 된다. * swagger 공식 사이트 * goswagger.io * yundream님의 사이트, 상당히 정리가 잘 되어있다. * 구글링&amp;hellip;
+goSwagger 설치 github 페이지의 README 파일을 보면 아래의 명령어를 쓰라고 한다.
+echo &amp;#34;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&amp;#34; | sudo tee -a /etc/apt/sources.</description>
+    </item>
+    
+  </channel>
+</rss>
