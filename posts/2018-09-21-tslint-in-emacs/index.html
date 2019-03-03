@@ -121,18 +121,12 @@ vscode는 그냥 되던데? 이게 내가 헤매게 된 가장 큰 이유다. vs
 <h2 id="해결책은">해결책은?</h2>
 
 <p>별거 없다. tslint를 설치하자.</p>
-
-<pre><code class="language-bash"># Install the global CLI and its peer dependency
-$ yarn global add tslint typescript
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Install the global CLI and its peer dependency</span>
+$ yarn global add tslint typescript</code></pre></div>
 <p>혹시 yarn이 설치되어 있지 않다면 아래 내용을 터미널에서 실행해보자.</p>
-
-<pre><code class="language-bash">$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | sudo tee /etc/apt/sources.list.d/yarn.list
-$ sudo apt-get update &amp;&amp; sudo apt-get install yarn
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo <span style="color:#e6db74">&#34;deb https://dl.yarnpkg.com/debian/ stable main&#34;</span> | sudo tee /etc/apt/sources.list.d/yarn.list
+$ sudo apt-get update <span style="color:#f92672">&amp;&amp;</span> sudo apt-get install yarn</code></pre></div>
 <h2 id="한줄평">한줄평</h2>
 
 <p>툴이 알아서 다 해줄거라는 생각은 버려라.</p>

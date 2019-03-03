@@ -31,7 +31,7 @@
     <meta property="og:title" content="Google App Engine(GAE)에서 go swagger server 실행하기" />
 <meta property="og:description" content="Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
 spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
-swagger: &quot;2.0&quot; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &quot;result : helloworld&quot; items: $ref: &quot;#/definitions/item&quot; definitions: item: type: object required: - result properties: result: type: string  swagger." />
+swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &#34;result : helloworld&#34; items: $ref: &#34;#/definitions/item&#34; definitions: item: type: object required: - result properties: result: type: string swagger." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/" />
 <meta property="article:published_time" content="2017-12-05T17:00:00&#43;09:00"/>
@@ -40,7 +40,7 @@ swagger: &quot;2.0&quot; info: description: hello go swagger title: hello world 
 <meta itemprop="name" content="Google App Engine(GAE)에서 go swagger server 실행하기">
 <meta itemprop="description" content="Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
 spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
-swagger: &quot;2.0&quot; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &quot;result : helloworld&quot; items: $ref: &quot;#/definitions/item&quot; definitions: item: type: object required: - result properties: result: type: string  swagger.">
+swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &#34;result : helloworld&#34; items: $ref: &#34;#/definitions/item&#34; definitions: item: type: object required: - result properties: result: type: string swagger.">
 
 
 <meta itemprop="datePublished" content="2017-12-05T17:00:00&#43;09:00" />
@@ -54,7 +54,7 @@ swagger: &quot;2.0&quot; info: description: hello go swagger title: hello world 
 <meta name="twitter:title" content="Google App Engine(GAE)에서 go swagger server 실행하기"/>
 <meta name="twitter:description" content="Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
 spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
-swagger: &quot;2.0&quot; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &quot;result : helloworld&quot; items: $ref: &quot;#/definitions/item&quot; definitions: item: type: object required: - result properties: result: type: string  swagger."/>
+swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &#34;result : helloworld&#34; items: $ref: &#34;#/definitions/item&#34; definitions: item: type: object required: - result properties: result: type: string swagger."/>
 
   </head>
 
@@ -122,12 +122,11 @@ swagger: &quot;2.0&quot; info: description: hello go swagger title: hello world 
 <h2 id="spec을-이용해-서버코드-생성하기">spec을 이용해 서버코드 생성하기</h2>
 
 <p>[지난번 포스트][last-post]에서 작성한 <code>swagger.yaml</code>을 이용해 서버코드를 생성해보자. <code>swagger.yaml</code> 내용은 아래와 같다.</p>
-
-<pre><code class="language-yaml">swagger: &quot;2.0&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">swagger: <span style="color:#e6db74">&#34;2.0&#34;</span>
 info:
   description: hello go swagger
   title: hello world application
-  version: 1.0.0
+  version: <span style="color:#ae81ff">1.0</span>.<span style="color:#ae81ff">0</span>
 produces:
   - application/json
 consumes:
@@ -138,13 +137,13 @@ paths:
   /:
     get:
       responses:
-        200:
+        <span style="color:#ae81ff">200</span>:
           description: list the todo operations
           schema:
             type: array
-            description: &quot;result : helloworld&quot;
+            description: <span style="color:#e6db74">&#34;result : helloworld&#34;</span>
             items:
-              $ref: &quot;#/definitions/item&quot;
+              $ref: <span style="color:#e6db74">&#34;#/definitions/item&#34;</span>
 definitions:
   item:
     type: object
@@ -152,15 +151,9 @@ definitions:
       - result
     properties:
       result:
-        type: string
-
-</code></pre>
-
+        type: string</code></pre></div>
 <p><code>swagger.yaml</code> 파일을 생성했으면 이제 <code>swagger generate</code> 명령을 이용해 실제로 서버에서 구동될 코드를 생성해보자. [지난번 포스트][last-post]와 동일한 명령어지만 <code>--flag-strategy pflag</code> 옵션이 추가됐다. 코드 생성이 완료되었으면 지난번 포스트를 참고하여 <code>/</code>에 접근 시 hello world가 출력되도록 코드를 수정해놓자.</p>
-
-<pre><code class="language-command">swagger generate server -A helloworld -f ./swagger.yml --flag-strategy pflag
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-command" data-lang="command">swagger generate server -A helloworld -f ./swagger.yml --flag-strategy pflag</code></pre></div>
 <p><code>swagger generate</code> 명령어를 쓰기전엔 <code>swagger validate</code> 명령어를 이용해 <code>swagger.yaml</code> 파일의 유효성 검사를 진행하는게 보통이지만 이번 예제에선 생략하도록 한다.</p>
 
 <h3 id="flag-strategy-pflag-옵션을-주는-이유">flag-strategy pflag 옵션을 주는 이유</h3>
@@ -182,41 +175,38 @@ definitions:
 <li>flag와 기타 다른 코드들을 삭제한다.</li>
 <li>위 단계를 모두 수행한 코드의 결과는 아래와 같다.</li>
 </ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">// Code generated by go-swagger; DO NOT EDIT.
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-<pre><code class="language-golang">// Code generated by go-swagger; DO NOT EDIT.
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;log&#34;</span>
 
-package main
+	<span style="color:#a6e22e">loads</span> <span style="color:#e6db74">&#34;github.com/go-openapi/loads&#34;</span>
 
-import (
-	&quot;log&quot;
-
-	loads &quot;github.com/go-openapi/loads&quot;
-
-	&quot;net/http&quot;
-	&quot;test/restapi&quot;
-	&quot;test/restapi/operations&quot;
+	<span style="color:#e6db74">&#34;net/http&#34;</span>
+	<span style="color:#e6db74">&#34;test/restapi&#34;</span>
+	<span style="color:#e6db74">&#34;test/restapi/operations&#34;</span>
 )
 
-// This file was generated by the swagger tool.
-// Make sure not to overwrite this file after you generated it because all your edits would be lost!
+<span style="color:#75715e">// This file was generated by the swagger tool.
+</span><span style="color:#75715e">// Make sure not to overwrite this file after you generated it because all your edits would be lost!
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">init</span>() {
 
-func init() {
-
-	swaggerSpec, err := loads.Analyzed(restapi.SwaggerJSON, &quot;&quot;)
-	if err != nil {
-		log.Fatalln(err)
+	<span style="color:#a6e22e">swaggerSpec</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">loads</span>.<span style="color:#a6e22e">Analyzed</span>(<span style="color:#a6e22e">restapi</span>.<span style="color:#a6e22e">SwaggerJSON</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalln</span>(<span style="color:#a6e22e">err</span>)
 	}
 
-	var server *restapi.Server // make sure init is called
-	api := operations.NewHelloworldAPI(swaggerSpec)
-	// get server with flag values filled out
-	server = restapi.NewServer(api)
-	defer server.Shutdown()
-	server.ConfigureAPI()
-	http.Handle(&quot;/&quot;, server.GetHandler())
-}
-</code></pre>
-
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">restapi</span>.<span style="color:#a6e22e">Server</span> <span style="color:#75715e">// make sure init is called
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">api</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">operations</span>.<span style="color:#a6e22e">NewHelloworldAPI</span>(<span style="color:#a6e22e">swaggerSpec</span>)
+	<span style="color:#75715e">// get server with flag values filled out
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">server</span> = <span style="color:#a6e22e">restapi</span>.<span style="color:#a6e22e">NewServer</span>(<span style="color:#a6e22e">api</span>)
+	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">Shutdown</span>()
+	<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">ConfigureAPI</span>()
+	<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Handle</span>(<span style="color:#e6db74">&#34;/&#34;</span>, <span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">GetHandler</span>())
+}</code></pre></div>
 <p>여기까지 진행했다면 이제 GAE 환경에서 코드를 실행할 준비가 모두 완료된 것이다. 참고로 import된 restapi의 경로는 환경에 따라 달라질 수 있다.</p>
 
 <hr />
@@ -228,8 +218,7 @@ func init() {
 <p>환경셋팅이 끝났다면 <code>main.go</code> 파일과 같은 위치에 <code>app.yaml</code>을 생성하자. 내용은 <a href="https://raw.githubusercontent.com/GoogleCloudPlatform/appengine-guestbook-go/part1-helloworld/app.yaml">이 파일</a>과 동일하다.</p>
 
 <p>마지막으로 로컬서버를 구동하기 전에 우리가 생성한 코드의 의존 패키지들을 내려받아야 한다. 명령창에서 아래의 명령어들을 실행한다. 참고로 <a href="https://github.com/golang/dep">dep</a>를 이용할 시 로컬서버에서는 제대로 동작하지만 deploy가 제대로 되지 않는다. 2017-12-05 현재 원인은 파악하지 못했는데 파악되는대로 내용을 업데이트 하겠다.</p>
-
-<pre><code class="language-shell">go get -u github.com/go-openapi/loads
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">go get -u github.com/go-openapi/loads
 go get -u github.com/go-openapi/errors
 go get -u github.com/go-openapi/runtime
 go get -u github.com/go-openapi/runtime/flagext
@@ -239,18 +228,13 @@ go get -u github.com/spf13/pflag
 go get -u github.com/tylerb/graceful
 go get -u github.com/go-openapi/spec
 go get -u github.com/go-openapi/strfmt
-go get -u github.com/go-openapi/validate
-</code></pre>
-
+go get -u github.com/go-openapi/validate</code></pre></div>
 <p>서버 실행 후  <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>에 접근하면 hello world가 json 형태로 제대로 반환되는 모습을 확인할 수 있다.</p>
 
 <h2 id="gae에-실제로-배포하기">GAE에 실제로 배포하기</h2>
 
 <p>테스트까지 무사히 마쳤으니 이제 실제 GAE에 코드를 올리는 일만 남았다. 아래의 명령어를 실행해서 코드를 배포해보자.</p>
-
-<pre><code class="language-shell">gcloud app deploy
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud app deploy</code></pre></div>
 <p>GAE 공식 가이드를 잘 따랐다면 위 명령어가 정상동작 할 것이다. 만약에 에러가 발생했다면 <a href="https://cloud.google.com/appengine/docs/standard/go/quickstart">GAE quickStart 문서</a>를 보고 다시 시도해보길 바란다.</p>
 
 <hr />

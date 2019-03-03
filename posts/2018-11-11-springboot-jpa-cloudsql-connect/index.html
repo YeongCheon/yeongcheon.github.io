@@ -126,178 +126,159 @@
 <h2 id="build-gradle-작성">build.gradle 작성</h2>
 
 <p>의존성 관리를 위한 build.gradle 파일이다. 아래의 코드 내용은 <a href="https://start.spring.io/">spring initializer</a>를 통해서 생성된 프로젝트를 바탕으로 이것저것 수정한 버전이다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">buildscript <span style="color:#f92672">{</span>
+	ext <span style="color:#f92672">{</span>
+		kotlinVersion <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1.3.0&#39;</span>
+		springBootVersion <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;2.0.2.RELEASE&#39;</span>
+	<span style="color:#f92672">}</span>
+	repositories <span style="color:#f92672">{</span>
+		jcenter<span style="color:#f92672">()</span>
+		mavenCentral<span style="color:#f92672">()</span>
+	<span style="color:#f92672">}</span>
+	dependencies <span style="color:#f92672">{</span>
+		classpath <span style="color:#e6db74">&#39;com.google.cloud.tools:appengine-gradle-plugin:1.+&#39;</span>    <span style="color:#75715e">// latest App Engine Gradle tasks
+</span><span style="color:#75715e"></span>		classpath<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}&#34;</span><span style="color:#f92672">)</span>
+		classpath<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}&#34;</span><span style="color:#f92672">)</span>
+		classpath <span style="color:#e6db74">&#34;org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion&#34;</span>
+		classpath <span style="color:#e6db74">&#39;com.google.gms:google-services:4.1.0&#39;</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
 
-<pre><code class="language-gradle">
-buildscript {
-	ext {
-		kotlinVersion = '1.3.0'
-		springBootVersion = '2.0.2.RELEASE'
-	}
-	repositories {
-		jcenter()
-		mavenCentral()
-	}
-	dependencies {
-		classpath 'com.google.cloud.tools:appengine-gradle-plugin:1.+'    // latest App Engine Gradle tasks
-		classpath(&quot;org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}&quot;)
-		classpath(&quot;org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}&quot;)
-		classpath &quot;org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion&quot;
-		classpath 'com.google.gms:google-services:4.1.0'
-	}
-}
+plugins <span style="color:#f92672">{</span>
+	id <span style="color:#e6db74">&#34;org.jetbrains.kotlin.plugin.spring&#34;</span> version <span style="color:#e6db74">&#39;1.3.0&#39;</span>
+	id <span style="color:#e6db74">&#34;org.jetbrains.kotlin.plugin.noarg&#34;</span> version <span style="color:#e6db74">&#39;1.3.0&#39;</span>
+	id <span style="color:#e6db74">&#34;org.jetbrains.kotlin.plugin.allopen&#34;</span> version <span style="color:#e6db74">&#39;1.3.0&#39;</span>
+<span style="color:#f92672">}</span>
 
-plugins {
-	id &quot;org.jetbrains.kotlin.plugin.spring&quot; version '1.3.0'
-	id &quot;org.jetbrains.kotlin.plugin.noarg&quot; version '1.3.0'
-	id &quot;org.jetbrains.kotlin.plugin.allopen&quot; version '1.3.0'
-}
+apply plugin: <span style="color:#e6db74">&#39;java&#39;</span>
+apply plugin: <span style="color:#e6db74">&#39;kotlin&#39;</span>
+apply plugin: <span style="color:#e6db74">&#39;org.springframework.boot&#39;</span>
+apply plugin: <span style="color:#e6db74">&#39;org.jetbrains.kotlin.plugin.spring&#39;</span>
+apply plugin: <span style="color:#e6db74">&#39;kotlin-jpa&#39;</span>
+apply plugin: <span style="color:#e6db74">&#39;kotlin-noarg&#39;</span>
 
-apply plugin: 'java'
-apply plugin: 'kotlin'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'org.jetbrains.kotlin.plugin.spring'
-apply plugin: 'kotlin-jpa'
-apply plugin: 'kotlin-noarg'
+apply plugin: <span style="color:#e6db74">&#39;kotlin-kapt&#39;</span>
+apply plugin: <span style="color:#e6db74">&#39;idea&#39;</span>
 
-apply plugin: 'kotlin-kapt'
-apply plugin: 'idea'
+apply plugin: <span style="color:#e6db74">&#34;kotlin-allopen&#34;</span>
 
-apply plugin: &quot;kotlin-allopen&quot;
+apply plugin: <span style="color:#e6db74">&#39;war&#39;</span>                               <span style="color:#75715e">// standard Web Archive plugin
+</span><span style="color:#75715e"></span>apply plugin: <span style="color:#e6db74">&#39;com.google.cloud.tools.appengine&#39;</span>  <span style="color:#75715e">// App Engine tasks
+</span><span style="color:#75715e"></span>
+noArg <span style="color:#f92672">{</span>
+	annotation<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;javax.persistence.Entity&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">}</span>
 
-apply plugin: 'war'                               // standard Web Archive plugin
-apply plugin: 'com.google.cloud.tools.appengine'  // App Engine tasks
+allOpen <span style="color:#f92672">{</span>
+	annotation<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;javax.persistence.Entity&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">}</span>
 
-noArg {
-	annotation(&quot;javax.persistence.Entity&quot;)
-}
+group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;com.companyname&#39;</span>
+version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0.0.1-SNAPSHOT&#39;</span>
+sourceCompatibility <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.8</span>
+compileKotlin <span style="color:#f92672">{</span>
+	kotlinOptions <span style="color:#f92672">{</span>
+		freeCompilerArgs <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;-Xjsr305=strict&#34;</span><span style="color:#f92672">]</span>
+		jvmTarget <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1.8&#34;</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+compileTestKotlin <span style="color:#f92672">{</span>
+	kotlinOptions <span style="color:#f92672">{</span>
+		freeCompilerArgs <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;-Xjsr305=strict&#34;</span><span style="color:#f92672">]</span>
+		jvmTarget <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1.8&#34;</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
 
-allOpen {
-	annotation(&quot;javax.persistence.Entity&quot;)
-}
+repositories <span style="color:#f92672">{</span>
+	mavenCentral<span style="color:#f92672">()</span>
+<span style="color:#f92672">}</span>
 
-group = 'com.companyname'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-compileKotlin {
-	kotlinOptions {
-		freeCompilerArgs = [&quot;-Xjsr305=strict&quot;]
-		jvmTarget = &quot;1.8&quot;
-	}
-}
-compileTestKotlin {
-	kotlinOptions {
-		freeCompilerArgs = [&quot;-Xjsr305=strict&quot;]
-		jvmTarget = &quot;1.8&quot;
-	}
-}
+dependencies <span style="color:#f92672">{</span>
+	implementation<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;com.google.appengine:appengine:+&#39;</span><span style="color:#f92672">)</span>
+	implementation<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;com.google.appengine:appengine-api-1.0-sdk:+&#39;</span><span style="color:#f92672">)</span>
+	implementation<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;com.google.appengine.tools:appengine-gcs-client:0.8&#39;</span><span style="color:#f92672">)</span>
 
-repositories {
-	mavenCentral()
-}
+	<span style="color:#75715e">// kotlin
+</span><span style="color:#75715e"></span>	compile <span style="color:#e6db74">&#34;org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion&#34;</span>
+	compile <span style="color:#e6db74">&#34;org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion&#34;</span>
 
-dependencies {
-	implementation('com.google.appengine:appengine:+')
-	implementation('com.google.appengine:appengine-api-1.0-sdk:+')
-	implementation('com.google.appengine.tools:appengine-gcs-client:0.8')
+	<span style="color:#75715e">// spring boot
+</span><span style="color:#75715e"></span>	compile <span style="color:#e6db74">&#34;org.springframework.boot:spring-boot-starter-web:${springBootVersion}&#34;</span>
+	compile <span style="color:#e6db74">&#34;org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}&#34;</span>
+	compile <span style="color:#e6db74">&#34;org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}&#34;</span>
 
-	// kotlin
-	compile &quot;org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion&quot;
-	compile &quot;org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion&quot;
+	<span style="color:#75715e">// jackson
+</span><span style="color:#75715e"></span>	compile <span style="color:#e6db74">&#34;com.fasterxml.jackson.datatype:jackson-datatype-jdk8&#34;</span>
+	compile <span style="color:#e6db74">&#34;com.fasterxml.jackson.datatype:jackson-datatype-jsr310&#34;</span>
+	compile <span style="color:#e6db74">&#34;com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:2.+&#34;</span>
+	compile <span style="color:#e6db74">&#34;com.fasterxml.jackson.module:jackson-module-kotlin:2.+&#34;</span>
 
-	// spring boot
-	compile &quot;org.springframework.boot:spring-boot-starter-web:${springBootVersion}&quot;
-	compile &quot;org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}&quot;
-	compile &quot;org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}&quot;
+	<span style="color:#75715e">// db: hibernate
+</span><span style="color:#75715e"></span>	compile <span style="color:#e6db74">&#34;org.hibernate:hibernate-core:5.2.7.Final&#34;</span>
+	compile <span style="color:#e6db74">&#34;org.hibernate:hibernate-entitymanager:5.2.7.Final&#34;</span>
+	compile <span style="color:#e6db74">&#34;org.hibernate:hibernate-java8:5.2.7.Final&#34;</span>
+	compile group: <span style="color:#e6db74">&#39;org.qlrm&#39;</span><span style="color:#f92672">,</span> name: <span style="color:#e6db74">&#39;qlrm&#39;</span><span style="color:#f92672">,</span> version: <span style="color:#e6db74">&#39;2.0.2&#39;</span>
 
-	// jackson
-	compile &quot;com.fasterxml.jackson.datatype:jackson-datatype-jdk8&quot;
-	compile &quot;com.fasterxml.jackson.datatype:jackson-datatype-jsr310&quot;
-	compile &quot;com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:2.+&quot;
-	compile &quot;com.fasterxml.jackson.module:jackson-module-kotlin:2.+&quot;
-
-	// db: hibernate
-	compile &quot;org.hibernate:hibernate-core:5.2.7.Final&quot;
-	compile &quot;org.hibernate:hibernate-entitymanager:5.2.7.Final&quot;
-	compile &quot;org.hibernate:hibernate-java8:5.2.7.Final&quot;
-	compile group: 'org.qlrm', name: 'qlrm', version: '2.0.2'
-
-	//db : mysql
-	implementation('mysql:mysql-connector-java:5.+')
-	implementation('com.google.cloud.sql:mysql-socket-factory-connector-j-8:1.0.11')
-	implementation('com.google.cloud.sql:mysql-socket-factory:1.0.11')
+	<span style="color:#75715e">//db : mysql
+</span><span style="color:#75715e"></span>	implementation<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;mysql:mysql-connector-java:5.+&#39;</span><span style="color:#f92672">)</span>
+	implementation<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;com.google.cloud.sql:mysql-socket-factory-connector-j-8:1.0.11&#39;</span><span style="color:#f92672">)</span>
+	implementation<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;com.google.cloud.sql:mysql-socket-factory:1.0.11&#39;</span><span style="color:#f92672">)</span>
 	
-	compile 'javax.xml.bind:jaxb-api:2.3.0'
+	compile <span style="color:#e6db74">&#39;javax.xml.bind:jaxb-api:2.3.0&#39;</span>
 
-	testImplementation('org.springframework.boot:spring-boot-starter-test:2.0.2.RELEASE')
-	testImplementation 'com.google.appengine:appengine-testing:1.+'
-	testImplementation 'com.google.appengine:appengine-api-stubs:1.+'
-	testImplementation 'com.google.appengine:appengine-tools-sdk:1.+'
-}
+	testImplementation<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;org.springframework.boot:spring-boot-starter-test:2.0.2.RELEASE&#39;</span><span style="color:#f92672">)</span>
+	testImplementation <span style="color:#e6db74">&#39;com.google.appengine:appengine-testing:1.+&#39;</span>
+	testImplementation <span style="color:#e6db74">&#39;com.google.appengine:appengine-api-stubs:1.+&#39;</span>
+	testImplementation <span style="color:#e6db74">&#39;com.google.appengine:appengine-tools-sdk:1.+&#39;</span>
+<span style="color:#f92672">}</span>
 
-appengine {  // App Engine tasks configuration
-    deploy {   // deploy configuration
-
-    }
-}
-
-</code></pre>
-
+appengine <span style="color:#f92672">{</span>  <span style="color:#75715e">// App Engine tasks configuration
+</span><span style="color:#75715e"></span>    deploy <span style="color:#f92672">{</span>   <span style="color:#75715e">// deploy configuration
+</span><span style="color:#75715e"></span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
 <h2 id="appengine-web-xml-파일-작성">appengine-web.xml 파일 작성</h2>
 
 <p>보통 스프링의 각종 프로퍼티들은 <code>resources/application.properties</code>에 작성하는 경우가 많다(요즘에는 <code>yml</code> 파일로 많이들 작성한다고 카더라). 하지만 우리는 App Engine 환경에서 서버를 실행할 것이기 때문에 <code>webapp/WEB-INF/appengine-web.xml</code>에 각종 프로퍼티들을 선언해 줄 것이다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;appengine-web-app</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://appengine.google.com/ns/1.0&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;version&gt;</span>1<span style="color:#f92672">&lt;/version&gt;</span>
+    <span style="color:#f92672">&lt;threadsafe&gt;</span>true<span style="color:#f92672">&lt;/threadsafe&gt;</span>
+    <span style="color:#f92672">&lt;runtime&gt;</span>java8<span style="color:#f92672">&lt;/runtime&gt;</span>
+    <span style="color:#f92672">&lt;env&gt;</span>standard<span style="color:#f92672">&lt;/env&gt;</span>
+    <span style="color:#f92672">&lt;use-google-connector-j&gt;</span>true<span style="color:#f92672">&lt;/use-google-connector-j&gt;</span>
 
-<pre><code class="language-xml">
-&lt;appengine-web-app xmlns=&quot;http://appengine.google.com/ns/1.0&quot;&gt;
-    &lt;version&gt;1&lt;/version&gt;
-    &lt;threadsafe&gt;true&lt;/threadsafe&gt;
-    &lt;runtime&gt;java8&lt;/runtime&gt;
-    &lt;env&gt;standard&lt;/env&gt;
-    &lt;use-google-connector-j&gt;true&lt;/use-google-connector-j&gt;
+    <span style="color:#f92672">&lt;system-properties&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.datasource.continue-on-error&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.datasource.initialization-mode&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;always&#34;</span><span style="color:#f92672">/&gt;</span>
 
-    &lt;system-properties&gt;
-        &lt;property name=&quot;spring.datasource.continue-on-error&quot; value=&quot;true&quot;/&gt;
-        &lt;property name=&quot;spring.datasource.initialization-mode&quot; value=&quot;always&quot;/&gt;
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.jackson.serialization.fail-on-empty-beans&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;false&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.jpa.hibernate.ddl-auto&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;update&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.jpa.properties.hibernate.hbm2ddl.auto&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;update&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.jpa.properties.hibernate.dialect&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;org.hibernate.dialect.MySQL57Dialect&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.jpa.properties.hibernate.id.new_generator_mappings&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.jpa.properties.hibernate.format_sql&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;</span>
 
-        &lt;property name=&quot;spring.jackson.serialization.fail-on-empty-beans&quot; value=&quot;false&quot;/&gt;
-        &lt;property name=&quot;spring.jpa.hibernate.ddl-auto&quot; value=&quot;update&quot;/&gt;
-        &lt;property name=&quot;spring.jpa.properties.hibernate.hbm2ddl.auto&quot; value=&quot;update&quot;/&gt;
-        &lt;property name=&quot;spring.jpa.properties.hibernate.dialect&quot; value=&quot;org.hibernate.dialect.MySQL57Dialect&quot;/&gt;
-        &lt;property name=&quot;spring.jpa.properties.hibernate.id.new_generator_mappings&quot; value=&quot;true&quot;/&gt;
-        &lt;property name=&quot;spring.jpa.properties.hibernate.format_sql&quot; value=&quot;true&quot;/&gt;
-
-        &lt;property name=&quot;spring.datasource.url&quot; value=&quot;jdbc:mysql://google/&lt;DATABASE_NAME&gt;?cloudSqlInstance=&lt;INSTANCE_CONNECTION_NAME&gt;&amp;socketFactory=com.google.cloud.sql.mysql.SocketFactory&amp;user=&lt;MYSQL_USER_NAME&gt;&amp;password=&lt;MYSQL_USER_PASSWORD&gt;&amp;useSSL=false&quot;/&gt;
-    &lt;/system-properties&gt;
-&lt;/appengine-web-app&gt;
-
-
-</code></pre>
-
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.datasource.url&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;jdbc:mysql://google/&lt;DATABASE_NAME&gt;?cloudSqlInstance=&lt;INSTANCE_CONNECTION_NAME&gt;&amp;socketFactory=com.google.cloud.sql.mysql.SocketFactory&amp;user=&lt;MYSQL_USER_NAME&gt;&amp;password=&lt;MYSQL_USER_PASSWORD&gt;&amp;useSSL=false&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;/system-properties&gt;</span>
+<span style="color:#f92672">&lt;/appengine-web-app&gt;</span></code></pre></div>
 <p>위 내용들을 <code>application.properties</code>에 형식을 맞춰서 작성해도 동작이 되긴 하는듯 하다. 하지만 구글의 앱엔진 가이드에는 <code>appengine-web.xml</code>에 작성하는걸 기준으로 설명하고 있으니 일단은 위와 같이 작성해두도록 하겠다.</p>
 
 <p>위 내용에서 내가 특히 헤맸던 설정이 있다.</p>
-
-<pre><code class="language-xml">&lt;property name=&quot;spring.jpa.properties.hibernate.dialect&quot; value=&quot;org.hibernate.dialect.MySQL57Dialect&quot;/&gt;
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.jpa.properties.hibernate.dialect&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;org.hibernate.dialect.MySQL57Dialect&#34;</span><span style="color:#f92672">/&gt;</span></code></pre></div>
 <p>이 옵션인데 현재 내가 최초에 적용했던 값은 <code>org.hibernate.dialect.MySQL5Dialect</code>였다(<code>7</code>이 빠졌다). 하이버네이트를 MySQL5 버전에 연결하기 위한 옵션값인데 <em>로컬서버에 설치된 MYSQL5.7에 연결했을때는 아무 문제도 없었다.</em> 근데 앱엔진에 배포하고 테스트를 해보니 하이버네이트가 DB에 연결을 못하고 있었다. 그래서 열심히 구글링을 해본 결과 저 dialect 값이 문제였다. 이유는 모르겠다. 아마 앱엔진에서 CloudSQL에 접근할때 사용되는 프록시와 연관이 있을지도..? 아무튼 <strong><code>MySQL57Dialect</code>라고 정확히 명시를 해줘야 앱엔진 환경에서도 DB에 문제없이 연결이 된다.</strong></p>
 
 <h2 id="main-class-작성하기">main class 작성하기</h2>
-
-<pre><code class="language-kotlin">
-@SpringBootApplication
-class Application : SpringBootServletInitializer(){
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">@SpringBootApplication
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Application</span> : SpringBootServletInitializer(){
     @Bean
-    fun hibernate5Module(): Module { //for jpa lazy loading
-        return Hibernate5Module()
+    <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">hibernate5Module</span>(): Module { <span style="color:#75715e">//for jpa lazy loading
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> Hibernate5Module()
     }
 }
 
-fun main(args: Array&lt;String&gt;) {
-    SpringApplication.run(Application::class.java, *args)
-}
-
-</code></pre>
-
+<span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">main</span>(args: Array&lt;String&gt;) {
+    SpringApplication.run(Application<span style="color:#f92672">::</span><span style="color:#66d9ef">class</span>.java, *args)
+}</code></pre></div>
 <p>여기까지 작성한다면 API 개발을 위한 기본적인 셋팅이 완료된 것이다. 이제 <code>@Controller</code>, <code>@Service</code> 등등을 작성하면서 API를 완성해나가면 된다.</p>
 
 <p>참고 : <a href="https://blog.sapzil.org/2017/11/02/kotlin-jpa-pitfalls/">Kotlin에서 JPA 사용할 때 주의할 점</a></p>

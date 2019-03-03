@@ -141,42 +141,36 @@
 <h2 id="코드-구현">코드 구현</h2>
 
 <p>아래 코드는 GAE golang 1.8을 기준으로 작성했다. 내가 구현한 코드의 일부를 발췌해서 약간 수정한 버전으로 syntax 에러가 있을 수 있다.</p>
-
-<pre><code class="language-golang">import (
-	&quot;google.golang.org/appengine/blobstore&quot;
-	&quot;google.golang.org/appengine/image&quot;
-	&quot;google.golang.org/appengine/log&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;google.golang.org/appengine/blobstore&#34;</span>
+	<span style="color:#e6db74">&#34;google.golang.org/appengine/image&#34;</span>
+	<span style="color:#e6db74">&#34;google.golang.org/appengine/log&#34;</span>
 	
-	&quot;context&quot;
+	<span style="color:#e6db74">&#34;context&#34;</span>
 )
 
-func GetImageURL(ctx context.Context) string {
-	blobKey, err := blobstore.BlobKeyForFile(ctx, &quot;/gs/imagename.jpg&quot;) // gcs에 있는 이미지 경로를 넣어준다.
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">GetImageURL</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) <span style="color:#66d9ef">string</span> {
+	<span style="color:#a6e22e">blobKey</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">blobstore</span>.<span style="color:#a6e22e">BlobKeyForFile</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;/gs/imagename.jpg&#34;</span>) <span style="color:#75715e">// gcs에 있는 이미지 경로를 넣어준다.
+</span><span style="color:#75715e"></span>	
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;blobKeyForFile error : %s&#34;</span>, <span style="color:#a6e22e">err</span>)
+		<span style="color:#66d9ef">continue</span>
+	}
+
+	<span style="color:#a6e22e">opts</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">image</span>.<span style="color:#a6e22e">ServingURLOptions</span>{
+		<span style="color:#a6e22e">Secure</span>: <span style="color:#66d9ef">true</span>,
+	}
+
+	<span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">image</span>.<span style="color:#a6e22e">ServingURL</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">blobKey</span>, <span style="color:#a6e22e">opts</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;create ServingURL error : %s, %s&#34;</span>, <span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">profileImage</span>)
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
+	}
 	
-	if err != nil {
-		log.Errorf(ctx, &quot;blobKeyForFile error : %s&quot;, err)
-		continue
-	}
-
-	opts := &amp;image.ServingURLOptions{
-		Secure: true,
-	}
-
-	url, err := image.ServingURL(ctx, blobKey, opts)
-	if err != nil {
-		log.Errorf(ctx, &quot;create ServingURL error : %s, %s&quot;, err, profileImage)
-		return &quot;&quot;
-	}
-	
-	return url.String()
-}
-</code></pre>
-
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">String</span>()
+}</code></pre></div>
 <p>위의 코드를 실행하기 위해서 deploy 명령에 옵션을 추가해줘야 한다. 어떤 GCS 버킷을 바라볼건지 명시를 해줘야 하는데 아래의 deploy 명령을 보자.</p>
-
-<pre><code class="language-shell">gcloud app deploy app.yaml --bucket gs://projectname.appspot.com
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud app deploy app.yaml --bucket gs://projectname.appspot.com</code></pre></div>
 <p>위와 같이 어떤 버켓을 기본값으로 바라볼지 명시를 해줘야 한다. 위의 명령어를 이용해 deploy했다면 GetImageURL 함수를 호출하여 해당 파일을 볼 수 있는 URL을 반환받을 수 있다.</p>
 
 <h2 id="특이점">특이점</h2>

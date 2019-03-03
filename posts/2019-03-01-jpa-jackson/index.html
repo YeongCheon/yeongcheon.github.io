@@ -41,7 +41,7 @@
 
 
 
-<meta itemprop="wordCount" content="711">
+<meta itemprop="wordCount" content="710">
 
 
 
@@ -114,31 +114,25 @@
   JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경우가 있다.
   이 문제를 jackson을 이용해  json형식으로 이쁘게 변환하는 법을 알아보자.
   데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자.</p>
-
-<pre><code class="language-json">  현재 사용자가 shelter 정보를 조회하는 API를 호출할 경우 쉘터 정보 안에 쉘터 소유자의 상세한 정보가 포함되어 있다고 한다. json 포맷을 보면 다음과 같다.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">  <span style="color:#960050;background-color:#1e0010">현재</span> <span style="color:#960050;background-color:#1e0010">사용자가</span> <span style="color:#960050;background-color:#1e0010">shelter</span> <span style="color:#960050;background-color:#1e0010">정보를</span> <span style="color:#960050;background-color:#1e0010">조회하는</span> <span style="color:#960050;background-color:#1e0010">API를</span> <span style="color:#960050;background-color:#1e0010">호출할</span> <span style="color:#960050;background-color:#1e0010">경우</span> <span style="color:#960050;background-color:#1e0010">쉘터</span> <span style="color:#960050;background-color:#1e0010">정보</span> <span style="color:#960050;background-color:#1e0010">안에</span> <span style="color:#960050;background-color:#1e0010">쉘터</span> <span style="color:#960050;background-color:#1e0010">소유자의</span> <span style="color:#960050;background-color:#1e0010">상세한</span> <span style="color:#960050;background-color:#1e0010">정보가</span> <span style="color:#960050;background-color:#1e0010">포함되어</span> <span style="color:#960050;background-color:#1e0010">있다고</span> <span style="color:#960050;background-color:#1e0010">한다.</span> <span style="color:#960050;background-color:#1e0010">json</span> <span style="color:#960050;background-color:#1e0010">포맷을</span> <span style="color:#960050;background-color:#1e0010">보면</span> <span style="color:#960050;background-color:#1e0010">다음과</span> <span style="color:#960050;background-color:#1e0010">같다.</span>
 
 {
-  &quot;id&quot;: 1,
-  &quot;name&quot;: &quot;awesome shelter&quot;
-  &quot;owner&quot;: {
-    &quot;id&quot;: &quot;kyc1682&quot;,
-	&quot;name&quot;: &quot;yeongcheon&quot;
+  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
+  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;awesome shelter&#34;</span>
+  <span style="color:#e6db74">&#34;owner&#34;</span>: {
+    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;kyc1682&#34;</span>,
+	<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;yeongcheon&#34;</span>
   }
-}
-</code></pre>
-
+}</code></pre></div>
 <p>위와 같이 소유자의 상세한 정보가 포함되어 넘어오고 있다.</p>
 
 <p>만약에 *사용자가 owner 필드에 사용자의 정보가 담긴 json object가 아닌 owner의 id 정보만 원한다고 가정해보자.*
   그렇다면 API의 응답값은 아래처럼 바뀔것이다.</p>
-
-<pre><code class="language-json">{
-  &quot;id&quot;: 1,
-  &quot;name&quot;: &quot;awesome shelter&quot;
-  &quot;owner&quot;: &quot;kyc1682&quot;
-}
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
+  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;awesome shelter&#34;</span>
+  <span style="color:#e6db74">&#34;owner&#34;</span>: <span style="color:#e6db74">&#34;kyc1682&#34;</span>
+}</code></pre></div>
 <p>응답결과를 이런식으로 참조 객체의 id값만 출력하는 형식으로 바꿀 경우 생기는 이점은 아래와 같다.</p>
 
 <ol>
@@ -159,89 +153,79 @@
 
 <p>예제에서 사용될 코드를 소개한다. 크게 모델과 IdResolver 클래스가 있다. 
    이 예제에서는 UserModel과 ShelterModel, 그리고 jackson 라이브러리의 <code>ObjectIdResolver</code> 인터페이스를 상속받아 구현한 EntityIdResolver를 준비했다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#75715e">// jpa entity 모델 json 변환 시 id만 반환할 수 있도록 해주는 클래스
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EntityIdResolver</span>(
+        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> entityManager: EntityManager) : ObjectIdResolver {
 
-<pre><code class="language-kotlin">// jpa entity 모델 json 변환 시 id만 반환할 수 있도록 해주는 클래스
-class EntityIdResolver(
-        private val entityManager: EntityManager) : ObjectIdResolver {
-
-    override fun bindItem(
+    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">bindItem</span>(
             id: ObjectIdGenerator.IdKey,
             pojo: Any) {
     }
 
-    override fun resolveId(id: ObjectIdGenerator.IdKey): Any {
-        return this.entityManager.find(id.scope, id.key)
+    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">resolveId</span>(id: ObjectIdGenerator.IdKey): Any {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.entityManager.find(id.scope, id.key)
     }
 
-    override fun newForDeserialization(context: Any): ObjectIdResolver {
-        return this
+    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">newForDeserialization</span>(context: Any): ObjectIdResolver {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>
     }
 
-    override fun canUseFor(resolverType: ObjectIdResolver): Boolean {
-        return false
+    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">canUseFor</span>(resolverType: ObjectIdResolver): Boolean {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
     }
-}
-</code></pre>
-
+}</code></pre></div>
 <p><a href="https://stackoverflow.com/questions/44007188/deserialize-json-with-spring-unresolved-forward-references-jackson-exception" title="출처">출처</a></p>
 
 <h2 id="usermodel">UserModel</h2>
-
-<pre><code class="language-kotlin">import com.fasterxml.jackson.annotation.*
-import com.shelter.EntityIdResolver
-import java.io.Serializable
-import java.time.LocalDateTime
-import javax.persistence.*
-import javax.validation.constraints.Email
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#66d9ef">import</span> com.fasterxml.jackson.annotation.*
+<span style="color:#66d9ef">import</span> com.shelter.EntityIdResolver
+<span style="color:#66d9ef">import</span> java.io.Serializable
+<span style="color:#66d9ef">import</span> java.time.LocalDateTime
+<span style="color:#66d9ef">import</span> javax.persistence.*
+<span style="color:#66d9ef">import</span> javax.validation.constraints.Email
 
 typealias UserId = String
 
 @Entity
-@Table(name = &quot;user&quot;)
-@JsonIgnoreProperties(&quot;deleted&quot;, &quot;fcmToken&quot;)
-data class UserModel(
+@Table(name = <span style="color:#e6db74">&#34;user&#34;</span>)
+@JsonIgnoreProperties(<span style="color:#e6db74">&#34;deleted&#34;</span>, <span style="color:#e6db74">&#34;fcmToken&#34;</span>)
+<span style="color:#66d9ef">data</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserModel</span>(
         @Id
-        @Column(length = 50, updatable = false)
-        var id: UserId = &quot;&quot;,
+        @Column(length = <span style="color:#ae81ff">50</span>, updatable = <span style="color:#66d9ef">false</span>)
+        <span style="color:#66d9ef">var</span> id: UserId = <span style="color:#e6db74">&#34;&#34;</span>,
 
-        @Column(length = 50, updatable = true, unique = true)
-        var name: String = &quot;&quot;,
-)
-
-</code></pre>
-
+        @Column(length = <span style="color:#ae81ff">50</span>, updatable = <span style="color:#66d9ef">true</span>, unique = <span style="color:#66d9ef">true</span>)
+        <span style="color:#66d9ef">var</span> name: String = <span style="color:#e6db74">&#34;&#34;</span>,
+)</code></pre></div>
 <h2 id="sheltermodel">ShelterModel</h2>
-
-<pre><code class="language-kotlin">import com.fasterxml.jackson.annotation.*
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import com.shelter.EntityIdResolver
-import java.io.Serializable
-import java.time.LocalDateTime
-import javax.persistence.*
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#66d9ef">import</span> com.fasterxml.jackson.annotation.*
+<span style="color:#66d9ef">import</span> com.fasterxml.jackson.databind.annotation.JsonDeserialize
+<span style="color:#66d9ef">import</span> com.shelter.EntityIdResolver
+<span style="color:#66d9ef">import</span> java.io.Serializable
+<span style="color:#66d9ef">import</span> java.time.LocalDateTime
+<span style="color:#66d9ef">import</span> javax.persistence.*
 
 typealias ShelterId = Long
 
 @Entity
-@Table(name = &quot;shelter&quot;)
-data class ShelterModel(
+@Table(name = <span style="color:#e6db74">&#34;shelter&#34;</span>)
+<span style="color:#66d9ef">data</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ShelterModel</span>(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var id: ShelterId = 0,
+        <span style="color:#66d9ef">var</span> id: ShelterId = <span style="color:#ae81ff">0</span>,
 
-        var name: String = &quot;&quot;,
+        <span style="color:#66d9ef">var</span> name: String = <span style="color:#e6db74">&#34;&#34;</span>,
 
         @JsonIdentityInfo(
-                generator = ObjectIdGenerators.PropertyGenerator::class,
-                property = &quot;id&quot;,
-                resolver = EntityIdResolver::class,
-                scope = UserModel::class)
-        @JsonIdentityReference(alwaysAsId = true)
-        @OneToOne(fetch = FetchType.EAGER, cascade = [CascadeType.DETACH], orphanRemoval = false)
-        @JoinColumn(name = &quot;owner_id&quot;, updatable = false)
-        var owner: UserModel = UserModel()
-)
-</code></pre>
-
+                generator = ObjectIdGenerators.PropertyGenerator<span style="color:#f92672">::</span><span style="color:#66d9ef">class</span>,
+                property = <span style="color:#e6db74">&#34;id&#34;</span>,
+                resolver = EntityIdResolver<span style="color:#f92672">::</span><span style="color:#66d9ef">class</span>,
+                scope = UserModel<span style="color:#f92672">::</span><span style="color:#66d9ef">class</span>)
+        @JsonIdentityReference(alwaysAsId = <span style="color:#66d9ef">true</span>)
+        @OneToOne(fetch = FetchType.EAGER, cascade =<span style="color:#a6e22e"> [CascadeType.DETACH]</span>, orphanRemoval = <span style="color:#66d9ef">false</span>)
+        @JoinColumn(name = <span style="color:#e6db74">&#34;owner_id&#34;</span>, updatable = <span style="color:#66d9ef">false</span>)
+        <span style="color:#66d9ef">var</span> owner: UserModel = UserModel()
+)</code></pre></div>
 <h1 id="해설">해설</h1>
 
 <p><code>EntityIdResolver</code> 를 제외하면 단순한 모델 클래스가 전부이다. 

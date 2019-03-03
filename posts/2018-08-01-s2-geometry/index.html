@@ -157,101 +157,96 @@ S2 라이브러리란? S2 라이브러리는 구글에서 비공식적으로(not
 </ol>
 
 <h2 id="code">Code</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">usersBiz</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">UsersBiz</span>) <span style="color:#a6e22e">GetUserList</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">userId</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">latitude</span>, <span style="color:#a6e22e">longtitude</span> <span style="color:#66d9ef">float64</span>, <span style="color:#a6e22e">page</span> <span style="color:#66d9ef">int</span>) (<span style="color:#66d9ef">interface</span>{}, <span style="color:#66d9ef">error</span>) {
+	<span style="color:#a6e22e">userDao</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">usersBiz</span>.<span style="color:#a6e22e">UserDao</span>
 
-<pre><code class="language-golang">
-func (usersBiz *UsersBiz) GetUserList(ctx context.Context, userId string, latitude, longtitude float64, page int) (interface{}, error) {
-	userDao := usersBiz.UserDao
+	<span style="color:#a6e22e">guidePoint</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s2</span>.<span style="color:#a6e22e">LatLngFromDegrees</span>(<span style="color:#a6e22e">latitude</span>, <span style="color:#a6e22e">longtitude</span>)
+	<span style="color:#a6e22e">guideCellID</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s2</span>.<span style="color:#a6e22e">CellIDFromLatLng</span>(<span style="color:#a6e22e">guidePoint</span>)
 
-	guidePoint := s2.LatLngFromDegrees(latitude, longtitude)
-	guideCellID := s2.CellIDFromLatLng(guidePoint)
-
-	customCache := customMemcache.Memcache{
-		Context: ctx,
+	<span style="color:#a6e22e">customCache</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">customMemcache</span>.<span style="color:#a6e22e">Memcache</span>{
+		<span style="color:#a6e22e">Context</span>: <span style="color:#a6e22e">ctx</span>,
 	}
 
-	var userResponseList []models.UserResponse
-	if page == 1 {
-		cellIDs := customCache.GetCellIdList()
-		similarList := make([]map[string]interface{}, len(cellIDs))
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">userResponseList</span> []<span style="color:#a6e22e">models</span>.<span style="color:#a6e22e">UserResponse</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">page</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> {
+		<span style="color:#a6e22e">cellIDs</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">customCache</span>.<span style="color:#a6e22e">GetCellIdList</span>()
+		<span style="color:#a6e22e">similarList</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}, len(<span style="color:#a6e22e">cellIDs</span>))
 
-		for idx, cellID := range cellIDs {
-			similarMap := make(map[string]interface{})
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">idx</span>, <span style="color:#a6e22e">cellID</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">cellIDs</span> {
+			<span style="color:#a6e22e">similarMap</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{})
 
-			cellIdNumber := uint64(cellID)
-			guideCellNumber := uint64(guideCellID)
+			<span style="color:#a6e22e">cellIdNumber</span> <span style="color:#f92672">:=</span> uint64(<span style="color:#a6e22e">cellID</span>)
+			<span style="color:#a6e22e">guideCellNumber</span> <span style="color:#f92672">:=</span> uint64(<span style="color:#a6e22e">guideCellID</span>)
 
-			similarMap[&quot;cellID&quot;] = cellID
-			similarMap[&quot;diffPoint&quot;] = math.Abs(float64(cellIdNumber - guideCellNumber))
+			<span style="color:#a6e22e">similarMap</span>[<span style="color:#e6db74">&#34;cellID&#34;</span>] = <span style="color:#a6e22e">cellID</span>
+			<span style="color:#a6e22e">similarMap</span>[<span style="color:#e6db74">&#34;diffPoint&#34;</span>] = <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Abs</span>(float64(<span style="color:#a6e22e">cellIdNumber</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">guideCellNumber</span>))
 
-			similarList[idx] = similarMap
+			<span style="color:#a6e22e">similarList</span>[<span style="color:#a6e22e">idx</span>] = <span style="color:#a6e22e">similarMap</span>
 		}
 
-		sort.Slice(similarList, func(i, j int) bool {
-			return similarList[i][&quot;diffPoint&quot;].(float64) &gt; similarList[j][&quot;diffPoint&quot;].(float64)
+		<span style="color:#a6e22e">sort</span>.<span style="color:#a6e22e">Slice</span>(<span style="color:#a6e22e">similarList</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span> {
+			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">similarList</span>[<span style="color:#a6e22e">i</span>][<span style="color:#e6db74">&#34;diffPoint&#34;</span>].(<span style="color:#66d9ef">float64</span>) &gt; <span style="color:#a6e22e">similarList</span>[<span style="color:#a6e22e">j</span>][<span style="color:#e6db74">&#34;diffPoint&#34;</span>].(<span style="color:#66d9ef">float64</span>)
 		})
 
-		userIdList := make([]string, 0)
-		for _, similarMap := range similarList {
-			cellID := similarMap[&quot;cellID&quot;].(s2.CellID)
+		<span style="color:#a6e22e">userIdList</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">string</span>, <span style="color:#ae81ff">0</span>)
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">similarMap</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">similarList</span> {
+			<span style="color:#a6e22e">cellID</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">similarMap</span>[<span style="color:#e6db74">&#34;cellID&#34;</span>].(<span style="color:#a6e22e">s2</span>.<span style="color:#a6e22e">CellID</span>)
 
-			userMap, err := customCache.GetUserMapInCell(cellID)
-			if err != nil {
-				log.Errorf(ctx, &quot;%s&quot;, err)
+			<span style="color:#a6e22e">userMap</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">customCache</span>.<span style="color:#a6e22e">GetUserMapInCell</span>(<span style="color:#a6e22e">cellID</span>)
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+				<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#a6e22e">err</span>)
 			}
 
-			for userId, _ := range userMap {
-				if !util.IsContains(userIdList, userId) {
-					userIdList = append(userIdList, userId)
+			<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">userId</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">userMap</span> {
+				<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">util</span>.<span style="color:#a6e22e">IsContains</span>(<span style="color:#a6e22e">userIdList</span>, <span style="color:#a6e22e">userId</span>) {
+					<span style="color:#a6e22e">userIdList</span> = append(<span style="color:#a6e22e">userIdList</span>, <span style="color:#a6e22e">userId</span>)
 				}
 			}
 		}
 
-		if len(userIdList) == 0 {
-			return make([]interface{}, 0), nil
+		<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">userIdList</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+			<span style="color:#66d9ef">return</span> make([]<span style="color:#66d9ef">interface</span>{}, <span style="color:#ae81ff">0</span>), <span style="color:#66d9ef">nil</span>
 		}
 
-		userList, err := userDao.GetUserList(ctx, userIdList)
-		if err != nil {
-			log.Errorf(ctx, &quot;%s&quot;, err)
+		<span style="color:#a6e22e">userList</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">userDao</span>.<span style="color:#a6e22e">GetUserList</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">userIdList</span>)
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+			<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#a6e22e">err</span>)
 		}
 
-		userResponseList = convertUserListToUserResponseList(ctx, userDao, &amp;guidePoint, userList, userId)
+		<span style="color:#a6e22e">userResponseList</span> = <span style="color:#a6e22e">convertUserListToUserResponseList</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">userDao</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">guidePoint</span>, <span style="color:#a6e22e">userList</span>, <span style="color:#a6e22e">userId</span>)
 
-		sort.Slice(userResponseList, func(i, j int) bool {
-			return userResponseList[i].Distance &lt; userResponseList[j].Distance
+		<span style="color:#a6e22e">sort</span>.<span style="color:#a6e22e">Slice</span>(<span style="color:#a6e22e">userResponseList</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span> {
+			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">userResponseList</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">Distance</span> &lt; <span style="color:#a6e22e">userResponseList</span>[<span style="color:#a6e22e">j</span>].<span style="color:#a6e22e">Distance</span>
 		})
 
-		customCache.UpdateNearestUserList(userId, userResponseList)
-	} else {
-		personalData, _ := customCache.GetPersonalData(userId)
-		userResponseList = personalData.NearestUserResponseList
+		<span style="color:#a6e22e">customCache</span>.<span style="color:#a6e22e">UpdateNearestUserList</span>(<span style="color:#a6e22e">userId</span>, <span style="color:#a6e22e">userResponseList</span>)
+	} <span style="color:#66d9ef">else</span> {
+		<span style="color:#a6e22e">personalData</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">customCache</span>.<span style="color:#a6e22e">GetPersonalData</span>(<span style="color:#a6e22e">userId</span>)
+		<span style="color:#a6e22e">userResponseList</span> = <span style="color:#a6e22e">personalData</span>.<span style="color:#a6e22e">NearestUserResponseList</span>
 	}
 
-	if len(userResponseList) &lt;= 0 {
-		return models.ERR_NO_CONTENT, nil
+	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">userResponseList</span>) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">models</span>.<span style="color:#a6e22e">ERR_NO_CONTENT</span>, <span style="color:#66d9ef">nil</span>
 	}
 
-	var startIndex int
-	var endIndex int
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">startIndex</span> <span style="color:#66d9ef">int</span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">endIndex</span> <span style="color:#66d9ef">int</span>
 
-	startIndex = (page - 1) * 20
-	if page*20 &gt; len(userResponseList) {
-		endIndex = len(userResponseList)
-	} else {
-		endIndex = page * 20
+	<span style="color:#a6e22e">startIndex</span> = (<span style="color:#a6e22e">page</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">20</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">page</span><span style="color:#f92672">*</span><span style="color:#ae81ff">20</span> &gt; len(<span style="color:#a6e22e">userResponseList</span>) {
+		<span style="color:#a6e22e">endIndex</span> = len(<span style="color:#a6e22e">userResponseList</span>)
+	} <span style="color:#66d9ef">else</span> {
+		<span style="color:#a6e22e">endIndex</span> = <span style="color:#a6e22e">page</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">20</span>
 	}
 
-	if startIndex &gt; endIndex {
-		return models.ERR_NO_CONTENT, nil
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">startIndex</span> &gt; <span style="color:#a6e22e">endIndex</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">models</span>.<span style="color:#a6e22e">ERR_NO_CONTENT</span>, <span style="color:#66d9ef">nil</span>
 	}
 
-	userResponseList = userResponseList[startIndex:endIndex]
+	<span style="color:#a6e22e">userResponseList</span> = <span style="color:#a6e22e">userResponseList</span>[<span style="color:#a6e22e">startIndex</span>:<span style="color:#a6e22e">endIndex</span>]
 
-	return userResponseList, nil
-}
-
-</code></pre>
-
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">userResponseList</span>, <span style="color:#66d9ef">nil</span>
+}</code></pre></div>
 <p>로직도 엉성하고 코드도 엉성하다. <a href="mailto:kyc1682@gmail.com">개선점, 피드백은 언제나 환영</a>.</p>
 <ul class="pa0">
   
