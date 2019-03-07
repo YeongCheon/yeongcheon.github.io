@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://yeongcheon.github.io/posts/2019-03-03-github&#43;hugo&#43;orgmode_setup/</loc>
-    <lastmod>2019-03-03T22:28:36+09:00</lastmod>
+    <lastmod>2019-03-07T22:23:04+09:00</lastmod>
   </url>
   
   <url>
@@ -81,6 +81,10 @@
   </url>
   
   <url>
+    <loc>https://yeongcheon.github.io/org/2019-03-07-tinode001/</loc>
+  </url>
+  
+  <url>
     <loc>https://yeongcheon.github.io/tags/angular/</loc>
     <lastmod>2018-09-21T12:00:00+09:00</lastmod>
     <priority>0</priority>
@@ -88,7 +92,7 @@
   
   <url>
     <loc>https://yeongcheon.github.io/tags/blog/</loc>
-    <lastmod>2019-03-03T22:28:36+09:00</lastmod>
+    <lastmod>2019-03-07T22:23:04+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -129,7 +133,7 @@
   
   <url>
     <loc>https://yeongcheon.github.io/tags/github/</loc>
-    <lastmod>2019-03-03T22:28:36+09:00</lastmod>
+    <lastmod>2019-03-07T22:23:04+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -147,7 +151,7 @@
   
   <url>
     <loc>https://yeongcheon.github.io/tags/hugo/</loc>
-    <lastmod>2019-03-03T22:28:36+09:00</lastmod>
+    <lastmod>2019-03-07T22:23:04+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -177,7 +181,7 @@
   
   <url>
     <loc>https://yeongcheon.github.io/tags/org-mode/</loc>
-    <lastmod>2019-03-03T22:28:36+09:00</lastmod>
+    <lastmod>2019-03-07T22:23:04+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -188,7 +192,7 @@
   
   <url>
     <loc>https://yeongcheon.github.io/posts/</loc>
-    <lastmod>2019-03-03T22:28:36+09:00</lastmod>
+    <lastmod>2019-03-07T22:23:04+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -224,7 +228,7 @@
   
   <url>
     <loc>https://yeongcheon.github.io/</loc>
-    <lastmod>2019-03-03T22:28:36+09:00</lastmod>
+    <lastmod>2019-03-07T22:23:04+09:00</lastmod>
     <priority>0</priority>
   </url>
   
