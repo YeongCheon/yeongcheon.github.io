@@ -47,7 +47,7 @@ if (!doNotTrack) {
         </div>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          2 min read
+          3 min read
         </div></div>
     </header>
     <div class="post-content">
@@ -95,6 +95,35 @@ go get -tags mysql github.com/tinode/chat/tinode-db <span style="color:#f92672">
 <p>그리고 위에서 얘기한대로 터미널의 위치를 <code>$GOPATH/src/github.com/tinode/chat</code> 로 이동시킨 후 아래의 명령어를 실행해보자.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$GOPATH/bin/server -config<span style="color:#f92672">=</span>$GOPATH/src/github.com/tinode/chat/server/tinode.conf</code></pre></div>
 <p>실행 후 터미널에 <strong>Listening for client HTTP connections on [:6060]</strong> 메세지가 뜬다면 성공이다.</p>
+
+<h1 id="부록-go-modules를-이용해서-설치하기">부록 - Go Modules를 이용해서 설치하기</h1>
+
+<p><strong>go 1.11</strong> 버전 이후로는 <strong>Go Modules</strong> 라는 개념을 제공한다. 앞으로 Go는 기존의 <code>$GOPATH</code> 를 이용한 방법 대신 Go Module를 이용해서 패키지 관리를 한다고 한다. Go Modules에 대한 자세한 내용은 <a href="https://velog.io/@kimmachinegun/Go-Go-Modules-%25EC%2582%25B4%25ED%258E%25B4%25EB%25B3%25B4%25EA%25B8%25B0-7cjn4soifk" title="여기">여기</a>와 <a href="https://blog.golang.org/using-go-modules" title="여기">여기</a>를 참고하자.</p>
+
+<p><strong>참고로 이 부록은 위에서 설명한 가이드를 모두 따라하고 데이터베이스 관련 셋팅이 모두 끝났다고 가정한다.</strong></p>
+
+<h2 id="go-modules-한방-스크립트">Go modules 한방 스크립트</h2>
+
+<p>쉘 커맨드 명령어를 우선 한번에 작성한 후 한줄 한줄 설명하도록 하겠다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/tinode/chat
+cd chat/server
+go mod init github.com/YeongCheon/chat/server
+go build -tags mysql
+mkdir static
+./server -config<span style="color:#f92672">=</span>./tinode.conf</code></pre></div>
+<p>1, 2번 라인은 별도로 설명하지 않겠다.</p>
+
+<p><strong>3번 라인이 제일 중요하다.*
+go.mod 파일을 만드는 명령어인데 *init 뒤에 붙는 패키지 경로를 자신이 정한 고유의 경로를 써줘야 한다.</strong> 처음에 아무생각 없이 <code>github.com/tinode/chat/server</code> 를 입력한다면 아래와 같은 에러메세지를 볼 수 있다.</p>
+
+<pre><code>can't load package: package github.com/tinode/chat/server: unknown import path &quot;github.com/tinode/chat/server&quot;: ambiguous import: found github.com/tinode/chat/server in multiple modules:
+	github.com/tinode/chat/server (/~~~~~~~~~~~~~~~~~~~~~~~~/chat/server)
+	github.com/tinode/chat v0.15.14 (/~~~~~~~~/go/pkg/mod/github.com/tinode/chat@v0.15.14/server)
+</code></pre>
+
+<p>init 작업이 끝나면 의존성 패키지 목록이 이쁘게 정리된 <code>go.mod</code> 파일과 <code>go.sum</code> 파일을 볼 수 있다.</p>
+
+<p>그 이후의 작업은 <code>go install</code> 명령어를 이용해 설치했을때와 동일하다. <code>go build</code> 명령어 실행 시 <strong>-tags=mysql</strong> 을 붙여서 mysql을 사용하는 바이너리 파일을 생성한 후 동일한 위치에 statics 폴더를 생성한다. 그리고 마지막으로 바이너리 파일 실행 시 <strong>-config=./tinode.conf</strong> 옵션을 추가하면 정상적으로 동작한다.이 때 혹시 동작하지 않는다면  conf파일 안의 설정값을 확인해보자.</p>
 
     </div>
   </article>
