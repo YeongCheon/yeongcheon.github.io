@@ -53,5 +53,16 @@ hugo를 적용하게 된 계기 orgmode에 대한 호기심 jekyll에서 orgmode
 설치 및 실행하기 source 파일 내려받기 및 바이너리 파일 install 다음 명령어를 입력한다.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://yeongcheon.github.io/org/2019-06-19-emacs-hangul/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yeongcheon.github.io/org/2019-06-19-emacs-hangul/</guid>
+      <description>아래의 내용을 .emacs 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다.
+(set-fontset-font t &#39;hangul (font-spec :family &#34;D2Coding&#34;))
+(set-language-environment &#34;Korean&#34;) (prefer-coding-system &#39;utf-8) (setq default-input-method &#34;korean-hangul390&#34;) (setq default-korean-keyboard &#34;390&#34;) (global-set-key (kbd &#34;&#34;) &#39;toggle-input-method)</description>
+    </item>
+    
   </channel>
 </rss>
