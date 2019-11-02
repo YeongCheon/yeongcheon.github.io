@@ -1,15 +1,204 @@
-<!doctype html>
-<html>
-  <head>
-      <title>Gcp // YeongCheon Tech Blog</title>
-      <meta charset="utf-8" />
-      <meta name="generator" content="Hugo 0.54.0" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="author" content="YeongCheon Kim" />
-      <meta name="description" content="" />
-      <base href="https://yeongcheon.github.io/" />
-      <link rel="stylesheet" href="https://yeongcheon.github.io/css/main.min.3bf813d46763420c83fb33c51950b4fc582483efcfddb34b4e4e8d6b811e3208.css" />
-	  
+<!DOCTYPE html>
+<html lang="ko-ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Gcp - YeongCheon Tech Blog</title>
+  <meta property="og:title" content="Gcp - YeongCheon Tech Blog" />
+  <meta name="twitter:title" content="Gcp - YeongCheon Tech Blog" />
+  <meta name="author" content="YeongCheon Kim"/>
+  <meta property="og:site_name" content="YeongCheon Tech Blog" />
+  <meta property="og:url" content="https://yeongcheon.github.io/tags/gcp/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link href="/tags/gcp/index.xml" rel="alternate" type="application/rss+xml" title="YeongCheon Tech Blog" />
+  <link href="/tags/gcp/index.xml" rel="feed" type="application/rss+xml" title="YeongCheon Tech Blog" />
+
+  <link rel="stylesheet" href="/css/style.css" media="all" />
+  <link rel="stylesheet" href="/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/css/custom.css" media="all" />
+
+  <script src="/js/script.js"></script>
+  <script src="/js/custom.js"></script>
+  <script defer src="/js/fontawesome.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/">YeongCheon Tech Blog</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-tags"><a href="/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-archives"><a href="/posts/" title="Archives">Archives</a></li>
+      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="breadcrumb">
+    <a href="/tags/">Tags</a> / Gcp
+  </div>
+  <div class="main" role="main">
+    <section class="list taxonomy-list">
+      <article class="article">
+        <a href="/posts/2018-06-10-gae-image-api/" class="article-titles">
+          <h2 class="article-title">Google App Engine Image API 삽질 후기</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>June 10, 2018</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/gcp/">
+              <i class="fas fa-tag"></i>
+              GCP
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/gae/">
+              <i class="fas fa-tag"></i>
+              GAE
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/golang/">
+              <i class="fas fa-tag"></i>
+              golang
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          오늘은 GAE에서 제공하는 Image API를 사용하면서 겪은 어려움과 후기를 공유하고자 한다.
+요구사항  GAE를 통해 업로드 된 이미지를 Google Cloud Storage(이하 GCS)에 보관, 파일 관련 정보를 datastore에 별도로 저장한다(업로드 한 사용자, 업로드 파일명, 업로드 날짜 등등). 이 이미지를 웹사이트를 통해 서비스를 하고싶다. 이 이미지는 사이즈가 모두 제각각인데 DSLR로 찍은 수십메가짜리 이미지부터 조그마한 썸네일 이미지까지 크기가 천차만별이다. 동일한 이미지를 여러가지 사이즈로 출력해야 한다. 가령 DSLR로 찍은 이미지를 제공할 경우 우선 100px짜리 썸네일로 제공, 사용자가 썸네일을 클릭할 경우 이미지의 원본을 보여주고 싶다.
+        </div>
+        <div class="article-readmore"><a href="/posts/2018-06-10-gae-image-api/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+      <article class="article">
+        <a href="/posts/2018-05-12-datastore-projection-error/" class="article-titles">
+          <h2 class="article-title">datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>May 12, 2018</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/gcp/">
+              <i class="fas fa-tag"></i>
+              GCP
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/gae/">
+              <i class="fas fa-tag"></i>
+              GAE
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/golang/">
+              <i class="fas fa-tag"></i>
+              golang
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          요구사항 datastore에 내 프로필을 방문한 사용자의 ID와 방문시간을 각각 string, time.Time 형식으로 저장하고 있다. 구조체로 보면 다음과 같다.
+type Visitor struct { UserId string //조회한 프로필의 Id 	VisitorId string //방문자 Id 	VisitTime time.Time } 이 데이터를 단순히 조회하면 한 사용자가 나를 여러번 방문할 경우 결과 리스트에 그 방문자가 여러번 출력된다. 나는 동일한 사용자가 여러번 반복해도 가장 최근에 방문한 기록만 보길 원했다. 즉 datastore에서 SQL 문법의 group by를 사용하고 싶었다.
+        </div>
+        <div class="article-readmore"><a href="/posts/2018-05-12-datastore-projection-error/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+      <article class="article">
+        <a href="/posts/2018-04-29-gae-datastore-indexes/" class="article-titles">
+          <h2 class="article-title">Googlde App Engine(GAE) datastore index 관련 에러 해결하기</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>April 29, 2018</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/gcp/">
+              <i class="fas fa-tag"></i>
+              GCP
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/gae/">
+              <i class="fas fa-tag"></i>
+              GAE
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          들어가며 google app engine을 이용해 REST API를 작성하던 중 발생했던 datastore의 index 관련 이슈와 그 해결법에 대해 기록한다. 참고, 여기도 참고
+에러발생 상황 내 프로필을 조회한 사람들의 목록을 반환해주는 API를 작성했다. 코드는 딱히 별거 없고 그냥 datastore에 있는 데이터들을 불러오는 내용이다. 핵심코드는 아래와 같다.
+q := datastore.NewQuery(userDao.VisitorEntity).Filter(&#34;UserId=&#34;, userId).Order(&#34;-VisitTime&#34;) UserId 필드의 값을 기준으로 필터링을 하고 VisitTime을 최근순으로 정렬하는 간단한 코드다. 위 쿼리문을 베이스로 한 API는 로컬테스트는 무사히 통과하고 배포까지 정상적으로 완료, 이 후 클라우드에 올라간 API를 테스트 했는데 다음과 같은 에러로그를 내뿜었다.
+        </div>
+        <div class="article-readmore"><a href="/posts/2018-04-29-gae-datastore-indexes/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+      <article class="article">
+        <a href="/posts/2017-12-05-go-swagger-with-gae/" class="article-titles">
+          <h2 class="article-title">Google App Engine(GAE)에서 go swagger server 실행하기</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>December 5, 2017</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/go/">
+              <i class="fas fa-tag"></i>
+              go
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/swagger/">
+              <i class="fas fa-tag"></i>
+              swagger
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/gae/">
+              <i class="fas fa-tag"></i>
+              GAE
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/gcp/">
+              <i class="fas fa-tag"></i>
+              GCP
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
+spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
+swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &#34;result : helloworld&#34; items: $ref: &#34;#/definitions/item&#34; definitions: item: type: object required: - result properties: result: type: string swagger.
+        </div>
+        <div class="article-readmore"><a href="/posts/2017-12-05-go-swagger-with-gae/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+    </section>
+    
+
+  </div>
+
+
+
+<div class="site-footer">
+  <div class="copyright">&copy; Copyright 2019 YeongCheon</div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-rsslink">
+      <a href="/tags/gcp/index.xml" type="application/rss+xml" target="_blank" title="RSS">
+        <i class="fas fa-rss"></i>
+      </a>
+    </li>
+    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -23,59 +212,6 @@ if (!doNotTrack) {
 }
 </script>
 
-  </head>
-  <body>
-    <header class="app-header">
-      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
-      <h1>YeongCheon Tech Blog</h1>
-      <p>잡탕 웹개발자, 이맥스를 좋아해요</p>
-      <div class="app-header-social">
-        
-          <a target="_blank" href="https://github.com/yeongcheon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
-        
-      </div>
-    </header>
-    <main class="app-container">
-      
-  <article>
-    <h1>Gcp</h1>
-    <ul class="posts-list">
-      
-        <li class="posts-list-item">
-          <a class="posts-list-item-title" href="https://yeongcheon.github.io/posts/2018-06-10-gae-image-api/">Google App Engine Image API 삽질 후기</a>
-          <span class="posts-list-item-description">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 3 min read -
-            Jun 10, 2018
-          </span>
-        </li>
-      
-        <li class="posts-list-item">
-          <a class="posts-list-item-title" href="https://yeongcheon.github.io/posts/2018-05-12-datastore-projection-error/">datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기</a>
-          <span class="posts-list-item-description">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 2 min read -
-            May 12, 2018
-          </span>
-        </li>
-      
-        <li class="posts-list-item">
-          <a class="posts-list-item-title" href="https://yeongcheon.github.io/posts/2018-04-29-gae-datastore-indexes/">Googlde App Engine(GAE) datastore index 관련 에러 해결하기</a>
-          <span class="posts-list-item-description">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 2 min read -
-            Apr 29, 2018
-          </span>
-        </li>
-      
-        <li class="posts-list-item">
-          <a class="posts-list-item-title" href="https://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/">Google App Engine(GAE)에서 go swagger server 실행하기</a>
-          <span class="posts-list-item-description">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 3 min read -
-            Dec 5, 2017
-          </span>
-        </li>
-      
-    </ul>
-  </article>
 
-    </main>
-  </body>
+</body>
 </html>

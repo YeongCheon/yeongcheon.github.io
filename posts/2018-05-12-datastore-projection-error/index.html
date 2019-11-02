@@ -1,58 +1,87 @@
-<!doctype html>
-<html>
-  <head>
-      <title>datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기 // YeongCheon Tech Blog</title>
-      <meta charset="utf-8" />
-      <meta name="generator" content="Hugo 0.54.0" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="author" content="YeongCheon Kim" />
-      <meta name="description" content="" />
-      <base href="https://yeongcheon.github.io/" />
-      <link rel="stylesheet" href="https://yeongcheon.github.io/css/main.min.3bf813d46763420c83fb33c51950b4fc582483efcfddb34b4e4e8d6b811e3208.css" />
-	  
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-135478508-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+<!DOCTYPE html>
+<html lang="ko-ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기 - YeongCheon Tech Blog</title>
+  <meta property="og:title" content="datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기 - YeongCheon Tech Blog" />
+  <meta name="twitter:title" content="datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기 - …" />
+  <meta name="description" content="요구사항 datastore에 내 프로필을 방문한 사용자의 ID와 방문시간을 각각 string, time.Time 형식으로 저장하고 있다. 구조체로 보면 다음과 같다.
+type Visitor struct { UserId string //조회한 프로필의 Id 	VisitorId string //방문자 Id 	VisitTime time.Time } 이 데이터를 단순히 조회하면 한 사용자가 나를 여러번 방문할 경우 결과 리스트에 그 방문자가 여러번 출력된다. 나는 동일한 사용자가 여러번 반복해도 가장 최근에 방문한 기록만 보길 원했다. 즉 datastore에서 SQL 문법의 group by를 사용하고 싶었다.">
+  <meta property="og:description" content="요구사항 datastore에 내 프로필을 방문한 사용자의 ID와 방문시간을 각각 string, time.Time 형식으로 저장하고 있다. 구조체로 보면 다음과 같다.
+type Visitor struct { UserId string //조회한 프로필의 Id 	VisitorId string //방문자 Id 	VisitTime time.Time } 이 데이터를 단순히 조회하면 한 사용자가 나를 여러번 방문할 경우 결과 리스트에 그 방문자가 여러번 출력된다. 나는 동일한 사용자가 여러번 반복해도 가장 최근에 방문한 기록만 보길 원했다. 즉 datastore에서 SQL 문법의 group by를 사용하고 싶었다.">
+  <meta name="twitter:description" content="요구사항 datastore에 내 프로필을 방문한 사용자의 ID와 방문시간을 각각 string, time.Time 형식으로 저장하고 있다. 구조체로 보면 다음과 같다.
+type Visitor struct { UserId string //조회한 프로필의 Id 	VisitorId string //방문자 Id 	VisitTime time.Time } 이 데이터를  …">
+  <meta name="author" content="YeongCheon Kim"/>
+  <meta property="og:site_name" content="YeongCheon Tech Blog" />
+  <meta property="og:url" content="https://yeongcheon.github.io/posts/2018-05-12-datastore-projection-error/" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.54.0" />
 
-  </head>
-  <body>
-    <header class="app-header">
-      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
-      <h1>YeongCheon Tech Blog</h1>
-      <p>잡탕 웹개발자, 이맥스를 좋아해요</p>
-      <div class="app-header-social">
-        
-          <a target="_blank" href="https://github.com/yeongcheon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
-        
-      </div>
-    </header>
-    <main class="app-container">
+  <link rel="stylesheet" href="/css/style.css" media="all" />
+  <link rel="stylesheet" href="/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/css/custom.css" media="all" />
+
+  <script src="/js/script.js"></script>
+  <script src="/js/custom.js"></script>
+  <script defer src="/js/fontawesome.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/">YeongCheon Tech Blog</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-tags"><a href="/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-archives"><a href="/posts/" title="Archives">Archives</a></li>
+      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="main" role="main">
+    <article class="article">
       
-  <article class="post">
-    <header class="post-header">
-      <h1 class ="post-title">datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기</h1>
-      <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-          May 12, 2018
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          2 min read
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
-          <a class="tag" href="https://yeongcheon.github.io/tags/golang/">Golang</a></div></div>
-    </header>
-    <div class="post-content">
+      
+      <h1 class="article-title">datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>May 12, 2018</time></li>
+        <li class="article-meta-tags">
+          <a href="/tags/gcp/">
+            <i class="fas fa-tag"></i>
+            GCP
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/tags/gae/">
+            <i class="fas fa-tag"></i>
+            GAE
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/tags/golang/">
+            <i class="fas fa-tag"></i>
+            golang
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+<aside class="toc">
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#요구사항">요구사항</a></li>
+<li><a href="#projection-query-사용하기">Projection Query 사용하기</a></li>
+</ul></li>
+</ul>
+</nav>
+</aside>
       
 
 <h2 id="요구사항">요구사항</h2>
@@ -116,9 +145,67 @@ if (!doNotTrack) {
 }</code></pre></div>
 <p>위 코드는 <a href="https://cloud.google.com/appengine/docs/standard/go/datastore/reference#hdr-The_PropertyLoadSaver_Interface">공식 예제</a>를 참고해서 만든것이다. <code>Visitor</code> 구조체에 <a href="https://cloud.google.com/appengine/docs/standard/go/datastore/reference#PropertyLoadSaver">PropertyLoadSaver</a> 인터페이스를 구현해놓은 것인데 위 코드에서는 <code>Load</code> 함수를 중점으로 보면 된다. 간단한게 설명하자면 <code>datastore.LoadStruct</code> 함수는 구조체의 각 필드이름과 <code>property.Name</code>의 값을 비교에서 동일할 경우 해당 필드에 <code>property.Value</code> 값을 넣는다. 이 때 타입이 서로 다를 경우 아까와 같은 에러가 발생하기 때문에 반복문을 이용해 VisitTime을 찾아 직접 timestamp를 <code>time.Time</code> 형식으로 바꿔준다. 이 후 다시 쿼리문을 실행시켜보면 정상적으로 작동한다. 간혹 Index 관련 에러가 발생할 수 있는데 그건 <a href="/2018/04/29/gae-datastore-indexes/">이전 포스트</a>를 참고하자.</p>
 
-    </div>
-  </article>
+    </article>
 
-    </main>
-  </body>
+    
+
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "YeongCheon" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="/posts/2018-06-10-gae-image-api/" data-toggle="tooltip" data-placement="top" title="Google App Engine Image API 삽질 후기">&lt; Newer</a>
+      </li>
+      <li class="pager-older">
+        <a href="/posts/2018-04-29-gae-datastore-indexes/" data-toggle="tooltip" data-placement="top" title="Googlde App Engine(GAE) datastore index 관련 에러 해결하기">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright">&copy; Copyright 2019 YeongCheon</div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-135478508-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
 </html>

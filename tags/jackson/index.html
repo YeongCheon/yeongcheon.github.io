@@ -1,15 +1,109 @@
-<!doctype html>
-<html>
-  <head>
-      <title>Jackson // YeongCheon Tech Blog</title>
-      <meta charset="utf-8" />
-      <meta name="generator" content="Hugo 0.54.0" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="author" content="YeongCheon Kim" />
-      <meta name="description" content="" />
-      <base href="https://yeongcheon.github.io/" />
-      <link rel="stylesheet" href="https://yeongcheon.github.io/css/main.min.3bf813d46763420c83fb33c51950b4fc582483efcfddb34b4e4e8d6b811e3208.css" />
-	  
+<!DOCTYPE html>
+<html lang="ko-ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Jackson - YeongCheon Tech Blog</title>
+  <meta property="og:title" content="Jackson - YeongCheon Tech Blog" />
+  <meta name="twitter:title" content="Jackson - YeongCheon Tech Blog" />
+  <meta name="author" content="YeongCheon Kim"/>
+  <meta property="og:site_name" content="YeongCheon Tech Blog" />
+  <meta property="og:url" content="https://yeongcheon.github.io/tags/jackson/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link href="/tags/jackson/index.xml" rel="alternate" type="application/rss+xml" title="YeongCheon Tech Blog" />
+  <link href="/tags/jackson/index.xml" rel="feed" type="application/rss+xml" title="YeongCheon Tech Blog" />
+
+  <link rel="stylesheet" href="/css/style.css" media="all" />
+  <link rel="stylesheet" href="/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/css/custom.css" media="all" />
+
+  <script src="/js/script.js"></script>
+  <script src="/js/custom.js"></script>
+  <script defer src="/js/fontawesome.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/">YeongCheon Tech Blog</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-tags"><a href="/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-archives"><a href="/posts/" title="Archives">Archives</a></li>
+      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="breadcrumb">
+    <a href="/tags/">Tags</a> / Jackson
+  </div>
+  <div class="main" role="main">
+    <section class="list taxonomy-list">
+      <article class="article">
+        <a href="/posts/2019-03-01-jpa-jackson/" class="article-titles">
+          <h2 class="article-title">jackson을 이용해 json 변환 시 JPA entity의 id값만 추출하기</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>March 1, 2019</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/json/">
+              <i class="fas fa-tag"></i>
+              json
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/jackson/">
+              <i class="fas fa-tag"></i>
+              jackson
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/jpa/">
+              <i class="fas fa-tag"></i>
+              jpa
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/kotlin/">
+              <i class="fas fa-tag"></i>
+              kotlin
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          들어가며 REST API 서버를 java언어에서 사용되는 대표적인 json(또는 xml, yaml, etc&hellip;) 라이브러리인 jackson 은 kotlin에서도 사용이 가능하다. JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경우가 있다. 이 문제를 jackson을 이용해 json형식으로 이쁘게 변환하는 법을 알아보자.
+요구사항 데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자.
+        </div>
+        <div class="article-readmore"><a href="/posts/2019-03-01-jpa-jackson/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+    </section>
+    
+
+  </div>
+
+
+
+<div class="site-footer">
+  <div class="copyright">&copy; Copyright 2019 YeongCheon</div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-rsslink">
+      <a href="/tags/jackson/index.xml" type="application/rss+xml" target="_blank" title="RSS">
+        <i class="fas fa-rss"></i>
+      </a>
+    </li>
+    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -23,35 +117,6 @@ if (!doNotTrack) {
 }
 </script>
 
-  </head>
-  <body>
-    <header class="app-header">
-      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
-      <h1>YeongCheon Tech Blog</h1>
-      <p>잡탕 웹개발자, 이맥스를 좋아해요</p>
-      <div class="app-header-social">
-        
-          <a target="_blank" href="https://github.com/yeongcheon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
-        
-      </div>
-    </header>
-    <main class="app-container">
-      
-  <article>
-    <h1>Jackson</h1>
-    <ul class="posts-list">
-      
-        <li class="posts-list-item">
-          <a class="posts-list-item-title" href="https://yeongcheon.github.io/posts/2019-03-01-jpa-jackson/">jackson을 이용해 json 변환 시 JPA entity의 id값만 추출하기</a>
-          <span class="posts-list-item-description">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 4 min read -
-            Mar 1, 2019
-          </span>
-        </li>
-      
-    </ul>
-  </article>
 
-    </main>
-  </body>
+</body>
 </html>

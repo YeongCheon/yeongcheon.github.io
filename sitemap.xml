@@ -4,17 +4,12 @@
   
   <url>
     <loc>https://yeongcheon.github.io/posts/2019-08-05-intellij-appengine-error/</loc>
-    <lastmod>2019-08-05T23:33:10+09:00</lastmod>
+    <lastmod>2019-11-02T22:18:58+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://yeongcheon.github.io/posts/2019-06-31-emcs-lsp-java-setup/</loc>
-    <lastmod>2019-06-30T22:45:37+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/posts/2019-06-19-emacs-hangul/</loc>
-    <lastmod>2019-06-19T22:17:21+09:00</lastmod>
+    <lastmod>2019-11-02T22:18:37+09:00</lastmod>
   </url>
   
   <url>
@@ -34,7 +29,7 @@
   
   <url>
     <loc>https://yeongcheon.github.io/posts/2019-03-01-jpa-jackson/</loc>
-    <lastmod>2019-03-03T18:34:19+09:00</lastmod>
+    <lastmod>2019-11-02T22:24:47+09:00</lastmod>
   </url>
   
   <url>
@@ -98,34 +93,6 @@
   </url>
   
   <url>
-    <loc>https://yeongcheon.github.io/org/2019-03-01-jpa-jackson/</loc>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/org/2019-03-03-github&#43;hugo&#43;orgmode_setup/</loc>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/org/2019-03-07-tinode001/</loc>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/org/2019-05-28-tinode002/</loc>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/org/2019-06-19-emacs-hangul/</loc>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/org/2019-06-31-emcs-lsp-java-setup/</loc>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/org/2019-08-05-intellij-appengine-error/</loc>
-  </url>
-  
-  <url>
     <loc>https://yeongcheon.github.io/tags/angular/</loc>
     <lastmod>2018-09-21T12:00:00+09:00</lastmod>
     <priority>0</priority>
@@ -133,7 +100,7 @@
   
   <url>
     <loc>https://yeongcheon.github.io/tags/appengine/</loc>
-    <lastmod>2019-08-05T23:33:10+09:00</lastmod>
+    <lastmod>2019-11-02T22:18:58+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -162,7 +129,7 @@
   
   <url>
     <loc>https://yeongcheon.github.io/tags/emacs/</loc>
-    <lastmod>2019-06-30T22:45:37+09:00</lastmod>
+    <lastmod>2019-11-02T22:18:37+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -216,43 +183,43 @@
   
   <url>
     <loc>https://yeongcheon.github.io/tags/intellij/</loc>
-    <lastmod>2019-08-05T23:33:10+09:00</lastmod>
+    <lastmod>2019-11-02T22:18:58+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yeongcheon.github.io/tags/jackson/</loc>
-    <lastmod>2019-03-03T18:34:19+09:00</lastmod>
+    <lastmod>2019-11-02T22:24:47+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yeongcheon.github.io/tags/java/</loc>
-    <lastmod>2019-06-30T22:45:37+09:00</lastmod>
+    <lastmod>2019-11-02T22:18:37+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yeongcheon.github.io/tags/jpa/</loc>
-    <lastmod>2019-03-03T18:34:19+09:00</lastmod>
+    <lastmod>2019-11-02T22:24:47+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yeongcheon.github.io/tags/json/</loc>
-    <lastmod>2019-03-03T18:34:19+09:00</lastmod>
+    <lastmod>2019-11-02T22:24:47+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yeongcheon.github.io/tags/kotlin/</loc>
-    <lastmod>2019-03-03T18:34:19+09:00</lastmod>
+    <lastmod>2019-11-02T22:24:47+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yeongcheon.github.io/tags/lsp/</loc>
-    <lastmod>2019-06-30T22:45:37+09:00</lastmod>
+    <lastmod>2019-11-02T22:18:37+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -263,19 +230,19 @@
   </url>
   
   <url>
-    <loc>https://yeongcheon.github.io/org/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://yeongcheon.github.io/posts/</loc>
-    <lastmod>2019-08-05T23:33:10+09:00</lastmod>
+    <lastmod>2019-11-02T22:18:58+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yeongcheon.github.io/tags/s2/</loc>
     <lastmod>2018-08-05T18:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/series/</loc>
     <priority>0</priority>
   </url>
   
@@ -311,13 +278,7 @@
   
   <url>
     <loc>https://yeongcheon.github.io/</loc>
-    <lastmod>2019-08-05T23:33:10+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/</loc>
-    <lastmod>2019-06-19T22:17:21+09:00</lastmod>
+    <lastmod>2019-11-02T22:18:58+09:00</lastmod>
     <priority>0</priority>
   </url>
   
