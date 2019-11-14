@@ -21,7 +21,7 @@ echo &#34;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&#34
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2017-10-06-go-swagger01/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.60.0-DEV" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -128,62 +128,57 @@ sudo apt install swagger</code></pre></div>
 --consumes application/json \
 --produces application/json</code></pre></div></li>
 
-<li><p>위 명령어를 실행하면 아래처럼 생긴 <code>swagger.yml</code> 파일이 생긴다.
-``` yaml
-consumes:</p></li>
-
-<li><p>application/json
+<li><p>위 명령어를 실행하면 아래처럼 생긴 <code>swagger.yml</code> 파일이 생긴다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">consumes:
+- application/json
 info:
 description: hello go swagger
 title: hello world application
-version: 1.0.0
+version: <span style="color:#ae81ff">1.0.0</span>
 paths: {}
-produces:</p>
-
-<ul>
-<li>application/json
-consumes:</li>
-<li>application/json
-schemes:</li>
-<li>http
-swagger: &ldquo;2.0&rdquo;
-```</li>
-</ul></li>
+produces:
+- application/json
+consumes:
+- application/json
+schemes:
+- http
+swagger: <span style="color:#e6db74">&#34;2.0&#34;</span></code></pre></div></li>
 
 <li><p>위 파일에서 7번째 줄의 <code>paths:{}</code> 구문을 우리 입맛대로 고쳐줘야 한다. 이번 예제에선 다른 구문들은 건들지 않아도 된다.</p></li>
 
-<li><p>우리는 이번 예제에서 GET 방식으로 <code>/</code> URL을 호출할 시 hello world를 반환하는 예제를 만드는 게 주 목적이다. 그러기 위해선 <code>swagger.yml</code>의 <code>paths:{}</code> 구문을 제거하고 파일 최하단에 아래 코드를 붙여넣기 한다. 추가로 파일 맨 위의 consumes 구문도 지워준다(버그인지 두번 반복되고 있다).</p></li>
-</ol>
+<li><p>우리는 이번 예제에서 GET 방식으로 <code>/</code> URL을 호출할 시 hello world를 반환하는 예제를 만드는 게 주 목적이다. 그러기 위해선 <code>swagger.yml</code>의 <code>paths:{}</code> 구문을 제거하고 파일 최하단에 아래 코드를 붙여넣기 한다. 추가로 파일 맨 위의 consumes 구문도 지워준다(버그인지 두번 반복되고 있다).</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">swagger: <span style="color:#e6db74">&#34;2.0&#34;</span>
 info:
-  description: hello go swagger
-  title: hello world application
-  version: <span style="color:#ae81ff">1.0</span>.<span style="color:#ae81ff">0</span>
+description: hello go swagger
+title: hello world application
+version: <span style="color:#ae81ff">1.0.0</span>
 produces:
-  - application/json
+- application/json
 consumes:
-  - application/json
+- application/json
 schemes:
-  - http
+- http
 paths:
-  /:
-    get:
-      responses:
-        <span style="color:#ae81ff">200</span>:
-          description: list the todo operations
-          schema:
-            type: array
-            description: <span style="color:#e6db74">&#34;result : helloworld&#34;</span>
-            items:
-              $ref: <span style="color:#e6db74">&#34;#/definitions/item&#34;</span>
+/:
+get:
+  responses:
+    <span style="color:#ae81ff">200</span>:
+      description: list the todo operations
+      schema:
+        type: array
+        description: <span style="color:#e6db74">&#34;result : helloworld&#34;</span>
+        items:
+          $ref: <span style="color:#e6db74">&#34;#/definitions/item&#34;</span>
 definitions:
-  item:
-    type: object
-    required:
-      - result
-    properties:
-      result:
-        type: string</code></pre></div>
+item:
+type: object
+required:
+  - result
+properties:
+  result:
+    type: string</code></pre></div></li>
+</ol>
+
 <p><code>swagger.yml</code>파일을 수정할 때 주의할 점은 <code>yml</code> 형식의 파일은 들여쓰기로 <code>\b</code>(공백)을 두번 쓴다는 점이다. 탭이나 띄어쓰기 한 칸으로 할 경우 오류가 발생할 수 있다(작성자는 들여쓰기를 탭으로 했다가 피봤다).</p>
 
 <p>위 문장 붙여넣기까지 완료한 <code>swagger.yml</code> 파일의 최총 코드는 아래와 같다.</p>
@@ -191,7 +186,7 @@ definitions:
 info:
   description: hello go swagger
   title: hello world application
-  version: <span style="color:#ae81ff">1.0</span>.<span style="color:#ae81ff">0</span>
+  version: <span style="color:#ae81ff">1.0.0</span>
 produces:
   - application/json
 consumes:
@@ -257,19 +252,19 @@ definitions:
 <p><a href="http://swagger.io/">swagger</a>는 우리가 작성한 스펙, 즉 <code>swagger.yml</code>에 따라 end point와 추가로 선언한 모델만 작성해 줄 뿐 실제 비즈니스 로직은 우리가 직접 구현해야 한다. 이번 문서에서 우리는 복잡한 로직이 아니라 단순히 helloworld만 출력하는게 목적이므로 아래의 내용에 따라 소스코드를 살짝만 고쳐주자.</p>
 
 <ol>
-<li><code>src/restapi/configure_helloworld.go</code> 파일에 접근하여 <code>import</code> 구문 바로 아래에 아래의 코드를 추가한다. 사실 <code>configure_helloworld.go</code> 파일 안이라면 위치는 자기 마음대로 해도 된다(문법이 허용하는 범위 내에).</li>
-</ol>
+<li><p><code>src/restapi/configure_helloworld.go</code> 파일에 접근하여 <code>import</code> 구문 바로 아래에 아래의 코드를 추가한다. 사실 <code>configure_helloworld.go</code> 파일 안이라면 위치는 자기 마음대로 해도 된다(문법이 허용하는 범위 내에).</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ResultResponse</span> <span style="color:#66d9ef">struct</span> {
 	<span style="color:#a6e22e">Result</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;result&#34;`</span>
 }
 
 <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">result</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ResultResponse</span>) <span style="color:#a6e22e">WriteResponse</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">producer</span> <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">Producer</span>) {
 	<span style="color:#a6e22e">producer</span>.<span style="color:#a6e22e">Produce</span>(<span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">result</span>)
-}</code></pre></div>
-<ol>
-<li><code>src/restapi/configure_helloworld.go</code> 파일의 <code>configureAPI</code> 함수 안에 <code>api.getHandler</code> 구문의 내부를 수정해줘야 한다. 내부 코드를 살펴보면 아래와 같은 구문이 있을 것이다.</li>
+}</code></pre></div></li>
+
+<li><p><code>src/restapi/configure_helloworld.go</code> 파일의 <code>configureAPI</code> 함수 안에 <code>api.getHandler</code> 구문의 내부를 수정해줘야 한다. 내부 코드를 살펴보면 아래와 같은 구문이 있을 것이다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">return</span> <span style="color:#a6e22e">middleware</span>.<span style="color:#a6e22e">NotImplemented</span>(<span style="color:#e6db74">&#34;operation .Get has not yet been implemented&#34;</span>)</code></pre></div></li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">return</span> <span style="color:#a6e22e">middleware</span>.<span style="color:#a6e22e">NotImplemented</span>(<span style="color:#e6db74">&#34;operation .Get has not yet been implemented&#34;</span>)</code></pre></div>
+
 <p>위 코드는 해당 함수를 아직 개발자가 구현해주지 않았다는 뜻이다. 위 구문 때문에 코드 생성 후 최초로 접근했을 때 <strong>&ldquo;operation .Get has not yet been implemented&rdquo;</strong> 메세지가 떳던 것이다. 이제 이 구문을 삭제, 또는 주석처리 하고 아래의 코드를 입력한다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ResultResponse</span>{
 	<span style="color:#a6e22e">Result</span>: <span style="color:#e6db74">&#34;hello world&#34;</span>,

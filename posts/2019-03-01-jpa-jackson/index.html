@@ -16,7 +16,7 @@
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2019-03-01-jpa-jackson/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.60.0-DEV" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -219,7 +219,7 @@ typealias ShelterId = Long
 				resolver = EntityIdResolver<span style="color:#f92672">::</span><span style="color:#66d9ef">class</span>,
 				scope = UserModel<span style="color:#f92672">::</span><span style="color:#66d9ef">class</span>)
 		@JsonIdentityReference(alwaysAsId = <span style="color:#66d9ef">true</span>)
-		@OneToOne(fetch = FetchType.EAGER, cascade =<span style="color:#a6e22e"> [CascadeType.DETACH]</span>, orphanRemoval = <span style="color:#66d9ef">false</span>)
+		@OneToOne(fetch = FetchType.EAGER, cascade = [CascadeType.DETACH], orphanRemoval = <span style="color:#66d9ef">false</span>)
 		@JoinColumn(name = <span style="color:#e6db74">&#34;owner_id&#34;</span>, updatable = <span style="color:#66d9ef">false</span>)
 		<span style="color:#66d9ef">var</span> owner: UserModel = UserModel()
 )</code></pre></div>
