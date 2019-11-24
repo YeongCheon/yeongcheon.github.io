@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hibernate on 꿀테크 블로그</title>
+    <link>https://yeongcheon.github.io/tags/hibernate/</link>
+    <description>Recent content in hibernate on 꿀테크 블로그</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-ko</language>
+    <copyright>&amp;copy; Copyright 2019 YeongCheon</copyright>
+    <lastBuildDate>Mon, 25 Nov 2019 00:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://yeongcheon.github.io/tags/hibernate/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JPA OneToMany 필드의 StackOverflowError</title>
+      <link>https://yeongcheon.github.io/posts/2019-11-14-jpa-one-to-many-collection-set/</link>
+      <pubDate>Mon, 25 Nov 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2019-11-14-jpa-one-to-many-collection-set/</guid>
+      <description>JPA를 사용하다 보면 StackOverflow 에러를 종종 만날 수 있다. 이 글에서는 필드 타입이 Set인 Collection 타입에 아이템을 추가할 경우 StackVoerflow 에러가 발생하는 원인과 그 해결법에 대해 알아보자.  `hashcode`, `equals` 메서드와 관계된 이야기이다. 에러 발생 시나리오  구현 목표   부모객체와 자식객체들을 서버 데이터베이스에 저장하는 기능을 가진 코드가 있었다. 부모객체와 자식객체는 1:n관계로서 하나의 부모가 여러 개의 자식을 가질 수 있고 이 두 객체는 서로의 존재를 알고 있는 양방향 관계다.</description>
+    </item>
+    
+  </channel>
+</rss>

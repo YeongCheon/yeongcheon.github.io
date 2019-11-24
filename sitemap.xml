@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://yeongcheon.github.io/tags/hibernate/</loc>
+    <lastmod>2019-11-25T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/tags/jpa/</loc>
+    <lastmod>2019-11-25T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/posts/2019-11-14-jpa-one-to-many-collection-set/</loc>
+    <lastmod>2019-11-25T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/tags/kotlin/</loc>
+    <lastmod>2019-11-25T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/posts/</loc>
+    <lastmod>2019-11-25T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/tags/</loc>
+    <lastmod>2019-11-25T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/</loc>
+    <lastmod>2019-11-25T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://yeongcheon.github.io/tags/appengine/</loc>
     <lastmod>2019-11-02T22:18:58+09:00</lastmod>
   </url>
@@ -15,21 +50,6 @@
   <url>
     <loc>https://yeongcheon.github.io/posts/2019-08-05-intellij-appengine-error/</loc>
     <lastmod>2019-11-02T22:18:58+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/posts/</loc>
-    <lastmod>2019-11-02T22:24:47+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/tags/</loc>
-    <lastmod>2019-11-02T22:24:47+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/</loc>
-    <lastmod>2019-11-02T22:24:47+09:00</lastmod>
   </url>
   
   <url>
@@ -118,17 +138,7 @@
   </url>
   
   <url>
-    <loc>https://yeongcheon.github.io/tags/jpa/</loc>
-    <lastmod>2019-11-02T22:24:47+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://yeongcheon.github.io/tags/json/</loc>
-    <lastmod>2019-11-02T22:24:47+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/tags/kotlin/</loc>
     <lastmod>2019-11-02T22:24:47+09:00</lastmod>
   </url>
   
