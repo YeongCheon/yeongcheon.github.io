@@ -6,16 +6,9 @@
   <title>IntelliJ 업데이트 후 appengine local 실행 이슈 해결하기 - 꿀테크 블로그</title>
   <meta property="og:title" content="IntelliJ 업데이트 후 appengine local 실행 이슈 해결하기 - 꿀테크 블로그" />
   <meta name="twitter:title" content="IntelliJ 업데이트 후 appengine local 실행 이슈 해결하기 - 꿀테크 블로그" />
-  <meta name="description" content="IntelliJ를 쓰기 시작한지 아직 1년도 안됐지만 거의 분기(?)마다 자동 업데이트가 되는듯 싶은데 이때마다 잘 쓰고있던 appengine local server가 제대로 동작하지 않아서 화가 났었는데 최근에 명확한 솔루션을 찾았기에 이를 기록하고자 한다.
-내가 그동안 해왔던 삽질 목록은 아래와 같다.
- 로컬서버 설정 삭제 후 재셋팅 rebuild(clean) project cloud code 플러그인 삭제 후 재설치 intelliJ 삭제 후 재설치(&hellip;)  위에 내용들 다 쓸모없으니 따라하지 않아도 된다. 깔끔한 해결법은 아래에 있다.
-$ProjectRootDirectory/build 폴더 삭제 후 로컬서버 실행 clean project를 하면 build 폴더도 알아서 비워질 줄 알았는데 아닌가보다.">
-  <meta property="og:description" content="IntelliJ를 쓰기 시작한지 아직 1년도 안됐지만 거의 분기(?)마다 자동 업데이트가 되는듯 싶은데 이때마다 잘 쓰고있던 appengine local server가 제대로 동작하지 않아서 화가 났었는데 최근에 명확한 솔루션을 찾았기에 이를 기록하고자 한다.
-내가 그동안 해왔던 삽질 목록은 아래와 같다.
- 로컬서버 설정 삭제 후 재셋팅 rebuild(clean) project cloud code 플러그인 삭제 후 재설치 intelliJ 삭제 후 재설치(&hellip;)  위에 내용들 다 쓸모없으니 따라하지 않아도 된다. 깔끔한 해결법은 아래에 있다.
-$ProjectRootDirectory/build 폴더 삭제 후 로컬서버 실행 clean project를 하면 build 폴더도 알아서 비워질 줄 알았는데 아닌가보다.">
-  <meta name="twitter:description" content="IntelliJ를 쓰기 시작한지 아직 1년도 안됐지만 거의 분기(?)마다 자동 업데이트가 되는듯 싶은데 이때마다 잘 쓰고있던 appengine local server가 제대로 동작하지 않아서 화가 났었는데 최근에 명확한 솔루션을 찾았기에 이를 기록하고자 한다.
-내가 그동안 해왔던 삽질 목록은 아래와 같다. …">
+  <meta name="description" content="IntelliJ를 쓰기 시작한지 아직 1년도 안됐지만 거의 분기(?)마다 자동 업데이트가 되는듯 싶은데 이때마다 잘 쓰고있던 appengine local server가 제대로 동작하지 않아서 화가 났었는데 최근에 명확한 솔루션을 찾았기에 이를 기록하고자 한다.  내가 그동안 해왔던 삽질 목록은 아래와 같다.    로컬서버 설정 삭제 후 재셋팅    rebuild(clean) project    cloud code 플러그인 삭제 후 재설치    intelliJ 삭제 후 재설치(…)    위에 내용들 다 쓸모없으니 따라하지 않아도 된다.">
+  <meta property="og:description" content="IntelliJ를 쓰기 시작한지 아직 1년도 안됐지만 거의 분기(?)마다 자동 업데이트가 되는듯 싶은데 이때마다 잘 쓰고있던 appengine local server가 제대로 동작하지 않아서 화가 났었는데 최근에 명확한 솔루션을 찾았기에 이를 기록하고자 한다.  내가 그동안 해왔던 삽질 목록은 아래와 같다.    로컬서버 설정 삭제 후 재셋팅    rebuild(clean) project    cloud code 플러그인 삭제 후 재설치    intelliJ 삭제 후 재설치(…)    위에 내용들 다 쓸모없으니 따라하지 않아도 된다.">
+  <meta name="twitter:description" content="IntelliJ를 쓰기 시작한지 아직 1년도 안됐지만 거의 분기(?)마다 자동 업데이트가 되는듯 싶은데 이때마다 잘 쓰고있던 appengine local server가 제대로 동작하지 않아서 화가 났었는데 최근에 명확한 솔루션을 찾았기에 이를 기록하고자 한다.  내가 그동안 해왔던 삽질 목록은 아래와 같다. …">
   <meta name="author" content="YeongCheon Kim"/>
   <meta property="og:site_name" content="꿀테크 블로그" />
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2019-08-05-intellij-appengine-error/" />
@@ -54,7 +47,7 @@ $ProjectRootDirectory/build 폴더 삭제 후 로컬서버 실행 clean project�
       
       <hr class="article-title-bottom">
       <ul class="article-meta">
-        <li class="article-meta-date"><time>August 5, 2019</time></li>
+        <li class="article-meta-date"><time>January 1, 0001</time></li>
         <li class="article-meta-tags">
           <a href="/tags/intellij/">
             <i class="fas fa-tag"></i>
@@ -69,20 +62,43 @@ $ProjectRootDirectory/build 폴더 삭제 후 로컬서버 실행 clean project�
         </li>
       </ul>
       
-      <p>IntelliJ를 쓰기 시작한지 아직 1년도 안됐지만 거의 분기(?)마다 자동 업데이트가 되는듯 싶은데 이때마다 잘 쓰고있던 appengine local server가 제대로 동작하지 않아서 화가 났었는데 최근에 명확한 솔루션을 찾았기에 이를 기록하고자 한다.</p>
-
-<p>내가 그동안 해왔던 삽질 목록은 아래와 같다.</p>
-
+      <p>
+IntelliJ를 쓰기 시작한지 아직 1년도 안됐지만 거의 분기(?)마다 자동 업데이트가 되는듯 싶은데 이때마다 잘 쓰고있던 appengine local server가 제대로 동작하지 않아서 화가 났었는데 최근에 명확한 솔루션을 찾았기에 이를 기록하고자 한다.
+</p>
+<p>
+내가 그동안 해왔던 삽질 목록은 아래와 같다.
+</p>
 <ul>
-<li>로컬서버 설정 삭제 후 재셋팅</li>
-<li>rebuild(clean) project</li>
-<li>cloud code 플러그인 삭제 후 재설치</li>
-<li>intelliJ 삭제 후 재설치(&hellip;)</li>
+<li>
+<p>
+로컬서버 설정 삭제 후 재셋팅
+</p>
+</li>
+<li>
+<p>
+rebuild(clean) project
+</p>
+</li>
+<li>
+<p>
+cloud code 플러그인 삭제 후 재설치
+</p>
+</li>
+<li>
+<p>
+intelliJ 삭제 후 재설치(…)
+</p>
+</li>
 </ul>
-
-<p><strong>위에 내용들 다 쓸모없으니 따라하지 않아도 된다.</strong> 깔끔한 해결법은 아래에 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nil" data-lang="nil">$ProjectRootDirectory/build 폴더 삭제 후 로컬서버 실행</code></pre></div>
-<p>clean project를 하면 build 폴더도 알아서 비워질 줄 알았는데 아닌가보다. 앞으로는 뭐가 잘 안된다 싶으면 일단 <strong>build 폴더를 지우고 다시 빌드를 해보자.</strong></p>
+<p>
+<strong>위에 내용들 다 쓸모없으니 따라하지 않아도 된다.</strong> 깔끔한 해결법은 아래에 있다.
+</p>
+<div class="src src-text">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ProjectRootDirectory/build 폴더 삭제 후 로컬서버 실행</code></pre></div>
+</div>
+<p>
+clean project를 하면 build 폴더도 알아서 비워질 줄 알았는데 아닌가보다. 앞으로는 뭐가 잘 안된다 싶으면 일단 <strong>build 폴더를 지우고 다시 빌드를 해보자.</strong>
+</p>
 
     </article>
 
@@ -113,11 +129,9 @@ $ProjectRootDirectory/build 폴더 삭제 후 로컬서버 실행 clean project�
 
     <ul class="pager article-pager">
       <li class="pager-newer">
-          <a href="/posts/2019-11-14-jpa-one-to-many-collection-set/" data-toggle="tooltip" data-placement="top" title="JPA OneToMany 필드의 StackOverflowError">&lt; Newer</a>
+          <a href="/posts/2017-10-06-go-swagger01/" data-toggle="tooltip" data-placement="top" title="go swagger 사용법">&lt; Newer</a>
       </li>
-      <li class="pager-older">
-        <a href="/posts/2019-06-31-emcs-lsp-java-setup/" data-toggle="tooltip" data-placement="top" title="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기">Older &gt;</a>
-      </li>
+      <li class="pager-older pager-noitem">Older &gt;</li>
     </ul>
   </div>
 
