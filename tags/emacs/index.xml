@@ -18,9 +18,16 @@
       <pubDate>Sun, 30 Jun 2019 21:00:00 +0900</pubDate>
       
       <guid>https://yeongcheon.github.io/posts/2019-06-31-emcs-lsp-java-setup/</guid>
-      <description>이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
- OS: ubuntu 18.04 LTS emacs: GNU Emacs 25.2.2 java: openjdk version &amp;quot;1.8.0_212&amp;quot; gradle: Gradle 4.10.2  이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자
-LSP란? lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다). 간단히 말하자면 각 개발툴마다 제각각 다뤄왔던 자동완성, jump to definition 등등의 기능을 하나의 프로토콜로 표준화 하여 하나의 language server를 여러 개발툴에서 동일하게 사용할 수 있도록 하는 규약(프로토콜)을 의미한다.</description>
+      <description>이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.    OS: ubuntu 18.04 LTS    emacs: GNU Emacs 25.2.2    java: openjdk version &amp;#34;1.8.0_212&amp;#34;    gradle: Gradle 4.10.2    이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자 LSP란?   lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다).</description>
+    </item>
+    
+    <item>
+      <title>이맥스 폰트, 세벌식 셋팅하기</title>
+      <link>https://yeongcheon.github.io/posts/2019-06-19-emacs-hangul/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2019-06-19-emacs-hangul/</guid>
+      <description> 아래의 내용을 .emacs 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다. (set-fontset-font t &amp;#39;hangul (font-spec :family &amp;#34;D2Coding&amp;#34;)) (set-language-environment &amp;#34;Korean&amp;#34;) (prefer-coding-system &amp;#39;utf-8) (setq default-input-method &amp;#34;korean-hangul390&amp;#34;) (setq default-korean-keyboard &amp;#34;390&amp;#34;) (global-set-key (kbd &amp;#34;&amp;lt;S-kana&amp;gt;&amp;#34;) &amp;#39;toggle-input-method)  </description>
     </item>
     
     <item>

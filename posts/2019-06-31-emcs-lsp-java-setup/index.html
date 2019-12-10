@@ -6,14 +6,9 @@
   <title>이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기 - 꿀테크 블로그</title>
   <meta property="og:title" content="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기 - 꿀테크 블로그" />
   <meta name="twitter:title" content="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기 - 꿀테크 블로그" />
-  <meta name="description" content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
- OS: ubuntu 18.04 LTS emacs: GNU Emacs 25.2.2 java: openjdk version &quot;1.8.0_212&quot; gradle: Gradle 4.10.2  이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자
-LSP란? lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다). 간단히 말하자면 각 개발툴마다 제각각 다뤄왔던 자동완성, jump to definition 등등의 기능을 하나의 프로토콜로 표준화 하여 하나의 language server를 여러 개발툴에서 동일하게 사용할 수 있도록 하는 규약(프로토콜)을 의미한다.">
-  <meta property="og:description" content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
- OS: ubuntu 18.04 LTS emacs: GNU Emacs 25.2.2 java: openjdk version &quot;1.8.0_212&quot; gradle: Gradle 4.10.2  이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자
-LSP란? lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다). 간단히 말하자면 각 개발툴마다 제각각 다뤄왔던 자동완성, jump to definition 등등의 기능을 하나의 프로토콜로 표준화 하여 하나의 language server를 여러 개발툴에서 동일하게 사용할 수 있도록 하는 규약(프로토콜)을 의미한다.">
-  <meta name="twitter:description" content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
- OS: ubuntu 18.04 LTS emacs: GNU Emacs 25.2.2 java: openjdk version &quot;1.8.0_212&quot; gradle: Gradle 4.10.2 …">
+  <meta name="description" content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.    OS: ubuntu 18.04 LTS    emacs: GNU Emacs 25.2.2    java: openjdk version &#34;1.8.0_212&#34;    gradle: Gradle 4.10.2    이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자 LSP란?   lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다).">
+  <meta property="og:description" content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.    OS: ubuntu 18.04 LTS    emacs: GNU Emacs 25.2.2    java: openjdk version &#34;1.8.0_212&#34;    gradle: Gradle 4.10.2    이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자 LSP란?   lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다).">
+  <meta name="twitter:description" content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.    OS: ubuntu 18.04 LTS    emacs: GNU Emacs 25.2.2    java: openjdk version &#34;1.8.0_212&#34;    gradle: Gradle …">
   <meta name="author" content="YeongCheon Kim"/>
   <meta property="og:site_name" content="꿀테크 블로그" />
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2019-06-31-emcs-lsp-java-setup/" />
@@ -74,37 +69,75 @@ LSP란? lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨�
       </ul>
       
       
-
-<p>이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.</p>
-
+<p>
+이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
+</p>
 <ul>
-<li>OS: <code>ubuntu 18.04 LTS</code></li>
-<li>emacs: <code>GNU Emacs 25.2.2</code></li>
-<li>java: <code>openjdk version &quot;1.8.0_212&quot;</code></li>
-<li>gradle: <code>Gradle 4.10.2</code></li>
+<li>
+<p>
+OS: <code class="verbatim">ubuntu 18.04 LTS</code>
+</p>
+</li>
+<li>
+<p>
+emacs: <code class="verbatim">GNU Emacs 25.2.2</code>
+</p>
+</li>
+<li>
+<p>
+java: <code class="verbatim">openjdk version &#34;1.8.0_212&#34;</code>
+</p>
+</li>
+<li>
+<p>
+gradle: <code class="verbatim">Gradle 4.10.2</code>
+</p>
+</li>
 </ul>
-
-<p>이 포스트에선 개발환경 셋팅을 위해서 <a href="https://github.com/emacs-lsp/lsp-mode">lsp-mode</a>를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자</p>
-
-<h2 id="lsp란">LSP란?</h2>
-
-<p>lsp는 <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a>의 약자이다(링크를 보는게 훨씬 도움이 된다). 간단히 말하자면 각 개발툴마다 제각각 다뤄왔던 자동완성, jump to definition 등등의 기능을 하나의 프로토콜로 표준화 하여 하나의 language server를 여러 개발툴에서 동일하게 사용할 수 있도록 하는 규약(프로토콜)을 의미한다. (<del>번역기 발췌</del>)</p>
-
-<h2 id="lsp-mode-설치하기">lsp-mode 설치하기</h2>
-
-<p>lsp의 뜻을 알아봤으니 그럼 이제 본격적으로 셋팅작업에 들어가보자. 이맥스의 lsp-mode는 기본적으로 <a href="https://github.com/emacs-lsp/lsp-mode">여기</a>를 베이스로 한다. 이번 포스트는 java 환경을 구축하는게 목적이니 <a href="https://github.com/emacs-lsp/lsp-java">lsp-java</a>를 설치해주자. 설치하는 방법은 링크의 <a href="https://github.com/emacs-lsp/lsp-java/blob/master/README.md">READMD.md</a>에 자세하게 나와있다. 내가 실행한 명령어는 아래와 같다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nil" data-lang="nil">M-x package-install use-package
+<p>
+이 포스트에선 개발환경 셋팅을 위해서 <a href="https://github.com/emacs-lsp/lsp-mode">lsp-mode</a>를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자
+</p>
+<h1 id="headline-1">
+LSP란?
+</h1>
+<p>
+lsp는 <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a>의 약자이다(링크를 보는게 훨씬 도움이 된다). 간단히 말하자면 각 개발툴마다 제각각 다뤄왔던 자동완성, jump to definition 등등의 기능을 하나의 프로토콜로 표준화 하여 하나의 language server를 여러 개발툴에서 동일하게 사용할 수 있도록 하는 규약(프로토콜)을 의미한다. (<del>번역기 발췌</del>)
+</p>
+<h1 id="headline-2">
+lsp-mode 설치하기
+</h1>
+<p>
+lsp의 뜻을 알아봤으니 그럼 이제 본격적으로 셋팅작업에 들어가보자. 이맥스의 lsp-mode는 기본적으로 <a href="https://github.com/emacs-lsp/lsp-mode">여기</a>를 베이스로 한다. 이번 포스트는 java 환경을 구축하는게 목적이니 <a href="https://github.com/emacs-lsp/lsp-java">lsp-java</a>를 설치해주자. 설치하는 방법은 링크의 <a href="https://github.com/emacs-lsp/lsp-java/blob/master/README.md">READMD.md</a>에 자세하게 나와있다. 내가 실행한 명령어는 아래와 같다.
+</p>
+<div class="src src-text">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">M-x package-install use-package
 M-x package-install lsp-java
 M-x package-install dash</code></pre></div>
-<p>총 3개의 패키지를 설치한다.</p>
-
+</div>
+<p>
+총 3개의 패키지를 설치한다.
+</p>
 <ul>
-<li><a href="https://github.com/jwiegley/use-package">use-package</a></li>
-<li><a href="https://github.com/emacs-lsp/lsp-java">lsp-java</a></li>
-<li><a href="https://github.com/magnars/dash.el">dash</a></li>
+<li>
+<p>
+<a href="https://github.com/jwiegley/use-package">use-package</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://github.com/emacs-lsp/lsp-java">lsp-java</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://github.com/magnars/dash.el">dash</a>
+</p>
+</li>
 </ul>
-
-<p>dash 패키지의 경우 공식 가이드에서 설치하라는 설명은 없었지만 셋팅이 제대로 진행되지 않아 나름 구글링을 해본 결과 얻어낸 답이다.</p>
+<p>
+dash 패키지의 경우 공식 가이드에서 설치하라는 설명은 없었지만 셋팅이 제대로 진행되지 않아 나름 구글링을 해본 결과 얻어낸 답이다.
+</p>
+<div class="src src-elisp">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elisp" data-lang="elisp">(require <span style="color:#e6db74">&#39;lsp-java</span>)
 (add-hook <span style="color:#e6db74">&#39;java-mode-hook</span> <span style="color:#a6e22e">#&#39;</span>lsp)
 (add-hook <span style="color:#e6db74">&#39;java-mode-hook</span> <span style="color:#e6db74">&#39;flycheck-mode</span>)
@@ -119,27 +152,34 @@ M-x package-install dash</code></pre></div>
 (use-package company-lsp :ensure <span style="color:#66d9ef">t</span>)
 (use-package lsp-ui :ensure <span style="color:#66d9ef">t</span>)
 (use-package lsp-java :ensure <span style="color:#66d9ef">t</span> :after lsp
-  :config (add-hook <span style="color:#e6db74">&#39;java-mode-hook</span> <span style="color:#e6db74">&#39;lsp</span>))
+:config (add-hook <span style="color:#e6db74">&#39;java-mode-hook</span> <span style="color:#e6db74">&#39;lsp</span>))
 
 (use-package dap-mode
-  :ensure <span style="color:#66d9ef">t</span> :after lsp-mode
-  :config
-  (dap-mode <span style="color:#66d9ef">t</span>)
-  (dap-ui-mode <span style="color:#66d9ef">t</span>))
+:ensure <span style="color:#66d9ef">t</span> :after lsp-mode
+:config
+(dap-mode <span style="color:#66d9ef">t</span>)
+(dap-ui-mode <span style="color:#66d9ef">t</span>))
 
 (use-package dap-java :after (lsp-java))</code></pre></div>
-<p>모든 과정을 끝냈다면 이제 기본적인 셋팅은 마무리가 된 상태다. 그럼 이제 실제로 자바 프로젝트를 생성한 후 이맥스에서 자동완성, jump to difinition 등등이 제대로 동작하는지 확인해보자. 자바프로젝트 생성은 gradle를 이용한다. 아래의 명령어를 터미널에 입력해보자.</p>
+</div>
+<p>
+모든 과정을 끝냈다면 이제 기본적인 셋팅은 마무리가 된 상태다. 그럼 이제 실제로 자바 프로젝트를 생성한 후 이맥스에서 자동완성, jump to difinition 등등이 제대로 동작하는지 확인해보자. 자바프로젝트 생성은 gradle를 이용한다. 아래의 명령어를 터미널에 입력해보자.
+</p>
+<div class="src src-bash">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gradle init --type java-library</code></pre></div>
-<p>프로젝트가 정상적으로 프로젝트가 생성되었다면 이맥스에서 src/main/java/Library.java 파일을 열어보자. 셋팅 후 최초로 자바파일을 열었을 경우 <a href="https://projects.eclipse.org/projects/eclipse.jdt.ls">Eclipse JDT Language Server</a>를 설치할건지 묻는 메세지가 뜬다. y를 입력해서 language server를 설치해주도록 하자. 참고로 이 내용은 <a href="https://github.com/emacs-lsp/lsp-java#eclipse-jdt-language-server">공식 가이드</a>에서도 나오는 내용이다(<del>그니깐 이거 말고 공식 가이드 읽으세요</del>).</p>
-
-<p>설치를 마치고 이맥스를 재시작 한 후 다시 Library.java를 열어서 이것저것 코드를 입력해보자.</p>
-
-<figure>
-    <img src="/ox-hugo/2019-06-30_22-39-45.png"/> 
-</figure>
-
-
-<p>이제 기본적인 셋팅이 마무리 되었다. 코드 실행, 디버깅 방법은 이후 별도의 포스팅에서 다루도록 하겠다.</p>
+</div>
+<p>
+프로젝트가 정상적으로 프로젝트가 생성되었다면 이맥스에서 src/main/java/Library.java 파일을 열어보자. 셋팅 후 최초로 자바파일을 열었을 경우 <a href="https://projects.eclipse.org/projects/eclipse.jdt.ls">Eclipse JDT Language Server</a>를 설치할건지 묻는 메세지가 뜬다. y를 입력해서 language server를 설치해주도록 하자. 참고로 이 내용은 <a href="https://github.com/emacs-lsp/lsp-java#eclipse-jdt-language-server">공식 가이드</a>에서도 나오는 내용이다(<del>그니깐 이거 말고 공식 가이드 읽으세요</del>).
+</p>
+<p>
+설치를 마치고 이맥스를 재시작 한 후 다시 Library.java를 열어서 이것저것 코드를 입력해보자.
+</p>
+<p>
+<img src="../../resources/images/2019-06-30_22-39-45.png" alt="../../resources/images/2019-06-30_22-39-45.png" title="../../resources/images/2019-06-30_22-39-45.png" />
+</p>
+<p>
+이제 기본적인 셋팅이 마무리 되었다. 코드 실행, 디버깅 방법은 이후 별도의 포스팅에서 다루도록 하겠다.
+</p>
 
     </article>
 
@@ -170,10 +210,10 @@ M-x package-install dash</code></pre></div>
 
     <ul class="pager article-pager">
       <li class="pager-newer">
-          <a href="/posts/2019-11-14-jpa-one-to-many-collection-set/" data-toggle="tooltip" data-placement="top" title="JPA OneToMany 필드의 StackOverflowError">&lt; Newer</a>
+          <a href="/posts/2019-08-05-intellij-appengine-error/" data-toggle="tooltip" data-placement="top" title="IntelliJ 업데이트 후 appengine local 실행 이슈 해결하기">&lt; Newer</a>
       </li>
       <li class="pager-older">
-        <a href="/posts/2019-05-28-tinode002/" data-toggle="tooltip" data-placement="top" title="tinode series.002 - Install &amp; Run">Older &gt;</a>
+        <a href="/posts/2019-06-19-emacs-hangul/" data-toggle="tooltip" data-placement="top" title="이맥스 폰트, 세벌식 셋팅하기">Older &gt;</a>
       </li>
     </ul>
   </div>

@@ -6,17 +6,9 @@
   <title>tinode series.002 - Install &amp; Run - 꿀테크 블로그</title>
   <meta property="og:title" content="tinode series.002 - Install &amp; Run - 꿀테크 블로그" />
   <meta name="twitter:title" content="tinode series.002 - Install &amp; Run - 꿀테크 블로그" />
-  <meta name="description" content="서론 소스코드를 살펴보기에 앞서서 일단 프로그램 실행을 시켜보자. 이 글에서 설명하는 예제는 커밋 아이디 기준 2558db90a50c80c974c2fccfec6b87ea44e4758b을 바탕으로 설명한다. 사실 이 글을 안봐도 여기를 따라하면 보통을 무난하게 설치 및 실행을 할 수 있다. 이 가이드는 공식 가이드 중 Building from Source, Mysql을 기준으로 설명한다.
-실행환경 및 선행조건  Ubuntu 18.04 LTS
- Golang이 설치되어 있어야 한다(기준 버전 : 1.12.5).
- Mysql이 설치되어 있어야 한다(기준 버전: 5.7)
-  설치 및 실행하기 source 파일 내려받기 및 바이너리 파일 install 다음 명령어를 입력한다.">
-  <meta property="og:description" content="서론 소스코드를 살펴보기에 앞서서 일단 프로그램 실행을 시켜보자. 이 글에서 설명하는 예제는 커밋 아이디 기준 2558db90a50c80c974c2fccfec6b87ea44e4758b을 바탕으로 설명한다. 사실 이 글을 안봐도 여기를 따라하면 보통을 무난하게 설치 및 실행을 할 수 있다. 이 가이드는 공식 가이드 중 Building from Source, Mysql을 기준으로 설명한다.
-실행환경 및 선행조건  Ubuntu 18.04 LTS
- Golang이 설치되어 있어야 한다(기준 버전 : 1.12.5).
- Mysql이 설치되어 있어야 한다(기준 버전: 5.7)
-  설치 및 실행하기 source 파일 내려받기 및 바이너리 파일 install 다음 명령어를 입력한다.">
-  <meta name="twitter:description" content="서론 소스코드를 살펴보기에 앞서서 일단 프로그램 실행을 시켜보자. 이 글에서 설명하는 예제는 커밋 아이디 기준 2558db90a50c80c974c2fccfec6b87ea44e4758b을 바탕으로 설명한다. 사실 이 글을 안봐도 여기를 따라하면 보통을 무난하게 설치 및 실행을 할 수 있다. 이 가이드는 공식 가이드 중 Building from Source, …">
+  <meta name="description" content="서론   소스코드를 살펴보기에 앞서서 일단 프로그램 실행을 시켜보자. 이 글에서 설명하는 예제는 커밋 아이디 기준 2558db90a50c80c974c2fccfec6b87ea44e4758b을 바탕으로 설명한다. 사실 이 글을 안봐도 여기를 따라하면 보통을 무난하게 설치 및 실행을 할 수 있다. 이 가이드는 공식 가이드 중 Building from Source, Mysql을 기준으로 설명한다. 실행환경 및 선행조건     Ubuntu 18.04 LTS    Golang이 설치되어 있어야 한다(기준 버전 : 1.12.5).    Mysql이 설치되어 있어야 한다(기준 버전: 5.">
+  <meta property="og:description" content="서론   소스코드를 살펴보기에 앞서서 일단 프로그램 실행을 시켜보자. 이 글에서 설명하는 예제는 커밋 아이디 기준 2558db90a50c80c974c2fccfec6b87ea44e4758b을 바탕으로 설명한다. 사실 이 글을 안봐도 여기를 따라하면 보통을 무난하게 설치 및 실행을 할 수 있다. 이 가이드는 공식 가이드 중 Building from Source, Mysql을 기준으로 설명한다. 실행환경 및 선행조건     Ubuntu 18.04 LTS    Golang이 설치되어 있어야 한다(기준 버전 : 1.12.5).    Mysql이 설치되어 있어야 한다(기준 버전: 5.">
+  <meta name="twitter:description" content="서론   소스코드를 살펴보기에 앞서서 일단 프로그램 실행을 시켜보자. 이 글에서 설명하는 예제는 커밋 아이디 기준 2558db90a50c80c974c2fccfec6b87ea44e4758b을 바탕으로 설명한다. 사실 이 글을 안봐도 여기를 따라하면 보통을 무난하게 설치 및 실행을 할 수 있다. 이 가이드는 공식 가이드 중 Building from …">
   <meta name="author" content="YeongCheon Kim"/>
   <meta property="og:site_name" content="꿀테크 블로그" />
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2019-05-28-tinode002/" />
@@ -75,9 +67,15 @@
           </a>&nbsp;
         </li>
         <li class="article-meta-tags">
-          <a href="/tags/instant-messaging/">
+          <a href="/tags/instant/">
             <i class="fas fa-tag"></i>
-            instant messaging
+            &#34;instant
+          </a>&nbsp;
+        </li>
+        <li class="article-meta-tags">
+          <a href="/tags/messaging/">
+            <i class="fas fa-tag"></i>
+            messaging&#34;
           </a>&nbsp;
         </li>
       </ul>
@@ -85,100 +83,162 @@
 <aside class="toc">
   <nav id="TableOfContents">
 <ul>
-<li>
+<li><a href="#headline-1">서론</a>
+</li>
+<li><a href="#headline-2">실행환경 및 선행조건</a>
+</li>
+<li><a href="#headline-3">설치 및 실행하기</a>
 <ul>
-<li><a href="#서론">서론</a></li>
-<li><a href="#실행환경-및-선행조건">실행환경 및 선행조건</a></li>
-<li><a href="#설치-및-실행하기">설치 및 실행하기</a>
+<li><a href="#headline-4">source 파일 내려받기 및 바이너리 파일 install</a>
+</li>
+<li><a href="#headline-5">데이터베이스 스키마 생성하기</a>
+</li>
+<li><a href="#headline-6">채팅서버 실행시키기</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-7">부록 - Go Modules를 이용해서 설치하기</a>
 <ul>
-<li><a href="#source-파일-내려받기-및-바이너리-파일-install">source 파일 내려받기 및 바이너리 파일 install</a></li>
-<li><a href="#데이터베이스-스키마-생성하기">데이터베이스 스키마 생성하기</a></li>
-<li><a href="#채팅서버-실행시키기">채팅서버 실행시키기</a></li>
-</ul></li>
-<li><a href="#부록-go-modules를-이용해서-설치하기">부록 - Go Modules를 이용해서 설치하기</a>
-<ul>
-<li><a href="#go-modules-한방-스크립트">Go modules 한방 스크립트</a></li>
-</ul></li>
-</ul></li>
+<li><a href="#headline-8">Go modules 한방 스크립트</a>
+</li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
       
-
-<h2 id="서론">서론</h2>
-
-<p>소스코드를 살펴보기에 앞서서 일단 프로그램 실행을 시켜보자. 이 글에서 설명하는 예제는 커밋 아이디 기준 <a href="https://github.com/YeongCheon/chat/commit/2558db90a50c80c974c2fccfec6b87ea44e4758b">2558db90a50c80c974c2fccfec6b87ea44e4758b</a>을 바탕으로 설명한다. 사실 이 글을 안봐도 <a href="https://github.com/tinode/chat/blob/master/INSTALL.md">여기</a>를 따라하면 보통을 무난하게 설치 및 실행을 할 수 있다. 이 가이드는 공식 가이드 중 <a href="https://github.com/tinode/chat/blob/master/INSTALL.md#building-from-source">Building from Source</a>, Mysql을 기준으로 설명한다.</p>
-
-<h2 id="실행환경-및-선행조건">실행환경 및 선행조건</h2>
-
+<h1 id="headline-1">
+서론
+</h1>
+<p>
+소스코드를 살펴보기에 앞서서 일단 프로그램 실행을 시켜보자. 이 글에서 설명하는 예제는 커밋 아이디 기준 <a href="https://github.com/YeongCheon/chat/commit/2558db90a50c80c974c2fccfec6b87ea44e4758b">2558db90a50c80c974c2fccfec6b87ea44e4758b</a>을 바탕으로 설명한다. 사실 이 글을 안봐도 <a href="https://github.com/tinode/chat/blob/master/INSTALL.md">여기</a>를 따라하면 보통을 무난하게 설치 및 실행을 할 수 있다. 이 가이드는 공식 가이드 중 <a href="https://github.com/tinode/chat/blob/master/INSTALL.md#building-from-source">Building from Source</a>, Mysql을 기준으로 설명한다.
+</p>
+<h1 id="headline-2">
+실행환경 및 선행조건
+</h1>
 <ul>
-<li><p>Ubuntu 18.04 LTS</p></li>
-
-<li><p>Golang이 설치되어 있어야 한다(기준 버전 : <code>1.12.5</code>).</p></li>
-
-<li><p>Mysql이 설치되어 있어야 한다(기준 버전: <code>5.7</code>)</p></li>
+<li>
+<p>
+Ubuntu 18.04 LTS
+</p>
+</li>
+<li>
+<p>
+Golang이 설치되어 있어야 한다(기준 버전 : <code class="verbatim">1.12.5</code>).
+</p>
+</li>
+<li>
+<p>
+Mysql이 설치되어 있어야 한다(기준 버전: <code class="verbatim">5.7</code>)
+</p>
+</li>
 </ul>
-
-<h2 id="설치-및-실행하기">설치 및 실행하기</h2>
-
-<h3 id="source-파일-내려받기-및-바이너리-파일-install">source 파일 내려받기 및 바이너리 파일 install</h3>
-
-<p>다음 명령어를 입력한다.</p>
+<h1 id="headline-3">
+설치 및 실행하기
+</h1>
+<h2 id="headline-4">
+source 파일 내려받기 및 바이너리 파일 install
+</h2>
+<p>
+다음 명령어를 입력한다.
+</p>
+<div class="src src-shell">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">go get -tags mysql github.com/tinode/chat/server <span style="color:#f92672">&amp;&amp;</span> go install -tags mysql github.com/tinode/chat/server
 go get -tags mysql github.com/tinode/chat/tinode-db <span style="color:#f92672">&amp;&amp;</span> go install -tags mysql github.com/tinode/chat/tinode-db</code></pre></div>
-<p>첫번째 줄의 명령어는 실제로 동작하게 될 채팅서버와 연관된 소스코드를 다운로드 후 해당 소스코드를 컴파일하여 <code>$GOPATH/bin/</code> 경로에 <code>server</code> 라는 파일을 생성하는 명령어다.</p>
-
-<p>두번째 줄의 명령어는 데이터베이스 셋팅을 위한 소스코드를 다운로드 후 해당 소스코드를 컴파일하여 위와 마찬가지로 <code>$GOPATH/bin/</code> 경로에 <code>tinode-db</code> 라는 파일을 생성하는 명령어다.</p>
-
-<p>위의 명령어에서 눈여겨 볼 점은 <code>go get</code> 명령어와 <code>go install</code> 명령어 실행 시 모두 <code>-tags</code> 라는 옵션에 mysql이라는 값을 주었다는 점이다. <code>-tags</code> 옵션에 대한 자세한 설명은 <a href="https://golang.org/cmd/go/">공식문서</a> 또는 <a href="https://jacking75.github.io/go%5Fbuild/">블로그 글</a>을 참고해보자.</p>
-
-<h3 id="데이터베이스-스키마-생성하기">데이터베이스 스키마 생성하기</h3>
-
-<p>MySQL에 데이터베이스 및 테이블을 생성하는 법을 알아보자.
-우선 <code>$GOPATH/src/github.com/tinode/chat/tinode-db/tinode.conf</code> 파일을 열어서 db 접속정보가 올바른지 확인하자. 만약 접속정보와 다르다면(<del>당연히 대부분 다를거다</del>) 자신의 db 설정과 동일하게 고쳐주자. 다른부분은 건드릴 필요 없고 <code>store_config.adapters.mysql.dsn</code> 필드만 수정해주면 된다. 설정이 완료됐다면 아래의 명령어를 실행해주자.</p>
+</div>
+<p>
+첫번째 줄의 명령어는 실제로 동작하게 될 채팅서버와 연관된 소스코드를 다운로드 후 해당 소스코드를 컴파일하여 <code class="verbatim">$GOPATH/bin/</code> 경로에 <code class="verbatim">server</code> 라는 파일을 생성하는 명령어다.
+</p>
+<p>
+두번째 줄의 명령어는 데이터베이스 셋팅을 위한 소스코드를 다운로드 후 해당 소스코드를 컴파일하여 위와 마찬가지로 <code class="verbatim">$GOPATH/bin/</code> 경로에 <code class="verbatim">tinode-db</code> 라는 파일을 생성하는 명령어다.
+</p>
+<p>
+위의 명령어에서 눈여겨 볼 점은 <code class="verbatim">go get</code> 명령어와 <code class="verbatim">go install</code> 명령어 실행 시 모두 <code class="verbatim">-tags</code> 라는 옵션에 mysql이라는 값을 주었다는 점이다. <code class="verbatim">-tags</code> 옵션에 대한 자세한 설명은 <a href="https://golang.org/cmd/go/">공식문서</a> 또는 <a href="https://jacking75.github.io/go_build/">블로그 글</a>을 참고해보자.
+</p>
+<h2 id="headline-5">
+데이터베이스 스키마 생성하기
+</h2>
+<p>
+MySQL에 데이터베이스 및 테이블을 생성하는 법을 알아보자.
+우선 <code class="verbatim">$GOPATH/src/github.com/tinode/chat/tinode-db/tinode.conf</code> 파일을 열어서 db 접속정보가 올바른지 확인하자. 만약 접속정보와 다르다면(<del>당연히 대부분 다를거다</del>) 자신의 db 설정과 동일하게 고쳐주자. 다른부분은 건드릴 필요 없고 <code class="verbatim">store_config.adapters.mysql.dsn</code> 필드만 수정해주면 된다. 설정이 완료됐다면 아래의 명령어를 실행해주자.
+</p>
+<div class="src src-shell">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$GOPATH/bin/tinode-db -config<span style="color:#f92672">=</span>$GOPATH/src/github.com/tinode/chat/tinode-db/tinode.conf</code></pre></div>
-<p>이때 터미널의 위치는 가급적이면 <code>$GOPATH/src/github.com/tinode/chat</code> 로 이동시킨 후 실행시키자. conf 파일 중 상대경로 옵션이 적용되어 있는 경우가 있어서 다른 위치에서 명령어를 실행 시 에러를 발생시키기도 한다. 그리고 혹시 테스트용 더미 데이터를 추가하고 싶은 경우엔 위의 명령어 뒤에 = -data=$GOPATH/src/github.com/tinode/chat/tinode-db/data.json= 를 붙여주자. 당연히 필수는 아니다.</p>
-
-<p>명령어가 정상적으로 실행되었다면 터미널 창에 <strong>All done.</strong> 이라는 메세지가 뜬다.</p>
-
-<h3 id="채팅서버-실행시키기">채팅서버 실행시키기</h3>
-
-<p>이제 마지막으로 실제 동작할 채팅서버를 실행시켜보자. 채팅서버를 실행하기에 앞서 우선 폴더 몇개를 복사해서 이동시켜야 한다.</p>
-
+</div>
+<p>
+이때 터미널의 위치는 가급적이면 <code class="verbatim">$GOPATH/src/github.com/tinode/chat</code> 로 이동시킨 후 실행시키자. conf 파일 중 상대경로 옵션이 적용되어 있는 경우가 있어서 다른 위치에서 명령어를 실행 시 에러를 발생시키기도 한다. 그리고 혹시 테스트용 더미 데이터를 추가하고 싶은 경우엔 위의 명령어 뒤에 = -data=$GATH/src/github.com/tinode/chat/tinode-db/data.json= 를 붙여주자. 당연히 필수는 아니다.
+</p>
+<p>
+명령어가 정상적으로 실행되었다면 터미널 창에 <strong>All done.</strong> 이라는 메세지가 뜬다.
+</p>
+<h2 id="headline-6">
+채팅서버 실행시키기
+</h2>
+<p>
+이제 마지막으로 실제 동작할 채팅서버를 실행시켜보자. 채팅서버를 실행하기에 앞서 우선 폴더 몇개를 복사해서 이동시켜야 한다.
+</p>
 <ul>
-<li><code>$GOPATH/src/tinode/chat/server/templ</code> 폴더를 복사해서 <code>$GOPATH/bin/</code> 아래에 붙여넣는다. 이 폴더에는 사용자에게 발송할 메일, sms 등의 템플릿이 담겨있다. 이 템플릿은 고 언어의 기본 패키지인 <a href="https://golang.org/pkg/html/template/">http/template</a> 패키지의 룰을 따른다.</li>
-<li><code>$GOPATH/src/tinode/chat/server/uploads</code> 폴더를 복사해서 <code>$GOPATH/bin/</code> 아래에 붙여넣는다(<del>이건 사실 빈 폴더라서 굳이 복붙까진 필요없다.</del>).</li>
+<li>
+<p>
+<code class="verbatim">$GOPATH/src/tinode/chat/server/templ</code> 폴더를 복사해서 <code class="verbatim">$GOPATH/bin/</code> 아래에 붙여넣는다. 이 폴더에는 사용자에게 발송할 메일, sms 등의 템플릿이 담겨있다. 이 템플릿은 고 언어의 기본 패키지인 <a href="https://golang.org/pkg/html/template/">http/template</a> 패키지의 룰을 따른다.
+</p>
+</li>
+<li>
+<p>
+<code class="verbatim">$GOPATH/src/tinode/chat/server/uploads</code> 폴더를 복사해서 <code class="verbatim">$GOPATH/bin/</code> 아래에 붙여넣는다(<del>이건 사실 빈 폴더라서 굳이 복붙까진 필요없다.</del>).
+</p>
+</li>
 </ul>
-
-<p>그리고 위에서 얘기한대로 터미널의 위치를 <code>$GOPATH/src/github.com/tinode/chat</code> 로 이동시킨 후 아래의 명령어를 실행해보자.</p>
+<p>
+그리고 위에서 얘기한대로 터미널의 위치를 <code class="verbatim">$GOPATH/src/github.com/tinode/chat</code> 로 이동시킨 후 아래의 명령어를 실행해보자.
+</p>
+<div class="src src-shell">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$GOPATH/bin/server -config<span style="color:#f92672">=</span>$GOPATH/src/github.com/tinode/chat/server/tinode.conf</code></pre></div>
-<p>실행 후 터미널에 <strong>Listening for client HTTP connections on [:6060]</strong> 메세지가 뜬다면 성공이다.</p>
-
-<h2 id="부록-go-modules를-이용해서-설치하기">부록 - Go Modules를 이용해서 설치하기</h2>
-
-<p><strong>go 1.11</strong> 버전 이후로는 <strong>Go Modules</strong> 라는 개념을 제공한다. 앞으로 Go는 기존의 <code>$GOPATH</code> 를 이용한 방법 대신 Go Module를 이용해서 패키지 관리를 한다고 한다. Go Modules에 대한 자세한 내용은 <a href="https://velog.io/@kimmachinegun/Go-Go-Modules-%25EC%2582%25B4%25ED%258E%25B4%25EB%25B3%25B4%25EA%25B8%25B0-7cjn4soifk">여기</a>와 <a href="https://blog.golang.org/using-go-modules">여기</a>를 참고하자.</p>
-
-<p><strong>참고로 이 부록은 위에서 설명한 가이드를 모두 따라하고 데이터베이스 관련 셋팅이 모두 끝났다고 가정한다.</strong></p>
-
-<h3 id="go-modules-한방-스크립트">Go modules 한방 스크립트</h3>
-
-<p>쉘 커맨드 명령어를 우선 한번에 작성한 후 한줄 한줄 설명하도록 하겠다.</p>
+</div>
+<p>
+실행 후 터미널에 <strong>Listening for client HTTP connections on [:6060]</strong> 메세지가 뜬다면 성공이다.
+</p>
+<h1 id="headline-7">
+부록 - Go Modules를 이용해서 설치하기
+</h1>
+<p>
+<strong>go 1.11</strong> 버전 이후로는 <strong>Go Modules</strong> 라는 개념을 제공한다. 앞으로 Go는 기존의 <code class="verbatim">$GOPATH</code> 를 이용한 방법 대신 Go Module를 이용해서 패키지 관리를 한다고 한다. Go Modules에 대한 자세한 내용은 <a href="https://velog.io/@kimmachinegun/Go-Go-Modules-%25EC%2582%25B4%25ED%258E%25B4%25EB%25B3%25B4%25EA%25B8%25B0-7cjn4soifk">여기</a>와 <a href="https://blog.golang.org/using-go-modules">여기</a>를 참고하자. 
+</p>
+<p>
+<strong>참고로 이 부록은 위에서 설명한 가이드를 모두 따라하고 데이터베이스 관련 셋팅이 모두 끝났다고 가정한다.</strong>
+</p>
+<h2 id="headline-8">
+Go modules 한방 스크립트
+</h2>
+<p>
+쉘 커맨드 명령어를 우선 한번에 작성한 후 한줄 한줄 설명하도록 하겠다.
+</p>
+<div class="src src-shell">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/tinode/chat
 cd chat/server
 go mod init github.com/YeongCheon/chat/server
 go build -tags mysql
 mkdir static
 ./server -config<span style="color:#f92672">=</span>./tinode.conf</code></pre></div>
-<p>1, 2번 라인은 별도로 설명하지 않겠다.</p>
-
-<p><strong>3번 라인이 제일 중요하다.</strong>
-go.mod 파일을 만드는 명령어인데 <strong>init 뒤에 붙는 패키지 경로를 자신이 정한 고유의 경로를 써줘야 한다.</strong> 처음에 아무생각 없이 <code>github.com/tinode/chat/server</code> 를 입력한다면 아래와 같은 에러메세지를 볼 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nil" data-lang="nil"><span style="color:#a6e22e">can</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">t</span> <span style="color:#a6e22e">load</span> <span style="color:#f92672">package</span>: <span style="color:#f92672">package</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tinode</span><span style="color:#f92672">/</span><span style="color:#a6e22e">chat</span><span style="color:#f92672">/</span><span style="color:#a6e22e">server</span>: <span style="color:#a6e22e">unknown</span> <span style="color:#f92672">import</span> <span style="color:#a6e22e">path</span> <span style="color:#e6db74">&#34;github.com/tinode/chat/server&#34;</span>: <span style="color:#a6e22e">ambiguous</span> <span style="color:#f92672">import</span>: <span style="color:#a6e22e">found</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tinode</span><span style="color:#f92672">/</span><span style="color:#a6e22e">chat</span><span style="color:#f92672">/</span><span style="color:#a6e22e">server</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">multiple</span> <span style="color:#a6e22e">modules</span>:
-	<span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tinode</span><span style="color:#f92672">/</span><span style="color:#a6e22e">chat</span><span style="color:#f92672">/</span><span style="color:#a6e22e">server</span> (<span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">~~~~~~~~~~~~~~~~~~~~~~~~</span><span style="color:#f92672">/</span><span style="color:#a6e22e">chat</span><span style="color:#f92672">/</span><span style="color:#a6e22e">server</span>)
-	<span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tinode</span><span style="color:#f92672">/</span><span style="color:#a6e22e">chat</span> <span style="color:#a6e22e">v0</span><span style="color:#ae81ff">.15.14</span> (<span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">~~~~~~~~</span><span style="color:#f92672">/</span><span style="color:#66d9ef">go</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pkg</span><span style="color:#f92672">/</span><span style="color:#a6e22e">mod</span><span style="color:#f92672">/</span><span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tinode</span><span style="color:#f92672">/</span><span style="color:#a6e22e">chat</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">v0</span><span style="color:#ae81ff">.15.14</span><span style="color:#f92672">/</span><span style="color:#a6e22e">server</span>)</code></pre></div>
-<p>init 작업이 끝나면 의존성 패키지 목록이 이쁘게 정리된 <code>go.mod</code> 파일과 <code>go.sum</code> 파일을 볼 수 있다.</p>
-
-<p>그 이후의 작업은 <code>go install</code> 명령어를 이용해 설치했을때와 동일하다. <code>go build</code> 명령어 실행 시 <strong>-tags=mysql</strong> 을 붙여서 mysql을 사용하는 바이너리 파일을 생성한 후 동일한 위치에 statics 폴더를 생성한다. 그리고 마지막으로 바이너리 파일 실행 시 <strong>-config=./tinode.conf</strong> 옵션을 추가하면 정상적으로 동작한다.이 때 혹시 동작하지 않는다면  conf파일 안의 설정값을 확인해보자.</p>
+</div>
+<p>
+1, 2번 라인은 별도로 설명하지 않겠다.
+</p>
+<p>
+<strong>3번 라인이 제일 중요하다.</strong>
+go.mod 파일을 만드는 명령어인데 <strong>init 뒤에 붙는 패키지 경로를 자신이 정한 고유의 경로를 써줘야 한다.</strong> 처음에 아무생각 없이 <code class="verbatim">github.com/tinode/chat/server</code> 를 입력한다면 아래와 같은 에러메세지를 볼 수 있다.
+</p>
+<div class="src src-text">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">can&#39;t load package: package github.com/tinode/chat/server: unknown import path &#34;github.com/tinode/chat/server&#34;: ambiguous import: found github.com/tinode/chat/server in multiple modules:
+	github.com/tinode/chat/server (/~~~~~~~~~~~~~~~~~~~~~~~~/chat/server)
+	github.com/tinode/chat v0.15.14 (/~~~~~~~~/go/pkg/mod/github.com/tinode/chat@v0.15.14/server)</code></pre></div>
+</div>
+<p>
+init 작업이 끝나면 의존성 패키지 목록이 이쁘게 정리된 <code class="verbatim">go.mod</code> 파일과 <code class="verbatim">go.sum</code> 파일을 볼 수 있다.
+</p>
+<p>
+그 이후의 작업은 <code class="verbatim">go install</code> 명령어를 이용해 설치했을때와 동일하다. <code class="verbatim">go build</code> 명령어 실행 시 <strong>-tags=mysql</strong> 을 붙여서 mysql을 사용하는 바이너리 파일을 생성한 후 동일한 위치에 statics 폴더를 생성한다. 그리고 마지막으로 바이너리 파일 실행 시 <strong>-config=./tinode.conf</strong> 옵션을 추가하면 정상적으로 동작한다.이 때 혹시 동작하지 않는다면  conf파일 안의 설정값을 확인해보자.
+</p>
 
     </article>
 
@@ -209,7 +269,7 @@ go.mod 파일을 만드는 명령어인데 <strong>init 뒤에 붙는 패키지 
 
     <ul class="pager article-pager">
       <li class="pager-newer">
-          <a href="/posts/2019-06-31-emcs-lsp-java-setup/" data-toggle="tooltip" data-placement="top" title="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기">&lt; Newer</a>
+          <a href="/posts/2019-06-19-emacs-hangul/" data-toggle="tooltip" data-placement="top" title="이맥스 폰트, 세벌식 셋팅하기">&lt; Newer</a>
       </li>
       <li class="pager-older">
         <a href="/posts/2019-03-07-tinode001/" data-toggle="tooltip" data-placement="top" title="tinode series.001 - Intro">Older &gt;</a>

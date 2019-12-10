@@ -1,15 +1,109 @@
-<!doctype html>
-<html>
-  <head>
-      <title>세벌식 // YeongCheon Tech Blog</title>
-      <meta charset="utf-8" />
-      <meta name="generator" content="Hugo 0.54.0" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="author" content="YeongCheon Kim" />
-      <meta name="description" content="" />
-      <base href="https://yeongcheon.github.io/" />
-      <link rel="stylesheet" href="https://yeongcheon.github.io/css/main.min.3bf813d46763420c83fb33c51950b4fc582483efcfddb34b4e4e8d6b811e3208.css" />
-	  
+<!DOCTYPE html>
+<html lang="ko-ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>세벌식 - 꿀테크 블로그</title>
+  <meta property="og:title" content="세벌식 - 꿀테크 블로그" />
+  <meta name="twitter:title" content="세벌식 - 꿀테크 블로그" />
+  <meta name="author" content="YeongCheon Kim"/>
+  <meta property="og:site_name" content="꿀테크 블로그" />
+  <meta property="og:url" content="https://yeongcheon.github.io/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.60.0-DEV" />
+  <link href="/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/index.xml" rel="alternate" type="application/rss+xml" title="꿀테크 블로그" />
+  <link href="/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/index.xml" rel="feed" type="application/rss+xml" title="꿀테크 블로그" />
+
+  <link rel="stylesheet" href="/css/style.css" media="all" />
+  <link rel="stylesheet" href="/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/css/custom.css" media="all" />
+
+  <script src="/js/script.js"></script>
+  <script src="/js/custom.js"></script>
+  <script defer src="/js/fontawesome.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+    <h1 class="site-title"><a href="/">꿀테크 블로그</a></h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-tags"><a href="/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-archives"><a href="/posts/" title="Archives">Archives</a></li>
+      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+  <div class="breadcrumb">
+    <a href="/tags/">Tags</a> / 세벌식
+  </div>
+  <div class="main" role="main">
+    <section class="list taxonomy-list">
+      <article class="article">
+        <a href="/posts/2019-06-19-emacs-hangul/" class="article-titles">
+          <h2 class="article-title">이맥스 폰트, 세벌식 셋팅하기</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>June 19, 2019</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/emacs/">
+              <i class="fas fa-tag"></i>
+              emacs
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/">
+              <i class="fas fa-tag"></i>
+              세벌식
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          <p>
+아래의 내용을 <code class="verbatim">.emacs</code> 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다.
+</p>
+<div class="src src-lisp">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(set-fontset-font <span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#39;hangul</span> (font-spec <span style="color:#e6db74">:family</span> <span style="color:#e6db74">&#34;D2Coding&#34;</span>))
+
+(set-language-environment <span style="color:#e6db74">&#34;Korean&#34;</span>)
+(prefer-coding-system <span style="color:#e6db74">&#39;utf-8</span>)
+(<span style="color:#66d9ef">setq</span> default-input-method <span style="color:#e6db74">&#34;korean-hangul390&#34;</span>)
+(<span style="color:#66d9ef">setq</span> default-korean-keyboard <span style="color:#e6db74">&#34;390&#34;</span>)
+(global-set-key (kbd <span style="color:#e6db74">&#34;&lt;S-kana&gt;&#34;</span>) <span style="color:#e6db74">&#39;toggle-input-method</span>)</code></pre></div>
+</div>
+
+        </div>
+        <div class="article-readmore"><a href="/posts/2019-06-19-emacs-hangul/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+    </section>
+    
+
+
+  </div>
+
+
+
+<div class="site-footer">
+  <div class="copyright">&copy; Copyright 2019 YeongCheon</div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-rsslink">
+      <a href="/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/index.xml" type="application/rss+xml" target="_blank" title="RSS">
+        <i class="fas fa-rss"></i>
+      </a>
+    </li>
+    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -23,35 +117,6 @@ if (!doNotTrack) {
 }
 </script>
 
-  </head>
-  <body>
-    <header class="app-header">
-      <a href="/"><img class="app-header-avatar" src="./avatar.jpg" /></a>
-      <h1>YeongCheon Tech Blog</h1>
-      <p>잡탕 웹개발자, 이맥스를 좋아해요</p>
-      <div class="app-header-social">
-        
-          <a target="_blank" href="https://github.com/yeongcheon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
-        
-      </div>
-    </header>
-    <main class="app-container">
-      
-  <article>
-    <h1>세벌식</h1>
-    <ul class="posts-list">
-      
-        <li class="posts-list-item">
-          <a class="posts-list-item-title" href="https://yeongcheon.github.io/posts/2019-06-19-emacs-hangul/">이맥스 폰트, 세벌식 셋팅하기</a>
-          <span class="posts-list-item-description">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 1 min read -
-            Jun 19, 2019
-          </span>
-        </li>
-      
-    </ul>
-  </article>
 
-    </main>
-  </body>
+</body>
 </html>

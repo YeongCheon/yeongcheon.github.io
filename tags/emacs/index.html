@@ -70,11 +70,47 @@
           </li>
         </ul>
         <div class="article-content">
-          이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
- OS: ubuntu 18.04 LTS emacs: GNU Emacs 25.2.2 java: openjdk version &quot;1.8.0_212&quot; gradle: Gradle 4.10.2  이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자
-LSP란? lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다). 간단히 말하자면 각 개발툴마다 제각각 다뤄왔던 자동완성, jump to definition 등등의 기능을 하나의 프로토콜로 표준화 하여 하나의 language server를 여러 개발툴에서 동일하게 사용할 수 있도록 하는 규약(프로토콜)을 의미한다.
+          이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.    OS: ubuntu 18.04 LTS    emacs: GNU Emacs 25.2.2    java: openjdk version &#34;1.8.0_212&#34;    gradle: Gradle 4.10.2    이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자 LSP란?   lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다).
         </div>
         <div class="article-readmore"><a href="/posts/2019-06-31-emcs-lsp-java-setup/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+      <article class="article">
+        <a href="/posts/2019-06-19-emacs-hangul/" class="article-titles">
+          <h2 class="article-title">이맥스 폰트, 세벌식 셋팅하기</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>June 19, 2019</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/emacs/">
+              <i class="fas fa-tag"></i>
+              emacs
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/">
+              <i class="fas fa-tag"></i>
+              세벌식
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          <p>
+아래의 내용을 <code class="verbatim">.emacs</code> 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다.
+</p>
+<div class="src src-lisp">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(set-fontset-font <span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#39;hangul</span> (font-spec <span style="color:#e6db74">:family</span> <span style="color:#e6db74">&#34;D2Coding&#34;</span>))
+
+(set-language-environment <span style="color:#e6db74">&#34;Korean&#34;</span>)
+(prefer-coding-system <span style="color:#e6db74">&#39;utf-8</span>)
+(<span style="color:#66d9ef">setq</span> default-input-method <span style="color:#e6db74">&#34;korean-hangul390&#34;</span>)
+(<span style="color:#66d9ef">setq</span> default-korean-keyboard <span style="color:#e6db74">&#34;390&#34;</span>)
+(global-set-key (kbd <span style="color:#e6db74">&#34;&lt;S-kana&gt;&#34;</span>) <span style="color:#e6db74">&#39;toggle-input-method</span>)</code></pre></div>
+</div>
+
+        </div>
+        <div class="article-readmore"><a href="/posts/2019-06-19-emacs-hangul/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
       <article class="article">
