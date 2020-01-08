@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2019-03-01-jpa-jackson/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.60.0-DEV" />
+  <meta name="generator" content="Hugo 0.62.1" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -107,22 +107,22 @@
 </nav>
 </aside>
       
-<h1 id="headline-1">
+<h2 id="headline-1">
 들어가며
-</h1>
+</h2>
 <p>
 REST API 서버를 java언어에서 사용되는 대표적인 json(또는 xml, yaml, etc…) 라이브러리인 <a href="https://github.com/FasterXML/jackson">jackson</a> 은 kotlin에서도 사용이 가능하다. 
-JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경우가 있다.
-이 문제를 jackson을 이용해  json형식으로 이쁘게 변환하는 법을 알아보자.
+  JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경우가 있다.
+  이 문제를 jackson을 이용해  json형식으로 이쁘게 변환하는 법을 알아보자.
 </p>
-<h1 id="headline-2">
+<h2 id="headline-2">
 요구사항
-</h1>
+</h2>
 <p>
 데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자.
 </p>
 <p>
-현재 사용자가 shelter 정보를 조회하는 API를 호출할 경우 쉘터 정보 안에 쉘터 소유자의 상세한 정보가 포함되어 있다고 한다. json 포맷을 보면 다음과 같다.
+  현재 사용자가 shelter 정보를 조회하는 API를 호출할 경우 쉘터 정보 안에 쉘터 소유자의 상세한 정보가 포함되어 있다고 한다. json 포맷을 보면 다음과 같다.
 </p>
 <div class="src src-json">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
@@ -135,11 +135,11 @@ JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity
 }</code></pre></div>
 </div>
 <p>
-위와 같이 소유자의 상세한 정보가 포함되어 넘어오고 있다. 
+  위와 같이 소유자의 상세한 정보가 포함되어 넘어오고 있다. 
 </p>
 <p>
-만약에 <strong>사용자가 owner 필드에 사용자의 정보가 담긴 json object가 아닌 owner의 id 정보만 원한다고 가정해보자.</strong>
-그렇다면 API의 응답값은 아래처럼 바뀔것이다.
+  만약에 <strong>사용자가 owner 필드에 사용자의 정보가 담긴 json object가 아닌 owner의 id 정보만 원한다고 가정해보자.</strong>
+  그렇다면 API의 응답값은 아래처럼 바뀔것이다.
 </p>
 <div class="src src-json">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
@@ -149,7 +149,7 @@ JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity
 }</code></pre></div>
 </div>
 <p>
-응답결과를 이런식으로 참조 객체의 id값만 출력하는 형식으로 바꿀 경우 생기는 이점은 아래와 같다.
+  응답결과를 이런식으로 참조 객체의 id값만 출력하는 형식으로 바꿀 경우 생기는 이점은 아래와 같다.
 </p>
 <ol>
 <li>
@@ -173,21 +173,21 @@ shelter 1개를 조회할때는 json의 크기가 크게 차이가 안나겠지�
 개선된 json 결과값의 경우엔 json의 크기가 훨씬 줄어들기 때문에 서버와 클라이언트 사이에 통신하는 데이터의 크기가 줄어들고 API 응답속도가 빨라진다.
 </p>
 <p>
-이제 실제로 사용된 소스를 살펴보자.
+  이제 실제로 사용된 소스를 살펴보자.
 </p>
-<h1 id="headline-3">
+<h2 id="headline-3">
 source
-</h1>
-<h2 id="headline-4">
-intro
 </h2>
+<h3 id="headline-4">
+intro
+</h3>
 <p>
 예제에서 사용될 코드를 소개한다. 크게 모델과 IdResolver 클래스가 있다. 
-이 예제에서는 UserModel과 ShelterModel, 그리고 jackson 라이브러리의 <code>ObjectIdResolver</code> 인터페이스를 상속받아 구현한 EntityIdResolver를 준비했다.
+   이 예제에서는 UserModel과 ShelterModel, 그리고 jackson 라이브러리의 <code>ObjectIdResolver</code> 인터페이스를 상속받아 구현한 EntityIdResolver를 준비했다.
 </p>
-<h2 id="headline-5">
+<h3 id="headline-5">
 EntityIdResolver
-</h2>
+</h3>
 <div class="src src-kotlin">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#75715e">// jpa entity 모델 json 변환 시 id만 반환할 수 있도록 해주는 클래스
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EntityIdResolver</span>(
@@ -214,9 +214,9 @@ EntityIdResolver
 <p>
 <a href="https://stackoverflow.com/questions/44007188/deserialize-json-with-spring-unresolved-forward-references-jackson-exception">출처</a>
 </p>
-<h2 id="headline-6">
+<h3 id="headline-6">
 UserModel
-</h2>
+</h3>
 <div class="src src-kotlin">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#66d9ef">import</span> com.fasterxml.jackson.annotation.*
 <span style="color:#66d9ef">import</span> com.shelter.EntityIdResolver
@@ -239,9 +239,9 @@ typealias UserId = String
         <span style="color:#66d9ef">var</span> name: String = <span style="color:#e6db74">&#34;&#34;</span>,
 )</code></pre></div>
 </div>
-<h2 id="headline-7">
+<h3 id="headline-7">
 ShelterModel
-</h2>
+</h3>
 <div class="src src-kotlin">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#66d9ef">import</span> com.fasterxml.jackson.annotation.*
 <span style="color:#66d9ef">import</span> com.fasterxml.jackson.databind.annotation.JsonDeserialize
@@ -272,19 +272,19 @@ typealias ShelterId = Long
         <span style="color:#66d9ef">var</span> owner: UserModel = UserModel()
 )</code></pre></div>
 </div>
-<h1 id="headline-8">
+<h2 id="headline-8">
 해설
-</h1>
+</h2>
 <p>
 <code class="verbatim">EntityIdResolver</code> 를 제외하면 단순한 모델 클래스가 전부이다. 
 모델 클래스에 어노테이션이 이것저것 붙어있지만 jackson 관련된 어노테이션은 <code class="verbatim">JsonIdentityInfo</code>, <code class="verbatim">JsonIdentityReference</code> 두 개 뿐이다.
 </p>
-<h2 id="headline-9">
+<h3 id="headline-9">
 JsonIdentityInfo
-</h2>
+</h3>
 <p>
 딴거 다 필요없고 <code class="verbatim">@JsonIdentity</code> 어노테이션이 핵심이다.
-코드를 보면 이 어노테이션에 총 4개의 parameter가 존재하는데 하나씩 살펴보도록 하자.
+   코드를 보면 이 어노테이션에 총 4개의 parameter가 존재하는데 하나씩 살펴보도록 하자.
 </p>
 <ul>
 <li>
@@ -312,27 +312,27 @@ scope: 대상이 되는 entity 클래스를 입력한다.
 </ul>
 <p>
 위의 parameter 중에서 <code class="verbatim">serialize</code> 를 하기 위해서는 <code class="verbatim">generator</code>, <code class="verbatim">property</code> 만 지정하면 된다(아닐수도 있다). 여기서 serialize란 entity 객체를 json 형식으로 변환하는걸 의미한다.
-하지만 <code class="verbatim">deserialize</code> (json 데이터를 entity 객체로 변환)를 하기 위해서는 <code class="verbatim">resolver</code>, <code class="verbatim">scope</code> parmater도 설정을 해주어야 한다.
+  하지만 <code class="verbatim">deserialize</code> (json 데이터를 entity 객체로 변환)를 하기 위해서는 <code class="verbatim">resolver</code>, <code class="verbatim">scope</code> parmater도 설정을 해주어야 한다.
 </p>
-<h2 id="headline-10">
+<h3 id="headline-10">
 JsonIdentityReference
-</h2>
+</h3>
 <p>
 아주 간단하다. 객체를 항상 id필드만 반환할지 여부를 선언해주는 어노테이션이다. 이 예제에서는 <code class="verbatim">alwaysAsId</code> 값에 true를 할당해주었다.
 </p>
-<h1 id="headline-11">
+<h2 id="headline-11">
 후기
-</h1>
+</h2>
 <p>
 최대한 jackson과 연관된 내용만을 다루기 위해 다른 설정이나 관련 코드들(jpa, spring, etc…)은 최대한 생략하고 글을 작성해보았다.
-내용도 공식 문서를 본게 아니라 일을 하면서 구글링한 내용들을 짜집기 해서 내가 보기좋은 형태(…)로 작성해놓은건데 다른분들이 볼때도 확 와닿았으면 좋겠다.
+  내용도 공식 문서를 본게 아니라 일을 하면서 구글링한 내용들을 짜집기 해서 내가 보기좋은 형태(…)로 작성해놓은건데 다른분들이 볼때도 확 와닿았으면 좋겠다.
 </p>
 <p>
-그리고 이번 포스트는 처음으로 emacs의 <a href="https://orgmode.org/">org-mode</a> 에서 작성해봤는데 뭔가 설정이 잘못된건지 코드 하이라이팅 기능이 제대로 동작하지 않는다.
-관련 설정을 좀 더 찾아보고 영 아니다 싶으면 <a href="https://gohugo.io">hugo</a>같은 다른 블로그 엔진으로 갈아타야겠다.
+  그리고 이번 포스트는 처음으로 emacs의 <a href="https://orgmode.org/">org-mode</a> 에서 작성해봤는데 뭔가 설정이 잘못된건지 코드 하이라이팅 기능이 제대로 동작하지 않는다.
+  관련 설정을 좀 더 찾아보고 영 아니다 싶으면 <a href="https://gohugo.io">hugo</a>같은 다른 블로그 엔진으로 갈아타야겠다.
 </p>
 <p>
-글 마지막에 늘 하는말이지만 혹시 잘못된 내용이나 추가되었으면 하는 내용이 있으면 <a href="mailto:kyc1682@gmail.com">여기</a>로 메일을 주시거나 아님 github에 pull request를 보내주시면 감사하겠습니다.
+  글 마지막에 늘 하는말이지만 혹시 잘못된 내용이나 추가되었으면 하는 내용이 있으면 <a href="mailto:kyc1682@gmail.com">여기</a>로 메일을 주시거나 아님 github에 pull request를 보내주시면 감사하겠습니다.
 </p>
 
     </article>

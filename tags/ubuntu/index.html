@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>꿀테크 블로그</title>
-  <meta property="og:title" content="꿀테크 블로그" />
-  <meta name="twitter:title" content="꿀테크 블로그" />
+  <title>ubuntu - 꿀테크 블로그</title>
+  <meta property="og:title" content="ubuntu - 꿀테크 블로그" />
+  <meta name="twitter:title" content="ubuntu - 꿀테크 블로그" />
   <meta name="author" content="YeongCheon Kim"/>
   <meta property="og:site_name" content="꿀테크 블로그" />
-  <meta property="og:url" content="https://yeongcheon.github.io/" />
+  <meta property="og:url" content="https://yeongcheon.github.io/tags/ubuntu/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="generator" content="Hugo 0.62.1" />
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="꿀테크 블로그" />
-  <link href="/index.xml" rel="feed" type="application/rss+xml" title="꿀테크 블로그" />
+  <link href="/tags/ubuntu/index.xml" rel="alternate" type="application/rss+xml" title="꿀테크 블로그" />
+  <link href="/tags/ubuntu/index.xml" rel="feed" type="application/rss+xml" title="꿀테크 블로그" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -38,94 +38,39 @@
 </header>
 <hr class="site-header-bottom">
 
+  <div class="breadcrumb">
+    <a href="/tags/">Tags</a> / Ubuntu
+  </div>
   <div class="main" role="main">
-    <section class="list home-list">
+    <section class="list taxonomy-list">
       <article class="article">
-        <a href="/posts/2017-10-06-go-swagger01/" class="article-titles">
-          <h2 class="article-title">go swagger 사용법</h2>
-          
+        <a href="/posts/2020-01-08-emacs-path-setting/" class="article-titles">
+          <h2 class="article-title">emacs에 $PATH 환경변수 인식 시키기</h2>
+          <h3 class="article-subtitle">emacs에서 gopls를 인식 못하는 문제를 해결해보자</h3>
         </a>
         <ul class="article-meta">
-          <li class="article-meta-date"><time>October 6, 2017</time></li>
+          <li class="article-meta-date"><time>January 8, 2020</time></li>
           <li class="article-meta-tags">
-            <a href="/tags/go/">
+            <a href="/tags/emacs/">
               <i class="fas fa-tag"></i>
-              go
+              emacs
             </a>&nbsp;
           </li>
           <li class="article-meta-tags">
-            <a href="/tags/swagger/">
+            <a href="/tags/ubuntu/">
               <i class="fas fa-tag"></i>
-              swagger
+              ubuntu
             </a>&nbsp;
           </li>
         </ul>
         <div class="article-content">
-          Intro  이 문서는 goswagger를 이용해 golang으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 ubuntu 16.04LTS, golang 1.8을 사용중이다.
-이 문서를 작성하며 참고한 사이트는 아래와 같다. 사실 이 문서 안보고 아래 목록만 살펴봐도 된다.
- swagger 공식 사이트 goswagger.io yundream님의 사이트, 상당히 정리가 잘 되어있다. 구글링&hellip;  goSwagger 설치  github 페이지의 README 파일을 보면 아래의 명령어를 쓰라고 한다.
-echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.
+          Intro   나는 우분투에서 이맥스를 즐겨쓰고 있다. 이맥스에서 고 언어를 종종 쓰는데 이번에 노트북을 셋팅하면서 문제가 발생했다. 일단 나는 이맥스에서 개발할 때 주로 lsp-mode를 바탕으로 개발환경을 구성하는데, 기본적인 설정은 문서를 보고 구성하면 무리없이 따라할 수 있다. 이번 글에서는 가이드대로 다 따라했는데 이맥스에서 gopls를 인식하지 못하던 문제에 대한 해결법을 기록하고자 한다. 문제 상황   lsp-mode를 사용하면 각 언어에 해당하는 language server를 이용해서 문법 점검, 자동완성, 디버거 연동 등등 IDE에서 흔하게 지원해주는 기능을 사용할 수 있게 해준다.
         </div>
-        <div class="article-readmore"><a href="/posts/2017-10-06-go-swagger01/">Read more...</a></div>
+        <div class="article-readmore"><a href="/posts/2020-01-08-emacs-path-setting/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
     </section>
     
-
-<ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-    <a href="/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    <li class="page-item disabled">
-    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
-</ul>
 
 
   </div>
@@ -136,7 +81,7 @@ echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&qu
   <div class="copyright">&copy; Copyright 2019 YeongCheon</div>
   <ul class="site-footer-items">
     <li class="site-footer-item-rsslink">
-      <a href="/index.xml" type="application/rss+xml" target="_blank" title="RSS">
+      <a href="/tags/ubuntu/index.xml" type="application/rss+xml" target="_blank" title="RSS">
         <i class="fas fa-rss"></i>
       </a>
     </li>

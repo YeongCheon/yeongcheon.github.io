@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2018-11-11-springboot-jpa-cloudsql-connect/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.60.0-DEV" />
+  <meta name="generator" content="Hugo 0.62.1" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -73,20 +73,14 @@
       
 <aside class="toc">
   <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#build-gradle-작성">build.gradle 작성</a></li>
-<li><a href="#appengine-web-xml-파일-작성">appengine-web.xml 파일 작성</a></li>
-<li><a href="#main-class-작성하기">main class 작성하기</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#buildgradle-">build.gradle 작성</a></li>
+    <li><a href="#appengine-webxml--">appengine-web.xml 파일 작성</a></li>
+    <li><a href="#main-class-">main class 작성하기</a></li>
+  </ul>
 </nav>
 </aside>
-      
-
-<p>회사에서 새로 시작하는 API 서버 개발에 아래와 같은 환경을 적용하기로 했다.</p>
-
+      <p>회사에서 새로 시작하는 API 서버 개발에 아래와 같은 환경을 적용하기로 했다.</p>
 <ul>
 <li>구동환경 : <a href="https://cloud.google.com/appengine/docs/standard/java/">Google App Engine Standard Environment</a></li>
 <li>언어 : <a href="https://kotlinlang.org/">kotlin 1.3</a></li>
@@ -95,20 +89,18 @@
 <li>ORM : <a href="https://opentutorials.org/module/1281">hibernate/JPA</a></li>
 <li>IDE: <a href="https://www.jetbrains.com/idea/">IntelliJ Ultimate</a></li>
 </ul>
-
 <p>각각 놓고보면 다들 유명하고 널리 쓰이는 기술들이지만 얘들을 한꺼번에 적용한 가이드라인이 없어서 내가 직접 가이드를 작성해볼까 한다. A to Z 형식의 가이드는 아니고 셋팅 중 삽질을 크게 했던 부분 위주로 작성해보도록 하겠다.</p>
-
-<h2 id="build-gradle-작성">build.gradle 작성</h2>
-
+<h2 id="buildgradle-">build.gradle 작성</h2>
 <p>의존성 관리를 위한 build.gradle 파일이다. 아래의 코드 내용은 <a href="https://start.spring.io/">spring initializer</a>를 통해서 생성된 프로젝트를 바탕으로 이것저것 수정한 버전이다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">buildscript <span style="color:#f92672">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">
+buildscript <span style="color:#f92672">{</span>
 	ext <span style="color:#f92672">{</span>
 		kotlinVersion <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1.3.0&#39;</span>
 		springBootVersion <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;2.0.2.RELEASE&#39;</span>
 	<span style="color:#f92672">}</span>
 	repositories <span style="color:#f92672">{</span>
-		jcenter<span style="color:#f92672">()</span>
-		mavenCentral<span style="color:#f92672">()</span>
+		jcenter<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+		mavenCentral<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
 	<span style="color:#f92672">}</span>
 	dependencies <span style="color:#f92672">{</span>
 		classpath <span style="color:#e6db74">&#39;com.google.cloud.tools:appengine-gradle-plugin:1.+&#39;</span>    <span style="color:#75715e">// latest App Engine Gradle tasks
@@ -165,7 +157,7 @@ compileTestKotlin <span style="color:#f92672">{</span>
 <span style="color:#f92672">}</span>
 
 repositories <span style="color:#f92672">{</span>
-	mavenCentral<span style="color:#f92672">()</span>
+	mavenCentral<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
 <span style="color:#f92672">}</span>
 
 dependencies <span style="color:#f92672">{</span>
@@ -211,18 +203,19 @@ appengine <span style="color:#f92672">{</span>  <span style="color:#75715e">// A
 </span><span style="color:#75715e"></span>    deploy <span style="color:#f92672">{</span>   <span style="color:#75715e">// deploy configuration
 </span><span style="color:#75715e"></span>
     <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span></code></pre></div>
-<h2 id="appengine-web-xml-파일-작성">appengine-web.xml 파일 작성</h2>
+<span style="color:#f92672">}</span>
 
+</code></pre></div><h2 id="appengine-webxml--">appengine-web.xml 파일 작성</h2>
 <p>보통 스프링의 각종 프로퍼티들은 <code>resources/application.properties</code>에 작성하는 경우가 많다(요즘에는 <code>yml</code> 파일로 많이들 작성한다고 카더라). 하지만 우리는 App Engine 환경에서 서버를 실행할 것이기 때문에 <code>webapp/WEB-INF/appengine-web.xml</code>에 각종 프로퍼티들을 선언해 줄 것이다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;appengine-web-app</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://appengine.google.com/ns/1.0&#34;</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;version&gt;</span>1<span style="color:#f92672">&lt;/version&gt;</span>
-    <span style="color:#f92672">&lt;threadsafe&gt;</span>true<span style="color:#f92672">&lt;/threadsafe&gt;</span>
-    <span style="color:#f92672">&lt;runtime&gt;</span>java8<span style="color:#f92672">&lt;/runtime&gt;</span>
-    <span style="color:#f92672">&lt;env&gt;</span>standard<span style="color:#f92672">&lt;/env&gt;</span>
-    <span style="color:#f92672">&lt;use-google-connector-j&gt;</span>true<span style="color:#f92672">&lt;/use-google-connector-j&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">
+<span style="color:#f92672">&lt;appengine-web-app</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://appengine.google.com/ns/1.0&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;version</span><span style="color:#f92672">&gt;</span>1<span style="color:#f92672">&lt;/version&gt;</span>
+    <span style="color:#f92672">&lt;threadsafe</span><span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/threadsafe&gt;</span>
+    <span style="color:#f92672">&lt;runtime</span><span style="color:#f92672">&gt;</span>java8<span style="color:#f92672">&lt;/runtime&gt;</span>
+    <span style="color:#f92672">&lt;env</span><span style="color:#f92672">&gt;</span>standard<span style="color:#f92672">&lt;/env&gt;</span>
+    <span style="color:#f92672">&lt;use-google-connector-j</span><span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/use-google-connector-j&gt;</span>
 
-    <span style="color:#f92672">&lt;system-properties&gt;</span>
+    <span style="color:#f92672">&lt;system-properties</span><span style="color:#f92672">&gt;</span>
         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.datasource.continue-on-error&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;</span>
         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.datasource.initialization-mode&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;always&#34;</span><span style="color:#f92672">/&gt;</span>
 
@@ -235,15 +228,16 @@ appengine <span style="color:#f92672">{</span>  <span style="color:#75715e">// A
 
         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.datasource.url&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;jdbc:mysql://google/&lt;DATABASE_NAME&gt;?cloudSqlInstance=&lt;INSTANCE_CONNECTION_NAME&gt;&amp;socketFactory=com.google.cloud.sql.mysql.SocketFactory&amp;user=&lt;MYSQL_USER_NAME&gt;&amp;password=&lt;MYSQL_USER_PASSWORD&gt;&amp;useSSL=false&#34;</span><span style="color:#f92672">/&gt;</span>
     <span style="color:#f92672">&lt;/system-properties&gt;</span>
-<span style="color:#f92672">&lt;/appengine-web-app&gt;</span></code></pre></div>
-<p>위 내용들을 <code>application.properties</code>에 형식을 맞춰서 작성해도 동작이 되긴 하는듯 하다. 하지만 구글의 앱엔진 가이드에는 <code>appengine-web.xml</code>에 작성하는걸 기준으로 설명하고 있으니 일단은 위와 같이 작성해두도록 하겠다.</p>
+<span style="color:#f92672">&lt;/appengine-web-app&gt;</span>
 
+
+</code></pre></div><p>위 내용들을 <code>application.properties</code>에 형식을 맞춰서 작성해도 동작이 되긴 하는듯 하다. 하지만 구글의 앱엔진 가이드에는 <code>appengine-web.xml</code>에 작성하는걸 기준으로 설명하고 있으니 일단은 위와 같이 작성해두도록 하겠다.</p>
 <p>위 내용에서 내가 특히 헤맸던 설정이 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.jpa.properties.hibernate.dialect&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;org.hibernate.dialect.MySQL57Dialect&#34;</span><span style="color:#f92672">/&gt;</span></code></pre></div>
-<p>이 옵션인데 현재 내가 최초에 적용했던 값은 <code>org.hibernate.dialect.MySQL5Dialect</code>였다(<code>7</code>이 빠졌다). 하이버네이트를 MySQL5 버전에 연결하기 위한 옵션값인데 <em>로컬서버에 설치된 MYSQL5.7에 연결했을때는 아무 문제도 없었다.</em> 근데 앱엔진에 배포하고 테스트를 해보니 하이버네이트가 DB에 연결을 못하고 있었다. 그래서 열심히 구글링을 해본 결과 저 dialect 값이 문제였다. 이유는 모르겠다. 아마 앱엔진에서 CloudSQL에 접근할때 사용되는 프록시와 연관이 있을지도..? 아무튼 <strong><code>MySQL57Dialect</code>라고 정확히 명시를 해줘야 앱엔진 환경에서도 DB에 문제없이 연결이 된다.</strong></p>
-
-<h2 id="main-class-작성하기">main class 작성하기</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">@SpringBootApplication
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.jpa.properties.hibernate.dialect&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;org.hibernate.dialect.MySQL57Dialect&#34;</span><span style="color:#f92672">/&gt;</span>
+</code></pre></div><p>이 옵션인데 현재 내가 최초에 적용했던 값은 <code>org.hibernate.dialect.MySQL5Dialect</code>였다(<code>7</code>이 빠졌다). 하이버네이트를 MySQL5 버전에 연결하기 위한 옵션값인데 <em>로컬서버에 설치된 MYSQL5.7에 연결했을때는 아무 문제도 없었다.</em> 근데 앱엔진에 배포하고 테스트를 해보니 하이버네이트가 DB에 연결을 못하고 있었다. 그래서 열심히 구글링을 해본 결과 저 dialect 값이 문제였다. 이유는 모르겠다. 아마 앱엔진에서 CloudSQL에 접근할때 사용되는 프록시와 연관이 있을지도..? 아무튼 <strong><code>MySQL57Dialect</code>라고 정확히 명시를 해줘야 앱엔진 환경에서도 DB에 문제없이 연결이 된다.</strong></p>
+<h2 id="main-class-">main class 작성하기</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">
+@SpringBootApplication
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Application</span> : SpringBootServletInitializer(){
     @Bean
     <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">hibernate5Module</span>(): Module { <span style="color:#75715e">//for jpa lazy loading
@@ -253,9 +247,9 @@ appengine <span style="color:#f92672">{</span>  <span style="color:#75715e">// A
 
 <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">main</span>(args: Array&lt;String&gt;) {
     SpringApplication.run(Application<span style="color:#f92672">::</span><span style="color:#66d9ef">class</span>.java, *args)
-}</code></pre></div>
-<p>여기까지 작성한다면 API 개발을 위한 기본적인 셋팅이 완료된 것이다. 이제 <code>@Controller</code>, <code>@Service</code> 등등을 작성하면서 API를 완성해나가면 된다.</p>
+}
 
+</code></pre></div><p>여기까지 작성한다면 API 개발을 위한 기본적인 셋팅이 완료된 것이다. 이제 <code>@Controller</code>, <code>@Service</code> 등등을 작성하면서 API를 완성해나가면 된다.</p>
 <p>참고 : <a href="https://blog.sapzil.org/2017/11/02/kotlin-jpa-pitfalls/">Kotlin에서 JPA 사용할 때 주의할 점</a></p>
 
     </article>

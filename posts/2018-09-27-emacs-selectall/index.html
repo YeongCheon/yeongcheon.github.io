@@ -21,7 +21,7 @@ M - &lt;, M - SPC, M - &gt;, M - w
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2018-09-27-emacs-selectall/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.60.0-DEV" />
+  <meta name="generator" content="Hugo 0.62.1" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -63,28 +63,16 @@ M - &lt;, M - SPC, M - &gt;, M - w
         </li>
       </ul>
       
-      
-
-<p>보편적인 현대 에디터에서 <code>ctrl-a</code> <code>ctrl-c</code>, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.</p>
-
-<h2 id="원래는-어떻게-쓰고-있었어요">원래는 어떻게 쓰고 있었어요?</h2>
-
+      <p>보편적인 현대 에디터에서 <code>ctrl-a</code> <code>ctrl-c</code>, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.</p>
+<h2 id="---">원래는 어떻게 쓰고 있었어요?</h2>
 <p>내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와 같다.</p>
-
 <p><code>M - &lt;</code>, <code>M - SPC</code>, <code>M - &gt;</code>, <code>M - w</code></p>
-
 <p>이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다. 그래서 다른 방법을 찾아보았다.</p>
-
-<h2 id="커서를-움직이지-않고-버퍼-전체-복사하기">커서를 움직이지 않고 버퍼 전체 복사하기</h2>
-
+<h2 id="-----">커서를 움직이지 않고 버퍼 전체 복사하기</h2>
 <p><a href="https://emacs.stackexchange.com/questions/827/selecting-text-without-moving-the-cursor">이 링크</a>를 참고하였다. 자세한 내용은 링크에 나와있으니 간단하게 단축키만 알아보도록 하자.</p>
-
 <p><code>C - x h</code>, <code>M - w</code>, <code>C - u C - SPC</code>, <code>C - u C - SPC</code></p>
-
 <p>이 방법은 정확이 말하자면 커서가 움직이지 않는 방법은 아니다. 하지만 단축키를 모두 입력하면 최종적으로 커서가 원래 있던 곳으로 돌아오니 과정이야 어찌됐든 결과는 동일하다.</p>
-
-<h2 id="후기">후기</h2>
-
+<h2 id="heading">후기</h2>
 <p>현대 에디터에서는 단순하기 그지없는 작업인데 이맥스는 너무 복잡하다는 생각이 든다. 하지만 뭐 자주 쓸 단축키도 아니고 현재까지는 실보단 득이 많으니 일단은 참고 넘어가도록 하자. 그래도 첨부된 링크의 expand-region 패키지를 활용하면 좀 더 단순하게 할 수 있지 않을까 싶다.</p>
 
     </article>

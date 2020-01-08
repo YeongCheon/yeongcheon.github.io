@@ -17,7 +17,7 @@ vscode는 그냥 되 …">
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2018-09-21-tslint-in-emacs/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.60.0-DEV" />
+  <meta name="generator" content="Hugo 0.62.1" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -71,27 +71,19 @@ vscode는 그냥 되 …">
         </li>
       </ul>
       
-      
-
-<p>나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. <a href="https://github.com/ananthakumaran/tide">tide</a>를 이용해서 환경을 구성했는데 <a href="https://github.com/ananthakumaran/tide">tslint</a>가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.</p>
-
-<h2 id="vscode는-그냥-되던데">vscode는 그냥 되던데?</h2>
-
+      <p>나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. <a href="https://github.com/ananthakumaran/tide">tide</a>를 이용해서 환경을 구성했는데 <a href="https://github.com/ananthakumaran/tide">tslint</a>가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.</p>
+<h2 id="vscode--">vscode는 그냥 되던데?</h2>
 <p>이게 내가 헤매게 된 가장 큰 이유다. vscode는 마켓플레이스에 그냥 tslint 패키지를 내려받으면 알아서 잘 동작한다. 개발자가 따로 뭐 설정하고 해줄 필요가 없다.(물론 <code>tslint.json</code>이 필요하지만 angular 프로젝트는 생성 시 지가 알아서 만들어준다.)</p>
-
 <p>이맥스도 tide만 깔면 알아서 잘 될줄 알았는데 <strong>그런거 없다.</strong></p>
-
-<h2 id="해결책은">해결책은?</h2>
-
+<h2 id="heading">해결책은?</h2>
 <p>별거 없다. tslint를 설치하자.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Install the global CLI and its peer dependency</span>
-$ yarn global add tslint typescript</code></pre></div>
-<p>혹시 yarn이 설치되어 있지 않다면 아래 내용을 터미널에서 실행해보자.</p>
+$ yarn global add tslint typescript
+</code></pre></div><p>혹시 yarn이 설치되어 있지 않다면 아래 내용을 터미널에서 실행해보자.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo <span style="color:#e6db74">&#34;deb https://dl.yarnpkg.com/debian/ stable main&#34;</span> | sudo tee /etc/apt/sources.list.d/yarn.list
-$ sudo apt-get update <span style="color:#f92672">&amp;&amp;</span> sudo apt-get install yarn</code></pre></div>
-<h2 id="한줄평">한줄평</h2>
-
+$ sudo apt-get update <span style="color:#f92672">&amp;&amp;</span> sudo apt-get install yarn
+</code></pre></div><h2 id="heading-1">한줄평</h2>
 <p>툴이 알아서 다 해줄거라는 생각은 버려라.</p>
 
     </article>

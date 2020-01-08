@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://yeongcheon.github.io/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.60.0-DEV" />
+  <meta name="generator" content="Hugo 0.62.1" />
   <link href="/index.xml" rel="alternate" type="application/rss+xml" title="꿀테크 블로그" />
   <link href="/index.xml" rel="feed" type="application/rss+xml" title="꿀테크 블로그" />
 
@@ -40,6 +40,32 @@
 
   <div class="main" role="main">
     <section class="list home-list">
+      <article class="article">
+        <a href="/posts/2020-01-08-emacs-path-setting/" class="article-titles">
+          <h2 class="article-title">emacs에 $PATH 환경변수 인식 시키기</h2>
+          <h3 class="article-subtitle">emacs에서 gopls를 인식 못하는 문제를 해결해보자</h3>
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>January 8, 2020</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/emacs/">
+              <i class="fas fa-tag"></i>
+              emacs
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/ubuntu/">
+              <i class="fas fa-tag"></i>
+              ubuntu
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          Intro   나는 우분투에서 이맥스를 즐겨쓰고 있다. 이맥스에서 고 언어를 종종 쓰는데 이번에 노트북을 셋팅하면서 문제가 발생했다. 일단 나는 이맥스에서 개발할 때 주로 lsp-mode를 바탕으로 개발환경을 구성하는데, 기본적인 설정은 문서를 보고 구성하면 무리없이 따라할 수 있다. 이번 글에서는 가이드대로 다 따라했는데 이맥스에서 gopls를 인식하지 못하던 문제에 대한 해결법을 기록하고자 한다. 문제 상황   lsp-mode를 사용하면 각 언어에 해당하는 language server를 이용해서 문법 점검, 자동완성, 디버거 연동 등등 IDE에서 흔하게 지원해주는 기능을 사용할 수 있게 해준다.
+        </div>
+        <div class="article-readmore"><a href="/posts/2020-01-08-emacs-path-setting/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
       <article class="article">
         <a href="/posts/2019-11-14-jpa-one-to-many-collection-set/" class="article-titles">
           <h2 class="article-title">JPA OneToMany 필드의 StackOverflowError</h2>
@@ -365,29 +391,6 @@
         <div class="article-readmore"><a href="/posts/2018-11-11-springboot-jpa-cloudsql-connect/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
-      <article class="article">
-        <a href="/posts/2018-09-27-emacs-selectall/" class="article-titles">
-          <h2 class="article-title">emacs에서 커서이동 없이 buffer 전체 복사하기</h2>
-          
-        </a>
-        <ul class="article-meta">
-          <li class="article-meta-date"><time>September 27, 2018</time></li>
-          <li class="article-meta-tags">
-            <a href="/tags/emacs/">
-              <i class="fas fa-tag"></i>
-              emacs
-            </a>&nbsp;
-          </li>
-        </ul>
-        <div class="article-content">
-          보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
-원래는 어떻게 쓰고 있었어요? 내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와 같다.
-M - &lt;, M - SPC, M - &gt;, M - w
-이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다.
-        </div>
-        <div class="article-readmore"><a href="/posts/2018-09-27-emacs-selectall/">Read more...</a></div>
-        <div class="article-floatclear"></div>
-      </article>
     </section>
     
 
@@ -425,12 +428,23 @@ M - &lt;, M - SPC, M - &gt;, M - w
     <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
     
     
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
     <li class="page-item">
     <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
     <li class="page-item">
-        <a href="/page/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

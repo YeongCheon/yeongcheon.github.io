@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2019-11-14-jpa-one-to-many-collection-set/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.60.0-DEV" />
+  <meta name="generator" content="Hugo 0.62.1" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -105,23 +105,23 @@ JPA를 사용하다 보면 StackOverflow 에러를 종종 만날 수 있다. 이
 <p>
 `hashcode`, `equals` 메서드와 관계된 이야기이다.
 </p>
-<h1 id="headline-1">
+<h2 id="headline-1">
 에러 발생 시나리오
-</h1>
-<h2 id="headline-2">
-구현 목표
 </h2>
+<h3 id="headline-2">
+구현 목표
+</h3>
 <p>
 부모객체와 자식객체들을 서버 데이터베이스에 저장하는 기능을 가진 코드가 있었다. 부모객체와 자식객체는 1:n관계로서 하나의 부모가 여러 개의 자식을 가질 수 있고 이 두 객체는 서로의 존재를 알고 있는 양방향 관계다. 이 관계를 OneToMany를 이용해서 표현하고 있었는데 이 때 사용하고 있던 Collecion 타입이 리스트(List)였다. 근데 여기저기 인터넷을 뒤지다 보니 OneToMany는 List보단 Set을 사용하는게 좋다는 글을 보게 되었고(<a href="https://jojoldu.tistory.com/165">링크</a>) 이 글이 추천하는 방법대로 Entity Model을 바꿔보기로 했다.
 </p>
-<h2 id="headline-3">
+<h3 id="headline-3">
 에러 발생 조건
-</h2>
+</h3>
 <p>
 수정 자체는 그리 어렵지 않았다. 그냥 List 타입을 Set으로 바꿔주면 끝날줄 알았다(<del>뭔가를 변경할때는 방심하지 말자</del>).
 </p>
 <p>
-수정 후 테스트를 해보았다. 
+ 수정 후 테스트를 해보았다. 
 </p>
 <ul>
 <li>
@@ -143,12 +143,12 @@ JPA를 사용하다 보면 StackOverflow 에러를 종종 만날 수 있다. 이
 <p>
 비즈니스 로직 코드는 원래 문제가 없었으니 이번에 수정한 Entity Model 관련 코드를 살펴보자.
 </p>
-<h1 id="headline-4">
+<h2 id="headline-4">
 Entity Model code
-</h1>
-<h2 id="headline-5">
-Parent.kt
 </h2>
+<h3 id="headline-5">
+Parent.kt
+</h3>
 <div class="src src-kotlin">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">@Entity
 @Table(name = <span style="color:#e6db74">&#34;parent&#34;</span>)
@@ -161,9 +161,9 @@ Parent.kt
    <span style="color:#66d9ef">var</span> childs: MutableSet&lt;Child&gt; <span style="color:#75715e">// 이 부분이 MutableList에서 MutableSet으로 변경되었다.
 </span><span style="color:#75715e"></span>) {}</code></pre></div>
 </div>
-<h2 id="headline-6">
+<h3 id="headline-6">
 Child.kt
-</h2>
+</h3>
 <div class="src src-kotlin">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">@Entity
 @Table(name = <span style="color:#e6db74">&#34;child&#34;</span>)
@@ -177,14 +177,14 @@ Child.kt
    <span style="color:#66d9ef">var</span> parent: Parent
 ) {}</code></pre></div>
 </div>
-<h1 id="headline-7">
+<h2 id="headline-7">
 원인 파악
-</h1>
+</h2>
 <p>
-우선 발생하는 에러는 순환 참조로 인해 발생한 에러로 JPA를 사용하다 보면 제법 자주 만나볼 수 있는 에러다. 자세한 내용은 구글에 <a href="https://www.google.com/search?newwindow=1&amp;sxsrf=ACYBGNRvc-j9wUzYmyxwQeA9hKkEnp7H1g%253A1574606204506&amp;source=hp&amp;ei=fJXaXdnWHNv6-QbcsqrgBw&amp;q=jpa+%25EC%2596%2591%25EB%25B0%25A9%25ED%2596%25A5+%25EC%2588%259C%25ED%2599%2598%25EC%25B0%25B8%25EC%25A1%25B0&amp;oq=jpa+%25EC%2588%259C%25ED%2599%2598&amp;gs_l=psy-ab.3.1.0j0i8i30.1581.4291..5790...1.0..0.152.1185.3j8......0....1..gws-wiz.......0i3j0i131j35i39.msmwejOXyx0">JPA 양방향 순환참조</a>를 검색해보자.
+  우선 발생하는 에러는 순환 참조로 인해 발생한 에러로 JPA를 사용하다 보면 제법 자주 만나볼 수 있는 에러다. 자세한 내용은 구글에 <a href="https://www.google.com/search?newwindow=1&amp;sxsrf=ACYBGNRvc-j9wUzYmyxwQeA9hKkEnp7H1g%253A1574606204506&amp;source=hp&amp;ei=fJXaXdnWHNv6-QbcsqrgBw&amp;q=jpa+%25EC%2596%2591%25EB%25B0%25A9%25ED%2596%25A5+%25EC%2588%259C%25ED%2599%2598%25EC%25B0%25B8%25EC%25A1%25B0&amp;oq=jpa+%25EC%2588%259C%25ED%2599%2598&amp;gs_l=psy-ab.3.1.0j0i8i30.1581.4291..5790...1.0..0.152.1185.3j8......0....1..gws-wiz.......0i3j0i131j35i39.msmwejOXyx0">JPA 양방향 순환참조</a>를 검색해보자.
 </p>
 <p>
-기존에 잘 돌아가던 기능이었는데 Collection을 List -&gt; Set으로 바꿨다고 갑자기 발생하는 이유가 뭘까? List와 Set에 대해서 간략하게 알아보자. JPA(hibernate) 내부에서 어떻게 동작하는지는 <a href="http://wonwoo.ml/index.php/post/992">다른 글</a>에서 알아보고 이번 글에서는 각 Collection 타입의 특징을 몇개 짚어보자.
+  기존에 잘 돌아가던 기능이었는데 Collection을 List -&gt; Set으로 바꿨다고 갑자기 발생하는 이유가 뭘까? List와 Set에 대해서 간략하게 알아보자. JPA(hibernate) 내부에서 어떻게 동작하는지는 <a href="http://wonwoo.ml/index.php/post/992">다른 글</a>에서 알아보고 이번 글에서는 각 Collection 타입의 특징을 몇개 짚어보자.
 </p>
 <ul>
 <li>
@@ -266,17 +266,17 @@ Child 객체를 하나 더 생성해서 마찬가지로 Parent.childs 필드에 
 동일한 객체인지 판단할때 에러가 발생하는 이유를 알고자 하면 우선 Set Collection이 중복 체크를 어떻게 하는지 알아야 한다.
 </p>
 <p>
-자바 계열의 언어에선 <a href="https://opentutorials.org/module/516/6241">모든 객체가 Object class를 상속받은 채로 생성된다</a>(최상위 클래스). 이 Object 클래스에는 <a href="https://nesoy.github.io/articles/2018-06/Java-equals-hashcode">equals, hashcode</a> 메서드가 구현되어 있는데 Set Collection이 객체의 중복 여부를 체크할 때 이 두 메서드를 사용해서 중복 여부를 판단한다. 즉, Child 객체의 중복여부를 판단하기 위해서 Child 객체의 모든 필드값을 다 읽는 작업을 하게 되는데 이 때 Child.parent -&gt; Parent.childs -&gt; Child.parent -&gt; Parent.childs … 와 같은 순환참조 에러가 발생하게 된다.
+  자바 계열의 언어에선 <a href="https://opentutorials.org/module/516/6241">모든 객체가 Object class를 상속받은 채로 생성된다</a>(최상위 클래스). 이 Object 클래스에는 <a href="https://nesoy.github.io/articles/2018-06/Java-equals-hashcode">equals, hashcode</a> 메서드가 구현되어 있는데 Set Collection이 객체의 중복 여부를 체크할 때 이 두 메서드를 사용해서 중복 여부를 판단한다. 즉, Child 객체의 중복여부를 판단하기 위해서 Child 객체의 모든 필드값을 다 읽는 작업을 하게 되는데 이 때 Child.parent -&gt; Parent.childs -&gt; Child.parent -&gt; Parent.childs … 와 같은 순환참조 에러가 발생하게 된다.
 </p>
-<h1 id="headline-8">
+<h2 id="headline-8">
 해결법
-</h1>
+</h2>
 <p>
 equals, hashcode 메서드 호출 중 에러가 발생하므로 이 두 메서드를 오버라이딩 해주면 해결할 수 있다. Parent는 건드릴 필요 없고 Child만 재정의 해주면 되는데 설명은 그만하고 수정된 코드를 보자.
 </p>
-<h2 id="headline-9">
+<h3 id="headline-9">
 Child.kt
-</h2>
+</h3>
 <div class="src src-kotlin">
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">@Entity
 @Table(name = <span style="color:#e6db74">&#34;child&#34;</span>)
@@ -299,7 +299,7 @@ Child.kt
 }</code></pre></div>
 </div>
 <p>
-데이터베이스 기준으로 생각해보면 어차피 id 필드가 기본키로 설정되어 있기 때문에 id 필드만 중복되지 않으면 서로 다른 객체로 판단해도 문제가 없을거라고 판단했기에 id 필드만 체크하도록 수정해줬고 이 후에는 순환참조에러 없이 잘 동작한다.
+  데이터베이스 기준으로 생각해보면 어차피 id 필드가 기본키로 설정되어 있기 때문에 id 필드만 중복되지 않으면 서로 다른 객체로 판단해도 문제가 없을거라고 판단했기에 id 필드만 체크하도록 수정해줬고 이 후에는 순환참조에러 없이 잘 동작한다.
 </p>
 
     </article>
@@ -330,7 +330,9 @@ Child.kt
     </div>
 
     <ul class="pager article-pager">
-      <li class="pager-newer pager-noitem">&lt; Newer</li>
+      <li class="pager-newer">
+          <a href="/posts/2020-01-08-emacs-path-setting/" data-toggle="tooltip" data-placement="top" title="emacs에 $PATH 환경변수 인식 시키기">&lt; Newer</a>
+      </li>
       <li class="pager-older">
         <a href="/posts/2019-08-05-intellij-appengine-error/" data-toggle="tooltip" data-placement="top" title="IntelliJ 업데이트 후 appengine local 실행 이슈 해결하기">Older &gt;</a>
       </li>
