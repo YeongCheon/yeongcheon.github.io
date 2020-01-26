@@ -17,7 +17,7 @@ type Visitor struct { UserId string //조회한 프로필의 Id 	VisitorId strin
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2018-05-12-datastore-projection-error/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.62.1" />
+  <meta name="generator" content="Hugo 0.63.1" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -74,12 +74,12 @@ type Visitor struct { UserId string //조회한 프로필의 Id 	VisitorId strin
 <aside class="toc">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#heading">요구사항</a></li>
-    <li><a href="#projection-query-">Projection Query 사용하기</a></li>
+    <li><a href="#요구사항">요구사항</a></li>
+    <li><a href="#projection-query-사용하기">Projection Query 사용하기</a></li>
   </ul>
 </nav>
 </aside>
-      <h2 id="heading">요구사항</h2>
+      <h2 id="요구사항">요구사항</h2>
 <p>datastore에 내 프로필을 방문한 사용자의 ID와 방문시간을 각각 <code>string</code>, <code>time.Time</code> 형식으로 저장하고 있다. 구조체로 보면 다음과 같다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Visitor</span> <span style="color:#66d9ef">struct</span> {
 	<span style="color:#a6e22e">UserId</span> <span style="color:#66d9ef">string</span> <span style="color:#75715e">//조회한 프로필의 Id
@@ -88,7 +88,7 @@ type Visitor struct { UserId string //조회한 프로필의 Id 	VisitorId strin
 }
 </code></pre></div><p>이 데이터를 단순히 조회하면 한 사용자가 나를 여러번 방문할 경우 결과 리스트에 그 방문자가 여러번 출력된다. 나는 동일한 사용자가 여러번 반복해도 가장 최근에 방문한 기록만 보길 원했다. 즉 datastore에서 SQL 문법의 <strong>group by</strong>를 사용하고 싶었다.  내 요구사항을 SQL로 표현하자면 아래와 같다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> VisitorId, <span style="color:#66d9ef">MAX</span>(VisitTime) <span style="color:#66d9ef">WHERE</span> UserId <span style="color:#f92672">=</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> VisitorId <span style="color:#66d9ef">Order</span> <span style="color:#66d9ef">by</span> VisitTime <span style="color:#66d9ef">desc</span>
-</code></pre></div><h2 id="projection-query-">Projection Query 사용하기</h2>
+</code></pre></div><h2 id="projection-query-사용하기">Projection Query 사용하기</h2>
 <p><a href="https://godoc.org/cloud.google.com/go/datastore">datastore client</a>에서 Group by를 사용하기 위해선 <a href="https://cloud.google.com/appengine/docs/standard/go/datastore/projectionqueries">Projection Query</a>를 사용해야 한다. 앞에 링크된 문서를 참고해서 아래와 같은 코드를 작성했다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">dsClient</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">datastore</span>.<span style="color:#a6e22e">NewClient</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">projectID</span>)
 

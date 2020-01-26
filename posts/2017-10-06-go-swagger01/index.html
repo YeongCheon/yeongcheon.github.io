@@ -22,7 +22,7 @@ echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&qu
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2017-10-06-go-swagger01/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.62.1" />
+  <meta name="generator" content="Hugo 0.63.1" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -83,7 +83,7 @@ echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&qu
 <li><a href="https://www.joinc.co.kr/w/man/12/swagger">yundream님의 사이트</a>, 상당히 정리가 잘 되어있다.</li>
 <li>구글링&hellip;</li>
 </ul>
-<h1 id="goswagger-">goSwagger 설치</h1>
+<h1 id="goswagger-설치">goSwagger 설치</h1>
 <hr>
 <p><a href="https://github.com/go-swagger/go-swagger">github 페이지</a>의 README 파일을 보면 아래의 명령어를 쓰라고 한다.</p>
 <pre><code class="language-command" data-lang="command">echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
@@ -96,7 +96,7 @@ sudo apt install swagger
 <p><em><strong>위 방법을 통해 설치한 swagger는 제대로 동작을 하지 않는다. 아마 바이너리 파일이 제대로 업데이트가 안되어 있는듯 하다. 위 방법은 무시하고 아래의 <code>go get</code> 명령어를 이용해 설치를 하도록 한다.</strong></em></p>
 <pre><code class="language-command" data-lang="command">go get -u github.com/go-swagger/go-swagger/cmd/swagger
 </code></pre><p>위 명령어를 실행하면 <code>$GOPATH/bin</code> 폴더 아래에 swagger 파일이 생성되어 있을것이다. <code>$GOPATH/bin</code>을 PATH에 추가하거나 swaager 파일을 <code>/usr/local/bin</code> 폴더로 옮기면 어디서든 swagger 명령어를 사용할 수 있다.</p>
-<h1 id="spec-">spec 작성하기</h1>
+<h1 id="spec-작성하기">spec 작성하기</h1>
 <hr>
 <p>swagger는 스펙에서 코드를 생성한다. 즉 우리가 스펙만 제대로 정의해주면 코드의 골격은 swagger가 알아서 작성해준다(물론 안의 내용을 구현하는건 개발자 몫이다).그럼 이제 스펙을 만들어보자.</p>
 <ol>
@@ -112,20 +112,20 @@ sudo apt install swagger
 </code></pre><ol start="2">
 <li>위 명령어를 실행하면 아래처럼 생긴 <code>swagger.yml</code> 파일이 생긴다.</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">consumes:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">consumes</span>:
 - application/json
-info:
-  description: hello go swagger
-  title: hello world application
-  version: <span style="color:#ae81ff">1.0</span><span style="color:#ae81ff">.0</span>
-paths: {}
-produces:
+<span style="color:#66d9ef">info</span>:
+  <span style="color:#66d9ef">description</span>: hello go swagger
+  <span style="color:#66d9ef">title</span>: hello world application
+  <span style="color:#66d9ef">version</span>: <span style="color:#ae81ff">1.0</span><span style="color:#ae81ff">.0</span>
+<span style="color:#66d9ef">paths</span>: {}
+<span style="color:#66d9ef">produces</span>:
   - application/json
-consumes:
+<span style="color:#66d9ef">consumes</span>:
   - application/json
-schemes:
+<span style="color:#66d9ef">schemes</span>:
   - http
-swagger: <span style="color:#e6db74">&#34;2.0&#34;</span>
+<span style="color:#66d9ef">swagger</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>
 </code></pre></div><ol start="3">
 <li>
 <p>위 파일에서 7번째 줄의 <code>paths:{}</code> 구문을 우리 입맛대로 고쳐줘야 한다. 이번 예제에선 다른 구문들은 건들지 않아도 된다.</p>
@@ -134,70 +134,70 @@ swagger: <span style="color:#e6db74">&#34;2.0&#34;</span>
 <p>우리는 이번 예제에서 GET 방식으로 <code>/</code> URL을 호출할 시 hello world를 반환하는 예제를 만드는 게 주 목적이다. 그러기 위해선 <code>swagger.yml</code>의 <code>paths:{}</code> 구문을 제거하고 파일 최하단에 아래 코드를 붙여넣기 한다. 추가로 파일 맨 위의 consumes 구문도 지워준다(버그인지 두번 반복되고 있다).</p>
 </li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">swagger: <span style="color:#e6db74">&#34;2.0&#34;</span>
-info:
-  description: hello go swagger
-  title: hello world application
-  version: <span style="color:#ae81ff">1.0</span><span style="color:#ae81ff">.0</span>
-produces:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">swagger</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>
+<span style="color:#66d9ef">info</span>:
+  <span style="color:#66d9ef">description</span>: hello go swagger
+  <span style="color:#66d9ef">title</span>: hello world application
+  <span style="color:#66d9ef">version</span>: <span style="color:#ae81ff">1.0</span><span style="color:#ae81ff">.0</span>
+<span style="color:#66d9ef">produces</span>:
   - application/json
-consumes:
+<span style="color:#66d9ef">consumes</span>:
   - application/json
-schemes:
+<span style="color:#66d9ef">schemes</span>:
   - http
-paths:
-  /:
-    get:
-      responses:
-        <span style="color:#ae81ff">200</span>:
-          description: list the todo operations
-          schema:
-            type: array
-            description: <span style="color:#e6db74">&#34;result : helloworld&#34;</span>
-            items:
-              $ref: <span style="color:#e6db74">&#34;#/definitions/item&#34;</span>
-definitions:
-  item:
-    type: object
-    required:
+<span style="color:#66d9ef">paths</span>:
+  <span style="color:#66d9ef">/</span>:
+    <span style="color:#66d9ef">get</span>:
+      <span style="color:#66d9ef">responses</span>:
+        <span style="color:#66d9ef">200</span>:
+          <span style="color:#66d9ef">description</span>: list the todo operations
+          <span style="color:#66d9ef">schema</span>:
+            <span style="color:#66d9ef">type</span>: array
+            <span style="color:#66d9ef">description</span>: <span style="color:#e6db74">&#34;result : helloworld&#34;</span>
+            <span style="color:#66d9ef">items</span>:
+              <span style="color:#66d9ef">$ref</span>: <span style="color:#e6db74">&#34;#/definitions/item&#34;</span>
+<span style="color:#66d9ef">definitions</span>:
+  <span style="color:#66d9ef">item</span>:
+    <span style="color:#66d9ef">type</span>: object
+    <span style="color:#66d9ef">required</span>:
       - result
-    properties:
-      result:
-        type: string
+    <span style="color:#66d9ef">properties</span>:
+      <span style="color:#66d9ef">result</span>:
+        <span style="color:#66d9ef">type</span>: string
 </code></pre></div><p><code>swagger.yml</code>파일을 수정할 때 주의할 점은 <code>yml</code> 형식의 파일은 들여쓰기로 <code>\b</code>(공백)을 두번 쓴다는 점이다. 탭이나 띄어쓰기 한 칸으로 할 경우 오류가 발생할 수 있다(작성자는 들여쓰기를 탭으로 했다가 피봤다).</p>
 <p>위 문장 붙여넣기까지 완료한 <code>swagger.yml</code> 파일의 최총 코드는 아래와 같다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">swagger: <span style="color:#e6db74">&#34;2.0&#34;</span>
-info:
-  description: hello go swagger
-  title: hello world application
-  version: <span style="color:#ae81ff">1.0</span><span style="color:#ae81ff">.0</span>
-produces:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">swagger</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>
+<span style="color:#66d9ef">info</span>:
+  <span style="color:#66d9ef">description</span>: hello go swagger
+  <span style="color:#66d9ef">title</span>: hello world application
+  <span style="color:#66d9ef">version</span>: <span style="color:#ae81ff">1.0</span><span style="color:#ae81ff">.0</span>
+<span style="color:#66d9ef">produces</span>:
   - application/json
-consumes:
+<span style="color:#66d9ef">consumes</span>:
   - application/json
-schemes:
+<span style="color:#66d9ef">schemes</span>:
   - http
-paths:
-  /:
-    get:
-      responses:
-        <span style="color:#ae81ff">200</span>:
-          description: list the todo operations
-          schema:
-            type: array
-            description: <span style="color:#e6db74">&#34;result : helloworld&#34;</span>
-            items:
-              $ref: <span style="color:#e6db74">&#34;#/definitions/item&#34;</span>
-definitions:
-  item:
-    type: object
-    required:
+<span style="color:#66d9ef">paths</span>:
+  <span style="color:#66d9ef">/</span>:
+    <span style="color:#66d9ef">get</span>:
+      <span style="color:#66d9ef">responses</span>:
+        <span style="color:#66d9ef">200</span>:
+          <span style="color:#66d9ef">description</span>: list the todo operations
+          <span style="color:#66d9ef">schema</span>:
+            <span style="color:#66d9ef">type</span>: array
+            <span style="color:#66d9ef">description</span>: <span style="color:#e6db74">&#34;result : helloworld&#34;</span>
+            <span style="color:#66d9ef">items</span>:
+              <span style="color:#66d9ef">$ref</span>: <span style="color:#e6db74">&#34;#/definitions/item&#34;</span>
+<span style="color:#66d9ef">definitions</span>:
+  <span style="color:#66d9ef">item</span>:
+    <span style="color:#66d9ef">type</span>: object
+    <span style="color:#66d9ef">required</span>:
       - result
-    properties:
-      result:
-        type: string
+    <span style="color:#66d9ef">properties</span>:
+      <span style="color:#66d9ef">result</span>:
+        <span style="color:#66d9ef">type</span>: string
 
-</code></pre></div><h1 id="----">유효성 검사 및 서버코드 생성</h1>
+</code></pre></div><h1 id="유효성-검사-및-서버코드-생성">유효성 검사 및 서버코드 생성</h1>
 <hr>
 <p><code>swagger.yml</code>을 완성했으면 이 파일을 통해 REST API의 기본 코드를 생성할 수 있다. 그 전에 우리가 작성한 <code>swagger.yml</code> 파일의 유효성 검사를 해 해당 파일에 문제가 있나 확인을 해야한다.</p>
 <p>다음 명령어를 통해 유효성 검사를 할 수 있다.</p>
@@ -218,7 +218,7 @@ definitions:
 <li>github.com/go-openapi/validate</li>
 </ul>
 <p>만약 <a href="https://github.com/golang/dep">dep</a>를 사용하고 있다면 그냥 <code>dep ensure</code> 명령어만 쓰면 끝난다.<del>세상 편하다.</del></p>
-<h1 id="-----1">서버 실행 및 소스 수정</h1>
+<h1 id="서버-실행-및-소스-수정">서버 실행 및 소스 수정</h1>
 <hr>
 <p>유효성 검사결과에 이상이 없을 경우 이제 <code>swagger.yml</code> 파일을 이용해 server code를 생성할 수 있다. 아래의 명령어를 이용해 서버를 실행시켜보자.</p>
 <pre><code class="language-command" data-lang="command">go run cmd/helloworld-server/main.go --port=9000 --host=127.0.0.1 --socket-path=/tmp/helloworld.sock --scheme=http

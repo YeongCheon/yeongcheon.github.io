@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2019-05-28-tinode002/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.62.1" />
+  <meta name="generator" content="Hugo 0.63.1" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -166,7 +166,7 @@ MySQL에 데이터베이스 및 테이블을 생성하는 법을 알아보자.
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$GOPATH/bin/tinode-db -config<span style="color:#f92672">=</span>$GOPATH/src/github.com/tinode/chat/tinode-db/tinode.conf</code></pre></div>
 </div>
 <p>
-이때 터미널의 위치는 가급적이면 <code class="verbatim">$GOPATH/src/github.com/tinode/chat</code> 로 이동시킨 후 실행시키자. conf 파일 중 상대경로 옵션이 적용되어 있는 경우가 있어서 다른 위치에서 명령어를 실행 시 에러를 발생시키기도 한다. 그리고 혹시 테스트용 더미 데이터를 추가하고 싶은 경우엔 위의 명령어 뒤에 = -data=$GATH/src/github.com/tinode/chat/tinode-db/data.json= 를 붙여주자. 당연히 필수는 아니다.
+이때 터미널의 위치는 가급적이면 <code class="verbatim">$GOPATH/src/github.com/tinode/chat</code> 로 이동시킨 후 실행시키자. conf 파일 중 상대경로 옵션이 적용되어 있는 경우가 있어서 다른 위치에서 명령어를 실행 시 에러를 발생시키기도 한다. 그리고 혹시 테스트용 더미 데이터를 추가하고 싶은 경우엔 위의 명령어 뒤에 = -data=$GOPATH/src/github.com/tinode/chat/tinode-db/data.json= 를 붙여주자. 당연히 필수는 아니다.
 </p>
 <p>
 명령어가 정상적으로 실행되었다면 터미널 창에 <strong>All done.</strong> 이라는 메세지가 뜬다.

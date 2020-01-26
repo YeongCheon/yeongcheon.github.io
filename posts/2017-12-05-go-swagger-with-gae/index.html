@@ -19,7 +19,7 @@ swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world ap
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.62.1" />
+  <meta name="generator" content="Hugo 0.63.1" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -82,63 +82,63 @@ swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world ap
 <aside class="toc">
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#spec---">spec을 이용해 서버코드 생성하기</a>
+    <li><a href="#spec을-이용해-서버코드-생성하기">spec을 이용해 서버코드 생성하기</a>
       <ul>
-        <li><a href="#flag-strategy-pflag---">flag-strategy pflag 옵션을 주는 이유</a></li>
+        <li><a href="#flag-strategy-pflag-옵션을-주는-이유">flag-strategy pflag 옵션을 주는 이유</a></li>
       </ul>
     </li>
-    <li><a href="#maingo--">main.go 코드 수정하기</a></li>
-    <li><a href="#--">로컬서버를 구동하여 테스트해보기</a></li>
-    <li><a href="#gae--">GAE에 실제로 배포하기</a></li>
-    <li><a href="#heading">마치며</a></li>
+    <li><a href="#maingo-코드-수정하기">main.go 코드 수정하기</a></li>
+    <li><a href="#로컬서버를-구동하여-테스트해보기">로컬서버를 구동하여 테스트해보기</a></li>
+    <li><a href="#gae에-실제로-배포하기">GAE에 실제로 배포하기</a></li>
+    <li><a href="#마치며">마치며</a></li>
   </ul>
 </nav>
 </aside>
       <h1 id="intro">Intro</h1>
 <p>[지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 <a href="https://cloud.google.com/appengine/">Google App Engine(이하 GAE)</a>에서 실행시켜보자.</p>
 <hr>
-<h2 id="spec---">spec을 이용해 서버코드 생성하기</h2>
+<h2 id="spec을-이용해-서버코드-생성하기">spec을 이용해 서버코드 생성하기</h2>
 <p>[지난번 포스트][last-post]에서 작성한 <code>swagger.yaml</code>을 이용해 서버코드를 생성해보자. <code>swagger.yaml</code> 내용은 아래와 같다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">swagger: <span style="color:#e6db74">&#34;2.0&#34;</span>
-info:
-  description: hello go swagger
-  title: hello world application
-  version: <span style="color:#ae81ff">1.0</span><span style="color:#ae81ff">.0</span>
-produces:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">swagger</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>
+<span style="color:#66d9ef">info</span>:
+  <span style="color:#66d9ef">description</span>: hello go swagger
+  <span style="color:#66d9ef">title</span>: hello world application
+  <span style="color:#66d9ef">version</span>: <span style="color:#ae81ff">1.0</span><span style="color:#ae81ff">.0</span>
+<span style="color:#66d9ef">produces</span>:
   - application/json
-consumes:
+<span style="color:#66d9ef">consumes</span>:
   - application/json
-schemes:
+<span style="color:#66d9ef">schemes</span>:
   - http
-paths:
-  /:
-    get:
-      responses:
-        <span style="color:#ae81ff">200</span>:
-          description: list the todo operations
-          schema:
-            type: array
-            description: <span style="color:#e6db74">&#34;result : helloworld&#34;</span>
-            items:
-              $ref: <span style="color:#e6db74">&#34;#/definitions/item&#34;</span>
-definitions:
-  item:
-    type: object
-    required:
+<span style="color:#66d9ef">paths</span>:
+  <span style="color:#66d9ef">/</span>:
+    <span style="color:#66d9ef">get</span>:
+      <span style="color:#66d9ef">responses</span>:
+        <span style="color:#66d9ef">200</span>:
+          <span style="color:#66d9ef">description</span>: list the todo operations
+          <span style="color:#66d9ef">schema</span>:
+            <span style="color:#66d9ef">type</span>: array
+            <span style="color:#66d9ef">description</span>: <span style="color:#e6db74">&#34;result : helloworld&#34;</span>
+            <span style="color:#66d9ef">items</span>:
+              <span style="color:#66d9ef">$ref</span>: <span style="color:#e6db74">&#34;#/definitions/item&#34;</span>
+<span style="color:#66d9ef">definitions</span>:
+  <span style="color:#66d9ef">item</span>:
+    <span style="color:#66d9ef">type</span>: object
+    <span style="color:#66d9ef">required</span>:
       - result
-    properties:
-      result:
-        type: string
+    <span style="color:#66d9ef">properties</span>:
+      <span style="color:#66d9ef">result</span>:
+        <span style="color:#66d9ef">type</span>: string
 
 </code></pre></div><p><code>swagger.yaml</code> 파일을 생성했으면 이제 <code>swagger generate</code> 명령을 이용해 실제로 서버에서 구동될 코드를 생성해보자. [지난번 포스트][last-post]와 동일한 명령어지만 <code>--flag-strategy pflag</code> 옵션이 추가됐다. 코드 생성이 완료되었으면 지난번 포스트를 참고하여 <code>/</code>에 접근 시 hello world가 출력되도록 코드를 수정해놓자.</p>
 <pre><code class="language-command" data-lang="command">swagger generate server -A helloworld -f ./swagger.yml --flag-strategy pflag
 </code></pre><p><code>swagger generate</code> 명령어를 쓰기전엔 <code>swagger validate</code> 명령어를 이용해 <code>swagger.yaml</code> 파일의 유효성 검사를 진행하는게 보통이지만 이번 예제에선 생략하도록 한다.</p>
-<h3 id="flag-strategy-pflag---">flag-strategy pflag 옵션을 주는 이유</h3>
+<h3 id="flag-strategy-pflag-옵션을-주는-이유">flag-strategy pflag 옵션을 주는 이유</h3>
 <blockquote>
 <p>이 옵션을 생략하고 generate 명령어를 실행할 경우 생성된 서버코드에 <a href="http://github.com/jessevdk/go-flags">github.com/jessevdk/go-flags</a>에 의존성이 생긴다. 이 패키지에서는 GAE에서 사용할 수 없는 syscall 패키지를 사용하기 때문에 GAE 환경에서는 실행할 수 없다. 그래서 <code>--flag-strategy pflag</code> 옵션을 이용해 위의 패키지 대신 <a href="github.com/spf13/pflag">github.com/spf13/pflag</a>를 대신 사용하도록 한다. 좀 더 자세한 내용은 <a href="https://goswagger.io/generate/server.html">공식 사이트의 문서</a>를 참고하자.</p>
 </blockquote>
 <hr>
-<h2 id="maingo--">main.go 코드 수정하기</h2>
+<h2 id="maingo-코드-수정하기">main.go 코드 수정하기</h2>
 <p>본래 <code>main.go</code> 파일은 수정하지 않는게 원칙이다. 하지만 GAE라는 조금 특수한 상황에서 코드가 동작하게 하려면 수정이 불가피하다. 이 내용은 <a href="https://github.com/go-swagger/go-swagger/issues/925">이 링크</a>에서 얻은 정보를 바탕으로 작성하였다.</p>
 <ol>
 <li>우선 <code>main</code> 함수의 이름을 <code>init</code>로 교체한다.</li>
@@ -181,7 +181,7 @@ definitions:
 }
 </code></pre></div><p>여기까지 진행했다면 이제 GAE 환경에서 코드를 실행할 준비가 모두 완료된 것이다. 참고로 import된 restapi의 경로는 환경에 따라 달라질 수 있다.</p>
 <hr>
-<h2 id="--">로컬서버를 구동하여 테스트해보기</h2>
+<h2 id="로컬서버를-구동하여-테스트해보기">로컬서버를 구동하여 테스트해보기</h2>
 <p>GAE에서는 개발자의 PC에서 먼저 테스트를 해볼 수 있도록 SDK를 배포하고 있다. <a href="https://cloud.google.com/appengine/docs/go/">이 곳</a>을 참고하여 우선 GAE 개발환경을 셋팅해보자.(생각보다 되게 간단하다)</p>
 <p>환경셋팅이 끝났다면 <code>main.go</code> 파일과 같은 위치에 <code>app.yaml</code>을 생성하자. 내용은 <a href="https://raw.githubusercontent.com/GoogleCloudPlatform/appengine-guestbook-go/part1-helloworld/app.yaml">이 파일</a>과 동일하다.</p>
 <p>마지막으로 로컬서버를 구동하기 전에 우리가 생성한 코드의 의존 패키지들을 내려받아야 한다. 명령창에서 아래의 명령어들을 실행한다. 참고로 <a href="https://github.com/golang/dep">dep</a>를 이용할 시 로컬서버에서는 제대로 동작하지만 deploy가 제대로 되지 않는다. 2017-12-05 현재 원인은 파악하지 못했는데 파악되는대로 내용을 업데이트 하겠다.</p>
@@ -197,12 +197,12 @@ go get -u github.com/go-openapi/spec
 go get -u github.com/go-openapi/strfmt
 go get -u github.com/go-openapi/validate
 </code></pre></div><p>서버 실행 후  <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>에 접근하면 hello world가 json 형태로 제대로 반환되는 모습을 확인할 수 있다.</p>
-<h2 id="gae--">GAE에 실제로 배포하기</h2>
+<h2 id="gae에-실제로-배포하기">GAE에 실제로 배포하기</h2>
 <p>테스트까지 무사히 마쳤으니 이제 실제 GAE에 코드를 올리는 일만 남았다. 아래의 명령어를 실행해서 코드를 배포해보자.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud app deploy
 </code></pre></div><p>GAE 공식 가이드를 잘 따랐다면 위 명령어가 정상동작 할 것이다. 만약에 에러가 발생했다면 <a href="https://cloud.google.com/appengine/docs/standard/go/quickstart">GAE quickStart 문서</a>를 보고 다시 시도해보길 바란다.</p>
 <hr>
-<h2 id="heading">마치며</h2>
+<h2 id="마치며">마치며</h2>
 <p>이번 포스트는 일단 실행에는 성공했지만 원인을 제대로 파악하지 못한 이슈들이 제법있다. <strong>일단 나는 위 가이드를 따라하며 앱 배포까지 성공했지만 다른사람들도 성공할 수 있을지 솔직히 자신이 없다.</strong> 만약 위 가이드에 잘못되거나 추가할 내용이 있다면 작성자에게 <a href="mailto:kyc1682@gmail.com">메일</a>을 보내주거나 문서를 직접 수정해서 push request를 해주시길 바란다.</p>
 <p>[last-post]: {% post_url 2017-10-06-go-swagger01 %}</p>
 
