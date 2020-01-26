@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-ko</language>
     <copyright>&amp;copy; Copyright 2019 YeongCheon</copyright>
-    <lastBuildDate>Wed, 08 Jan 2020 23:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jan 2020 13:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yeongcheon.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kotlin</title>
+      <link>https://yeongcheon.github.io/tags/kotlin/</link>
+      <pubDate>Sun, 26 Jan 2020 13:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/tags/kotlin/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>emacs</title>
@@ -45,15 +54,6 @@
       <pubDate>Mon, 25 Nov 2019 00:00:00 +0900</pubDate>
       
       <guid>https://yeongcheon.github.io/tags/jpa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kotlin</title>
-      <link>https://yeongcheon.github.io/tags/kotlin/</link>
-      <pubDate>Mon, 25 Nov 2019 00:00:00 +0900</pubDate>
-      
-      <guid>https://yeongcheon.github.io/tags/kotlin/</guid>
       <description></description>
     </item>
     
@@ -202,7 +202,7 @@
     </item>
     
     <item>
-      <title>GAE</title>
+      <title>gae</title>
       <link>https://yeongcheon.github.io/tags/gae/</link>
       <pubDate>Sun, 11 Nov 2018 19:00:00 +0900</pubDate>
       

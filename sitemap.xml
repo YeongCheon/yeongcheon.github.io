@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://yeongcheon.github.io/tags/kotlin/</loc>
+    <lastmod>2020-01-26T13:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/posts/2020-01-26-kotlin-setting-condition-variable/</loc>
+    <lastmod>2020-01-26T13:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/posts/</loc>
+    <lastmod>2020-01-26T13:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/tags/</loc>
+    <lastmod>2020-01-26T13:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/</loc>
+    <lastmod>2020-01-26T13:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://yeongcheon.github.io/tags/emacs/</loc>
     <lastmod>2020-01-08T23:00:00+09:00</lastmod>
   </url>
@@ -13,22 +38,7 @@
   </url>
   
   <url>
-    <loc>https://yeongcheon.github.io/posts/</loc>
-    <lastmod>2020-01-08T23:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/tags/</loc>
-    <lastmod>2020-01-08T23:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://yeongcheon.github.io/tags/ubuntu/</loc>
-    <lastmod>2020-01-08T23:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/</loc>
     <lastmod>2020-01-08T23:00:00+09:00</lastmod>
   </url>
   
@@ -44,11 +54,6 @@
   
   <url>
     <loc>https://yeongcheon.github.io/posts/2019-11-14-jpa-one-to-many-collection-set/</loc>
-    <lastmod>2019-11-25T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/tags/kotlin/</loc>
     <lastmod>2019-11-25T00:00:00+09:00</lastmod>
   </url>
   
