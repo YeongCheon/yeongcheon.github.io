@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://yeongcheon.github.io/tags/gcp/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.63.1" />
+  <meta name="generator" content="Hugo 0.60.0-DEV" />
   <link href="/tags/gcp/index.xml" rel="alternate" type="application/rss+xml" title="꿀테크 블로그" />
   <link href="/tags/gcp/index.xml" rel="feed" type="application/rss+xml" title="꿀테크 블로그" />
 
@@ -171,7 +171,7 @@ q := datastore.NewQuery(userDao.VisitorEntity).Filter(&#34;UserId=&#34;, userId)
         </ul>
         <div class="article-content">
           Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
- spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
+spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
 swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &#34;result : helloworld&#34; items: $ref: &#34;#/definitions/item&#34; definitions: item: type: object required: - result properties: result: type: string swagger.
         </div>
         <div class="article-readmore"><a href="/posts/2017-12-05-go-swagger-with-gae/">Read more...</a></div>
@@ -214,7 +214,6 @@ if (!doNotTrack) {
 </script>
 
 
-<<<<<<< HEAD
 	</body>
 	<script data-ad-client="ca-pub-4599234083355765" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	
@@ -227,8 +226,4 @@ if (!doNotTrack) {
 	 gtag('config', 'UA-135478508-1');
 	</script>
 
-=======
-</body>
-<script data-ad-client="ca-pub-4599234083355765" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
->>>>>>> 05fde9165541ac609403899f58197b01540e4c7b
 </html>

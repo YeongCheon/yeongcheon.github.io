@@ -68,9 +68,7 @@ vscode는 그냥 되던데? 이게 내가 헤매게 된 가장 큰 이유다. vs
       
       <guid>https://yeongcheon.github.io/posts/2018-02-08-emacs-command/</guid>
       <description>emacs 명령어 목록  이맥스를 쓰면서 개인적으로 유용하게 쓰고있는 명령어 리스트, 대부분 M-x를 누른 후 실행한다.
- common   grep : grep을 이용한 문자열 검색 (lgrep, rgrep도 있다.). 위키링크
-  find-name-dired : 특정 폴더 아래에서 지정된 파일이름 패턴과 동일한 목록을 뽑아 dired모드로 출력해주는 명령어. 폴더 아래의 모든 파일에서 replace 명령어를 수행할 때 유용하다. 링크
-특정폴더 아래의 모든 파일(하위폴더 포함)에서 replace를 실행하는 방법
+ common  grep : grep을 이용한 문자열 검색 (lgrep, rgrep도 있다.). 위키링크 find-name-dired : 특정 폴더 아래에서 지정된 파일이름 패턴과 동일한 목록을 뽑아 dired모드로 출력해주는 명령어. 폴더 아래의 모든 파일에서 replace 명령어를 수행할 때 유용하다. 링크  특정폴더 아래의 모든 파일(하위폴더 포함)에서 replace를 실행하는 방법
  M-x find-name-dired 명령어 실행 후 폴더 지정, 파일패턴 지정 t를 눌러서 dired 모드에 있는 모든 목록을 선택 Q를 눌러서 Query-Replace in Files.</description>
     </item>
     
