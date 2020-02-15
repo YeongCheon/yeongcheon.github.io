@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2017-12-26-emacs-shortcut/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.60.0-DEV" />
+  <meta name="generator" content="Hugo 0.63.1" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -67,30 +67,22 @@
       
 <aside class="toc">
   <nav id="TableOfContents">
-<ul>
-<li><a href="#emacs-단축키-목록">emacs 단축키 목록</a>
-<ul>
-<li><a href="#common">common</a></li>
-<li><a href="#버퍼목록-c-x-c-b-작업">버퍼목록(<code>C-x C-b</code>) 작업</a></li>
-<li><a href="#북마크-작업">북마크 작업</a></li>
-<li><a href="#북마크-목록-c-x-r-l-작업">북마크 목록(<code>C-x r l</code>) 작업</a></li>
-<li><a href="#dired-c-x-d-명령">Dired(<code>C-x d</code>) 명령</a></li>
-<li><a href="#매크로-명령">매크로 명령</a></li>
-<li><a href="#프로그래머를-위한-이맥스-c-c-모드-기준-대부분-go-mode에서도-동작되는것으로-보인다">프로그래머를 위한 이맥스(C, C++ 모드 기준, 대부분 go-mode에서도 동작되는것으로 보인다)</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#common">common</a></li>
+    <li><a href="#버퍼목록c-x-c-b-작업">버퍼목록(C-x C-b) 작업</a></li>
+    <li><a href="#북마크-작업">북마크 작업</a></li>
+    <li><a href="#북마크-목록c-x-r-l-작업">북마크 목록(C-x r l) 작업</a></li>
+    <li><a href="#diredc-x-d-명령">Dired(C-x d) 명령</a></li>
+    <li><a href="#매크로-명령">매크로 명령</a></li>
+    <li><a href="#프로그래머를-위한-이맥스c-c-모드-기준-대부분-go-mode에서도-동작되는것으로-보인다">프로그래머를 위한 이맥스(C, C++ 모드 기준, 대부분 go-mode에서도 동작되는것으로 보인다)</a></li>
+  </ul>
 </nav>
 </aside>
-      
-
-<h1 id="emacs-단축키-목록">emacs 단축키 목록</h1>
-
+      <h1 id="emacs-단축키-목록">emacs 단축키 목록</h1>
 <blockquote>
 <p>아래의 단축키들은 그누 <a href="http://www.hanbit.co.kr/store/books/look.php?p_code=B8962908444">이맥스 시작하기(한빛미디어)</a> 책을 보면서 정리한 내용들입니다.</p>
 </blockquote>
-
 <h2 id="common">common</h2>
-
 <ul>
 <li><code>C-x s</code> : 모든 버퍼 저장(y, n 또는 !)</li>
 <li><code>C-x C-q</code> : 버퍼 읽기/쓰기 전용상태로 swap</li>
@@ -108,9 +100,7 @@
 <li><code>C-x }</code> : 윈도우 가로폭 늘리기</li>
 <li><code>C-x ^</code> : 윈도우 세로폭 늘리기</li>
 </ul>
-
-<h2 id="버퍼목록-c-x-c-b-작업">버퍼목록(<code>C-x C-b</code>) 작업</h2>
-
+<h2 id="버퍼목록c-x-c-b-작업">버퍼목록(<code>C-x C-b</code>) 작업</h2>
 <ul>
 <li><code>d</code> or <code>k</code> : 버퍼 삭제</li>
 <li><code>DEL</code> : 지정명령 취소</li>
@@ -125,18 +115,14 @@
 <li><code>o</code> : 다른 윈도우를 선택한 버퍼로 바꾼다.</li>
 <li><code>q</code> : 버퍼 목록 끝내기</li>
 </ul>
-
 <h2 id="북마크-작업">북마크 작업</h2>
-
 <ul>
 <li><code>C-x r m</code> : 현재 커서위치에 북마크 생성</li>
 <li><code>C-x r b</code> : 북마크로 이동</li>
 <li><code>M-x bookmark-rename</code> : 북마크 이름변경</li>
 <li><code>M-x bookmark-delete</code> : 북마크 삭제</li>
 </ul>
-
-<h2 id="북마크-목록-c-x-r-l-작업">북마크 목록(<code>C-x r l</code>) 작업</h2>
-
+<h2 id="북마크-목록c-x-r-l-작업">북마크 목록(<code>C-x r l</code>) 작업</h2>
 <ul>
 <li><code>d</code> : 삭제할 북마크 표시</li>
 <li><code>r</code> : 북마크 이름을 변경한다.</li>
@@ -153,9 +139,7 @@
 <li><code>M-|</code> : shell command on region</li>
 <li><code>C-c C-o</code> : 이전 명령으로 인한 출력을 자동으로 지운다.</li>
 </ul>
-
-<h2 id="dired-c-x-d-명령">Dired(<code>C-x d</code>) 명령</h2>
-
+<h2 id="diredc-x-d-명령">Dired(<code>C-x d</code>) 명령</h2>
 <ul>
 <li><code>C</code> : 파일 복사</li>
 <li><code>d</code> : 삭제할 파일 지정</li>
@@ -186,17 +170,13 @@
 <li><code>&lt;</code> : 이전 디렉토리로 이동</li>
 <li><code>s</code> : Dired의 화면 표시를 날짜나 파일명 순으로 재정렬(toggle)</li>
 </ul>
-
 <h2 id="매크로-명령">매크로 명령</h2>
-
 <ul>
 <li><code>C-x (</code> : 매크로 정의 시작</li>
 <li><code>C-x )</code> : 매크로 정의 종료</li>
 <li><code>C-x e</code> : 매크로 실행</li>
 </ul>
-
-<h2 id="프로그래머를-위한-이맥스-c-c-모드-기준-대부분-go-mode에서도-동작되는것으로-보인다">프로그래머를 위한 이맥스(C, C++ 모드 기준, 대부분 go-mode에서도 동작되는것으로 보인다)</h2>
-
+<h2 id="프로그래머를-위한-이맥스c-c-모드-기준-대부분-go-mode에서도-동작되는것으로-보인다">프로그래머를 위한 이맥스(C, C++ 모드 기준, 대부분 go-mode에서도 동작되는것으로 보인다)</h2>
 <ul>
 <li><code>C-M \</code> : 커서와 마크 사이의 각 줄을 들여쓴다.</li>
 <li><code>M m</code> : 현재 줄의 첫번째 비공백 문자로 이동한다.</li>
@@ -276,6 +256,7 @@ if (!doNotTrack) {
 </script>
 
 
+<<<<<<< HEAD
 	</body>
 	<script data-ad-client="ca-pub-4599234083355765" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	
@@ -288,4 +269,8 @@ if (!doNotTrack) {
 	 gtag('config', 'UA-135478508-1');
 	</script>
 
+=======
+</body>
+<script data-ad-client="ca-pub-4599234083355765" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+>>>>>>> 05fde9165541ac609403899f58197b01540e4c7b
 </html>
