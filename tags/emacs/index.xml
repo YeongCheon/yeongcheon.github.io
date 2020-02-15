@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-ko</language>
     <copyright>&amp;copy; Copyright 2019 YeongCheon</copyright>
-    <lastBuildDate>Sun, 30 Jun 2019 21:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jan 2020 23:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yeongcheon.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>emacs에 $PATH 환경변수 인식 시키기</title>
+      <link>https://yeongcheon.github.io/posts/2020-01-08-emacs-path-setting/</link>
+      <pubDate>Wed, 08 Jan 2020 23:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2020-01-08-emacs-path-setting/</guid>
+      <description>Intro   나는 우분투에서 이맥스를 즐겨쓰고 있다. 이맥스에서 고 언어를 종종 쓰는데 이번에 노트북을 셋팅하면서 문제가 발생했다. 일단 나는 이맥스에서 개발할 때 주로 lsp-mode를 바탕으로 개발환경을 구성하는데, 기본적인 설정은 문서를 보고 구성하면 무리없이 따라할 수 있다. 이번 글에서는 가이드대로 다 따라했는데 이맥스에서 gopls를 인식하지 못하던 문제에 대한 해결법을 기록하고자 한다. 문제 상황   lsp-mode를 사용하면 각 언어에 해당하는 language server를 이용해서 문법 점검, 자동완성, 디버거 연동 등등 IDE에서 흔하게 지원해주는 기능을 사용할 수 있게 해준다.</description>
+    </item>
     
     <item>
       <title>이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기</title>

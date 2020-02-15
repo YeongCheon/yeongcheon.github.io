@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-ko</language>
     <copyright>&amp;copy; Copyright 2019 YeongCheon</copyright>
-    <lastBuildDate>Mon, 25 Nov 2019 00:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jan 2020 13:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yeongcheon.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kotlin</title>
+      <link>https://yeongcheon.github.io/tags/kotlin/</link>
+      <pubDate>Sun, 26 Jan 2020 13:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/tags/kotlin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>emacs</title>
+      <link>https://yeongcheon.github.io/tags/emacs/</link>
+      <pubDate>Wed, 08 Jan 2020 23:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/tags/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://yeongcheon.github.io/tags/ubuntu/</link>
+      <pubDate>Wed, 08 Jan 2020 23:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/tags/ubuntu/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>hibernate</title>
@@ -31,15 +58,6 @@
     </item>
     
     <item>
-      <title>kotlin</title>
-      <link>https://yeongcheon.github.io/tags/kotlin/</link>
-      <pubDate>Mon, 25 Nov 2019 00:00:00 +0900</pubDate>
-      
-      <guid>https://yeongcheon.github.io/tags/kotlin/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>appengine</title>
       <link>https://yeongcheon.github.io/tags/appengine/</link>
       <pubDate>Mon, 05 Aug 2019 23:20:00 +0900</pubDate>
@@ -54,15 +72,6 @@
       <pubDate>Mon, 05 Aug 2019 23:20:00 +0900</pubDate>
       
       <guid>https://yeongcheon.github.io/tags/intellij/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>emacs</title>
-      <link>https://yeongcheon.github.io/tags/emacs/</link>
-      <pubDate>Sun, 30 Jun 2019 21:00:00 +0900</pubDate>
-      
-      <guid>https://yeongcheon.github.io/tags/emacs/</guid>
       <description></description>
     </item>
     

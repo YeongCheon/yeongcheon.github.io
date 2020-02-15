@@ -3,17 +3,17 @@
 	<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>go - 꿀테크 블로그</title>
-  <meta property="og:title" content="go - 꿀테크 블로그" />
-  <meta name="twitter:title" content="go - 꿀테크 블로그" />
+  <title>Posts - 꿀테크 블로그</title>
+  <meta property="og:title" content="Posts - 꿀테크 블로그" />
+  <meta name="twitter:title" content="Posts - 꿀테크 블로그" />
   <meta name="author" content="YeongCheon Kim"/>
   <meta property="og:site_name" content="꿀테크 블로그" />
-  <meta property="og:url" content="https://yeongcheon.github.io/tags/go/" />
+  <meta property="og:url" content="https://yeongcheon.github.io/posts/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="generator" content="Hugo 0.60.0-DEV" />
-  <link href="/tags/go/index.xml" rel="alternate" type="application/rss+xml" title="꿀테크 블로그" />
-  <link href="/tags/go/index.xml" rel="feed" type="application/rss+xml" title="꿀테크 블로그" />
+  <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="꿀테크 블로그" />
+  <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="꿀테크 블로그" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -39,50 +39,10 @@
 <hr class="site-header-bottom">
 		
   <div class="breadcrumb">
-    <a href="/tags/">Tags</a> / Go
+    Posts
   </div>
   <div class="main" role="main">
-    <section class="list taxonomy-list">
-      <article class="article">
-        <a href="/posts/2017-12-05-go-swagger-with-gae/" class="article-titles">
-          <h2 class="article-title">Google App Engine(GAE)에서 go swagger server 실행하기</h2>
-          
-        </a>
-        <ul class="article-meta">
-          <li class="article-meta-date"><time>December 5, 2017</time></li>
-          <li class="article-meta-tags">
-            <a href="/tags/go/">
-              <i class="fas fa-tag"></i>
-              go
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="/tags/swagger/">
-              <i class="fas fa-tag"></i>
-              swagger
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="/tags/gae/">
-              <i class="fas fa-tag"></i>
-              GAE
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="/tags/gcp/">
-              <i class="fas fa-tag"></i>
-              GCP
-            </a>&nbsp;
-          </li>
-        </ul>
-        <div class="article-content">
-          Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
-spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
-swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &#34;result : helloworld&#34; items: $ref: &#34;#/definitions/item&#34; definitions: item: type: object required: - result properties: result: type: string swagger.
-        </div>
-        <div class="article-readmore"><a href="/posts/2017-12-05-go-swagger-with-gae/">Read more...</a></div>
-        <div class="article-floatclear"></div>
-      </article>
+    <section class="list section-list">
       <article class="article">
         <a href="/posts/2017-10-14-go-swagger02/" class="article-titles">
           <h2 class="article-title">go swagger 서버파일 구조 분석</h2>
@@ -142,6 +102,61 @@ echo &#34;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&#34
     </section>
     
 
+<ul class="pagination">
+    
+    <li class="page-item">
+        <a href="/posts/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+    <a href="/posts/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/posts/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/posts/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/posts/page/3/">3</a></li>
+    
+    
+    <li class="page-item disabled">
+    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+        <a href="/posts/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
+
 
   </div>
 
@@ -151,7 +166,7 @@ echo &#34;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&#34
   <div class="copyright">&copy; Copyright 2019 YeongCheon</div>
   <ul class="site-footer-items">
     <li class="site-footer-item-rsslink">
-      <a href="/tags/go/index.xml" type="application/rss+xml" target="_blank" title="RSS">
+      <a href="/posts/index.xml" type="application/rss+xml" target="_blank" title="RSS">
         <i class="fas fa-rss"></i>
       </a>
     </li>
