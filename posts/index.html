@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://yeongcheon.github.io/posts/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.63.1" />
+  <meta name="generator" content="Hugo 0.66.0" />
   <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="꿀테크 블로그" />
   <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="꿀테크 블로그" />
 
@@ -43,6 +43,26 @@
   </div>
   <div class="main" role="main">
     <section class="list section-list">
+      <article class="article">
+        <a href="/posts/2020-03-08-emacs-all-package-upgrade/" class="article-titles">
+          <h2 class="article-title">emacs에서 내가 사용중인 모든 패키지 업그레이드 하기</h2>
+          <h3 class="article-subtitle">emacs에 설치된 모든 패키지를 최신 버전으로 업그레이드 하는 방법을 알아보자.</h3>
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>March 8, 2020</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/emacs/">
+              <i class="fas fa-tag"></i>
+              emacs
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          업그레이드 방법   별거 없다. 글을 길게 쓸 생각(능력)은 없지만 이마저도 읽기 싫은 사람은 그냥 아래의 명령어만 쓰자. M-x package-list-packages U x  Step by Step  패키지 목록 화면으로 들어가기   M-x package-list-packages 를 입력하면 이맥스를 지원하는 다양한 종류의 패키지를 볼 수 있다.   이후 모든 과정들은 위에 보이는 패키지 목록 버퍼에서 진행된다. 내가 사용중인 모든 패키지 선택하기   패키지 목록 버퍼에서 알파벳 대문자 U 를 입력하면 현재 내가 사용중인 모든 패키지가 선택된다.
+        </div>
+        <div class="article-readmore"><a href="/posts/2020-03-08-emacs-all-package-upgrade/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
       <article class="article">
         <a href="/posts/2020-01-26-kotlin-setting-condition-variable/" class="article-titles">
           <h2 class="article-title">kotlin에서 조건문(blcok문)변수 제대로 쓰기</h2>
@@ -341,44 +361,6 @@
           hugo + github + org-mode를 이용해 블로그를 운영하는 법을 알아보자. github에 hugo를 올리는 방법은 웹에 가이드가 이미 많이 있기 때문에 이 포스트에서는 org-mode를 이용해 hugo에 글을 어떻게 쓰는지를 중점적으로 설명한다. hugo를 적용하게 된 계기  orgmode에 대한 호기심   원래 jekyll + github 조합으로 블로그를 운영하고 있었다. github 블로그를 운영할 때 가장 대중적인 조합이고 나 초기 셋팅이 좀 번거로웠던거 빼곤 불만이 없었기에 그대로 사용하고 있었다. 블로그에 포스트를 작성할 때 markdown을 이용해서 글을 작성했었는데 최근에 emacs의 킬러 콘텐츠로 불리는 org-mode에 관심이 가기 시작했다.
         </div>
         <div class="article-readmore"><a href="/posts/2019-03-03-github&#43;hugo&#43;orgmode_setup/">Read more...</a></div>
-        <div class="article-floatclear"></div>
-      </article>
-      <article class="article">
-        <a href="/posts/2019-03-01-jpa-jackson/" class="article-titles">
-          <h2 class="article-title">jackson을 이용해 json 변환 시 JPA entity의 id값만 추출하기</h2>
-          
-        </a>
-        <ul class="article-meta">
-          <li class="article-meta-date"><time>March 1, 2019</time></li>
-          <li class="article-meta-tags">
-            <a href="/tags/json/">
-              <i class="fas fa-tag"></i>
-              json
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="/tags/jackson/">
-              <i class="fas fa-tag"></i>
-              jackson
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="/tags/jpa/">
-              <i class="fas fa-tag"></i>
-              jpa
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="/tags/kotlin/">
-              <i class="fas fa-tag"></i>
-              kotlin
-            </a>&nbsp;
-          </li>
-        </ul>
-        <div class="article-content">
-          들어가며   REST API 서버를 java언어에서 사용되는 대표적인 json(또는 xml, yaml, etc…) 라이브러리인 jackson 은 kotlin에서도 사용이 가능하다. JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경우가 있다. 이 문제를 jackson을 이용해 json형식으로 이쁘게 변환하는 법을 알아보자. 요구사항   데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자.
-        </div>
-        <div class="article-readmore"><a href="/posts/2019-03-01-jpa-jackson/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
     </section>

@@ -22,7 +22,7 @@ echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&qu
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2017-10-06-go-swagger01/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.63.1" />
+  <meta name="generator" content="Hugo 0.66.0" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -117,7 +117,7 @@ sudo apt install swagger
 <span style="color:#66d9ef">info</span>:
   <span style="color:#66d9ef">description</span>: hello go swagger
   <span style="color:#66d9ef">title</span>: hello world application
-  <span style="color:#66d9ef">version</span>: <span style="color:#ae81ff">1.0</span><span style="color:#ae81ff">.0</span>
+  <span style="color:#66d9ef">version</span>: <span style="color:#ae81ff">1.0.0</span>
 <span style="color:#66d9ef">paths</span>: {}
 <span style="color:#66d9ef">produces</span>:
   - application/json
@@ -138,7 +138,7 @@ sudo apt install swagger
 <span style="color:#66d9ef">info</span>:
   <span style="color:#66d9ef">description</span>: hello go swagger
   <span style="color:#66d9ef">title</span>: hello world application
-  <span style="color:#66d9ef">version</span>: <span style="color:#ae81ff">1.0</span><span style="color:#ae81ff">.0</span>
+  <span style="color:#66d9ef">version</span>: <span style="color:#ae81ff">1.0.0</span>
 <span style="color:#66d9ef">produces</span>:
   - application/json
 <span style="color:#66d9ef">consumes</span>:
@@ -170,7 +170,7 @@ sudo apt install swagger
 <span style="color:#66d9ef">info</span>:
   <span style="color:#66d9ef">description</span>: hello go swagger
   <span style="color:#66d9ef">title</span>: hello world application
-  <span style="color:#66d9ef">version</span>: <span style="color:#ae81ff">1.0</span><span style="color:#ae81ff">.0</span>
+  <span style="color:#66d9ef">version</span>: <span style="color:#ae81ff">1.0.0</span>
 <span style="color:#66d9ef">produces</span>:
   - application/json
 <span style="color:#66d9ef">consumes</span>:
@@ -228,7 +228,7 @@ sudo apt install swagger
 <li><code>src/restapi/configure_helloworld.go</code> 파일에 접근하여 <code>import</code> 구문 바로 아래에 아래의 코드를 추가한다. 사실 <code>configure_helloworld.go</code> 파일 안이라면 위치는 자기 마음대로 해도 된다(문법이 허용하는 범위 내에).</li>
 </ol>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ResultResponse</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Result</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;result&#34;</span><span style="color:#e6db74">`</span>
+	<span style="color:#a6e22e">Result</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;result&#34;`</span>
 }
 
 <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">result</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ResultResponse</span>) <span style="color:#a6e22e">WriteResponse</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">producer</span> <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">Producer</span>) {

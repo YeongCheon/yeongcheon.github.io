@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2018-11-11-springboot-jpa-cloudsql-connect/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.63.1" />
+  <meta name="generator" content="Hugo 0.66.0" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -99,8 +99,8 @@ buildscript <span style="color:#f92672">{</span>
 		springBootVersion <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;2.0.2.RELEASE&#39;</span>
 	<span style="color:#f92672">}</span>
 	repositories <span style="color:#f92672">{</span>
-		jcenter<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
-		mavenCentral<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+		jcenter<span style="color:#f92672">()</span>
+		mavenCentral<span style="color:#f92672">()</span>
 	<span style="color:#f92672">}</span>
 	dependencies <span style="color:#f92672">{</span>
 		classpath <span style="color:#e6db74">&#39;com.google.cloud.tools:appengine-gradle-plugin:1.+&#39;</span>    <span style="color:#75715e">// latest App Engine Gradle tasks
@@ -157,7 +157,7 @@ compileTestKotlin <span style="color:#f92672">{</span>
 <span style="color:#f92672">}</span>
 
 repositories <span style="color:#f92672">{</span>
-	mavenCentral<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+	mavenCentral<span style="color:#f92672">()</span>
 <span style="color:#f92672">}</span>
 
 dependencies <span style="color:#f92672">{</span>
@@ -209,13 +209,13 @@ appengine <span style="color:#f92672">{</span>  <span style="color:#75715e">// A
 <p>보통 스프링의 각종 프로퍼티들은 <code>resources/application.properties</code>에 작성하는 경우가 많다(요즘에는 <code>yml</code> 파일로 많이들 작성한다고 카더라). 하지만 우리는 App Engine 환경에서 서버를 실행할 것이기 때문에 <code>webapp/WEB-INF/appengine-web.xml</code>에 각종 프로퍼티들을 선언해 줄 것이다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">
 <span style="color:#f92672">&lt;appengine-web-app</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://appengine.google.com/ns/1.0&#34;</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;version</span><span style="color:#f92672">&gt;</span>1<span style="color:#f92672">&lt;/version&gt;</span>
-    <span style="color:#f92672">&lt;threadsafe</span><span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/threadsafe&gt;</span>
-    <span style="color:#f92672">&lt;runtime</span><span style="color:#f92672">&gt;</span>java8<span style="color:#f92672">&lt;/runtime&gt;</span>
-    <span style="color:#f92672">&lt;env</span><span style="color:#f92672">&gt;</span>standard<span style="color:#f92672">&lt;/env&gt;</span>
-    <span style="color:#f92672">&lt;use-google-connector-j</span><span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/use-google-connector-j&gt;</span>
+    <span style="color:#f92672">&lt;version&gt;</span>1<span style="color:#f92672">&lt;/version&gt;</span>
+    <span style="color:#f92672">&lt;threadsafe&gt;</span>true<span style="color:#f92672">&lt;/threadsafe&gt;</span>
+    <span style="color:#f92672">&lt;runtime&gt;</span>java8<span style="color:#f92672">&lt;/runtime&gt;</span>
+    <span style="color:#f92672">&lt;env&gt;</span>standard<span style="color:#f92672">&lt;/env&gt;</span>
+    <span style="color:#f92672">&lt;use-google-connector-j&gt;</span>true<span style="color:#f92672">&lt;/use-google-connector-j&gt;</span>
 
-    <span style="color:#f92672">&lt;system-properties</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;system-properties&gt;</span>
         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.datasource.continue-on-error&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">/&gt;</span>
         <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;spring.datasource.initialization-mode&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;always&#34;</span><span style="color:#f92672">/&gt;</span>
 
