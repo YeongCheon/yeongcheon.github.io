@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-ko</language>
     <copyright>&amp;copy; Copyright 2019 YeongCheon</copyright>
-    <lastBuildDate>Sun, 08 Mar 2020 13:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 24 Mar 2020 22:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yeongcheon.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>프로토 버퍼 언어 안내(proto3) 번역본</title>
+      <link>https://yeongcheon.github.io/posts/2020-03-24-proto-buffers-language-guide-proto3/</link>
+      <pubDate>Tue, 24 Mar 2020 22:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2020-03-24-proto-buffers-language-guide-proto3/</guid>
+      <description>매번 영어문서 보기 빡쳐서 직접 번역기 돌려가며 쓰는 번역본. 번역기와 의역, 오역 범벅입니다. 가급적이면 공식 문서를 보세요. Language Guide(proto3)  Defining A Message Type   우선 매우 간단한 예제를 살펴보겠습니다.. 검색 요청을 위한 메세지 타입을 정의하고자 하는데 이 메세지는 쿼리 문자열^(역자 주: query), 요청 페이지^(역자 주: page_number), 그리고 페이지당 결과 갯수^(역자 주: result_per_page)를 가지고 있습니다. syntax = &amp;#34;proto3&amp;#34;;message SearchRequest { string query = 1; int32 page_number = 2; int32 result_per_page = 3;}     첫 번째 줄은 이 파일이 proto3 문법을 사용하고 있음을 나타냅니다.</description>
+    </item>
     
     <item>
       <title>emacs에서 내가 사용중인 모든 패키지 업그레이드 하기</title>
@@ -27,7 +36,7 @@
       <pubDate>Sun, 26 Jan 2020 13:00:00 +0900</pubDate>
       
       <guid>https://yeongcheon.github.io/posts/2020-01-26-kotlin-setting-condition-variable/</guid>
-      <description>기본 문법  if 사용법   kotlin에서는 if, when, try catch문을 활용해서 변수에 값을 편하게 할당할 수 있다. 예를 들어서 자바에서 아래와 같이 쓰는 문법이 있다고 해보자. // java code String name; if(true) { name = &amp;#34;YeongCheon&amp;#34; } else { name = null } // 또는 삼항 연산자로 처리할수도 있다. name = true ? &amp;#34;YeongCheon&amp;#34; : null   위와 동일한 문법을 코틀린에서는 아래처럼 쓸 수 있다. // kotlin code var name = if(true) { &amp;#34;YeongCheon&amp;#34; } else { null } // 코틀린에서는 삼항 연산자를 지원하지 않는다.</description>
+      <description>기본 문법  if 사용법   kotlin에서는 if, when, try catch문을 활용해서 변수에 값을 편하게 할당할 수 있다. 예를 들어서 자바에서 아래와 같이 쓰는 문법이 있다고 해보자. 1 // java code 2 String name; 3 4 if(true) { 5 name = &amp;#34;YeongCheon&amp;#34; 6 } else { 7 name = null 8 } 9 10 // 또는 삼항 연산자로 처리할수도 있다. 11 name = true ? &amp;#34;YeongCheon&amp;#34; : null 12 #+END_SRC 13 14 위와 동일한 문법을 코틀린에서는 아래처럼 쓸 수 있다.</description>
     </item>
     
     <item>

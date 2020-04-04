@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://yeongcheon.github.io/posts/2020-01-26-kotlin-setting-condition-variable/" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.66.0" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
   <link rel="stylesheet" href="/css/syntax.css" media="all" />
@@ -89,33 +89,31 @@ if 사용법
 </h3>
 <p>
 kotlin에서는 if, when, try catch문을 활용해서 변수에 값을 편하게 할당할 수 있다. 예를 들어서 자바에서 아래와 같이 쓰는 문법이 있다고 해보자.
+  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span>  <span style="color:#75715e">// java code
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#75715e"></span>  String name<span style="color:#f92672">;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>  <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;YeongCheon&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>  <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>    name <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>  <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>  <span style="color:#75715e">// 또는 삼항 연산자로 처리할수도 있다.
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#75715e"></span>  name <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;YeongCheon&#34;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>  <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#f92672">+</span>END_SRC
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>   위와 동일한 문법을 코틀린에서는 아래처럼 쓸 수 있다<span style="color:#f92672">.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>   <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#f92672">+</span>BEGIN_SRC kotlin
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>   <span style="color:#75715e">// kotlin code
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span style="color:#75715e"></span>   var name <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>     <span style="color:#e6db74">&#34;YeongCheon&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>   <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>     <span style="color:#66d9ef">null</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>   <span style="color:#f92672">}</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>   <span style="color:#75715e">// 코틀린에서는 삼항 연산자를 지원하지 않는다.
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span style="color:#75715e"></span>  </code></pre></div>
 </p>
-<div class="src src-java">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// java code
-</span><span style="color:#75715e"></span>String name<span style="color:#f92672">;</span>
-
-<span style="color:#66d9ef">if</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-  name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;YeongCheon&#34;</span>
-<span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-  name <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>
-<span style="color:#f92672">}</span>
-
-<span style="color:#75715e">// 또는 삼항 연산자로 처리할수도 있다.
-</span><span style="color:#75715e"></span>name <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;YeongCheon&#34;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span></code></pre></div>
-</div>
-<p>
-   위와 동일한 문법을 코틀린에서는 아래처럼 쓸 수 있다.
-</p>
-<div class="src src-kotlin">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#75715e">// kotlin code
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> name = <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">true</span>) {
-  <span style="color:#e6db74">&#34;YeongCheon&#34;</span>
-} <span style="color:#66d9ef">else</span> {
-  <span style="color:#66d9ef">null</span>
-}
-
-<span style="color:#75715e">// 코틀린에서는 삼항 연산자를 지원하지 않는다.</span></code></pre></div>
-</div>
 <p>
   위와 같이 코드를 작성하면 if문 안에 각 block 안의 가장 마지막 코드가 name 변수 안에 할당된다. 그리고 위 예제에서 name 변수의 타입은 자동으로 <strong>String?</strong> 이 된다. 만약 else 블록에서 마찬가지로 String 타입을 반환하면 name 변수의 타입은 <strong>String</strong>, 그 이외에 다른 타입을 반환하면 <strong>Any</strong> 타입이 된다.
 </p>

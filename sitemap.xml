@@ -3,27 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://yeongcheon.github.io/tags/go/</loc>
+    <lastmod>2020-03-24T22:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/tags/google/</loc>
+    <lastmod>2020-03-24T22:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/posts/</loc>
+    <lastmod>2020-03-24T22:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/tags/proto3/</loc>
+    <lastmod>2020-03-24T22:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/tags/protobuffers/</loc>
+    <lastmod>2020-03-24T22:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/tags/</loc>
+    <lastmod>2020-03-24T22:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/</loc>
+    <lastmod>2020-03-24T22:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/posts/2020-03-24-proto-buffers-language-guide-proto3/</loc>
+    <lastmod>2020-03-24T22:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://yeongcheon.github.io/tags/emacs/</loc>
     <lastmod>2020-03-08T13:00:00+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://yeongcheon.github.io/posts/2020-03-08-emacs-all-package-upgrade/</loc>
-    <lastmod>2020-03-08T13:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/posts/</loc>
-    <lastmod>2020-03-08T13:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/tags/</loc>
-    <lastmod>2020-03-08T13:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/</loc>
     <lastmod>2020-03-08T13:00:00+09:00</lastmod>
   </url>
   
@@ -109,11 +134,6 @@
   
   <url>
     <loc>https://yeongcheon.github.io/tags/chat/</loc>
-    <lastmod>2019-05-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/tags/go/</loc>
     <lastmod>2019-05-28T00:00:00+09:00</lastmod>
   </url>
   
