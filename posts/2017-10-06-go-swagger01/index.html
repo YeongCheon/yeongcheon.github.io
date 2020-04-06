@@ -112,7 +112,25 @@ sudo apt install swagger
 </code></pre><ol start="2">
 <li>위 명령어를 실행하면 아래처럼 생긴 <code>swagger.yml</code> 파일이 생긴다.</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">consumes</span>:
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">consumes</span>:
 - application/json
 <span style="color:#66d9ef">info</span>:
   <span style="color:#66d9ef">description</span>: hello go swagger
@@ -126,7 +144,9 @@ sudo apt install swagger
 <span style="color:#66d9ef">schemes</span>:
   - http
 <span style="color:#66d9ef">swagger</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>
-</code></pre></div><ol start="3">
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
 <li>
 <p>위 파일에서 7번째 줄의 <code>paths:{}</code> 구문을 우리 입맛대로 고쳐줘야 한다. 이번 예제에선 다른 구문들은 건들지 않아도 된다.</p>
 </li>
@@ -134,7 +154,41 @@ sudo apt install swagger
 <p>우리는 이번 예제에서 GET 방식으로 <code>/</code> URL을 호출할 시 hello world를 반환하는 예제를 만드는 게 주 목적이다. 그러기 위해선 <code>swagger.yml</code>의 <code>paths:{}</code> 구문을 제거하고 파일 최하단에 아래 코드를 붙여넣기 한다. 추가로 파일 맨 위의 consumes 구문도 지워준다(버그인지 두번 반복되고 있다).</p>
 </li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">swagger</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">swagger</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>
 <span style="color:#66d9ef">info</span>:
   <span style="color:#66d9ef">description</span>: hello go swagger
   <span style="color:#66d9ef">title</span>: hello world application
@@ -164,9 +218,46 @@ sudo apt install swagger
     <span style="color:#66d9ef">properties</span>:
       <span style="color:#66d9ef">result</span>:
         <span style="color:#66d9ef">type</span>: string
-</code></pre></div><p><code>swagger.yml</code>파일을 수정할 때 주의할 점은 <code>yml</code> 형식의 파일은 들여쓰기로 <code>\b</code>(공백)을 두번 쓴다는 점이다. 탭이나 띄어쓰기 한 칸으로 할 경우 오류가 발생할 수 있다(작성자는 들여쓰기를 탭으로 했다가 피봤다).</p>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>swagger.yml</code>파일을 수정할 때 주의할 점은 <code>yml</code> 형식의 파일은 들여쓰기로 <code>\b</code>(공백)을 두번 쓴다는 점이다. 탭이나 띄어쓰기 한 칸으로 할 경우 오류가 발생할 수 있다(작성자는 들여쓰기를 탭으로 했다가 피봤다).</p>
 <p>위 문장 붙여넣기까지 완료한 <code>swagger.yml</code> 파일의 최총 코드는 아래와 같다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">swagger</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">swagger</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>
 <span style="color:#66d9ef">info</span>:
   <span style="color:#66d9ef">description</span>: hello go swagger
   <span style="color:#66d9ef">title</span>: hello world application
@@ -197,7 +288,9 @@ sudo apt install swagger
       <span style="color:#66d9ef">result</span>:
         <span style="color:#66d9ef">type</span>: string
 
-</code></pre></div><h1 id="유효성-검사-및-서버코드-생성">유효성 검사 및 서버코드 생성</h1>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="유효성-검사-및-서버코드-생성">유효성 검사 및 서버코드 생성</h1>
 <hr>
 <p><code>swagger.yml</code>을 완성했으면 이 파일을 통해 REST API의 기본 코드를 생성할 수 있다. 그 전에 우리가 작성한 <code>swagger.yml</code> 파일의 유효성 검사를 해 해당 파일에 문제가 있나 확인을 해야한다.</p>
 <p>다음 명령어를 통해 유효성 검사를 할 수 있다.</p>
@@ -227,24 +320,60 @@ sudo apt install swagger
 <ol>
 <li><code>src/restapi/configure_helloworld.go</code> 파일에 접근하여 <code>import</code> 구문 바로 아래에 아래의 코드를 추가한다. 사실 <code>configure_helloworld.go</code> 파일 안이라면 위치는 자기 마음대로 해도 된다(문법이 허용하는 범위 내에).</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ResultResponse</span> <span style="color:#66d9ef">struct</span> {
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ResultResponse</span> <span style="color:#66d9ef">struct</span> {
 	<span style="color:#a6e22e">Result</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;result&#34;`</span>
 }
 
 <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">result</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ResultResponse</span>) <span style="color:#a6e22e">WriteResponse</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">producer</span> <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">Producer</span>) {
 	<span style="color:#a6e22e">producer</span>.<span style="color:#a6e22e">Produce</span>(<span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">result</span>)
 }
-</code></pre></div><ol start="2">
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
 <li><code>src/restapi/configure_helloworld.go</code> 파일의 <code>configureAPI</code> 함수 안에 <code>api.getHandler</code> 구문의 내부를 수정해줘야 한다. 내부 코드를 살펴보면 아래와 같은 구문이 있을 것이다.</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">return</span> <span style="color:#a6e22e">middleware</span>.<span style="color:#a6e22e">NotImplemented</span>(<span style="color:#e6db74">&#34;operation .Get has not yet been implemented&#34;</span>)
-</code></pre></div><p>위 코드는 해당 함수를 아직 개발자가 구현해주지 않았다는 뜻이다. 위 구문 때문에 코드 생성 후 최초로 접근했을 때 <strong>&ldquo;operation .Get has not yet been implemented&rdquo;</strong> 메세지가 떳던 것이다. 이제 이 구문을 삭제, 또는 주석처리 하고 아래의 코드를 입력한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ResultResponse</span>{
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">return</span> <span style="color:#a6e22e">middleware</span>.<span style="color:#a6e22e">NotImplemented</span>(<span style="color:#e6db74">&#34;operation .Get has not yet been implemented&#34;</span>)
+</code></pre></td></tr></table>
+</div>
+</div><p>위 코드는 해당 함수를 아직 개발자가 구현해주지 않았다는 뜻이다. 위 구문 때문에 코드 생성 후 최초로 접근했을 때 <strong>&ldquo;operation .Get has not yet been implemented&rdquo;</strong> 메세지가 떳던 것이다. 이제 이 구문을 삭제, 또는 주석처리 하고 아래의 코드를 입력한다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ResultResponse</span>{
 	<span style="color:#a6e22e">Result</span>: <span style="color:#e6db74">&#34;hello world&#34;</span>,
 }
-</code></pre></div><p>이 후 파일 내용을 저장하고 서버를 재시작 하고 http://127.0.0.1:9000 URL에 접근하면 아래와 같은 json 형식의 내용을 출력한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#f92672">&#34;result&#34;</span>:<span style="color:#e6db74">&#34;hello world&#34;</span>}
-</code></pre></div><p>우리가 출력하고자 한 hello world 구문이 정상적으로 출력된 것을 확인할 수 있다. 이 후 별도의 문서에서 generate 명령어를 이용해 생성된 코드의 구조를 좀 자세히 알아보고자 한다.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>이 후 파일 내용을 저장하고 서버를 재시작 하고 http://127.0.0.1:9000 URL에 접근하면 아래와 같은 json 형식의 내용을 출력한다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#f92672">&#34;result&#34;</span>:<span style="color:#e6db74">&#34;hello world&#34;</span>}
+</code></pre></td></tr></table>
+</div>
+</div><p>우리가 출력하고자 한 hello world 구문이 정상적으로 출력된 것을 확인할 수 있다. 이 후 별도의 문서에서 generate 명령어를 이용해 생성된 코드의 구조를 좀 자세히 알아보고자 한다.</p>
 
     </article>
 

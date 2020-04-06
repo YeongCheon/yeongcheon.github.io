@@ -18,7 +18,7 @@
       <pubDate>Tue, 24 Mar 2020 22:00:00 +0900</pubDate>
       
       <guid>https://yeongcheon.github.io/posts/2020-03-24-proto-buffers-language-guide-proto3/</guid>
-      <description>매번 영어문서 보기 빡쳐서 직접 번역기 돌려가며 쓰는 번역본. 번역기와 의역, 오역 범벅입니다. 가급적이면 공식 문서를 보세요. Language Guide(proto3)  Defining A Message Type   우선 매우 간단한 예제를 살펴보겠습니다.. 검색 요청을 위한 메세지 타입을 정의하고자 하는데 이 메세지는 쿼리 문자열^(역자 주: query), 요청 페이지^(역자 주: page_number), 그리고 페이지당 결과 갯수^(역자 주: result_per_page)를 가지고 있습니다. syntax = &amp;#34;proto3&amp;#34;;message SearchRequest { string query = 1; int32 page_number = 2; int32 result_per_page = 3;}     첫 번째 줄은 이 파일이 proto3 문법을 사용하고 있음을 나타냅니다.</description>
+      <description>매번 영어문서 보기 빡쳐서 직접 번역기 돌려가며 쓰는 번역본. 번역기와 의역, 오역 범벅입니다. 가급적이면 공식 문서를 보세요. Language Guide(proto3)  Defining A Message Type   우선 매우 간단한 예제를 살펴보겠습니다.. 검색 요청을 위한 메세지 타입을 정의하고자 하는데 이 메세지는 쿼리 문자열^(역자 주: query), 요청 페이지^(역자 주: page_number), 그리고 페이지당 결과 갯수^(역자 주: result_per_page)를 가지고 있습니다. 1 2 3 4 5 6 7  syntax = &amp;#34;proto3&amp;#34;;message SearchRequest { string query = 1; int32 page_number = 2; int32 result_per_page = 3;}       첫 번째 줄은 이 파일이 proto3 문법을 사용하고 있음을 나타냅니다.</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@
       <pubDate>Sun, 08 Mar 2020 13:00:00 +0900</pubDate>
       
       <guid>https://yeongcheon.github.io/posts/2020-03-08-emacs-all-package-upgrade/</guid>
-      <description>업그레이드 방법   별거 없다. 글을 길게 쓸 생각(능력)은 없지만 이마저도 읽기 싫은 사람은 그냥 아래의 명령어만 쓰자. M-x package-list-packages U x  Step by Step  패키지 목록 화면으로 들어가기   M-x package-list-packages 를 입력하면 이맥스를 지원하는 다양한 종류의 패키지를 볼 수 있다.   이후 모든 과정들은 위에 보이는 패키지 목록 버퍼에서 진행된다. 내가 사용중인 모든 패키지 선택하기   패키지 목록 버퍼에서 알파벳 대문자 U 를 입력하면 현재 내가 사용중인 모든 패키지가 선택된다.</description>
+      <description>업그레이드 방법   별거 없다. 글을 길게 쓸 생각(능력)은 없지만 이마저도 읽기 싫은 사람은 그냥 아래의 명령어만 쓰자. 1 2 3  M-x package-list-packages U x    Step by Step  패키지 목록 화면으로 들어가기   M-x package-list-packages 를 입력하면 이맥스를 지원하는 다양한 종류의 패키지를 볼 수 있다.   이후 모든 과정들은 위에 보이는 패키지 목록 버퍼에서 진행된다. 내가 사용중인 모든 패키지 선택하기   패키지 목록 버퍼에서 알파벳 대문자 U 를 입력하면 현재 내가 사용중인 모든 패키지가 선택된다.</description>
     </item>
     
     <item>
@@ -36,7 +36,7 @@
       <pubDate>Sun, 26 Jan 2020 13:00:00 +0900</pubDate>
       
       <guid>https://yeongcheon.github.io/posts/2020-01-26-kotlin-setting-condition-variable/</guid>
-      <description>기본 문법  if 사용법   kotlin에서는 if, when, try catch문을 활용해서 변수에 값을 편하게 할당할 수 있다. 예를 들어서 자바에서 아래와 같이 쓰는 문법이 있다고 해보자. 1 // java code 2 String name; 3 4 if(true) { 5 name = &amp;#34;YeongCheon&amp;#34; 6 } else { 7 name = null 8 } 9 10 // 또는 삼항 연산자로 처리할수도 있다. 11 name = true ? &amp;#34;YeongCheon&amp;#34; : null 12 #+END_SRC 13 14 위와 동일한 문법을 코틀린에서는 아래처럼 쓸 수 있다.</description>
+      <description>기본 문법  if 사용법   kotlin에서는 if, when, try catch문을 활용해서 변수에 값을 편하게 할당할 수 있다. 예를 들어서 자바에서 아래와 같이 쓰는 문법이 있다고 해보자. 1 2 3 4 5 6 7 8 9 10 11  // java code String name; if(true) { name = &amp;#34;YeongCheon&amp;#34; } else { name = null } // 또는 삼항 연산자로 처리할수도 있다. name = true ? &amp;#34;YeongCheon&amp;#34; : null     위와 동일한 문법을 코틀린에서는 아래처럼 쓸 수 있다.</description>
     </item>
     
     <item>
@@ -81,7 +81,7 @@
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0900</pubDate>
       
       <guid>https://yeongcheon.github.io/posts/2019-06-19-emacs-hangul/</guid>
-      <description> 아래의 내용을 .emacs 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다. (set-fontset-font t &amp;#39;hangul (font-spec :family &amp;#34;D2Coding&amp;#34;)) (set-language-environment &amp;#34;Korean&amp;#34;) (prefer-coding-system &amp;#39;utf-8) (setq default-input-method &amp;#34;korean-hangul390&amp;#34;) (setq default-korean-keyboard &amp;#34;390&amp;#34;) (global-set-key (kbd &amp;#34;&amp;lt;S-kana&amp;gt;&amp;#34;) &amp;#39;toggle-input-method)  </description>
+      <description> 아래의 내용을 .emacs 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다. 1 2 3 4 5 6 7  (set-fontset-font t &amp;#39;hangul (font-spec :family &amp;#34;D2Coding&amp;#34;)) (set-language-environment &amp;#34;Korean&amp;#34;) (prefer-coding-system &amp;#39;utf-8) (setq default-input-method &amp;#34;korean-hangul390&amp;#34;) (setq default-korean-keyboard &amp;#34;390&amp;#34;) (global-set-key (kbd &amp;#34;&amp;lt;S-kana&amp;gt;&amp;#34;) &amp;#39;toggle-input-method)    </description>
     </item>
     
     <item>
@@ -180,7 +180,7 @@ S2 라이브러리란? S2 라이브러리는 구글에서 비공식적으로(not
       
       <guid>https://yeongcheon.github.io/posts/2018-05-12-datastore-projection-error/</guid>
       <description>요구사항 datastore에 내 프로필을 방문한 사용자의 ID와 방문시간을 각각 string, time.Time 형식으로 저장하고 있다. 구조체로 보면 다음과 같다.
-type Visitor struct { UserId string //조회한 프로필의 Id 	VisitorId string //방문자 Id 	VisitTime time.Time } 이 데이터를 단순히 조회하면 한 사용자가 나를 여러번 방문할 경우 결과 리스트에 그 방문자가 여러번 출력된다. 나는 동일한 사용자가 여러번 반복해도 가장 최근에 방문한 기록만 보길 원했다. 즉 datastore에서 SQL 문법의 group by를 사용하고 싶었다.</description>
+1 2 3 4 5  type Visitor struct { UserId string //조회한 프로필의 Id 	VisitorId string //방문자 Id 	VisitTime time.Time }   이 데이터를 단순히 조회하면 한 사용자가 나를 여러번 방문할 경우 결과 리스트에 그 방문자가 여러번 출력된다. 나는 동일한 사용자가 여러번 반복해도 가장 최근에 방문한 기록만 보길 원했다.</description>
     </item>
     
     <item>
@@ -191,7 +191,7 @@ type Visitor struct { UserId string //조회한 프로필의 Id 	VisitorId strin
       <guid>https://yeongcheon.github.io/posts/2018-04-29-gae-datastore-indexes/</guid>
       <description>들어가며 google app engine을 이용해 REST API를 작성하던 중 발생했던 datastore의 index 관련 이슈와 그 해결법에 대해 기록한다. 참고, 여기도 참고
 에러발생 상황 내 프로필을 조회한 사람들의 목록을 반환해주는 API를 작성했다. 코드는 딱히 별거 없고 그냥 datastore에 있는 데이터들을 불러오는 내용이다. 핵심코드는 아래와 같다.
-q := datastore.NewQuery(userDao.VisitorEntity).Filter(&amp;#34;UserId=&amp;#34;, userId).Order(&amp;#34;-VisitTime&amp;#34;) UserId 필드의 값을 기준으로 필터링을 하고 VisitTime을 최근순으로 정렬하는 간단한 코드다. 위 쿼리문을 베이스로 한 API는 로컬테스트는 무사히 통과하고 배포까지 정상적으로 완료, 이 후 클라우드에 올라간 API를 테스트 했는데 다음과 같은 에러로그를 내뿜었다.</description>
+1  q := datastore.NewQuery(userDao.VisitorEntity).Filter(&amp;#34;UserId=&amp;#34;, userId).Order(&amp;#34;-VisitTime&amp;#34;)   UserId 필드의 값을 기준으로 필터링을 하고 VisitTime을 최근순으로 정렬하는 간단한 코드다. 위 쿼리문을 베이스로 한 API는 로컬테스트는 무사히 통과하고 배포까지 정상적으로 완료, 이 후 클라우드에 올라간 API를 테스트 했는데 다음과 같은 에러로그를 내뿜었다.</description>
     </item>
     
     <item>
@@ -225,7 +225,7 @@ q := datastore.NewQuery(userDao.VisitorEntity).Filter(&amp;#34;UserId=&amp;#34;,
       <guid>https://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/</guid>
       <description>Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
  spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
-swagger: &amp;#34;2.0&amp;#34; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &amp;#34;result : helloworld&amp;#34; items: $ref: &amp;#34;#/definitions/item&amp;#34; definitions: item: type: object required: - result properties: result: type: string swagger.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31  swagger: &amp;#34;2.0&amp;#34; info: description: hello go swagger title: hello world application version: 1.</description>
     </item>
     
     <item>

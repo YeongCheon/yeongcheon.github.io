@@ -110,9 +110,18 @@ lsp-mode 설치하기
 lsp의 뜻을 알아봤으니 그럼 이제 본격적으로 셋팅작업에 들어가보자. 이맥스의 lsp-mode는 기본적으로 <a href="https://github.com/emacs-lsp/lsp-mode">여기</a>를 베이스로 한다. 이번 포스트는 java 환경을 구축하는게 목적이니 <a href="https://github.com/emacs-lsp/lsp-java">lsp-java</a>를 설치해주자. 설치하는 방법은 링크의 <a href="https://github.com/emacs-lsp/lsp-java/blob/master/README.md">READMD.md</a>에 자세하게 나와있다. 내가 실행한 명령어는 아래와 같다.
 </p>
 <div class="src src-text">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">M-x package-install use-package
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">M-x package-install use-package
 M-x package-install lsp-java
-M-x package-install dash</code></pre></div>
+M-x package-install dash</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>
   총 3개의 패키지를 설치한다.
@@ -138,7 +147,34 @@ M-x package-install dash</code></pre></div>
 dash 패키지의 경우 공식 가이드에서 설치하라는 설명은 없었지만 셋팅이 제대로 진행되지 않아 나름 구글링을 해본 결과 얻어낸 답이다.
 </p>
 <div class="src src-elisp">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elisp" data-lang="elisp">(require <span style="color:#e6db74">&#39;lsp-java</span>)
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elisp" data-lang="elisp">(require <span style="color:#e6db74">&#39;lsp-java</span>)
 (add-hook <span style="color:#e6db74">&#39;java-mode-hook</span> <span style="color:#a6e22e">#&#39;</span>lsp)
 (add-hook <span style="color:#e6db74">&#39;java-mode-hook</span> <span style="color:#e6db74">&#39;flycheck-mode</span>)
 (add-hook <span style="color:#e6db74">&#39;java-mode-hook</span> <span style="color:#e6db74">&#39;company-mode</span>)
@@ -160,13 +196,22 @@ dash 패키지의 경우 공식 가이드에서 설치하라는 설명은 없었
 (dap-mode <span style="color:#66d9ef">t</span>)
 (dap-ui-mode <span style="color:#66d9ef">t</span>))
 
-(use-package dap-java :after (lsp-java))</code></pre></div>
+(use-package dap-java :after (lsp-java))</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>
 모든 과정을 끝냈다면 이제 기본적인 셋팅은 마무리가 된 상태다. 그럼 이제 실제로 자바 프로젝트를 생성한 후 이맥스에서 자동완성, jump to difinition 등등이 제대로 동작하는지 확인해보자. 자바프로젝트 생성은 gradle를 이용한다. 아래의 명령어를 터미널에 입력해보자.
 </p>
 <div class="src src-bash">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gradle init --type java-library</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gradle init --type java-library</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>
 프로젝트가 정상적으로 프로젝트가 생성되었다면 이맥스에서 src/main/java/Library.java 파일을 열어보자. 셋팅 후 최초로 자바파일을 열었을 경우 <a href="https://projects.eclipse.org/projects/eclipse.jdt.ls">Eclipse JDT Language Server</a>를 설치할건지 묻는 메세지가 뜬다. y를 입력해서 language server를 설치해주도록 하자. 참고로 이 내용은 <a href="https://github.com/emacs-lsp/lsp-java#eclipse-jdt-language-server">공식 가이드</a>에서도 나오는 내용이다(<del>그니깐 이거 말고 공식 가이드 읽으세요</del>).

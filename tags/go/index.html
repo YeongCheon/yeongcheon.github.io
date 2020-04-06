@@ -78,7 +78,7 @@
         <div class="article-content">
           Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
  spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
-swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world application version: 1.0.0 produces: - application/json consumes: - application/json schemes: - http paths: /: get: responses: 200: description: list the todo operations schema: type: array description: &#34;result : helloworld&#34; items: $ref: &#34;#/definitions/item&#34; definitions: item: type: object required: - result properties: result: type: string swagger.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31  swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world application version: 1.
         </div>
         <div class="article-readmore"><a href="/posts/2017-12-05-go-swagger-with-gae/">Read more...</a></div>
         <div class="article-floatclear"></div>

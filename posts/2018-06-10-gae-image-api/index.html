@@ -102,7 +102,39 @@
 <p>아무튼 여러모로 장점이 많아보이니 세번째 방법을 적용해보자.</p>
 <h2 id="코드-구현">코드 구현</h2>
 <p>아래 코드는 GAE golang 1.8을 기준으로 작성했다. 내가 구현한 코드의 일부를 발췌해서 약간 수정한 버전으로 syntax 에러가 있을 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">import</span> (
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">import</span> (
 	<span style="color:#e6db74">&#34;google.golang.org/appengine/blobstore&#34;</span>
 	<span style="color:#e6db74">&#34;google.golang.org/appengine/image&#34;</span>
 	<span style="color:#e6db74">&#34;google.golang.org/appengine/log&#34;</span>
@@ -130,9 +162,18 @@
 	
 	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">String</span>()
 }
-</code></pre></div><p>위의 코드를 실행하기 위해서 deploy 명령에 옵션을 추가해줘야 한다. 어떤 GCS 버킷을 바라볼건지 명시를 해줘야 하는데 아래의 deploy 명령을 보자.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud app deploy app.yaml --bucket gs://projectname.appspot.com
-</code></pre></div><p>위와 같이 어떤 버켓을 기본값으로 바라볼지 명시를 해줘야 한다. 위의 명령어를 이용해 deploy했다면 GetImageURL 함수를 호출하여 해당 파일을 볼 수 있는 URL을 반환받을 수 있다.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>위의 코드를 실행하기 위해서 deploy 명령에 옵션을 추가해줘야 한다. 어떤 GCS 버킷을 바라볼건지 명시를 해줘야 하는데 아래의 deploy 명령을 보자.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud app deploy app.yaml --bucket gs://projectname.appspot.com
+</code></pre></td></tr></table>
+</div>
+</div><p>위와 같이 어떤 버켓을 기본값으로 바라볼지 명시를 해줘야 한다. 위의 명령어를 이용해 deploy했다면 GetImageURL 함수를 호출하여 해당 파일을 볼 수 있는 URL을 반환받을 수 있다.</p>
 <h2 id="특이점">특이점</h2>
 <ul>
 <li><strong>로컬 서버에서는 제대로 동작하지 않는다.</strong>(내가 방법을 못 찾은 걸수도 있다.) 로컬에서 <code>dev_appserver.py</code>를 이용해 위 코드를 테스트하면 비정상적인 URL이 반환되는데 이 URL은 동작하지 않는다. 테스트는 꼭 실제 GAE에서 하도록 하자. 정상적인 URL은 아래와 비슷한 모양이다.</li>

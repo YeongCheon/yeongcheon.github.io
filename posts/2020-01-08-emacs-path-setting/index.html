@@ -77,7 +77,14 @@ Intro
 lsp-mode를 사용하면 각 언어에 해당하는 language server를 이용해서 문법 점검, 자동완성, 디버거 연동 등등 IDE에서 흔하게 지원해주는 기능을 사용할 수 있게 해준다. 고 언어의 경우에는 gopls를 이용하는데 설치 자체는 가이드를 참고하면 어렵지 않게 설치할 수 있다. 설치 후 이맥스에서 .go 파일을 열고 lsp-mode를 실행하면 아래와 같은 메세지를 보여준다.
 </p>
 <div class="src src-text">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">The following servers support current file but do not have automatice installation configuration: go-ls go-bingo gopls You may find the installation instructions at httsp://github.com/emacs-lsp/lsp-mode/#supported-languages. Do you want open it?</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">The following servers support current file but do not have automatice installation configuration: go-ls go-bingo gopls You may find the installation instructions at httsp://github.com/emacs-lsp/lsp-mode/#supported-languages. Do you want open it?</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>
 <strong>y</strong> 를 입력하면 gopls 설치 가이드를 띄워준다. 하지만 나는 <strong>이미 gopls를 설치한 상태이므로 이맥스에서 gopls가 설치된 경로를 인식하지 못한다고 판단, 해결법을 찾아보았다.</strong>
@@ -89,15 +96,31 @@ lsp-mode를 사용하면 각 언어에 해당하는 language server를 이용해
 <a href="https://github.com/purcell/exec-path-from-shell">exec-path-from-shell</a> 패키지를 이맥스에 설치하자. 이 패키지는 내 PC에 설정된 환경변수를 이맥스에서 인식할 수 있게 도와주는 패키지다.
 </p>
 <div class="src src-text">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">M-x package-install exec-path-from-shell</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">M-x package-install exec-path-from-shell</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>
 설치 후 `.emacs` 파일에 아래의 내용을 추가해준다.
 </p>
 <div class="src src-lisp">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(when (memq window-system <span style="color:#f92672">&#39;</span>(mac ns x))
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(when (memq window-system <span style="color:#f92672">&#39;</span>(mac ns x))
 (exec-path-from-shell-initialize))
-(exec-path-from-shell-copy-env <span style="color:#e6db74">&#34;PATH&#34;</span>)</code></pre></div>
+(exec-path-from-shell-copy-env <span style="color:#e6db74">&#34;PATH&#34;</span>)</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>
 emacs를 재시작 한 후 .go 파일에서 lsp 명령어를 입력하면 gopls를 정상적으로 인식하는 걸 확인할 수 있다. lsp를 항상 직접 켜주기 귀찮다면 <a href="https://github.com/emacs-lsp/lsp-mode#install-language-server">공식 문서</a>나 <a href="https://arenzana.org/2019/12/emacs-go-mode-revisited/?utm_campaign%3DThe%2520Go%2520Gazette&amp;utm_medium%3Demail&amp;utm_source%3DRevue%2520newsletter">다른 가이드</a>를 보고 따라해보자

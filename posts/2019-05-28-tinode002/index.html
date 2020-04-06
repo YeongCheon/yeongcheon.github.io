@@ -143,8 +143,16 @@ source 파일 내려받기 및 바이너리 파일 install
 다음 명령어를 입력한다.
 </p>
 <div class="src src-shell">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">go get -tags mysql github.com/tinode/chat/server <span style="color:#f92672">&amp;&amp;</span> go install -tags mysql github.com/tinode/chat/server
-go get -tags mysql github.com/tinode/chat/tinode-db <span style="color:#f92672">&amp;&amp;</span> go install -tags mysql github.com/tinode/chat/tinode-db</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">go get -tags mysql github.com/tinode/chat/server <span style="color:#f92672">&amp;&amp;</span> go install -tags mysql github.com/tinode/chat/server
+go get -tags mysql github.com/tinode/chat/tinode-db <span style="color:#f92672">&amp;&amp;</span> go install -tags mysql github.com/tinode/chat/tinode-db</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>
 첫번째 줄의 명령어는 실제로 동작하게 될 채팅서버와 연관된 소스코드를 다운로드 후 해당 소스코드를 컴파일하여 <code class="verbatim">$GOPATH/bin/</code> 경로에 <code class="verbatim">server</code> 라는 파일을 생성하는 명령어다.
@@ -163,7 +171,14 @@ MySQL에 데이터베이스 및 테이블을 생성하는 법을 알아보자.
 우선 <code class="verbatim">$GOPATH/src/github.com/tinode/chat/tinode-db/tinode.conf</code> 파일을 열어서 db 접속정보가 올바른지 확인하자. 만약 접속정보와 다르다면(<del>당연히 대부분 다를거다</del>) 자신의 db 설정과 동일하게 고쳐주자. 다른부분은 건드릴 필요 없고 <code class="verbatim">store_config.adapters.mysql.dsn</code> 필드만 수정해주면 된다. 설정이 완료됐다면 아래의 명령어를 실행해주자.
 </p>
 <div class="src src-shell">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$GOPATH/bin/tinode-db -config<span style="color:#f92672">=</span>$GOPATH/src/github.com/tinode/chat/tinode-db/tinode.conf</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$GOPATH/bin/tinode-db -config<span style="color:#f92672">=</span>$GOPATH/src/github.com/tinode/chat/tinode-db/tinode.conf</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>
 이때 터미널의 위치는 가급적이면 <code class="verbatim">$GOPATH/src/github.com/tinode/chat</code> 로 이동시킨 후 실행시키자. conf 파일 중 상대경로 옵션이 적용되어 있는 경우가 있어서 다른 위치에서 명령어를 실행 시 에러를 발생시키기도 한다. 그리고 혹시 테스트용 더미 데이터를 추가하고 싶은 경우엔 위의 명령어 뒤에 = -data=$GOPATH/src/github.com/tinode/chat/tinode-db/data.json= 를 붙여주자. 당연히 필수는 아니다.
@@ -193,7 +208,14 @@ MySQL에 데이터베이스 및 테이블을 생성하는 법을 알아보자.
 그리고 위에서 얘기한대로 터미널의 위치를 <code class="verbatim">$GOPATH/src/github.com/tinode/chat</code> 로 이동시킨 후 아래의 명령어를 실행해보자.
 </p>
 <div class="src src-shell">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$GOPATH/bin/server -config<span style="color:#f92672">=</span>$GOPATH/src/github.com/tinode/chat/server/tinode.conf</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$GOPATH/bin/server -config<span style="color:#f92672">=</span>$GOPATH/src/github.com/tinode/chat/server/tinode.conf</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>
 실행 후 터미널에 <strong>Listening for client HTTP connections on [:6060]</strong> 메세지가 뜬다면 성공이다.
@@ -214,12 +236,24 @@ Go modules 한방 스크립트
    쉘 커맨드 명령어를 우선 한번에 작성한 후 한줄 한줄 설명하도록 하겠다.
 </p>
 <div class="src src-shell">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/tinode/chat
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/tinode/chat
 cd chat/server
 go mod init github.com/YeongCheon/chat/server
 go build -tags mysql
 mkdir static
-./server -config<span style="color:#f92672">=</span>./tinode.conf</code></pre></div>
+./server -config<span style="color:#f92672">=</span>./tinode.conf</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>
 1, 2번 라인은 별도로 설명하지 않겠다.
@@ -229,9 +263,18 @@ mkdir static
 go.mod 파일을 만드는 명령어인데 <strong>init 뒤에 붙는 패키지 경로를 자신이 정한 고유의 경로를 써줘야 한다.</strong> 처음에 아무생각 없이 <code class="verbatim">github.com/tinode/chat/server</code> 를 입력한다면 아래와 같은 에러메세지를 볼 수 있다.
 </p>
 <div class="src src-text">
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">can&#39;t load package: package github.com/tinode/chat/server: unknown import path &#34;github.com/tinode/chat/server&#34;: ambiguous import: found github.com/tinode/chat/server in multiple modules:
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">can&#39;t load package: package github.com/tinode/chat/server: unknown import path &#34;github.com/tinode/chat/server&#34;: ambiguous import: found github.com/tinode/chat/server in multiple modules:
 	github.com/tinode/chat/server (/~~~~~~~~~~~~~~~~~~~~~~~~/chat/server)
-	github.com/tinode/chat v0.15.14 (/~~~~~~~~/go/pkg/mod/github.com/tinode/chat@v0.15.14/server)</code></pre></div>
+	github.com/tinode/chat v0.15.14 (/~~~~~~~~/go/pkg/mod/github.com/tinode/chat@v0.15.14/server)</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>
 init 작업이 끝나면 의존성 패키지 목록이 이쁘게 정리된 <code class="verbatim">go.mod</code> 파일과 <code class="verbatim">go.sum</code> 파일을 볼 수 있다.
