@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-ko</language>
     <copyright>&amp;copy; Copyright 2020 YeongCheon</copyright>
-    <lastBuildDate>Tue, 24 Mar 2020 22:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 15 Apr 2020 19:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yeongcheon.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>grpc</title>
+      <link>https://yeongcheon.github.io/tags/grpc/</link>
+      <pubDate>Wed, 15 Apr 2020 19:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/tags/grpc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>protobuf</title>
+      <link>https://yeongcheon.github.io/tags/protobuf/</link>
+      <pubDate>Wed, 15 Apr 2020 19:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/tags/protobuf/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>go</title>
