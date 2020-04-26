@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
     <copyright>&amp;copy; Copyright 2020 YeongCheon</copyright>
-    <lastBuildDate>Wed, 15 Apr 2020 19:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 26 Apr 2020 16:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yeongcheon.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>구글 앱엔진에 ssr angular app 배포하기</title>
+      <link>https://yeongcheon.github.io/posts/2020-04-26-angular-ssr-with-appengine/</link>
+      <pubDate>Sun, 26 Apr 2020 16:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2020-04-26-angular-ssr-with-appengine/</guid>
+      <description>들어가며   이 문서는 기본적으로 앵귤러 공식 SSR 가이드를 따라하며 학습한 내용을 정리한 것입니다. SSR에 대해 궁금하시다면 이 링크를 참고하세요. 이 문서는 angular, appEngine을 사용할 줄 아는 사람을 대상으로 작성되었습니다. 프로젝트 생성   우선 앵귤러 프로젝트를 하나 생성해봅시다. 이 예제는 angular9 버전을 기준으로 작성되었습니다. 1  ng new test-project    express-engine 추가   생성된 프로젝트 내부에서 아래의 명령어를 실행합니다. 1  ng add @nguniversal/express-engine     명령어를 성공적으로 실행했다면 아래의 파일이 추가되었을 것입니다.</description>
+    </item>
     
     <item>
       <title>grpc-gateway를 이용한 JSON 통신</title>
