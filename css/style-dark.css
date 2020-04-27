@@ -9,6 +9,12 @@ a {
 a:hover, a:active {
   color: #80d0ff;
 }
+
+p > code {
+  color: #fff;
+  background: #ff000085;
+}
+
 pre, code {
   background-color: inherit;
 }
