@@ -43,6 +43,26 @@
   <div class="main" role="main">
     <section class="list home-list">
       <article class="article">
+        <a href="/posts/2020-05-13-emacs-search-and-replace/" class="article-titles">
+          <h2 class="article-title">이맥스에서 여러 파일 찾아 바꾸기</h2>
+          <h3 class="article-subtitle">이맥스 Dired에서 여러 파일을 대상으로 키워드 검색 후 내용을 바꾸는 방법을 알아보자.</h3>
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>May 13, 2020</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/emacs/">
+              <i class="fas fa-tag"></i>
+              emacs
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          대부분의 편집기에서 기본적으로 Ctrl + Shift + h 단축키에 해당하는 파일에서 찾기/바꾸기 기능을 emacs에서 사용해보자. 단축키 요약   구구절절 설명하기 전에 우선 단축키 요약본을 보자 1 2 3 4  C-x d (Dired mode 실행) Q (찾기/바꾸기 실행) Y (모든 변경 내역 승인) C-x s ! (모든 변경 내역 저장)    step by step  Dired mode 실행   C-x d : emacs에 기본적으로 탑재된 dired mode 를 실행해보자.
+        </div>
+        <div class="article-readmore"><a href="/posts/2020-05-13-emacs-search-and-replace/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+      <article class="article">
         <a href="/posts/2020-04-26-angular-ssr-with-appengine/" class="article-titles">
           <h2 class="article-title">구글 앱엔진에 ssr angular app 배포하기</h2>
           <h3 class="article-subtitle">구글 앱엔진에 server side rendering을 지원하는 앵귤러 프로젝트를 배포해보자.</h3>
@@ -292,57 +312,6 @@
           이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.    OS: ubuntu 18.04 LTS    emacs: GNU Emacs 25.2.2    java: openjdk version &#34;1.8.0_212&#34;    gradle: Gradle 4.10.2    이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자 LSP란?   lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다).
         </div>
         <div class="article-readmore"><a href="/posts/2019-06-31-emcs-lsp-java-setup/">Read more...</a></div>
-        <div class="article-floatclear"></div>
-      </article>
-      <article class="article">
-        <a href="/posts/2019-06-19-emacs-hangul/" class="article-titles">
-          <h2 class="article-title">이맥스 폰트, 세벌식 셋팅하기</h2>
-          
-        </a>
-        <ul class="article-meta">
-          <li class="article-meta-date"><time>June 19, 2019</time></li>
-          <li class="article-meta-tags">
-            <a href="/tags/emacs/">
-              <i class="fas fa-tag"></i>
-              emacs
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/">
-              <i class="fas fa-tag"></i>
-              세벌식
-            </a>&nbsp;
-          </li>
-        </ul>
-        <div class="article-content">
-          <p>
-아래의 내용을 <code class="verbatim">.emacs</code> 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다.
-</p>
-<div class="src src-lisp">
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(set-fontset-font <span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#39;hangul</span> (font-spec <span style="color:#e6db74">:family</span> <span style="color:#e6db74">&#34;D2Coding&#34;</span>))
-
-(set-language-environment <span style="color:#e6db74">&#34;Korean&#34;</span>)
-(prefer-coding-system <span style="color:#e6db74">&#39;utf-8</span>)
-(<span style="color:#66d9ef">setq</span> default-input-method <span style="color:#e6db74">&#34;korean-hangul390&#34;</span>)
-(<span style="color:#66d9ef">setq</span> default-korean-keyboard <span style="color:#e6db74">&#34;390&#34;</span>)
-(global-set-key (kbd <span style="color:#e6db74">&#34;&lt;S-kana&gt;&#34;</span>) <span style="color:#e6db74">&#39;toggle-input-method</span>)</code></pre></td></tr></table>
-</div>
-</div>
-</div>
-
-        </div>
-        <div class="article-readmore"><a href="/posts/2019-06-19-emacs-hangul/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
     </section>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
     <copyright>&amp;copy; Copyright 2020 YeongCheon</copyright>
-    <lastBuildDate>Sun, 08 Mar 2020 13:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2020 23:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yeongcheon.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>이맥스에서 여러 파일 찾아 바꾸기</title>
+      <link>https://yeongcheon.github.io/posts/2020-05-13-emacs-search-and-replace/</link>
+      <pubDate>Wed, 13 May 2020 23:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2020-05-13-emacs-search-and-replace/</guid>
+      <description>대부분의 편집기에서 기본적으로 Ctrl + Shift + h 단축키에 해당하는 파일에서 찾기/바꾸기 기능을 emacs에서 사용해보자. 단축키 요약   구구절절 설명하기 전에 우선 단축키 요약본을 보자 1 2 3 4  C-x d (Dired mode 실행) Q (찾기/바꾸기 실행) Y (모든 변경 내역 승인) C-x s ! (모든 변경 내역 저장)    step by step  Dired mode 실행   C-x d : emacs에 기본적으로 탑재된 dired mode 를 실행해보자.</description>
+    </item>
     
     <item>
       <title>emacs에서 내가 사용중인 모든 패키지 업그레이드 하기</title>
