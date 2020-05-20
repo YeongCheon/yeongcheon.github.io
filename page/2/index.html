@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.69.2" />
+  <meta name="generator" content="Hugo 0.70.0" />
   <link href="/index.xml" rel="alternate" type="application/rss+xml" title="김영천 블로그" />
   <link href="/index.xml" rel="feed" type="application/rss+xml" title="김영천 블로그" />
 
@@ -42,6 +42,38 @@
 
   <div class="main" role="main">
     <section class="list home-list">
+      <article class="article">
+        <a href="/posts/2019-06-31-emcs-lsp-java-setup/" class="article-titles">
+          <h2 class="article-title">이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>June 30, 2019</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/emacs/">
+              <i class="fas fa-tag"></i>
+              emacs
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/java/">
+              <i class="fas fa-tag"></i>
+              java
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/lsp/">
+              <i class="fas fa-tag"></i>
+              lsp
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.    OS: ubuntu 18.04 LTS    emacs: GNU Emacs 25.2.2    java: openjdk version &#34;1.8.0_212&#34;    gradle: Gradle 4.10.2    이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자 LSP란?   lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다).
+        </div>
+        <div class="article-readmore"><a href="/posts/2019-06-31-emcs-lsp-java-setup/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
       <article class="article">
         <a href="/posts/2019-06-19-emacs-hangul/" class="article-titles">
           <h2 class="article-title">이맥스 폰트, 세벌식 셋팅하기</h2>
@@ -384,39 +416,6 @@ S2 라이브러리란? S2 라이브러리는 구글에서 비공식적으로(not
 추가로 geohash와 비교해보면 도움이 많이 된다.
         </div>
         <div class="article-readmore"><a href="/posts/2018-08-01-s2-geometry/">Read more...</a></div>
-        <div class="article-floatclear"></div>
-      </article>
-      <article class="article">
-        <a href="/posts/2018-06-10-gae-image-api/" class="article-titles">
-          <h2 class="article-title">Google App Engine Image API 삽질 후기</h2>
-          
-        </a>
-        <ul class="article-meta">
-          <li class="article-meta-date"><time>June 10, 2018</time></li>
-          <li class="article-meta-tags">
-            <a href="/tags/gcp/">
-              <i class="fas fa-tag"></i>
-              GCP
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="/tags/gae/">
-              <i class="fas fa-tag"></i>
-              GAE
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="/tags/golang/">
-              <i class="fas fa-tag"></i>
-              golang
-            </a>&nbsp;
-          </li>
-        </ul>
-        <div class="article-content">
-          오늘은 GAE에서 제공하는 Image API를 사용하면서 겪은 어려움과 후기를 공유하고자 한다.
-요구사항  GAE를 통해 업로드 된 이미지를 Google Cloud Storage(이하 GCS)에 보관, 파일 관련 정보를 datastore에 별도로 저장한다(업로드 한 사용자, 업로드 파일명, 업로드 날짜 등등). 이 이미지를 웹사이트를 통해 서비스를 하고싶다. 이 이미지는 사이즈가 모두 제각각인데 DSLR로 찍은 수십메가짜리 이미지부터 조그마한 썸네일 이미지까지 크기가 천차만별이다. 동일한 이미지를 여러가지 사이즈로 출력해야 한다. 가령 DSLR로 찍은 이미지를 제공할 경우 우선 100px짜리 썸네일로 제공, 사용자가 썸네일을 클릭할 경우 이미지의 원본을 보여주고 싶다.
-        </div>
-        <div class="article-readmore"><a href="/posts/2018-06-10-gae-image-api/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
     </section>
