@@ -47,6 +47,44 @@
   <div class="main" role="main">
     <section class="list section-list">
       <article class="article">
+        <a href="/posts/2020-05-22-org-latex/" class="article-titles">
+          <h2 class="article-title">hugo에서 수학 수식 표현하기</h2>
+          <h3 class="article-subtitle">katex를 이용해서 문서에 수학 기호를 그려봅시다</h3>
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>May 22, 2020</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/hugo/">
+              <i class="fas fa-tag"></i>
+              hugo
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/emacs/">
+              <i class="fas fa-tag"></i>
+              emacs
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/org-mode/">
+              <i class="fas fa-tag"></i>
+              org-mode
+            </a>&nbsp;
+          </li>
+          <li class="article-meta-tags">
+            <a href="/tags/latex/">
+              <i class="fas fa-tag"></i>
+              latex
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          이 글은 여기저기를 참고해서 작성되었습니다. 목표   이 문서에는 hugo + org mode + kaTex 를 조합해서 글을 작성하는 법을 설명합니다. hugo와 org mode는 이미 사용 중이라고 가정하고 hugo에 kaTex를 설정하는 법을 중점적으로 설명합니다. Installation kaTex  math.html 파일 생성   hugo에서 kaTex를 사용하려면 kaTex 모듈을 불러와야 합니다. /layouts/partials/math.html 파일을 생성하고 아래의 내용을 추가합니다. 혹시 이미 math.html 파일명을 사용중이라면 다른 파일명으로 바꿔서 생성해도 상관없어요. 1 2 3  &lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.
+        </div>
+        <div class="article-readmore"><a href="/posts/2020-05-22-org-latex/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
+      <article class="article">
         <a href="/posts/2020-05-18-emacs-configure-shortcut/" class="article-titles">
           <h2 class="article-title">이맥스에서 특정 명령어 단축키로 지정하기</h2>
           <h3 class="article-subtitle">이맥스에서 특정 명령어 단축키로 지정하기</h3>
@@ -278,32 +316,6 @@
           JPA를 사용하다 보면 StackOverflow 에러를 종종 만날 수 있다. 이 글에서는 필드 타입이 Set인 Collection 타입에 아이템을 추가할 경우 StackVoerflow 에러가 발생하는 원인과 그 해결법에 대해 알아보자.  `hashcode`, `equals` 메서드와 관계된 이야기이다. 에러 발생 시나리오  구현 목표   부모객체와 자식객체들을 서버 데이터베이스에 저장하는 기능을 가진 코드가 있었다. 부모객체와 자식객체는 1:n관계로서 하나의 부모가 여러 개의 자식을 가질 수 있고 이 두 객체는 서로의 존재를 알고 있는 양방향 관계다.
         </div>
         <div class="article-readmore"><a href="/posts/2019-11-14-jpa-one-to-many-collection-set/">Read more...</a></div>
-        <div class="article-floatclear"></div>
-      </article>
-      <article class="article">
-        <a href="/posts/2019-08-05-intellij-appengine-error/" class="article-titles">
-          <h2 class="article-title">IntelliJ 업데이트 후 appengine local 실행 이슈 해결하기</h2>
-          
-        </a>
-        <ul class="article-meta">
-          <li class="article-meta-date"><time>August 5, 2019</time></li>
-          <li class="article-meta-tags">
-            <a href="/tags/intellij/">
-              <i class="fas fa-tag"></i>
-              intellij
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="/tags/appengine/">
-              <i class="fas fa-tag"></i>
-              appengine
-            </a>&nbsp;
-          </li>
-        </ul>
-        <div class="article-content">
-          IntelliJ를 쓰기 시작한지 아직 1년도 안됐지만 거의 분기(?)마다 자동 업데이트가 되는듯 싶은데 이때마다 잘 쓰고있던 appengine local server가 제대로 동작하지 않아서 화가 났었는데 최근에 명확한 솔루션을 찾았기에 이를 기록하고자 한다.  내가 그동안 해왔던 삽질 목록은 아래와 같다.    로컬서버 설정 삭제 후 재셋팅    rebuild(clean) project    cloud code 플러그인 삭제 후 재설치    intelliJ 삭제 후 재설치(…)    위에 내용들 다 쓸모없으니 따라하지 않아도 된다.
-        </div>
-        <div class="article-readmore"><a href="/posts/2019-08-05-intellij-appengine-error/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
     </section>

@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
     <copyright>&amp;copy; Copyright 2020 YeongCheon</copyright>
-    <lastBuildDate>Mon, 18 May 2020 13:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2020 23:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yeongcheon.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,9 +15,36 @@
     <item>
       <title>emacs</title>
       <link>https://yeongcheon.github.io/tags/emacs/</link>
-      <pubDate>Mon, 18 May 2020 13:00:00 +0900</pubDate>
+      <pubDate>Fri, 22 May 2020 23:00:00 +0900</pubDate>
       
       <guid>https://yeongcheon.github.io/tags/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://yeongcheon.github.io/tags/hugo/</link>
+      <pubDate>Fri, 22 May 2020 23:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>latex</title>
+      <link>https://yeongcheon.github.io/tags/latex/</link>
+      <pubDate>Fri, 22 May 2020 23:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/tags/latex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>org-mode</title>
+      <link>https://yeongcheon.github.io/tags/org-mode/</link>
+      <pubDate>Fri, 22 May 2020 23:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/tags/org-mode/</guid>
       <description></description>
     </item>
     
@@ -243,24 +270,6 @@
       <pubDate>Sun, 03 Mar 2019 19:00:00 +0900</pubDate>
       
       <guid>https://yeongcheon.github.io/tags/github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hugo</title>
-      <link>https://yeongcheon.github.io/tags/hugo/</link>
-      <pubDate>Sun, 03 Mar 2019 19:00:00 +0900</pubDate>
-      
-      <guid>https://yeongcheon.github.io/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>org-mode</title>
-      <link>https://yeongcheon.github.io/tags/org-mode/</link>
-      <pubDate>Sun, 03 Mar 2019 19:00:00 +0900</pubDate>
-      
-      <guid>https://yeongcheon.github.io/tags/org-mode/</guid>
       <description></description>
     </item>
     
