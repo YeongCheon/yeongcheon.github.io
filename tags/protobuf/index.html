@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.74.2" />
   <link href="/tags/protobuf/index.xml" rel="alternate" type="application/rss+xml" title="김영천 블로그" />
   <link href="/tags/protobuf/index.xml" rel="feed" type="application/rss+xml" title="김영천 블로그" />
 
@@ -41,11 +41,8 @@
 </header>
 <hr class="site-header-bottom">
 
-  <div class="breadcrumb">
-    <a href="/tags/">Tags</a> / Protobuf
-  </div>
   <div class="main" role="main">
-    <section class="list taxonomy-list">
+    <section class="list term-list">
       <article class="article">
         <a href="/posts/2020-04-15-grpc-build-with-googleapis/" class="article-titles">
           <h2 class="article-title">grpc-gateway를 이용한 JSON 통신</h2>
@@ -67,7 +64,9 @@
           </li>
         </ul>
         <div class="article-content">
-          목표   grpc-gateway를 이용한 통신을 하기 위해 작성한 .proto 파일을 컴파일 하는 방법을 알아보겠습니다. source code   우선 컴파일 하고자 하는 소스코드를 살펴봅시다. 이 코드는 grpc-gateway에 있는 예제와 동일합니다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  syntax = &#34;proto3&#34;;package example;// myService.proto import &#34;google/api/annotations.proto&#34;;message StringMessage { string value = 1;}service YourService { rpc Echo(StringMessage) returns (StringMessage) { option (google.
+          목표  grpc-gateway를 이용한 통신을 하기 위해 작성한 .proto 파일을 컴파일 하는 방법을 알아보겠습니다.
+  source code  우선 컴파일 하고자 하는 소스코드를 살펴봅시다. 이 코드는 grpc-gateway에 있는 예제와 동일합니다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  syntax = &#34;proto3&#34;;package example;// myService.proto import &#34;google/api/annotations.proto&#34;;message StringMessage { string value = 1;}service YourService { rpc Echo(StringMessage) returns (StringMessage) { option (google.
         </div>
         <div class="article-readmore"><a href="/posts/2020-04-15-grpc-build-with-googleapis/">Read more...</a></div>
         <div class="article-floatclear"></div>

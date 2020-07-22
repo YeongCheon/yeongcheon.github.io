@@ -18,7 +18,8 @@
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0900</pubDate>
       
       <guid>https://yeongcheon.github.io/posts/2019-06-19-emacs-hangul/</guid>
-      <description> 아래의 내용을 .emacs 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다. 1 2 3 4 5 6 7  (set-fontset-font t &amp;#39;hangul (font-spec :family &amp;#34;D2Coding&amp;#34;)) (set-language-environment &amp;#34;Korean&amp;#34;) (prefer-coding-system &amp;#39;utf-8) (setq default-input-method &amp;#34;korean-hangul390&amp;#34;) (setq default-korean-keyboard &amp;#34;390&amp;#34;) (global-set-key (kbd &amp;#34;&amp;lt;S-kana&amp;gt;&amp;#34;) &amp;#39;toggle-input-method)    </description>
+      <description> 아래의 내용을 .emacs 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다.
+1 2 3 4 5 6 7  (set-fontset-font t &amp;#39;hangul (font-spec :family &amp;#34;D2Coding&amp;#34;)) (set-language-environment &amp;#34;Korean&amp;#34;) (prefer-coding-system &amp;#39;utf-8) (setq default-input-method &amp;#34;korean-hangul390&amp;#34;) (setq default-korean-keyboard &amp;#34;390&amp;#34;) (global-set-key (kbd &amp;#34;&amp;lt;S-kana&amp;gt;&amp;#34;) &amp;#39;toggle-input-method)    </description>
     </item>
     
   </channel>

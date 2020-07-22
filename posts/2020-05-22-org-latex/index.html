@@ -16,7 +16,7 @@
   <meta property="og:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.74.2" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -84,23 +84,26 @@
       
       
 <p>
-이 글은 <a href="https://themes.gohugo.io/theme/hugo-coder/post/math-typesetting.html">여기</a><a href="https://emacs.stackexchange.com/questions/2650/how-should-i-write-inline-equations-in-org-mode-so-they-export-to-latex-properly">저기</a>를 참고해서 작성되었습니다.
-</p>
+이 글은 <a href="https://themes.gohugo.io/theme/hugo-coder/post/math-typesetting.html">여기</a><a href="https://emacs.stackexchange.com/questions/2650/how-should-i-write-inline-equations-in-org-mode-so-they-export-to-latex-properly">저기</a>를 참고해서 작성되었습니다.</p>
+<div id="outline-container-headline-1" class="outline-2">
 <h2 id="headline-1">
 목표
 </h2>
-<p>
-이 문서에는 <a href="https://gohugo.io/">hugo</a> + <a href="https://orgmode.org/">org mode</a> + <a href="https://katex.org/">kaTex</a> 를 조합해서 글을 작성하는 법을 설명합니다. hugo와 org mode는 이미 사용 중이라고 가정하고 hugo에 kaTex를 설정하는 법을 중점적으로 설명합니다.
-</p>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>이 문서에는 <a href="https://gohugo.io/">hugo</a> + <a href="https://orgmode.org/">org mode</a> + <a href="https://katex.org/">kaTex</a> 를 조합해서 글을 작성하는 법을 설명합니다. hugo와 org mode는 이미 사용 중이라고 가정하고 hugo에 kaTex를 설정하는 법을 중점적으로 설명합니다.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
 <h2 id="headline-2">
 Installation kaTex
 </h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<div id="outline-container-headline-3" class="outline-3">
 <h3 id="headline-3">
 math.html 파일 생성
 </h3>
-<p>
-hugo에서 kaTex를 사용하려면 kaTex 모듈을 불러와야 합니다. <code>/layouts/partials/math.html</code> 파일을 생성하고 아래의 내용을 추가합니다. 혹시 이미 math.html 파일명을 사용중이라면 다른 파일명으로 바꿔서 생성해도 상관없어요.
-</p>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>hugo에서 kaTex를 사용하려면 kaTex 모듈을 불러와야 합니다. <code>/layouts/partials/math.html</code> 파일을 생성하고 아래의 내용을 추가합니다. 혹시 이미 math.html 파일명을 사용중이라면 다른 파일명으로 바꿔서 생성해도 상관없어요.</p>
 <div class="src src-html">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -115,12 +118,14 @@ hugo에서 kaTex를 사용하려면 kaTex 모듈을 불러와야 합니다. <cod
 </div>
 </div>
 </div>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
 <h3 id="headline-4">
 math.html 불러오기
 </h3>
-<p>
-이제 위에서 작업한 <code>math.html</code> 파일을 불러오는 코드를 작성해야 합니다. 이 코드는 기존에 있던 <code>/layouts/partials/head.html</code> 파일을 열어서 추가해줍니다. 저같은 경우엔 <code>head_custom.html</code> 파일이 별도로 있어서 거기에 추가한 후 이 파일을 head.html에 추가했지만 어떤 식으로 하든 동작은 동일합니다. 일단 코드를 봅시다.
-</p>
+<div id="outline-text-headline-4" class="outline-text-3">
+<p>이제 위에서 작업한 <code>math.html</code> 파일을 불러오는 코드를 작성해야 합니다. 이 코드는 기존에 있던 <code>/layouts/partials/head.html</code> 파일을 열어서 추가해줍니다. 저같은 경우엔 <code>head_custom.html</code> 파일이 별도로 있어서 거기에 추가한 후 이 파일을 head.html에 추가했지만 어떤 식으로 하든 동작은 동일합니다. 일단 코드를 봅시다.</p>
 <div class="src src-html">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -136,8 +141,7 @@ math.html 불러오기
 </div>
 </div>
 <p>
-   사이트 전체 설정(<code>config.toml</code>)에서 <strong>math</strong> 파라메터가 true이거나 또는 각 문서에서 <strong>math</strong> 파라메터가 true일 경우에 우리가 이전 단계에서 작성한 math.html 파일을 불러오겠다는 코드입니다. 수식이 자주 등장하는 사이트는 <code>config.toml</code> 에서 true 지정하는 게 편하겠지만 수식이 일부 문서에서만 등장하는 사이트의 경우엔 각 문서 설정에서 math 파라메터를 true로 지정하는 게 좋아요. 참고로 이 문서에 사용된 설정은 아래와 같습니다.
-</p>
+   사이트 전체 설정(<code>config.toml</code>)에서 <strong>math</strong> 파라메터가 true이거나 또는 각 문서에서 <strong>math</strong> 파라메터가 true일 경우에 우리가 이전 단계에서 작성한 math.html 파일을 불러오겠다는 코드입니다. 수식이 자주 등장하는 사이트는 <code>config.toml</code> 에서 true 지정하는 게 편하겠지만 수식이 일부 문서에서만 등장하는 사이트의 경우엔 각 문서 설정에서 math 파라메터를 true로 지정하는 게 좋아요. 참고로 이 문서에 사용된 설정은 아래와 같습니다.</p>
 <div class="src src-html">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -148,21 +152,29 @@ math.html 불러오기
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
 <h2 id="headline-5">
 실제로 사용해보기
 </h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<div id="outline-container-headline-6" class="outline-3">
 <h3 id="headline-6">
 수식 작성법
 </h3>
-<p>
-기본적인 tex 문법은 <a href="https://ko.wikipedia.org/wiki/%25EC%259C%2584%25ED%2582%25A4%25EB%25B0%25B1%25EA%25B3%25BC:TeX_%25EB%25AC%25B8%25EB%25B2%2595">위키</a>에 설명이 잘 되어있습니다.
-</p>
+<div id="outline-text-headline-6" class="outline-text-3">
+<p>기본적인 tex 문법은 <a href="https://ko.wikipedia.org/wiki/%25EC%259C%2584%25ED%2582%25A4%25EB%25B0%25B1%25EA%25B3%25BC:TeX_%25EB%25AC%25B8%25EB%25B2%2595">위키</a>에 설명이 잘 되어있습니다.</p>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-3">
 <h3 id="headline-7">
 inline block(a.k.a Parens)
 </h3>
-<p>
-본문 사이에 자연스럽게 문법을 추가하고 싶다면(예를 들어 \(E=mc^2\) 이런 식으로)
-</p>
+<div id="outline-text-headline-7" class="outline-text-3">
+<p>본문 사이에 자연스럽게 문법을 추가하고 싶다면(예를 들어 \(E=mc^2\) 이런 식으로)</p>
 <div class="src src-text">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -173,14 +185,16 @@ inline block(a.k.a Parens)
 </div>
 </div>
 </div>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-3">
 <h3 id="headline-8">
 block
 </h3>
-<p>
-수식을 <strong>똭</strong> 강조해서 표현하고 싶을 경우도 있습니다.
+<div id="outline-text-headline-8" class="outline-text-3">
+<p>수식을 <strong>똭</strong> 강조해서 표현하고 싶을 경우도 있습니다.
    $$E=mc^2$$
-   이렇게 하면 수식이 가운데 정렬이 되면서 눈에 확 들어오죠? 실제 문서에는 다음처럼 작성하면 됩니다.
-</p>
+   이렇게 하면 수식이 가운데 정렬이 되면서 눈에 확 들어오죠? 실제 문서에는 다음처럼 작성하면 됩니다.</p>
 <div class="src src-text">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -188,6 +202,10 @@ block
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"> $$E=mc^2$$</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

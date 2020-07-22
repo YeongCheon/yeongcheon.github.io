@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>envoy on 김영천 블로그</title>
+    <link>https://yeongcheon.github.io/tags/envoy/</link>
+    <description>Recent content in envoy on 김영천 블로그</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <copyright>&amp;copy; Copyright 2020 YeongCheon</copyright>
+    <lastBuildDate>Fri, 12 Jun 2020 22:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://yeongcheon.github.io/tags/envoy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>gRPC를 웹브라우저에 호출해보자(a.k.a Typescript)</title>
+      <link>https://yeongcheon.github.io/posts/2020-06-12-grpc-for-web/</link>
+      <pubDate>Fri, 12 Jun 2020 22:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/posts/2020-06-12-grpc-for-web/</guid>
+      <description>목표  브라우저에서 rpc를 호출하고 싶습니다. 하지만 2020년 7월 기준으로 브라우저에서 gRPC의 rpc를 직접 호출하는 건 불가능합니다. 그치만 envoy Proxy와 함께라면 가능합니다. 이 문서에서는 grpc-web을 이용해 생성된 Typescript 파일을 이용해 server streaming rpc를 호출하는 방법을 설명합니다. 서버는 Go, 클라이언트는 Typescript 언어를 사용합니다.
+  proto 파일 작성  특정 채팅방에 접속해서 server stream을 얻는 rpc를 작성해봅시다. 양방향 스트림이 아니라 서버사이드 스트림으로 한 이유는 현재 grpc-web에서는 양방향 스트림을 지원하지 않기 때문입니다(클라이언트 스트림도 지원하지 않습니다).</description>
+    </item>
+    
+  </channel>
+</rss>

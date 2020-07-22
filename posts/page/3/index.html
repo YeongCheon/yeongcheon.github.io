@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.74.2" />
   <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="김영천 블로그" />
   <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="김영천 블로그" />
 
@@ -46,6 +46,29 @@
   </div>
   <div class="main" role="main">
     <section class="list section-list">
+      <article class="article">
+        <a href="/posts/2018-09-27-emacs-selectall/" class="article-titles">
+          <h2 class="article-title">emacs에서 커서이동 없이 buffer 전체 복사하기</h2>
+          
+        </a>
+        <ul class="article-meta">
+          <li class="article-meta-date"><time>September 27, 2018</time></li>
+          <li class="article-meta-tags">
+            <a href="/tags/emacs/">
+              <i class="fas fa-tag"></i>
+              emacs
+            </a>&nbsp;
+          </li>
+        </ul>
+        <div class="article-content">
+          보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
+원래는 어떻게 쓰고 있었어요? 내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와 같다.
+M - &lt;, M - SPC, M - &gt;, M - w
+이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다.
+        </div>
+        <div class="article-readmore"><a href="/posts/2018-09-27-emacs-selectall/">Read more...</a></div>
+        <div class="article-floatclear"></div>
+      </article>
       <article class="article">
         <a href="/posts/2018-09-21-tslint-in-emacs/" class="article-titles">
           <h2 class="article-title">emacs에서 tslint 이용하기</h2>
@@ -337,91 +360,33 @@ S2 라이브러리란? S2 라이브러리는 구글에서 비공식적으로(not
         <div class="article-readmore"><a href="/posts/2017-10-14-go-swagger02/">Read more...</a></div>
         <div class="article-floatclear"></div>
       </article>
-      <article class="article">
-        <a href="/posts/2017-10-06-go-swagger01/" class="article-titles">
-          <h2 class="article-title">go swagger 사용법</h2>
-          
-        </a>
-        <ul class="article-meta">
-          <li class="article-meta-date"><time>October 6, 2017</time></li>
-          <li class="article-meta-tags">
-            <a href="/tags/go/">
-              <i class="fas fa-tag"></i>
-              go
-            </a>&nbsp;
-          </li>
-          <li class="article-meta-tags">
-            <a href="/tags/swagger/">
-              <i class="fas fa-tag"></i>
-              swagger
-            </a>&nbsp;
-          </li>
-        </ul>
-        <div class="article-content">
-          Intro  이 문서는 goswagger를 이용해 golang으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 ubuntu 16.04LTS, golang 1.8을 사용중이다.
-이 문서를 작성하며 참고한 사이트는 아래와 같다. 사실 이 문서 안보고 아래 목록만 살펴봐도 된다.
- swagger 공식 사이트 goswagger.io yundream님의 사이트, 상당히 정리가 잘 되어있다. 구글링&hellip;  goSwagger 설치  github 페이지의 README 파일을 보면 아래의 명령어를 쓰라고 한다.
-echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.
-        </div>
-        <div class="article-readmore"><a href="/posts/2017-10-06-go-swagger01/">Read more...</a></div>
-        <div class="article-floatclear"></div>
-      </article>
     </section>
     
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/posts/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/posts/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/posts/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/posts/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/posts/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/posts/page/3/">3</a></li>
-    
-    
-    <li class="page-item disabled">
-    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/posts/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/posts/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/posts/page/2/">2</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/posts/page/3/">3</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/posts/page/4/">4</a>
+  </li>
+  <li class="page-item">
+    <a href="/posts/page/4/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/posts/page/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

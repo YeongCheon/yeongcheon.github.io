@@ -16,7 +16,7 @@
   <meta property="og:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.74.2" />
 
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
@@ -66,18 +66,20 @@
       </ul>
       
       
+<div id="outline-container-headline-1" class="outline-2">
 <h2 id="headline-1">
 목표
 </h2>
-<p>
-<a href="https://blog.banksalad.com/tech/production-ready-grpc-in-golang/#grpc-gateway%25EB%25A5%25BC-%25EC%259D%25B4%25EC%259A%25A9%25ED%2595%259C-json-%25ED%2586%25B5%25EC%258B%25A0">grpc-gateway를 이용한 통신</a>을 하기 위해 작성한 <code>.proto</code> 파일을 컴파일 하는 방법을 알아보겠습니다.
-</p>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p><a href="https://blog.banksalad.com/tech/production-ready-grpc-in-golang/#grpc-gateway%25EB%25A5%25BC-%25EC%259D%25B4%25EC%259A%25A9%25ED%2595%259C-json-%25ED%2586%25B5%25EC%258B%25A0">grpc-gateway를 이용한 통신</a>을 하기 위해 작성한 <code>.proto</code> 파일을 컴파일 하는 방법을 알아보겠습니다.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
 <h2 id="headline-2">
 source code
 </h2>
-<p>
-우선 컴파일 하고자 하는 소스코드를 살펴봅시다. 이 코드는 <a href="https://github.com/grpc-ecosystem/grpc-gateway#usage">grpc-gateway</a>에 있는 예제와 동일합니다.
-</p>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>우선 컴파일 하고자 하는 소스코드를 살펴봅시다. 이 코드는 <a href="https://github.com/grpc-ecosystem/grpc-gateway#usage">grpc-gateway</a>에 있는 예제와 동일합니다.</p>
 <div class="src src-proto">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -122,15 +124,15 @@ source code
 </div>
 </div>
 </div>
-<p>
-위의 예제코드에서 신경써야 할 부분은 14-17 라인에서 사용된 <code>google.api.http</code> option이다. 이 어노테이션은 사용자가 작성한 게 아니라 <a href="https://github.com/grpc-ecosystem">grpc-ecosystem</a>의 일부입니다(정확히는 <a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway</a>).
-</p>
+<p>위의 예제코드에서 신경써야 할 부분은 14-17 라인에서 사용된 <code>google.api.http</code> option이다. 이 어노테이션은 사용자가 작성한 게 아니라 <a href="https://github.com/grpc-ecosystem">grpc-ecosystem</a>의 일부입니다(정확히는 <a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway</a>).</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
 <h2 id="headline-3">
 에러 살펴보기
 </h2>
-<p>
-우선 단순하게 <code>protoc -I. test.proto --go_out=plugins:grpc.</code> 명령어를 이용해 컴파일 하면 다음과 비슷한 메세지가 뜰 것입니다.
-</p>
+<div id="outline-text-headline-3" class="outline-text-2">
+<p>우선 단순하게 <code>protoc -I. test.proto --go_out=plugins:grpc.</code> 명령어를 이용해 컴파일 하면 다음과 비슷한 메세지가 뜰 것입니다.</p>
 <div class="src src-text">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -144,20 +146,21 @@ myService.proto:4:1: Import &#34;google/api/annotations.proto&#34; was not found
 </div>
 </div>
 <p>
-  이제부터 이 에러를 고쳐봅시다.
-</p>
+  이제부터 이 에러를 고쳐봅시다.</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
 <h2 id="headline-4">
 FIX
 </h2>
-<p>
-에러 메세지가 아주 명료하니 긴 말 하지말고 바로 방법을 알아보죠.
-</p>
+<div id="outline-text-headline-4" class="outline-text-2">
+<p>에러 메세지가 아주 명료하니 긴 말 하지말고 바로 방법을 알아보죠.</p>
+<div id="outline-container-headline-5" class="outline-3">
 <h3 id="headline-5">
 grpc-gateway Download
 </h3>
-<p>
-우선 grpc-gateway 프로젝트를 git clone 명령어를 이용해 원하는 위치에 다운받습니다.
-</p>
+<div id="outline-text-headline-5" class="outline-text-3">
+<p>우선 grpc-gateway 프로젝트를 git clone 명령어를 이용해 원하는 위치에 다운받습니다.</p>
 <div class="src src-text">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -168,12 +171,14 @@ grpc-gateway Download
 </div>
 </div>
 </div>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-3">
 <h3 id="headline-6">
 fix compile command
 </h3>
-<p>
-컴파일 명령어에 위에서 내려받은 grpc-gateway 프로젝트의 <code>third_party/googleapis</code> 경로를 추가해줍니다.
-</p>
+<div id="outline-text-headline-6" class="outline-text-3">
+<p>컴파일 명령어에 위에서 내려받은 grpc-gateway 프로젝트의 <code>third_party/googleapis</code> 경로를 추가해줍니다.</p>
 <div class="src src-text">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -185,8 +190,11 @@ fix compile command
 </div>
 </div>
 <p>
-   그럼 이제 정상적으로 컴파일이 완료되는걸 확인할 수 있습니다.
-</p>
+   그럼 이제 정상적으로 컴파일이 완료되는걸 확인할 수 있습니다.</p>
+</div>
+</div>
+</div>
+</div>
 
     </article>
 

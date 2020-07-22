@@ -16,7 +16,7 @@
   <meta property="og:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.74.2" />
 
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
@@ -84,15 +84,17 @@
 </nav>
 </aside>
       
+<div id="outline-container-headline-1" class="outline-2">
 <h2 id="headline-1">
 기본 문법
 </h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<div id="outline-container-headline-2" class="outline-3">
 <h3 id="headline-2">
 if 사용법
 </h3>
-<p>
-kotlin에서는 if, when, try catch문을 활용해서 변수에 값을 편하게 할당할 수 있다. 예를 들어서 자바에서 아래와 같이 쓰는 문법이 있다고 해보자.
-</p>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>kotlin에서는 if, when, try catch문을 활용해서 변수에 값을 편하게 할당할 수 있다. 예를 들어서 자바에서 아래와 같이 쓰는 문법이 있다고 해보자.</p>
 <div class="src src-kotlin">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -124,8 +126,7 @@ kotlin에서는 if, when, try catch문을 활용해서 변수에 값을 편하�
 </div>
 </div>
 <p>
-   위와 동일한 문법을 코틀린에서는 아래처럼 쓸 수 있다.
-</p>
+   위와 동일한 문법을 코틀린에서는 아래처럼 쓸 수 있다.</p>
 <div class="src src-kotlin">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -151,14 +152,15 @@ kotlin에서는 if, when, try catch문을 활용해서 변수에 값을 편하�
 </div>
 </div>
 <p>
-  위와 같이 코드를 작성하면 if문 안에 각 block 안의 가장 마지막 코드가 name 변수 안에 할당된다. 그리고 위 예제에서 name 변수의 타입은 자동으로 <strong>String?</strong> 이 된다. 만약 else 블록에서 마찬가지로 String 타입을 반환하면 name 변수의 타입은 <strong>String</strong>, 그 이외에 다른 타입을 반환하면 <strong>Any</strong> 타입이 된다.
-</p>
+  위와 같이 코드를 작성하면 if문 안에 각 block 안의 가장 마지막 코드가 name 변수 안에 할당된다. 그리고 위 예제에서 name 변수의 타입은 자동으로 <strong>String?</strong> 이 된다. 만약 else 블록에서 마찬가지로 String 타입을 반환하면 name 변수의 타입은 <strong>String</strong>, 그 이외에 다른 타입을 반환하면 <strong>Any</strong> 타입이 된다.</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
 <h3 id="headline-3">
 when 사용법
 </h3>
-<p>
-자바의 switch문에 해당하는 when, 그리고 try catch 문법도 위처럼 동일하게 사용할 수 있다.
-</p>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>자바의 switch문에 해당하는 when, 그리고 try catch 문법도 위처럼 동일하게 사용할 수 있다.</p>
 <div class="src src-kotlin">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -184,17 +186,22 @@ when 사용법
 </div>
 </div>
 <p>
-  위 코드에서 numberString 변수의 타입은 <strong>String?</strong>, 값은 &#34;one&#34; 이 할당된다.
-</p>
+  위 코드에서 numberString 변수의 타입은 <strong>String?</strong>, 값은 &#34;one&#34; 이 할당된다.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
 <h2 id="headline-4">
 내가 했던 실수
 </h2>
-<p>
-이 섹션이 내가 이번 글을 작성하게 된 이유다. 위에서 설명한 문법을 사용하다가 범하게 된 실수에 대해 이야기하고자 한다. 별것도 아닌 오류이지만 심각한 문제를 야기할 수 있다.
-</p>
+<div id="outline-text-headline-4" class="outline-text-2">
+<p>이 섹션이 내가 이번 글을 작성하게 된 이유다. 위에서 설명한 문법을 사용하다가 범하게 된 실수에 대해 이야기하고자 한다. 별것도 아닌 오류이지만 심각한 문제를 야기할 수 있다.</p>
+<div id="outline-container-headline-5" class="outline-3">
 <h3 id="headline-5">
 잘못된 코드
 </h3>
+<div id="outline-text-headline-5" class="outline-text-3">
 <div class="src src-kotlin">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -234,14 +241,16 @@ when 사용법
 </div>
 </div>
 <p>
-   test02, test03, test04 메서드가 제대로 작성되어 있다는 가정 하에 위 코드는 문법상으로는 전혀 문제가 없는 코드이다. 위 코드에서 문제점을 발견하였는가?
-</p>
+   test02, test03, test04 메서드가 제대로 작성되어 있다는 가정 하에 위 코드는 문법상으로는 전혀 문제가 없는 코드이다. 위 코드에서 문제점을 발견하였는가?</p>
 <p>
-   위 코드에는 dead code가 존재한다. processResult에 값을 할당하는 코드 이후, 즉 test02 메서드는 number 변수의 값에 상관없이 절대 실행되지 않는데 그 이유는 간단하다. 나는 위 코드에서 processResult에 true, 또는 false가 할당될것이라 기대하고 코드를 작성하였지만 <strong>if문 안에 return 키워드를 쓰고 말았다. 그 결과 test 메서드는 number가 1이면 true, 아니면 false를 반환하는 단순한 메서드가 되버리고 말았다.</strong> 
-</p>
+   위 코드에는 dead code가 존재한다. processResult에 값을 할당하는 코드 이후, 즉 test02 메서드는 number 변수의 값에 상관없이 절대 실행되지 않는데 그 이유는 간단하다. 나는 위 코드에서 processResult에 true, 또는 false가 할당될것이라 기대하고 코드를 작성하였지만 <strong>if문 안에 return 키워드를 쓰고 말았다. 그 결과 test 메서드는 number가 1이면 true, 아니면 false를 반환하는 단순한 메서드가 되버리고 말았다.</strong> </p>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-3">
 <h3 id="headline-6">
 제대로 된 코드
 </h3>
+<div id="outline-text-headline-6" class="outline-text-3">
 <div class="src src-kotlin">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -281,14 +290,19 @@ when 사용법
 </div>
 </div>
 <p>
-   <strong>processResult에 값을 할당하는 구문에서 return 키워드를 제거했다.</strong> 이 후 코드는 내가 의도한대로 test02 메서드를 실행한 후 processResult 값에 따라 test03 또는 test04 메서드를 실행시킨 후 그 결과값을 반환한 후 메서드를 종료한다.
-</p>
+   <strong>processResult에 값을 할당하는 구문에서 return 키워드를 제거했다.</strong> 이 후 코드는 내가 의도한대로 test02 메서드를 실행한 후 processResult 값에 따라 test03 또는 test04 메서드를 실행시킨 후 그 결과값을 반환한 후 메서드를 종료한다.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-2">
 <h2 id="headline-7">
 후기
 </h2>
-<p>
-이번 글처럼 아주 기초적인 문법 오류 때문에 꽤 심각한 상황을 맞이한 적이 있어서 이 글을 작성하게 되었다. 예제에서는 별 것 아닌것처럼 보이지만 수많은 코드 속에 위에서 설명한 <strong>문법상 문제는 없지만</strong> 의도한대로 작동하지 않는 코드를 잡아내는건 꽤나 힘이 드는 작업이다. 버그를 잡아내놓고 스스로도 어이가 없어서 실소를 했던 기억이 난다. 다른 사람들은 이런 어이없는 버그는 안 만들길 바란다.
-</p>
+<div id="outline-text-headline-7" class="outline-text-2">
+<p>이번 글처럼 아주 기초적인 문법 오류 때문에 꽤 심각한 상황을 맞이한 적이 있어서 이 글을 작성하게 되었다. 예제에서는 별 것 아닌것처럼 보이지만 수많은 코드 속에 위에서 설명한 <strong>문법상 문제는 없지만</strong> 의도한대로 작동하지 않는 코드를 잡아내는건 꽤나 힘이 드는 작업이다. 버그를 잡아내놓고 스스로도 어이가 없어서 실소를 했던 기억이 난다. 다른 사람들은 이런 어이없는 버그는 안 만들길 바란다.</p>
+</div>
+</div>
 
     </article>
 

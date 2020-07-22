@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.74.2" />
   <link href="/tags/jpa/index.xml" rel="alternate" type="application/rss+xml" title="김영천 블로그" />
   <link href="/tags/jpa/index.xml" rel="feed" type="application/rss+xml" title="김영천 블로그" />
 
@@ -41,11 +41,8 @@
 </header>
 <hr class="site-header-bottom">
 
-  <div class="breadcrumb">
-    <a href="/tags/">Tags</a> / Jpa
-  </div>
   <div class="main" role="main">
-    <section class="list taxonomy-list">
+    <section class="list term-list">
       <article class="article">
         <a href="/posts/2019-11-14-jpa-one-to-many-collection-set/" class="article-titles">
           <h2 class="article-title">JPA OneToMany 필드의 StackOverflowError</h2>
@@ -73,7 +70,9 @@
           </li>
         </ul>
         <div class="article-content">
-          JPA를 사용하다 보면 StackOverflow 에러를 종종 만날 수 있다. 이 글에서는 필드 타입이 Set인 Collection 타입에 아이템을 추가할 경우 StackVoerflow 에러가 발생하는 원인과 그 해결법에 대해 알아보자.  `hashcode`, `equals` 메서드와 관계된 이야기이다. 에러 발생 시나리오  구현 목표   부모객체와 자식객체들을 서버 데이터베이스에 저장하는 기능을 가진 코드가 있었다. 부모객체와 자식객체는 1:n관계로서 하나의 부모가 여러 개의 자식을 가질 수 있고 이 두 객체는 서로의 존재를 알고 있는 양방향 관계다.
+          JPA를 사용하다 보면 StackOverflow 에러를 종종 만날 수 있다. 이 글에서는 필드 타입이 Set인 Collection 타입에 아이템을 추가할 경우 StackVoerflow 에러가 발생하는 원인과 그 해결법에 대해 알아보자.
+ `hashcode`, `equals` 메서드와 관계된 이야기이다.
+에러 발생 시나리오  구현 목표  부모객체와 자식객체들을 서버 데이터베이스에 저장하는 기능을 가진 코드가 있었다. 부모객체와 자식객체는 1:n관계로서 하나의 부모가 여러 개의 자식을 가질 수 있고 이 두 객체는 서로의 존재를 알고 있는 양방향 관계다.
         </div>
         <div class="article-readmore"><a href="/posts/2019-11-14-jpa-one-to-many-collection-set/">Read more...</a></div>
         <div class="article-floatclear"></div>
@@ -111,7 +110,8 @@
           </li>
         </ul>
         <div class="article-content">
-          들어가며   REST API 서버를 java언어에서 사용되는 대표적인 json(또는 xml, yaml, etc…) 라이브러리인 jackson 은 kotlin에서도 사용이 가능하다. JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경우가 있다. 이 문제를 jackson을 이용해 json형식으로 이쁘게 변환하는 법을 알아보자. 요구사항   데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자.
+          들어가며  REST API 서버를 java언어에서 사용되는 대표적인 json(또는 xml, yaml, etc…) 라이브러리인 jackson 은 kotlin에서도 사용이 가능하다. JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경우가 있다. 이 문제를 jackson을 이용해 json형식으로 이쁘게 변환하는 법을 알아보자.
+  요구사항  데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자.
         </div>
         <div class="article-readmore"><a href="/posts/2019-03-01-jpa-jackson/">Read more...</a></div>
         <div class="article-floatclear"></div>

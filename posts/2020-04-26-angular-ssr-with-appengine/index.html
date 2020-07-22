@@ -16,7 +16,7 @@
   <meta property="og:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:image" content="https://yeongcheon.github.io/images/profile.png" />
   <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.71.1" />
+  <meta name="generator" content="Hugo 0.74.2" />
 
 
   <link rel="stylesheet" href="/css/style.css" media="all" />
@@ -100,18 +100,20 @@
 </nav>
 </aside>
       
+<div id="outline-container-headline-1" class="outline-2">
 <h2 id="headline-1">
 들어가며
 </h2>
-<p>
-이 문서는 기본적으로 <a href="https://angular.io/guide/universal">앵귤러 공식 SSR 가이드</a>를 따라하며 학습한 내용을 정리한 것입니다. SSR에 대해 궁금하시다면 <a href="https://velog.io/@zansol/%25ED%2599%2595%25EC%259D%25B8%25ED%2595%2598%25EA%25B8%25B0-%25EC%2584%259C%25EB%25B2%2584%25EC%2582%25AC%25EC%259D%25B4%25EB%2593%259C%25EB%25A0%258C%25EB%258D%2594%25EB%25A7%2581SSR-%25ED%2581%25B4%25EB%259D%25BC%25EC%259D%25B4%25EC%2596%25B8%25ED%258A%25B8%25EC%2582%25AC%25EC%259D%25B4%25EB%2593%259C%25EB%25A0%258C%25EB%258D%2594%25EB%25A7%2581CSR">이 링크</a>를 참고하세요. 이 문서는 angular, appEngine을 사용할 줄 아는 사람을 대상으로 작성되었습니다.
-</p>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>이 문서는 기본적으로 <a href="https://angular.io/guide/universal">앵귤러 공식 SSR 가이드</a>를 따라하며 학습한 내용을 정리한 것입니다. SSR에 대해 궁금하시다면 <a href="https://velog.io/@zansol/%25ED%2599%2595%25EC%259D%25B8%25ED%2595%2598%25EA%25B8%25B0-%25EC%2584%259C%25EB%25B2%2584%25EC%2582%25AC%25EC%259D%25B4%25EB%2593%259C%25EB%25A0%258C%25EB%258D%2594%25EB%25A7%2581SSR-%25ED%2581%25B4%25EB%259D%25BC%25EC%259D%25B4%25EC%2596%25B8%25ED%258A%25B8%25EC%2582%25AC%25EC%259D%25B4%25EB%2593%259C%25EB%25A0%258C%25EB%258D%2594%25EB%25A7%2581CSR">이 링크</a>를 참고하세요. 이 문서는 angular, appEngine을 사용할 줄 아는 사람을 대상으로 작성되었습니다.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
 <h2 id="headline-2">
 프로젝트 생성
 </h2>
-<p>
-우선 앵귤러 프로젝트를 하나 생성해봅시다. 이 예제는 angular9 버전을 기준으로 작성되었습니다.
-</p>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>우선 앵귤러 프로젝트를 하나 생성해봅시다. 이 예제는 angular9 버전을 기준으로 작성되었습니다.</p>
 <div class="src src-bash">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -122,12 +124,14 @@
 </div>
 </div>
 </div>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
 <h2 id="headline-3">
 express-engine 추가
 </h2>
-<p>
-생성된 프로젝트 내부에서 아래의 명령어를 실행합니다.
-</p>
+<div id="outline-text-headline-3" class="outline-text-2">
+<p>생성된 프로젝트 내부에서 아래의 명령어를 실행합니다.</p>
 <div class="src src-bash">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -139,74 +143,51 @@ express-engine 추가
 </div>
 </div>
 <p>
-  명령어를 성공적으로 실행했다면 아래의 파일이 추가되었을 것입니다.
-</p>
+  명령어를 성공적으로 실행했다면 아래의 파일이 추가되었을 것입니다.</p>
 <ul>
 <li>
-<p>
-server.ts
-</p>
+<p>server.ts</p>
 </li>
 <li>
-<p>
-src/app/app.server.module.ts
-</p>
+<p>src/app/app.server.module.ts</p>
 </li>
 <li>
-<p>
-src/main.server.ts
-</p>
+<p>src/main.server.ts</p>
 </li>
 <li>
-<p>
-tsconfig.server.json
-</p>
+<p>tsconfig.server.json</p>
 </li>
 </ul>
-<p>
-그리고 기존에 내용이 바뀐 파일들도 있습니다.
-</p>
+<p>그리고 기존에 내용이 바뀐 파일들도 있습니다.</p>
 <ul>
 <li>
-<p>
-angular.json
-</p>
+<p>angular.json</p>
 </li>
 <li>
-<p>
-package-lock.json
-</p>
+<p>package-lock.json</p>
 </li>
 <li>
-<p>
-package.json
-</p>
+<p>package.json</p>
 </li>
 <li>
-<p>
-src/app/app-routing.module.ts
-</p>
+<p>src/app/app-routing.module.ts</p>
 </li>
 <li>
-<p>
-src/app/app.module.ts
-</p>
+<p>src/app/app.module.ts</p>
 </li>
 <li>
-<p>
-src/main.ts
-</p>
+<p>src/main.ts</p>
 </li>
 </ul>
-<p>
-당장은 파일 내용들을 신경쓸 필요는 없고 일단 실행부터 시켜보죠.
-</p>
+<p>당장은 파일 내용들을 신경쓸 필요는 없고 일단 실행부터 시켜보죠.</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
 <h2 id="headline-4">
 local server 실행
 </h2>
-<p>
-아래의 명령어를 이용해서 앵귤러 프로젝트를 실행해봅니다.
-</p>
+<div id="outline-text-headline-4" class="outline-text-2">
+<p>아래의 명령어를 이용해서 앵귤러 프로젝트를 실행해봅니다.</p>
 <div class="src src-bash">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -217,14 +198,15 @@ local server 실행
 </div>
 </div>
 </div>
-<p>
-<a href="http://localhost:4200">http://localhost:4200</a> 에 접속해보면 이쁜 화면을 볼 수 있습니다.
-</p>
+<p><a href="http://localhost:4200">http://localhost:4200</a> 에 접속해보면 이쁜 화면을 볼 수 있습니다.</p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
 <h2 id="headline-5">
 package.json 수정
 </h2>
-<p>
-우리는 이 어플리케이션을 appEngine에 배포하는게 목적입니다. 즉, node express engine을 배포한다는 소리인데 그러기 위해선 <code>package.json</code> 파일을 수정해야 합니다. package.json의 정보를 아래처럼 수정해줍시다(참고로 필자는 nodejs를 잘 모릅니다).
+<div id="outline-text-headline-5" class="outline-text-2">
+<p>우리는 이 어플리케이션을 appEngine에 배포하는게 목적입니다. 즉, node express engine을 배포한다는 소리인데 그러기 위해선 <code>package.json</code> 파일을 수정해야 합니다. package.json의 정보를 아래처럼 수정해줍시다(참고로 필자는 nodejs를 잘 모릅니다).
   <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -271,14 +253,15 @@ package.json 수정
   </code></pre></td></tr></table>
 </div>
 </div>
-  <code>main</code> 속성을 추가하고 scripts.start 속성의 내용을 바꿔주었습니다.
-</p>
+  <code>main</code> 속성을 추가하고 scripts.start 속성의 내용을 바꿔주었습니다.</p>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
 <h2 id="headline-6">
 build for deploy
 </h2>
-<p>
-이제 배포를 하기 위한 빌드를 할 차례입니다. 아래의 명령어를 입력해보죠.
-</p>
+<div id="outline-text-headline-6" class="outline-text-2">
+<p>이제 배포를 하기 위한 빌드를 할 차례입니다. 아래의 명령어를 입력해보죠.</p>
 <div class="src src-bash">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -289,9 +272,7 @@ build for deploy
 </div>
 </div>
 </div>
-<p>
-빌드를 완료하면 <code>dist</code> 폴더 아래에 다음과 같은 파일들이 생성되어 있을것입니다..
-</p>
+<p>빌드를 완료하면 <code>dist</code> 폴더 아래에 다음과 같은 파일들이 생성되어 있을것입니다..</p>
 <div class="src src-tree">
 <pre><code class="language-tree" data-lang="tree">dist/
 └── test
@@ -309,15 +290,15 @@ build for deploy
     └── server
         └── main.js</code></pre>
 </div>
-<p>
-이제 앱엔진 배포를 하기 위해서 앵귤러 측에서 할 작업은 모두 끝났습니다. 다음은 appEngine 설정을 위한 <code>app.yaml</code> 파일을 작성해봅시다.
-</p>
+<p>이제 앱엔진 배포를 하기 위해서 앵귤러 측에서 할 작업은 모두 끝났습니다. 다음은 appEngine 설정을 위한 <code>app.yaml</code> 파일을 작성해봅시다.</p>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-2">
 <h2 id="headline-7">
 app.yaml 생성 및 배포
 </h2>
-<p>
-프로젝트 최상단에 <code>app.yaml</code> 파일을 생성합니다. 이 파일은 앱엔진에 배포를 하기 위한 파일이며 내용은 아래와 같이 작성해줍니다.
-</p>
+<div id="outline-text-headline-7" class="outline-text-2">
+<p>프로젝트 최상단에 <code>app.yaml</code> 파일을 생성합니다. 이 파일은 앱엔진에 배포를 하기 위한 파일이며 내용은 아래와 같이 작성해줍니다.</p>
 <div class="src src-yaml">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -328,9 +309,7 @@ app.yaml 생성 및 배포
 </div>
 </div>
 </div>
-<p>
-내용은 간단합니다. 그냥 nodejs 환경을 사용하겠다는 의미입니다. 이제 이 파일과 이전 단계에서 빌드한 파일들을 기반으로 실제 <strong>배포</strong> 를 해봅시다.
-</p>
+<p>내용은 간단합니다. 그냥 nodejs 환경을 사용하겠다는 의미입니다. 이제 이 파일과 이전 단계에서 빌드한 파일들을 기반으로 실제 <strong>배포</strong> 를 해봅시다.</p>
 <div class="src src-bash">
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -341,15 +320,17 @@ app.yaml 생성 및 배포
 </div>
 </div>
 </div>
-<p>
-위 동작이 마무리 되면 <code>gcloud app browse</code> 명령어를 사용해 실제 앱엔진이 정상적으로 동작하는 걸 확인할 수 있습니다. 
-</p>
+<p>위 동작이 마무리 되면 <code>gcloud app browse</code> 명령어를 사용해 실제 앱엔진이 정상적으로 동작하는 걸 확인할 수 있습니다. </p>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-2">
 <h2 id="headline-8">
 마무리
 </h2>
-<p>
-이 예제만 가지고는 ssr로 인해 얻는 이점이 잘 드러나지 않습니다. 하지만 이 후에 프로젝트가 점점 커지면서 초기에 구동할 스크립트가 무거워지거나, <a href="https://mygumi.tistory.com/24">dynamic open graph</a>를 적용할 때 매우 유용하게 사용할 수 있습니다. 앵귤러에서 dynamic open graph를 구현할때는 <a href="https://dev.to/andreilm/dynamic-social-media-tags-with-angular-7-3a5">이 링크</a>를 참고하세요.
-</p>
+<div id="outline-text-headline-8" class="outline-text-2">
+<p>이 예제만 가지고는 ssr로 인해 얻는 이점이 잘 드러나지 않습니다. 하지만 이 후에 프로젝트가 점점 커지면서 초기에 구동할 스크립트가 무거워지거나, <a href="https://mygumi.tistory.com/24">dynamic open graph</a>를 적용할 때 매우 유용하게 사용할 수 있습니다. 앵귤러에서 dynamic open graph를 구현할때는 <a href="https://dev.to/andreilm/dynamic-social-media-tags-with-angular-7-3a5">이 링크</a>를 참고하세요.</p>
+</div>
+</div>
 
     </article>
 
