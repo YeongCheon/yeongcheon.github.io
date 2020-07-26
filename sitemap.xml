@@ -3,6 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://yeongcheon.github.io/about/</loc>
+    <lastmod>2020-07-26T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/tags/profile/</loc>
+    <lastmod>2020-07-26T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/tags/</loc>
+    <lastmod>2020-07-26T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yeongcheon.github.io/</loc>
+    <lastmod>2020-07-26T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://yeongcheon.github.io/tags/envoy/</loc>
     <lastmod>2020-06-12T22:00:00+09:00</lastmod>
   </url>
@@ -33,17 +53,7 @@
   </url>
   
   <url>
-    <loc>https://yeongcheon.github.io/tags/</loc>
-    <lastmod>2020-06-12T22:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://yeongcheon.github.io/tags/typescript/</loc>
-    <lastmod>2020-06-12T22:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yeongcheon.github.io/</loc>
     <lastmod>2020-06-12T22:00:00+09:00</lastmod>
   </url>
   

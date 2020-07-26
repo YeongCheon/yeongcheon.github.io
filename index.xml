@@ -7,10 +7,32 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
     <copyright>&amp;copy; Copyright 2020 YeongCheon</copyright>
-    <lastBuildDate>Fri, 12 Jun 2020 22:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jul 2020 00:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://yeongcheon.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>about me</title>
+      <link>https://yeongcheon.github.io/about/</link>
+      <pubDate>Sun, 26 Jul 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://yeongcheon.github.io/about/</guid>
+      <description>   안녕하세요. 웹 개발자에요.  크리에이터와 팬들의 소통 커뮤니티 쉘터를 개발하고 있어요.
+Email    kyc1682@gmail.com
+  dev@shelter.id
+    👍 Like    Web
+  Golang
+  Kotlin
+  Spring
+  ORM(JPA)
+  Typescript
+  Angular
+  GCP
+  Firebase
+  Emacs
+    </description>
+    </item>
     
     <item>
       <title>gRPC를 웹브라우저에 호출해보자(a.k.a Typescript)</title>
