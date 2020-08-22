@@ -1,38 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>angular on 김영천 블로그</title>
-    <link>https://yeongcheon.github.io/tags/angular/</link>
-    <description>Recent content in angular on 김영천 블로그</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>ko</language>
-    <copyright>&amp;copy; Copyright 2020 YeongCheon</copyright>
-    <lastBuildDate>Sun, 26 Apr 2020 16:00:00 +0900</lastBuildDate>
-    
-	<atom:link href="https://yeongcheon.github.io/tags/angular/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>구글 앱엔진에 ssr angular app 배포하기</title>
-      <link>https://yeongcheon.github.io/posts/2020-04-26-angular-ssr-with-appengine/</link>
-      <pubDate>Sun, 26 Apr 2020 16:00:00 +0900</pubDate>
-      
-      <guid>https://yeongcheon.github.io/posts/2020-04-26-angular-ssr-with-appengine/</guid>
-      <description>들어가며  이 문서는 기본적으로 앵귤러 공식 SSR 가이드를 따라하며 학습한 내용을 정리한 것입니다. SSR에 대해 궁금하시다면 이 링크를 참고하세요. 이 문서는 angular, appEngine을 사용할 줄 아는 사람을 대상으로 작성되었습니다.
-  프로젝트 생성  우선 앵귤러 프로젝트를 하나 생성해봅시다. 이 예제는 angular9 버전을 기준으로 작성되었습니다.
-1  ng new test-project      express-engine 추가  생성된 프로젝트 내부에서 아래의 명령어를 실행합니다.
-1  ng add @nguniversal/express-engine     명령어를 성공적으로 실행했다면 아래의 파일이 추가되었을 것입니다.</description>
-    </item>
-    
-    <item>
-      <title>emacs에서 tslint 이용하기</title>
-      <link>https://yeongcheon.github.io/posts/2018-09-21-tslint-in-emacs/</link>
-      <pubDate>Fri, 21 Sep 2018 12:00:00 +0900</pubDate>
-      
-      <guid>https://yeongcheon.github.io/posts/2018-09-21-tslint-in-emacs/</guid>
-      <description>나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. tide를 이용해서 환경을 구성했는데 tslint가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.
-vscode는 그냥 되던데? 이게 내가 헤매게 된 가장 큰 이유다. vscode는 마켓플레이스에 그냥 tslint 패키지를 내려받으면 알아서 잘 동작한다. 개발자가 따로 뭐 설정하고 해줄 필요가 없다.(물론 tslint.json이 필요하지만 angular 프로젝트는 생성 시 지가 알아서 만들어준다.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>angular on 김영천 블로그</title><link>https://yeongcheon.github.io/tags/angular/</link><description>Recent content in angular on 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><copyright>&amp;copy; Copyright 2020 YeongCheon</copyright><lastBuildDate>Sun, 26 Apr 2020 16:00:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/angular/index.xml" rel="self" type="application/rss+xml"/><item><title>구글 앱엔진에 ssr angular app 배포하기</title><link>https://yeongcheon.github.io/posts/2020-04-26-angular-ssr-with-appengine/</link><pubDate>Sun, 26 Apr 2020 16:00:00 +0900</pubDate><guid>https://yeongcheon.github.io/posts/2020-04-26-angular-ssr-with-appengine/</guid><description>들어가며 이 문서는 기본적으로 앵귤러 공식 SSR 가이드를 따라하며 학습한 내용을 정리한 것입니다. SSR에 대해 궁금하시다면 이 링크를 참고하세요. 이 문서는 angular, appEngine을 사용할 줄 아는 사람을 대상으로 작성되었습니다.
+프로젝트 생성 우선 앵귤러 프로젝트를 하나 생성해봅시다. 이 예제는 angular9 버전을 기준으로 작성되었습니다.
+1 ng new test-project express-engine 추가 생성된 프로젝트 내부에서 아래의 명령어를 실행합니다.
+1 ng add @nguniversal/express-engine 명령어를 성공적으로 실행했다면 아래의 파일이 추가되었을 것입니다.</description></item><item><title>emacs에서 tslint 이용하기</title><link>https://yeongcheon.github.io/posts/2018-09-21-tslint-in-emacs/</link><pubDate>Fri, 21 Sep 2018 12:00:00 +0900</pubDate><guid>https://yeongcheon.github.io/posts/2018-09-21-tslint-in-emacs/</guid><description>나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. tide를 이용해서 환경을 구성했는데 tslint가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.
+vscode는 그냥 되던데? 이게 내가 헤매게 된 가장 큰 이유다. vscode는 마켓플레이스에 그냥 tslint 패키지를 내려받으면 알아서 잘 동작한다. 개발자가 따로 뭐 설정하고 해줄 필요가 없다.(물론 tslint.json이 필요하지만 angular 프로젝트는 생성 시 지가 알아서 만들어준다.</description></item></channel></rss>
