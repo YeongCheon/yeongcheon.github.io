@@ -3,7 +3,7 @@
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31  swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world application version: 1."><meta property="og:description" content="Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
  spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래와 같다.
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31  swagger: &#34;2.0&#34; info: description: hello go swagger title: hello world application version: 1."><meta name=twitter:description content="Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실행시켜보자.
- spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래 …"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.74.3"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>Google App Engine(GAE)에서 go swagger server 실행하기</h1><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>December 5, 2017</time></li><li class=article-meta-tags><a href=/tags/go/><i class="fas fa-tag"></i>go
+ spec을 이용해 서버코드 생성하기 [지난번 포스트][last-post]에서 작성한 swagger.yaml을 이용해 서버코드를 생성해보자. swagger.yaml 내용은 아래 …"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2017-12-05-go-swagger-with-gae/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.75.1"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>Google App Engine(GAE)에서 go swagger server 실행하기</h1><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>December 5, 2017</time></li><li class=article-meta-tags><a href=/tags/go/><i class="fas fa-tag"></i>go
 </a>&nbsp;</li><li class=article-meta-tags><a href=/tags/swagger/><i class="fas fa-tag"></i>swagger
 </a>&nbsp;</li><li class=article-meta-tags><a href=/tags/gae/><i class="fas fa-tag"></i>GAE
 </a>&nbsp;</li><li class=article-meta-tags><a href=/tags/gcp/><i class="fas fa-tag"></i>GCP
@@ -38,39 +38,39 @@
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#66d9ef>swagger</span>: <span style=color:#e6db74>&#34;2.0&#34;</span>
-<span style=color:#66d9ef>info</span>:
-  <span style=color:#66d9ef>description</span>: hello go swagger
-  <span style=color:#66d9ef>title</span>: hello world application
-  <span style=color:#66d9ef>version</span>: <span style=color:#ae81ff>1.0.0</span>
-<span style=color:#66d9ef>produces</span>:
-  - application/json
-<span style=color:#66d9ef>consumes</span>:
-  - application/json
-<span style=color:#66d9ef>schemes</span>:
-  - http
-<span style=color:#66d9ef>paths</span>:
-  <span style=color:#66d9ef>/</span>:
-    <span style=color:#66d9ef>get</span>:
-      <span style=color:#66d9ef>responses</span>:
-        <span style=color:#66d9ef>200</span>:
-          <span style=color:#66d9ef>description</span>: list the todo operations
-          <span style=color:#66d9ef>schema</span>:
-            <span style=color:#66d9ef>type</span>: array
-            <span style=color:#66d9ef>description</span>: <span style=color:#e6db74>&#34;result : helloworld&#34;</span>
-            <span style=color:#66d9ef>items</span>:
-              <span style=color:#66d9ef>$ref</span>: <span style=color:#e6db74>&#34;#/definitions/item&#34;</span>
-<span style=color:#66d9ef>definitions</span>:
-  <span style=color:#66d9ef>item</span>:
-    <span style=color:#66d9ef>type</span>: object
-    <span style=color:#66d9ef>required</span>:
-      - result
-    <span style=color:#66d9ef>properties</span>:
-      <span style=color:#66d9ef>result</span>:
-        <span style=color:#66d9ef>type</span>: string
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>swagger</span>: <span style=color:#e6db74>&#34;2.0&#34;</span>
+<span style=color:#f92672>info</span>:
+  <span style=color:#f92672>description</span>: <span style=color:#ae81ff>hello go swagger</span>
+  <span style=color:#f92672>title</span>: <span style=color:#ae81ff>hello world application</span>
+  <span style=color:#f92672>version</span>: <span style=color:#ae81ff>1.0.0</span>
+<span style=color:#f92672>produces</span>:
+  - <span style=color:#ae81ff>application/json</span>
+<span style=color:#f92672>consumes</span>:
+  - <span style=color:#ae81ff>application/json</span>
+<span style=color:#f92672>schemes</span>:
+  - <span style=color:#ae81ff>http</span>
+<span style=color:#f92672>paths</span>:
+  <span style=color:#f92672>/</span>:
+    <span style=color:#f92672>get</span>:
+      <span style=color:#f92672>responses</span>:
+        <span style=color:#f92672>200</span>:
+          <span style=color:#f92672>description</span>: <span style=color:#ae81ff>list the todo operations</span>
+          <span style=color:#f92672>schema</span>:
+            <span style=color:#f92672>type</span>: <span style=color:#ae81ff>array</span>
+            <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;result : helloworld&#34;</span>
+            <span style=color:#f92672>items</span>:
+              <span style=color:#f92672>$ref</span>: <span style=color:#e6db74>&#34;#/definitions/item&#34;</span>
+<span style=color:#f92672>definitions</span>:
+  <span style=color:#f92672>item</span>:
+    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>object</span>
+    <span style=color:#f92672>required</span>:
+      - <span style=color:#ae81ff>result</span>
+    <span style=color:#f92672>properties</span>:
+      <span style=color:#f92672>result</span>:
+        <span style=color:#f92672>type</span>: <span style=color:#ae81ff>string</span>
 
 </code></pre></td></tr></table></div></div><p><code>swagger.yaml</code> 파일을 생성했으면 이제 <code>swagger generate</code> 명령을 이용해 실제로 서버에서 구동될 코드를 생성해보자. [지난번 포스트][last-post]와 동일한 명령어지만 <code>--flag-strategy pflag</code> 옵션이 추가됐다. 코드 생성이 완료되었으면 지난번 포스트를 참고하여 <code>/</code>에 접근 시 hello world가 출력되도록 코드를 수정해놓자.</p><pre><code class=language-command data-lang=command>swagger generate server -A helloworld -f ./swagger.yml --flag-strategy pflag
-</code></pre><p><code>swagger generate</code> 명령어를 쓰기전엔 <code>swagger validate</code> 명령어를 이용해 <code>swagger.yaml</code> 파일의 유효성 검사를 진행하는게 보통이지만 이번 예제에선 생략하도록 한다.</p><h3 id=flag-strategy-pflag-옵션을-주는-이유>flag-strategy pflag 옵션을 주는 이유</h3><blockquote><p>이 옵션을 생략하고 generate 명령어를 실행할 경우 생성된 서버코드에 <a href=http://github.com/jessevdk/go-flags>github.com/jessevdk/go-flags</a>에 의존성이 생긴다. 이 패키지에서는 GAE에서 사용할 수 없는 syscall 패키지를 사용하기 때문에 GAE 환경에서는 실행할 수 없다. 그래서 <code>--flag-strategy pflag</code> 옵션을 이용해 위의 패키지 대신 <a href=github.com/spf13/pflag>github.com/spf13/pflag</a>를 대신 사용하도록 한다. 좀 더 자세한 내용은 <a href=https://goswagger.io/generate/server.html>공식 사이트의 문서</a>를 참고하자.</p></blockquote><hr><h2 id=maingo-코드-수정하기>main.go 코드 수정하기</h2><p>본래 <code>main.go</code> 파일은 수정하지 않는게 원칙이다. 하지만 GAE라는 조금 특수한 상황에서 코드가 동작하게 하려면 수정이 불가피하다. 이 내용은 <a href=https://github.com/go-swagger/go-swagger/issues/925>이 링크</a>에서 얻은 정보를 바탕으로 작성하였다.</p><ol><li>우선 <code>main</code> 함수의 이름을 <code>init</code>로 교체한다.</li><li><code>net/http</code> 패키지를 import 한다.</li><li>server.ConfigureAPI() 구문 바로 다음줄에 http.Handle("/&rdquo;, server.GetHandler()) 을 입력한다.</li><li>flag와 기타 다른 코드들을 삭제한다.</li><li>위 단계를 모두 수행한 코드의 결과는 아래와 같다.</li></ol><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</code></pre><p><code>swagger generate</code> 명령어를 쓰기전엔 <code>swagger validate</code> 명령어를 이용해 <code>swagger.yaml</code> 파일의 유효성 검사를 진행하는게 보통이지만 이번 예제에선 생략하도록 한다.</p><h3 id=flag-strategy-pflag-옵션을-주는-이유>flag-strategy pflag 옵션을 주는 이유</h3><blockquote><p>이 옵션을 생략하고 generate 명령어를 실행할 경우 생성된 서버코드에 <a href=http://github.com/jessevdk/go-flags>github.com/jessevdk/go-flags</a>에 의존성이 생긴다. 이 패키지에서는 GAE에서 사용할 수 없는 syscall 패키지를 사용하기 때문에 GAE 환경에서는 실행할 수 없다. 그래서 <code>--flag-strategy pflag</code> 옵션을 이용해 위의 패키지 대신 <a href=github.com/spf13/pflag>github.com/spf13/pflag</a>를 대신 사용하도록 한다. 좀 더 자세한 내용은 <a href=https://goswagger.io/generate/server.html>공식 사이트의 문서</a>를 참고하자.</p></blockquote><hr><h2 id=maingo-코드-수정하기>main.go 코드 수정하기</h2><p>본래 <code>main.go</code> 파일은 수정하지 않는게 원칙이다. 하지만 GAE라는 조금 특수한 상황에서 코드가 동작하게 하려면 수정이 불가피하다. 이 내용은 <a href=https://github.com/go-swagger/go-swagger/issues/925>이 링크</a>에서 얻은 정보를 바탕으로 작성하였다.</p><ol><li>우선 <code>main</code> 함수의 이름을 <code>init</code>로 교체한다.</li><li><code>net/http</code> 패키지를 import 한다.</li><li>server.ConfigureAPI() 구문 바로 다음줄에 http.Handle("/", server.GetHandler()) 을 입력한다.</li><li>flag와 기타 다른 코드들을 삭제한다.</li><li>위 단계를 모두 수행한 코드의 결과는 아래와 같다.</li></ol><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
