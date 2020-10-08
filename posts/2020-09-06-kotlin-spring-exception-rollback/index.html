@@ -1,4 +1,4 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>코틀린으로 작성된 스프링 기반 API 트랜잭션 rollback 관리 - 김영천 블로그</title><meta property="og:title" content="코틀린으로 작성된 스프링 기반 API 트랜잭션 rollback 관리 - 김영천 블로그"><meta name=twitter:title content="코틀린으로 작성된 스프링 기반 API 트랜잭션 rollback 관리 - 김영천 블로그"><meta name=description content="코틀린으로 작성된 스프링 기반 API에서 Checked Exception 발생 시 rollback이 되지 않도록 해봅시다."><meta property="og:description" content="코틀린으로 작성된 스프링 기반 API에서 Checked Exception 발생 시 rollback이 되지 않도록 해봅시다."><meta name=twitter:description content="코틀린으로 작성된 스프링 기반 API에서 Checked Exception 발생 시 rollback이 되지 않도록 해봅시다."><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2020-09-06-kotlin-spring-exception-rollback/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.75.1"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>코틀린으로 작성된 스프링 기반 API 트랜잭션 rollback 관리</h1><h2 class=article-subtitle>코틀린으로 작성된 스프링 기반 API에서 Checked Exception 발생 시 rollback이 되지 않도록 해봅시다.</h2><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>September 8, 2020</time></li><li class=article-meta-tags><a href=/tags/kotlin/><i class="fas fa-tag"></i>kotlin
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>코틀린으로 작성된 스프링 기반 API 트랜잭션 rollback 관리 - 김영천 블로그</title><meta property="og:title" content="코틀린으로 작성된 스프링 기반 API 트랜잭션 rollback 관리 - 김영천 블로그"><meta name=twitter:title content="코틀린으로 작성된 스프링 기반 API 트랜잭션 rollback 관리 - 김영천 블로그"><meta name=description content="코틀린으로 작성된 스프링 기반 API에서 Checked Exception 발생 시 rollback이 되지 않도록 해봅시다."><meta property="og:description" content="코틀린으로 작성된 스프링 기반 API에서 Checked Exception 발생 시 rollback이 되지 않도록 해봅시다."><meta name=twitter:description content="코틀린으로 작성된 스프링 기반 API에서 Checked Exception 발생 시 rollback이 되지 않도록 해봅시다."><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2020-09-06-kotlin-spring-exception-rollback/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.76.2"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>코틀린으로 작성된 스프링 기반 API 트랜잭션 rollback 관리</h1><h2 class=article-subtitle>코틀린으로 작성된 스프링 기반 API에서 Checked Exception 발생 시 rollback이 되지 않도록 해봅시다.</h2><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>September 8, 2020</time></li><li class=article-meta-tags><a href=/tags/kotlin/><i class="fas fa-tag"></i>kotlin
 </a>&nbsp;</li><li class=article-meta-tags><a href=/tags/spring/><i class="fas fa-tag"></i>spring
 </a>&nbsp;</li><li class=article-meta-tags><a href=/tags/exception/><i class="fas fa-tag"></i>exception
 </a>&nbsp;</li><li class=article-meta-tags><a href=/tags/transaction/><i class="fas fa-tag"></i>transaction
@@ -16,12 +16,12 @@
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin>@Entity
-@Table(name = <span style=color:#e6db74>&#34;custom&#34;</span>)
-@Component
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#a6e22e>@Entity</span>
+<span style=color:#a6e22e>@Table</span>(name = <span style=color:#e6db74>&#34;custom&#34;</span>)
+<span style=color:#a6e22e>@Component</span>
 <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CustomModel</span>(
- @get:Id
- @get:Column(length = <span style=color:#ae81ff>50</span>, updatable = <span style=color:#66d9ef>false</span>)
+ <span style=color:#a6e22e>@get</span>:Id
+ <span style=color:#a6e22e>@get</span>:Column(length = <span style=color:#ae81ff>50</span>, updatable = <span style=color:#66d9ef>false</span>)
  <span style=color:#66d9ef>var</span> name: String = <span style=color:#e6db74>&#34;&#34;</span>
 )</code></pre></td></tr></table></div></div></div></div></div><div id=outline-container-headline-6 class=outline-3><h3 id=headline-6>Controller</h3><div id=outline-text-headline-6 class=outline-text-3><p>API 호출을 위해 사용할 Controller 클래스입니다. @Transactional 어노테이션을 추가하여 API 호출 단위로 Transaction을 관리하고 있습니다.</p><div class="src src-kotlin"><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
@@ -36,14 +36,14 @@
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin>@RestController
-@RequestMapping(<span style=color:#e6db74>&#34;/{version}/custom&#34;</span>)
-@Transactional
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#a6e22e>@RestController</span>
+<span style=color:#a6e22e>@RequestMapping</span>(<span style=color:#e6db74>&#34;/{version}/custom&#34;</span>)
+<span style=color:#a6e22e>@Transactional</span>
 <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CustomController</span> {
- @Autowired
+ <span style=color:#a6e22e>@Autowired</span>
  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>lateinit</span> <span style=color:#66d9ef>var</span> customService: CustomService
 
- @PostMapping(<span style=color:#e6db74>&#34;&#34;</span>)
+ <span style=color:#a6e22e>@PostMapping</span>(<span style=color:#e6db74>&#34;&#34;</span>)
  <span style=color:#66d9ef>fun</span> <span style=color:#a6e22e>addCustom</span>(
  ) {
      <span style=color:#66d9ef>this</span>.customService.add()
@@ -58,9 +58,9 @@
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin>@Service
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#a6e22e>@Service</span>
 <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CustomService</span> {
- @Autowired
+ <span style=color:#a6e22e>@Autowired</span>
  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>lateinit</span> <span style=color:#66d9ef>var</span> customRepository: CustomRepository
 
  <span style=color:#66d9ef>fun</span> <span style=color:#a6e22e>add</span>(): CustomModel {
@@ -72,7 +72,7 @@
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin>
-@Repository
+<span style=color:#a6e22e>@Repository</span>
 <span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>CustomRepository</span> : JpaRepository&lt;CustomModel, String&gt; {
 }</code></pre></td></tr></table></div></div></div></div></div><div id=outline-container-headline-9 class=outline-3><h3 id=headline-9>Exception Handler</h3><div id=outline-text-headline-9 class=outline-text-3><p>Service 클래스에서 발생한 예외를 감지해서 API 호출자에게 적절한 형태로 반환하기 위한 ExceptionHandler 클래스입니다.</p><div class="src src-kotlin"><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
@@ -84,12 +84,12 @@
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin>@ControllerAdvice
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#a6e22e>@ControllerAdvice</span>
 <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>GlobalExceptionHandler</span> {
  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>val</span> logger = Logger.getLogger(<span style=color:#e6db74>&#34;exception&#34;</span>)
 
- @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
- @ExceptionHandler(value = [CustomException<span style=color:#f92672>::</span><span style=color:#66d9ef>class</span>])
+ <span style=color:#a6e22e>@ResponseStatus</span>(HttpStatus.INTERNAL_SERVER_ERROR)
+ <span style=color:#a6e22e>@ExceptionHandler</span>(value = [CustomException<span style=color:#f92672>::</span><span style=color:#66d9ef>class</span>])
  <span style=color:#66d9ef>fun</span> <span style=color:#a6e22e>handleBaseException</span>(e: CustomException): String {
      <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;fail&#34;</span>
  }
@@ -107,15 +107,15 @@
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin>@RestController
-@RequestMapping(<span style=color:#e6db74>&#34;/{version}/custom&#34;</span>)
-@Transactional
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#a6e22e>@RestController</span>
+<span style=color:#a6e22e>@RequestMapping</span>(<span style=color:#e6db74>&#34;/{version}/custom&#34;</span>)
+<span style=color:#a6e22e>@Transactional</span>
 <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CustomController</span> {
-   @Autowired
+   <span style=color:#a6e22e>@Autowired</span>
    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>lateinit</span> <span style=color:#66d9ef>var</span> customService: CustomService
 
-   @PostMapping(<span style=color:#e6db74>&#34;&#34;</span>)
-   @Throws(CustomException<span style=color:#f92672>::</span><span style=color:#66d9ef>class</span>) <span style=color:#75715e>// Throws annotation에 CustomException을 추가해줍니다.
+   <span style=color:#a6e22e>@PostMapping</span>(<span style=color:#e6db74>&#34;&#34;</span>)
+   <span style=color:#a6e22e>@Throws</span>(CustomException<span style=color:#f92672>::</span><span style=color:#66d9ef>class</span>) <span style=color:#75715e>// Throws annotation에 CustomException을 추가해줍니다.
 </span><span style=color:#75715e></span>   <span style=color:#66d9ef>fun</span> <span style=color:#a6e22e>addCustom</span>(
    ) {
        <span style=color:#66d9ef>this</span>.customService.add()
@@ -131,12 +131,12 @@
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin>@Service
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#a6e22e>@Service</span>
 <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CustomService</span> {
-   @Autowired
+   <span style=color:#a6e22e>@Autowired</span>
    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>lateinit</span> <span style=color:#66d9ef>var</span> customRepository: CustomRepository
 
-   @Throws(CustomException<span style=color:#f92672>::</span><span style=color:#66d9ef>class</span>) <span style=color:#75715e>// Throws annotation에 CustomException을 추가해줍니다.
+   <span style=color:#a6e22e>@Throws</span>(CustomException<span style=color:#f92672>::</span><span style=color:#66d9ef>class</span>) <span style=color:#75715e>// Throws annotation에 CustomException을 추가해줍니다.
 </span><span style=color:#75715e></span>   <span style=color:#66d9ef>fun</span> <span style=color:#a6e22e>add</span>(): CustomModel {
        <span style=color:#66d9ef>this</span>.customRepository.save(CustomModel(name=<span style=color:#e6db74>&#34;customName&#34;</span>)) <span style=color:#75715e>// 이제 롤백되지 않습니다!
 </span><span style=color:#75715e></span>       <span style=color:#66d9ef>throw</span> CustomException(<span style=color:#e6db74>&#34;must not rollback&#34;</span>)
