@@ -1,6 +1,6 @@
 <!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>jackson을 이용해 json 변환 시 JPA entity의 id값만 추출하기 - 김영천 블로그</title><meta property="og:title" content="jackson을 이용해 json 변환 시 JPA entity의 id값만 추출하기 - 김영천 블로그"><meta name=twitter:title content="jackson을 이용해 json 변환 시 JPA entity의 id값만 추출하기 - 김영천 블로그"><meta name=description content="들어가며  REST API 서버를 java언어에서 사용되는 대표적인 json(또는 xml, yaml, etc…) 라이브러리인 jackson 은 kotlin에서도 사용이 가능하다. JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경우가 있다. 이 문제를 jackson을 이용해 json형식으로 이쁘게 변환하는 법을 알아보자.
   요구사항  데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자."><meta property="og:description" content="들어가며  REST API 서버를 java언어에서 사용되는 대표적인 json(또는 xml, yaml, etc…) 라이브러리인 jackson 은 kotlin에서도 사용이 가능하다. JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경우가 있다. 이 문제를 jackson을 이용해 json형식으로 이쁘게 변환하는 법을 알아보자.
-  요구사항  데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자."><meta name=twitter:description content="들어가며  REST API 서버를 java언어에서 사용되는 대표적인 json(또는 xml, yaml, etc…) 라이브러리인 jackson 은 kotlin에서도 사용이 가능하다. JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경 …"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2019-03-01-jpa-jackson/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.82.0"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>jackson을 이용해 json 변환 시 JPA entity의 id값만 추출하기</h1><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>March 1, 2019</time></li><li class=article-meta-tags><a href=/tags/json/><i class="fas fa-tag"></i>
+  요구사항  데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자."><meta name=twitter:description content="들어가며  REST API 서버를 java언어에서 사용되는 대표적인 json(또는 xml, yaml, etc…) 라이브러리인 jackson 은 kotlin에서도 사용이 가능하다. JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경 …"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2019-03-01-jpa-jackson/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.83.1"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>jackson을 이용해 json 변환 시 JPA entity의 id값만 추출하기</h1><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>March 1, 2019</time></li><li class=article-meta-tags><a href=/tags/json/><i class="fas fa-tag"></i>
 json
 </a>&nbsp;</li><li class=article-meta-tags><a href=/tags/jackson/><i class="fas fa-tag"></i>
 jackson
@@ -10,169 +10,87 @@ jpa
 kotlin
 </a>&nbsp;</li></ul><aside class=toc><nav id=TableOfContents><ul><li><a href=#headline-1>들어가며</a></li><li><a href=#headline-2>요구사항</a></li><li><a href=#headline-3>source</a><ul><li><a href=#headline-4>intro</a></li><li><a href=#headline-5>EntityIdResolver</a></li><li><a href=#headline-6>UserModel</a></li><li><a href=#headline-7>ShelterModel</a></li></ul></li><li><a href=#headline-8>해설</a><ul><li><a href=#headline-9>JsonIdentityInfo</a></li><li><a href=#headline-10>JsonIdentityReference</a></li></ul></li><li><a href=#headline-11>후기</a></li></ul></nav></aside><div id=outline-container-headline-1 class=outline-2><h2 id=headline-1>들어가며</h2><div id=outline-text-headline-1 class=outline-text-2><p>REST API 서버를 java언어에서 사용되는 대표적인 json(또는 xml, yaml, etc…) 라이브러리인 <a href=https://github.com/FasterXML/jackson>jackson</a> 은 kotlin에서도 사용이 가능하다.
 JPA를 사용하다보면 entity를 json형식으로 반환할 때 해당 entity가 다른 entity를 필드로 참조하고 있을 경우 참조하는 entity의 id값만을 반환하고 싶을 경우가 있다.
-이 문제를 jackson을 이용해 json형식으로 이쁘게 변환하는 법을 알아보자.</p></div></div><div id=outline-container-headline-2 class=outline-2><h2 id=headline-2>요구사항</h2><div id=outline-text-headline-2 class=outline-text-2><p>데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자.</p><p>현재 사용자가 shelter 정보를 조회하는 API를 호출할 경우 쉘터 정보 안에 쉘터 소유자의 상세한 정보가 포함되어 있다고 한다. json 포맷을 보면 다음과 같다.</p><div class="src src-json"><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
-<span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#ae81ff>1</span>,
-<span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;awesome shelter&#34;</span>
-<span style=color:#e6db74>&#34;owner&#34;</span>: {
-  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;kyc1682&#34;</span>,
-<span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;yeongcheon&#34;</span>
+이 문제를 jackson을 이용해 json형식으로 이쁘게 변환하는 법을 알아보자.</p></div></div><div id=outline-container-headline-2 class=outline-2><h2 id=headline-2>요구사항</h2><div id=outline-text-headline-2 class=outline-text-2><p>데이터베이스에는 현재 user 테이블과 shelter 테이블이 존재한다. shelter 테이블에는 user 테이블을 참조는 외래키 제약조건이 걸려있다. 자세한 내용은 다음 섹션의 소스코드를 참고해보자.</p><p>현재 사용자가 shelter 정보를 조회하는 API를 호출할 경우 쉘터 정보 안에 쉘터 소유자의 상세한 정보가 포함되어 있다고 한다. json 포맷을 보면 다음과 같다.</p><div class="src src-json original_json"><pre><code class="language-json original_json" data-lang="json original_json">{
+&#34;id&#34;: 1,
+&#34;name&#34;: &#34;awesome shelter&#34;
+&#34;owner&#34;: {
+  &#34;id&#34;: &#34;kyc1682&#34;,
+&#34;name&#34;: &#34;yeongcheon&#34;
 }
-}</code></pre></td></tr></table></div></div></div><p>위와 같이 소유자의 상세한 정보가 포함되어 넘어오고 있다.</p><p>만약에 <strong>사용자가 owner 필드에 사용자의 정보가 담긴 json object가 아닌 owner의 id 정보만 원한다고 가정해보자.</strong>
-그렇다면 API의 응답값은 아래처럼 바뀔것이다.</p><div class="src src-json"><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
-<span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#ae81ff>1</span>,
-<span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;awesome shelter&#34;</span>
-<span style=color:#e6db74>&#34;owner&#34;</span>: <span style=color:#e6db74>&#34;kyc1682&#34;</span>
-}</code></pre></td></tr></table></div></div></div><p>응답결과를 이런식으로 참조 객체의 id값만 출력하는 형식으로 바꿀 경우 생기는 이점은 아래와 같다.</p><ol><li><p>최초 json 결과값을 출력하기 위해서는 shelter에 포함된 User의 정보를 불러오기 위해 데이터베이스에서 불필요한 join 쿼리를 실행한다.</p></li></ol><p>하지만 개선된 json 결과값은 join 쿼리를 실행할 필요 없이 단순한 쿼리로도 충분하다. 이는 데이터베이스 부하가 줄어듦을 의미한다.</p><ol><li><p>통신데이터의 크기가 줄어든다. 현재 user 테이블은 고작 2개의 필드밖에 없지만 실제로는 훨씬 많은 수의 필드들이 존재한다.
+}</code></pre></div><p>위와 같이 소유자의 상세한 정보가 포함되어 넘어오고 있다.</p><p>만약에 <strong>사용자가 owner 필드에 사용자의 정보가 담긴 json object가 아닌 owner의 id 정보만 원한다고 가정해보자.</strong>
+그렇다면 API의 응답값은 아래처럼 바뀔것이다.</p><div class="src src-json want_json"><pre><code class="language-json want_json" data-lang="json want_json">{
+&#34;id&#34;: 1,
+&#34;name&#34;: &#34;awesome shelter&#34;
+&#34;owner&#34;: &#34;kyc1682&#34;
+}</code></pre></div><p>응답결과를 이런식으로 참조 객체의 id값만 출력하는 형식으로 바꿀 경우 생기는 이점은 아래와 같다.</p><ol><li><p>최초 json 결과값을 출력하기 위해서는 shelter에 포함된 User의 정보를 불러오기 위해 데이터베이스에서 불필요한 join 쿼리를 실행한다.</p></li></ol><p>하지만 개선된 json 결과값은 join 쿼리를 실행할 필요 없이 단순한 쿼리로도 충분하다. 이는 데이터베이스 부하가 줄어듦을 의미한다.</p><ol><li><p>통신데이터의 크기가 줄어든다. 현재 user 테이블은 고작 2개의 필드밖에 없지만 실제로는 훨씬 많은 수의 필드들이 존재한다.
 shelter 1개를 조회할때는 json의 크기가 크게 차이가 안나겠지만 만약에 20개, 30개의 배열 형식으로 데이터를 요청한다면? json의 크기는 엄청나게 불어난다.</p></li></ol><p>개선된 json 결과값의 경우엔 json의 크기가 훨씬 줄어들기 때문에 서버와 클라이언트 사이에 통신하는 데이터의 크기가 줄어들고 API 응답속도가 빨라진다.</p><p>이제 실제로 사용된 소스를 살펴보자.</p></div></div><div id=outline-container-headline-3 class=outline-2><h2 id=headline-3>source</h2><div id=outline-text-headline-3 class=outline-text-2><div id=outline-container-headline-4 class=outline-3><h3 id=headline-4>intro</h3><div id=outline-text-headline-4 class=outline-text-3><p>예제에서 사용될 코드를 소개한다. 크게 모델과 IdResolver 클래스가 있다.
-이 예제에서는 UserModel과 ShelterModel, 그리고 jackson 라이브러리의 <code>ObjectIdResolver</code> 인터페이스를 상속받아 구현한 EntityIdResolver를 준비했다.</p></div></div><div id=outline-container-headline-5 class=outline-3><h3 id=headline-5>EntityIdResolver</h3><div id=outline-text-headline-5 class=outline-text-3><div class="src src-kotlin"><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#75715e>// jpa entity 모델 json 변환 시 id만 반환할 수 있도록 해주는 클래스
-</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>EntityIdResolver</span>(
-        <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>val</span> entityManager: EntityManager) : ObjectIdResolver {
+이 예제에서는 UserModel과 ShelterModel, 그리고 jackson 라이브러리의 <code>ObjectIdResolver</code> 인터페이스를 상속받아 구현한 EntityIdResolver를 준비했다.</p></div></div><div id=outline-container-headline-5 class=outline-3><h3 id=headline-5>EntityIdResolver</h3><div id=outline-text-headline-5 class=outline-text-3><div class="src src-kotlin entityidresolver"><pre><code class="language-kotlin entityidresolver" data-lang="kotlin entityidresolver">// jpa entity 모델 json 변환 시 id만 반환할 수 있도록 해주는 클래스
+class EntityIdResolver(
+        private val entityManager: EntityManager) : ObjectIdResolver {
 
-    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>fun</span> <span style=color:#a6e22e>bindItem</span>(
+    override fun bindItem(
             id: ObjectIdGenerator.IdKey,
             pojo: Any) {
     }
 
-    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>fun</span> <span style=color:#a6e22e>resolveId</span>(id: ObjectIdGenerator.IdKey): Any {
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.entityManager.find(id.scope, id.key)
+    override fun resolveId(id: ObjectIdGenerator.IdKey): Any {
+        return this.entityManager.find(id.scope, id.key)
     }
 
-    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>fun</span> <span style=color:#a6e22e>newForDeserialization</span>(context: Any): ObjectIdResolver {
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>
+    override fun newForDeserialization(context: Any): ObjectIdResolver {
+        return this
     }
 
-    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>fun</span> <span style=color:#a6e22e>canUseFor</span>(resolverType: ObjectIdResolver): Boolean {
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>
+    override fun canUseFor(resolverType: ObjectIdResolver): Boolean {
+        return false
     }
-}</code></pre></td></tr></table></div></div></div><p><a href=https://stackoverflow.com/questions/44007188/deserialize-json-with-spring-unresolved-forward-references-jackson-exception>출처</a></p></div></div><div id=outline-container-headline-6 class=outline-3><h3 id=headline-6>UserModel</h3><div id=outline-text-headline-6 class=outline-text-3><div class="src src-kotlin"><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#66d9ef>import</span> com.fasterxml.jackson.annotation.*
-<span style=color:#66d9ef>import</span> com.shelter.EntityIdResolver
-<span style=color:#66d9ef>import</span> java.io.Serializable
-<span style=color:#66d9ef>import</span> java.time.LocalDateTime
-<span style=color:#66d9ef>import</span> javax.persistence.*
-<span style=color:#66d9ef>import</span> javax.validation.constraints.Email
+}</code></pre></div><p><a href=https://stackoverflow.com/questions/44007188/deserialize-json-with-spring-unresolved-forward-references-jackson-exception>출처</a></p></div></div><div id=outline-container-headline-6 class=outline-3><h3 id=headline-6>UserModel</h3><div id=outline-text-headline-6 class=outline-text-3><div class="src src-kotlin usermodel"><pre><code class="language-kotlin usermodel" data-lang="kotlin usermodel">import com.fasterxml.jackson.annotation.*
+import com.shelter.EntityIdResolver
+import java.io.Serializable
+import java.time.LocalDateTime
+import javax.persistence.*
+import javax.validation.constraints.Email
 
-<span style=color:#66d9ef>typealias</span> UserId = String
+typealias UserId = String
 
-<span style=color:#a6e22e>@Entity</span>
-<span style=color:#a6e22e>@Table</span>(name = <span style=color:#e6db74>&#34;user&#34;</span>)
-<span style=color:#a6e22e>@JsonIgnoreProperties</span>(<span style=color:#e6db74>&#34;deleted&#34;</span>, <span style=color:#e6db74>&#34;fcmToken&#34;</span>)
-<span style=color:#66d9ef>data</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserModel</span>(
-        <span style=color:#a6e22e>@Id</span>
-        <span style=color:#a6e22e>@Column</span>(length = <span style=color:#ae81ff>50</span>, updatable = <span style=color:#66d9ef>false</span>)
-        <span style=color:#66d9ef>var</span> id: UserId = <span style=color:#e6db74>&#34;&#34;</span>,
+@Entity
+@Table(name = &#34;user&#34;)
+@JsonIgnoreProperties(&#34;deleted&#34;, &#34;fcmToken&#34;)
+data class UserModel(
+        @Id
+        @Column(length = 50, updatable = false)
+        var id: UserId = &#34;&#34;,
 
-        <span style=color:#a6e22e>@Column</span>(length = <span style=color:#ae81ff>50</span>, updatable = <span style=color:#66d9ef>true</span>, unique = <span style=color:#66d9ef>true</span>)
-        <span style=color:#66d9ef>var</span> name: String = <span style=color:#e6db74>&#34;&#34;</span>,
-)</code></pre></td></tr></table></div></div></div></div></div><div id=outline-container-headline-7 class=outline-3><h3 id=headline-7>ShelterModel</h3><div id=outline-text-headline-7 class=outline-text-3><div class="src src-kotlin"><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#66d9ef>import</span> com.fasterxml.jackson.annotation.*
-<span style=color:#66d9ef>import</span> com.fasterxml.jackson.databind.annotation.JsonDeserialize
-<span style=color:#66d9ef>import</span> com.shelter.EntityIdResolver
-<span style=color:#66d9ef>import</span> java.io.Serializable
-<span style=color:#66d9ef>import</span> java.time.LocalDateTime
-<span style=color:#66d9ef>import</span> javax.persistence.*
+        @Column(length = 50, updatable = true, unique = true)
+        var name: String = &#34;&#34;,
+)</code></pre></div></div></div><div id=outline-container-headline-7 class=outline-3><h3 id=headline-7>ShelterModel</h3><div id=outline-text-headline-7 class=outline-text-3><div class="src src-kotlin sheltermodel"><pre><code class="language-kotlin sheltermodel" data-lang="kotlin sheltermodel">import com.fasterxml.jackson.annotation.*
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.shelter.EntityIdResolver
+import java.io.Serializable
+import java.time.LocalDateTime
+import javax.persistence.*
 
-<span style=color:#66d9ef>typealias</span> ShelterId = Long
+typealias ShelterId = Long
 
-<span style=color:#a6e22e>@Entity</span>
-<span style=color:#a6e22e>@Table</span>(name = <span style=color:#e6db74>&#34;shelter&#34;</span>)
-<span style=color:#66d9ef>data</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ShelterModel</span>(
-        <span style=color:#a6e22e>@Id</span>
-        <span style=color:#a6e22e>@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
-        <span style=color:#66d9ef>var</span> id: ShelterId = <span style=color:#ae81ff>0</span>,
+@Entity
+@Table(name = &#34;shelter&#34;)
+data class ShelterModel(
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        var id: ShelterId = 0,
 
-        <span style=color:#66d9ef>var</span> name: String = <span style=color:#e6db74>&#34;&#34;</span>,
+        var name: String = &#34;&#34;,
 
-        <span style=color:#a6e22e>@JsonIdentityInfo</span>(
-                generator = ObjectIdGenerators.PropertyGenerator<span style=color:#f92672>::</span><span style=color:#66d9ef>class</span>,
-                <span style=color:#66d9ef>property</span> = <span style=color:#e6db74>&#34;id&#34;</span>,
-                resolver = EntityIdResolver<span style=color:#f92672>::</span><span style=color:#66d9ef>class</span>,
-                scope = UserModel<span style=color:#f92672>::</span><span style=color:#66d9ef>class</span>)
-        <span style=color:#a6e22e>@JsonIdentityReference</span>(alwaysAsId = <span style=color:#66d9ef>true</span>)
-        <span style=color:#a6e22e>@OneToOne</span>(fetch = FetchType.EAGER, cascade = [CascadeType.DETACH], orphanRemoval = <span style=color:#66d9ef>false</span>)
-        <span style=color:#a6e22e>@JoinColumn</span>(name = <span style=color:#e6db74>&#34;owner_id&#34;</span>, updatable = <span style=color:#66d9ef>false</span>)
-        <span style=color:#66d9ef>var</span> owner: UserModel = UserModel()
-)</code></pre></td></tr></table></div></div></div></div></div></div></div><div id=outline-container-headline-8 class=outline-2><h2 id=headline-8>해설</h2><div id=outline-text-headline-8 class=outline-text-2><p><code class=verbatim>EntityIdResolver</code> 를 제외하면 단순한 모델 클래스가 전부이다.
+        @JsonIdentityInfo(
+                generator = ObjectIdGenerators.PropertyGenerator::class,
+                property = &#34;id&#34;,
+                resolver = EntityIdResolver::class,
+                scope = UserModel::class)
+        @JsonIdentityReference(alwaysAsId = true)
+        @OneToOne(fetch = FetchType.EAGER, cascade = [CascadeType.DETACH], orphanRemoval = false)
+        @JoinColumn(name = &#34;owner_id&#34;, updatable = false)
+        var owner: UserModel = UserModel()
+)</code></pre></div></div></div></div></div><div id=outline-container-headline-8 class=outline-2><h2 id=headline-8>해설</h2><div id=outline-text-headline-8 class=outline-text-2><p><code class=verbatim>EntityIdResolver</code> 를 제외하면 단순한 모델 클래스가 전부이다.
 모델 클래스에 어노테이션이 이것저것 붙어있지만 jackson 관련된 어노테이션은 <code class=verbatim>JsonIdentityInfo</code>, <code class=verbatim>JsonIdentityReference</code> 두 개 뿐이다.</p><div id=outline-container-headline-9 class=outline-3><h3 id=headline-9>JsonIdentityInfo</h3><div id=outline-text-headline-9 class=outline-text-3><p>딴거 다 필요없고 <code class=verbatim>@JsonIdentity</code> 어노테이션이 핵심이다.
 코드를 보면 이 어노테이션에 총 4개의 parameter가 존재하는데 하나씩 살펴보도록 하자.</p><ul><li><p>generator: 순환참조에 대한 식별자를 생성하는데 사용된다.
 여기에 값으로 할당된 <code class=verbatim>Objectidgenerators.PropertyGenerator</code> 는 식별자를 생성하는데 해당 object의 property 중 하나를 사용하겠다는 뜻이다.</p></li><li><p>property: 어떤 property를 id로 사용할 지 선언한다. 이 예제에서는 UserModel의 <code class=verbatim>id</code> 필드를 기본키(primary key)로 사용한다.
