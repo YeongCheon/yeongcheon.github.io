@@ -1,11 +1,81 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>go swagger 서버파일 구조 분석 - 김영천 블로그</title><meta property="og:title" content="go swagger 서버파일 구조 분석 - 김영천 블로그"><meta name=twitter:title content="go swagger 서버파일 구조 분석 - 김영천 블로그"><meta name=description content="Intro  지난번 포스트에서 만든 hello world 프로젝트의 구성요소들을 분석해보자.
-폴더 구조  ├── cmd │ └── helloworld-server │ └── main.go ├── github.com ├── golang.org ├── gopkg.in ├── models │ └── item.go ├── restapi │ ├── configure_helloworld.go │ ├── doc.go │ ├── embedded_spec.go │ ├── operations │ │ ├── get.go │ │ ├── get_parameters.go │ │ ├── get_responses.go │ │ ├── get_urlbuilder.go │ │ └── helloworld_api.go │ └── server.go └── swagger."><meta property="og:description" content="Intro  지난번 포스트에서 만든 hello world 프로젝트의 구성요소들을 분석해보자.
-폴더 구조  ├── cmd │ └── helloworld-server │ └── main.go ├── github.com ├── golang.org ├── gopkg.in ├── models │ └── item.go ├── restapi │ ├── configure_helloworld.go │ ├── doc.go │ ├── embedded_spec.go │ ├── operations │ │ ├── get.go │ │ ├── get_parameters.go │ │ ├── get_responses.go │ │ ├── get_urlbuilder.go │ │ └── helloworld_api.go │ └── server.go └── swagger."><meta name=twitter:description content="Intro  지난번 포스트에서 만든 hello world 프로젝트의 구성요소들을 분석해보자.
-폴더 구조  ├── cmd │ └── helloworld-server │ └── main.go ├── github.com ├── golang.org ├── gopkg.in ├── models │ └── item.go ├── restapi │ ├── …"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2017-10-14-go-swagger02/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.85.0"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>go swagger 서버파일 구조 분석</h1><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>October 14, 2017</time></li><li class=article-meta-tags><a href=/tags/go/><i class="fas fa-tag"></i>
+<!doctype html><html lang=ko>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<title>go swagger 서버파일 구조 분석 - 김영천 블로그</title>
+<meta property="og:title" content="go swagger 서버파일 구조 분석 - 김영천 블로그">
+<meta name=twitter:title content="go swagger 서버파일 구조 분석 - 김영천 블로그">
+<meta name=description content="Intro  지난번 포스트에서 만든 hello world 프로젝트의 구성요소들을 분석해보자.
+폴더 구조  ├── cmd │ └── helloworld-server │ └── main.go ├── github.com ├── golang.org ├── gopkg.in ├── models │ └── item.go ├── restapi │ ├── configure_helloworld.go │ ├── doc.go │ ├── embedded_spec.go │ ├── operations │ │ ├── get.go │ │ ├── get_parameters.go │ │ ├── get_responses.go │ │ ├── get_urlbuilder.go │ │ └── helloworld_api.go │ └── server.go └── swagger.">
+<meta property="og:description" content="Intro  지난번 포스트에서 만든 hello world 프로젝트의 구성요소들을 분석해보자.
+폴더 구조  ├── cmd │ └── helloworld-server │ └── main.go ├── github.com ├── golang.org ├── gopkg.in ├── models │ └── item.go ├── restapi │ ├── configure_helloworld.go │ ├── doc.go │ ├── embedded_spec.go │ ├── operations │ │ ├── get.go │ │ ├── get_parameters.go │ │ ├── get_responses.go │ │ ├── get_urlbuilder.go │ │ └── helloworld_api.go │ └── server.go └── swagger.">
+<meta name=twitter:description content="Intro  지난번 포스트에서 만든 hello world 프로젝트의 구성요소들을 분석해보자.
+폴더 구조  ├── cmd │ └── helloworld-server │ └── main.go ├── github.com ├── golang.org ├── gopkg.in ├── models │ └── item.go ├── restapi │ ├── …">
+<meta name=author content="YeongCheon Kim">
+<meta property="og:site_name" content="김영천 블로그">
+<meta property="og:url" content="https://yeongcheon.github.io/posts/2017-10-14-go-swagger02/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:card content="summary">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=stylesheet href=/css/style.css media=all>
+<link rel=stylesheet href=/css/syntax.css media=all>
+<link rel=stylesheet href=/css/custom.css media=all>
+<script src=/js/script.js></script>
+<script src=/js/custom.js></script>
+<script defer src=/js/fontawesome.js></script>
+</head>
+<body>
+<header class=site-header>
+<nav class=site-navi>
+<h1 class=site-title>
+<a href=/>
+<img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
+</a>
+</h1>
+<ul class=site-navi-items>
+<li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li>
+<li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li>
+<li class=site-navi-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+</nav>
+</header>
+<hr class=site-header-bottom>
+<div class=main role=main>
+<article class=article>
+<h1 class=article-title>go swagger 서버파일 구조 분석</h1>
+<hr class=article-title-bottom>
+<ul class=article-meta>
+<li class=article-meta-date><time>October 14, 2017</time></li>
+<li class=article-meta-tags>
+<a href=/tags/go/>
+<i class="fas fa-tag"></i>
 go
-</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/swagger/><i class="fas fa-tag"></i>
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/swagger/>
+<i class="fas fa-tag"></i>
 swagger
-</a>&nbsp;</li></ul><aside class=toc><nav id=TableOfContents><ul><li><a href=#cmd>cmd</a></li><li><a href=#models>models</a></li><li><a href=#restapi>restapi</a></li></ul></nav></aside><h1 id=intro>Intro</h1><hr><p><a href=http://yeongcheon.github.io/2017/10/06/go-swagger01/>지난번 포스트</a>에서 만든 hello world 프로젝트의 구성요소들을 분석해보자.</p><h1 id=폴더-구조>폴더 구조</h1><hr><pre><code class=language-tree data-lang=tree>├── cmd
+</a>&nbsp;
+</li>
+</ul>
+<aside class=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#cmd>cmd</a></li>
+<li><a href=#models>models</a></li>
+<li><a href=#restapi>restapi</a></li>
+</ul>
+</nav>
+</aside>
+<h1 id=intro>Intro</h1>
+<hr>
+<p><a href=http://yeongcheon.github.io/2017/10/06/go-swagger01/>지난번 포스트</a>에서 만든 hello world 프로젝트의 구성요소들을 분석해보자.</p>
+<h1 id=폴더-구조>폴더 구조</h1>
+<hr>
+<pre><code class=language-tree data-lang=tree>├── cmd
 │   └── helloworld-server
 │         └── main.go
 ├── github.com
@@ -25,23 +95,44 @@ swagger
 │    │   └── helloworld_api.go
 │    └── server.go
 └── swagger.yml
-</code></pre><p><a href=http://yeongcheon.github.io/2017/10/06/go-swagger01/>지난번 포스트</a>를 처음부터 끝까지 다 따라했다면 <code>$GOPATH/src</code> 폴더가 위와 같은 구조로 이루어져 있을 것이다. 위의 구조에서 <code>swagger generate server</code> 명령어로 인해 생긴 폴더는 <code>cmd</code>, <code>models</code>, <code>restapi</code> 이렇게 세 개로 구성되어 있으며 이번에 주로 살펴볼 폴더들이다. 나머지 폴더들은 <code>go get</code> 명령어로 인해 생성된 외부 라이브러리 관련 폴더들이다.</p><h2 id=cmd>cmd</h2><hr><p>서버를 실행시킬 때 사용하는 파일이 들어있다. 지난번 포스트에서 서버를 실행시킬 때 사용했던 명령어는 아래와 같다.</p><pre><code class=language-command data-lang=command>go run cmd/helloworld-server/main.go --port=9000 --host=127.0.0.1 --socket-path=/tmp/helloworld.sock --scheme=http
-</code></pre><p>구성요소들은 상당히 간소하다. <code>helloworld-server</code> 폴더 아래에 <code>main.go</code> 파일이 전부이다. 여기서 <code>helloworld-server</code>는 해당 프로젝트의 이름으로 <code>go generate</code> 명령어를 사용할 때 <code>-A</code> 옵션을 이용해 지정할 수 있다. 아래의 명령어는 지난 포스트에서 사용했던 명령어이다.</p><pre><code class=language-command data-lang=command>swagger generate server -A helloworld -f ./swagger.yml
-</code></pre><p>cmd 폴더 아래의 내용들은 사실 서버를 실행시키기 위한 파일에 불과할 뿐 우리가 <code>swagger.yml</code>에 선언한 내용들이 거의 들어가 있지 않다. 실제 프로그램 구동에 크게 영향을 미치는 파일들은 <code>restapi</code>, <code>models</code> 폴더에 들어있다.</p><h2 id=models>models</h2><hr><p><code>models</code> 폴더는 <code>swagger.yml</code> 파일에서 <code>definitions</code> 하위에 선언했었던 객체 모델을 코드로 구현해놓은 곳이다. <a href=https://opentutorials.org/course/697/3828>MVC 패턴</a>의 M에 해당한다고 생각하면 된다. 그래서 폴더 이름이 models인 것이다. 이 예제에선 <code>item.go</code> 파일이 구현되어 있다. <code>item.go</code> 는 파일명부터 내용까지 다 철처하게 <code>swagger.yml</code> 파일을 반영해서 생성된 것이다. 아래의 코드는 <code>swagger.yml</code>에서 <code>item.go</code> 파일을 정의한 내용이다. 이 내용은 <code>swagger.yml</code>의 <code>definitions</code> 아래에 작성되어 있다.</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</code></pre><p><a href=http://yeongcheon.github.io/2017/10/06/go-swagger01/>지난번 포스트</a>를 처음부터 끝까지 다 따라했다면 <code>$GOPATH/src</code> 폴더가 위와 같은 구조로 이루어져 있을 것이다. 위의 구조에서 <code>swagger generate server</code> 명령어로 인해 생긴 폴더는 <code>cmd</code>, <code>models</code>, <code>restapi</code> 이렇게 세 개로 구성되어 있으며 이번에 주로 살펴볼 폴더들이다. 나머지 폴더들은 <code>go get</code> 명령어로 인해 생성된 외부 라이브러리 관련 폴더들이다.</p>
+<h2 id=cmd>cmd</h2>
+<hr>
+<p>서버를 실행시킬 때 사용하는 파일이 들어있다. 지난번 포스트에서 서버를 실행시킬 때 사용했던 명령어는 아래와 같다.</p>
+<pre><code class=language-command data-lang=command>go run cmd/helloworld-server/main.go --port=9000 --host=127.0.0.1 --socket-path=/tmp/helloworld.sock --scheme=http
+</code></pre><p>구성요소들은 상당히 간소하다. <code>helloworld-server</code> 폴더 아래에 <code>main.go</code> 파일이 전부이다. 여기서 <code>helloworld-server</code>는 해당 프로젝트의 이름으로 <code>go generate</code> 명령어를 사용할 때 <code>-A</code> 옵션을 이용해 지정할 수 있다. 아래의 명령어는 지난 포스트에서 사용했던 명령어이다.</p>
+<pre><code class=language-command data-lang=command>swagger generate server -A helloworld -f ./swagger.yml
+</code></pre><p>cmd 폴더 아래의 내용들은 사실 서버를 실행시키기 위한 파일에 불과할 뿐 우리가 <code>swagger.yml</code>에 선언한 내용들이 거의 들어가 있지 않다. 실제 프로그램 구동에 크게 영향을 미치는 파일들은 <code>restapi</code>, <code>models</code> 폴더에 들어있다.</p>
+<h2 id=models>models</h2>
+<hr>
+<p><code>models</code> 폴더는 <code>swagger.yml</code> 파일에서 <code>definitions</code> 하위에 선언했었던 객체 모델을 코드로 구현해놓은 곳이다. <a href=https://opentutorials.org/course/697/3828>MVC 패턴</a>의 M에 해당한다고 생각하면 된다. 그래서 폴더 이름이 models인 것이다. 이 예제에선 <code>item.go</code> 파일이 구현되어 있다. <code>item.go</code> 는 파일명부터 내용까지 다 철처하게 <code>swagger.yml</code> 파일을 반영해서 생성된 것이다. 아래의 코드는 <code>swagger.yml</code>에서 <code>item.go</code> 파일을 정의한 내용이다. 이 내용은 <code>swagger.yml</code>의 <code>definitions</code> 아래에 작성되어 있다.</p>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>  <span style=color:#f92672>item</span>:
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>  <span style=color:#f92672>item</span>:
     <span style=color:#f92672>type</span>: <span style=color:#ae81ff>object</span>
     <span style=color:#f92672>required</span>:
       - <span style=color:#ae81ff>result</span>
     <span style=color:#f92672>properties</span>:
       <span style=color:#f92672>result</span>:
         <span style=color:#f92672>type</span>: <span style=color:#ae81ff>string</span>
-</code></pre></td></tr></table></div></div><p>첫번째 줄의 <code>item</code>이 모델명, 즉 <code>item.go</code> 파일 이름이 item인 이유다. item 대신 user를 쓰면 생성된 파일은 user.go가 될 것이다. 두번째 줄은 type의 종류를 선언하는 영역인데 모델은 대부분 여러개의 필드를 가지고 있기 때문에 object로 선언한다. 만약 여러개 속성없이 단순 문자열만 반환한다면 string으로 선언해도 무방할 것이다(실험을 안해봐서 확실하지 않다).</p><p>세번째 줄의 <code>required</code>는 이 모델의 속성에서 필수로 입력해야 되는 속성들을 선언하는 영역이다. 이번 예제에서는 <code>result</code> 필드를 필수로 하겠다고 선언되어 있다.</p><p><code>properties</code>는 이 모델이 가지고 있는 속성들을 작성하는 곳이다. 이번 예제에서는 <code>result</code> 하나만 사용했지만 여러개를 추가할 수 있다. 이름도 얼마든지 마음대로 선언할 수 있다(프로그램 변수선언 규칙 내에서).</p><p>아래의 코드는 위의 코드를 확장에서 <code>user</code> 모델을 추가로 선언하는 <code>swagger.yml</code> 코드의 <code>definitions</code> 관련 구문이다.</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>첫번째 줄의 <code>item</code>이 모델명, 즉 <code>item.go</code> 파일 이름이 item인 이유다. item 대신 user를 쓰면 생성된 파일은 user.go가 될 것이다. 두번째 줄은 type의 종류를 선언하는 영역인데 모델은 대부분 여러개의 필드를 가지고 있기 때문에 object로 선언한다. 만약 여러개 속성없이 단순 문자열만 반환한다면 string으로 선언해도 무방할 것이다(실험을 안해봐서 확실하지 않다).</p>
+<p>세번째 줄의 <code>required</code>는 이 모델의 속성에서 필수로 입력해야 되는 속성들을 선언하는 영역이다. 이번 예제에서는 <code>result</code> 필드를 필수로 하겠다고 선언되어 있다.</p>
+<p><code>properties</code>는 이 모델이 가지고 있는 속성들을 작성하는 곳이다. 이번 예제에서는 <code>result</code> 하나만 사용했지만 여러개를 추가할 수 있다. 이름도 얼마든지 마음대로 선언할 수 있다(프로그램 변수선언 규칙 내에서).</p>
+<p>아래의 코드는 위의 코드를 확장에서 <code>user</code> 모델을 추가로 선언하는 <code>swagger.yml</code> 코드의 <code>definitions</code> 관련 구문이다.</p>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -60,7 +151,9 @@ swagger
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>definitions</span>:
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>definitions</span>:
   <span style=color:#f92672>item</span>:
     <span style=color:#f92672>type</span>: <span style=color:#ae81ff>object</span>
     <span style=color:#f92672>required</span>:
@@ -79,6 +172,57 @@ swagger
         <span style=color:#f92672>type</span>: <span style=color:#ae81ff>string</span>
       <span style=color:#f92672>email</span>:
         <span style=color:#f92672>type</span>: <span style=color:#ae81ff>string</span>
-</code></pre></td></tr></table></div></div><p>위 코드가 포함된 <code>swagger.yml</code>파일을 사용해 <code>go generate</code> 명령어를 수행하면 <code>models</code> 폴더 아래에 <code>user.go</code>, <code>model.go</code> 파일이 각각 생성되어 있을 것이다. 그리고 models 관련 내용 중 가장 주의해야 할 점은 <strong>models 폴더 아래의 파일들은 직접 수정하면 안된다!</strong> 코드를 까보면 알겠지만 소스파일 최상단에 코드를 수정하지 말라는 경고주석이 작성되어 있다. 이러한 경고가 있는 이유는 크게 두가지가 있다.</p><p>첫번째. <code>swagger.yml</code> 파일을 수정하고 다시 <code>swagger generate</code> 명령을 수행할 경우 models 폴더의 모든 내용은 swagger가 덮어씌우기 때문이다. 따라서 만약 <code>models</code> 폴더의 내용을 바꾸고 싶다면 <code>swagger.yml</code> 파일을 수정하고 다시 <code>swagger ganerate</code> 명령어를 실행하여야 한다. 물론 안의 코드를 직접 수정해도 제대로 수정만 한다면 프로그램은 문제없이 돌아간다. <strong>하지만 <code>swagger.yml</code>을 업데이트 해야 할 경우는 반드시 생긴다. 절대 직접 수정하는 일은 없도록 하자.</strong></p><p>두번째. 코드의 내용이 문서와 달라질 가능성이 생긴다. <strong>우리가 swagger를 쓰는 목적은 REST API 문서를 자동으로 생성하기 위해서이다.</strong> swagger는 <code>swagger.yml</code>의 내용을 기반으로 spec을 생성, 이 spec이 곧 문서가 된다. 그리고 swagger는 코드의 변경내용을 파악하지 못한다. 근데 <code>swagger.yml</code>을 수정하지 않고 직접 코드를 수정할 경우 우리가 추후 생성할 문서에는 나타나지 않는 변경점이 코드에 반영될 수 있다. <strong>우리가 코드에 직접 작성해야 할 내용은 오직 로직뿐이다.</strong> 모델, Path 등등은 직접 코드로 작성하지 않도록 하자.</p><h2 id=restapi>restapi</h2><hr><p>Handler, 즉 MVC 패턴의 C에 해당하는 부분이다. <code>swagger generate</code> 명령어로 생성된 대부분의 파일은 개발자가 코드를 직접 수정하는걸 금지하한다. 하지만 이 폴더의 <strong><code>configure_helloworld.go</code>는 우리가 직접 수정할 수 있다.</strong> 사실상 우리가 건드려도 되는 <strong>유일한 파일</strong>인데 실제 비즈니스 로직을 여기에 작성하면 된다. <code>configure_helloworld.go</code> 파일을 살펴보면 다음과 같은 주석이 달려있다.</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#75715e>// This file is safe to edit. Once it exists it will not be overwritten
-</span></code></pre></td></tr></table></div></div><p>위 주석은 <code>swagger generate</code> 명령어를 여러번 실행해도 이 파일은 덮어씌워지지 않는다는 소리다. 사실 프로그램을 구현하려면 이 파일을 수정할 수 밖에 없는 구조인데 swagger.yml을 업데이트 하고 <code>swagger generate</code> 명령어를 실행할 때마다 이 파일이 덮어씌워진다면 제대로 프로젝트 진행하기가 상당히 까다로울 것이다. 그리고 <strong>이 파일을 수정할 수 밖에 없는 이유는 이 파일의 코드에 선언된 모든 Handler가 <code>NotImplemented error</code>를 반환하기 때문이다.</strong> <a href=http://yeongcheon.github.io/2017/10/06/go-swagger01/>지난번 포스트</a>에서도 <code>NotImplemented error</code> 코드를 주석처리하고 실제 원하는 결과를 출력하도록 코드를 수정하는 내용이 있다.</p><p>restapi 폴더에선 <code>configure_helloworld.go</code> 파일이 핵심이라 다른 파일들에 대한 얘기가 너무 소홀했는데 간단하게 말하자면 아래와 같다. <del>사실 몰라도 된다.</del></p><ul><li>doc.go : <code>swagger.yml</code> 에서 선언한 프로젝트명, 호스트, 기본경로 등등 프로젝트의 기초가 되는 정보들을 가지고 있는 파일이다. godoc에서 쓰라고 만든 파일인 것 같다.</li><li>embedded_spec.go : <code>swagger.yml</code> 파일을 json 형식으로 변환한 spec을 가지고 있는 파일이다.</li><li>opertaions 폴더 : REST API 프로그램에 필요한 필수사항들(파라메터 처리, Method 별 분기처리, 기타 등등..)을 구현한 코드. 예제에서는 GET Method만 사용하지 때문에 GET 관련 파일들만 보이지만 추가로 POST, PUT, DELETE Method를 사용할 경우 파일이 추가 생성된다(확실하지 않음).</li></ul><h1 id=한줄-요약>한줄 요약</h1><p><strong><code>configure_helloworld.go</code> 파일을 제외한 다른 파일들은 직접 수정하지 말고 <code>swagger.yml</code>을 수정하여 <code>swagger generate</code> 명령어를 이용하자.</strong></p></article><div class=disqus-comments><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//yeongcheon.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><ul class="pager article-pager"><li class=pager-newer><a href=/posts/2017-12-05-go-swagger-with-gae/ data-toggle=tooltip data-placement=top title="Google App Engine(GAE)에서 go swagger server 실행하기">&lt; Newer</a></li><li class=pager-older><a href=/posts/2017-10-06-go-swagger01/ data-toggle=tooltip data-placement=top title="go swagger 사용법">Older ></a></li></ul></div><div class=site-footer><div class=copyright>&copy; Copyright 2020 YeongCheon</div><ul class=site-footer-items><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script></body><script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></html>
+</code></pre></td></tr></table>
+</div>
+</div><p>위 코드가 포함된 <code>swagger.yml</code>파일을 사용해 <code>go generate</code> 명령어를 수행하면 <code>models</code> 폴더 아래에 <code>user.go</code>, <code>model.go</code> 파일이 각각 생성되어 있을 것이다. 그리고 models 관련 내용 중 가장 주의해야 할 점은 <strong>models 폴더 아래의 파일들은 직접 수정하면 안된다!</strong> 코드를 까보면 알겠지만 소스파일 최상단에 코드를 수정하지 말라는 경고주석이 작성되어 있다. 이러한 경고가 있는 이유는 크게 두가지가 있다.</p>
+<p>첫번째. <code>swagger.yml</code> 파일을 수정하고 다시 <code>swagger generate</code> 명령을 수행할 경우 models 폴더의 모든 내용은 swagger가 덮어씌우기 때문이다. 따라서 만약 <code>models</code> 폴더의 내용을 바꾸고 싶다면 <code>swagger.yml</code> 파일을 수정하고 다시 <code>swagger ganerate</code> 명령어를 실행하여야 한다. 물론 안의 코드를 직접 수정해도 제대로 수정만 한다면 프로그램은 문제없이 돌아간다. <strong>하지만 <code>swagger.yml</code>을 업데이트 해야 할 경우는 반드시 생긴다. 절대 직접 수정하는 일은 없도록 하자.</strong></p>
+<p>두번째. 코드의 내용이 문서와 달라질 가능성이 생긴다. <strong>우리가 swagger를 쓰는 목적은 REST API 문서를 자동으로 생성하기 위해서이다.</strong> swagger는 <code>swagger.yml</code>의 내용을 기반으로 spec을 생성, 이 spec이 곧 문서가 된다. 그리고 swagger는 코드의 변경내용을 파악하지 못한다. 근데 <code>swagger.yml</code>을 수정하지 않고 직접 코드를 수정할 경우 우리가 추후 생성할 문서에는 나타나지 않는 변경점이 코드에 반영될 수 있다. <strong>우리가 코드에 직접 작성해야 할 내용은 오직 로직뿐이다.</strong> 모델, Path 등등은 직접 코드로 작성하지 않도록 하자.</p>
+<h2 id=restapi>restapi</h2>
+<hr>
+<p>Handler, 즉 MVC 패턴의 C에 해당하는 부분이다. <code>swagger generate</code> 명령어로 생성된 대부분의 파일은 개발자가 코드를 직접 수정하는걸 금지하한다. 하지만 이 폴더의 <strong><code>configure_helloworld.go</code>는 우리가 직접 수정할 수 있다.</strong> 사실상 우리가 건드려도 되는 <strong>유일한 파일</strong>인데 실제 비즈니스 로직을 여기에 작성하면 된다. <code>configure_helloworld.go</code> 파일을 살펴보면 다음과 같은 주석이 달려있다.</p>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#75715e>// This file is safe to edit. Once it exists it will not be overwritten
+</span></code></pre></td></tr></table>
+</div>
+</div><p>위 주석은 <code>swagger generate</code> 명령어를 여러번 실행해도 이 파일은 덮어씌워지지 않는다는 소리다. 사실 프로그램을 구현하려면 이 파일을 수정할 수 밖에 없는 구조인데 swagger.yml을 업데이트 하고 <code>swagger generate</code> 명령어를 실행할 때마다 이 파일이 덮어씌워진다면 제대로 프로젝트 진행하기가 상당히 까다로울 것이다. 그리고 <strong>이 파일을 수정할 수 밖에 없는 이유는 이 파일의 코드에 선언된 모든 Handler가 <code>NotImplemented error</code>를 반환하기 때문이다.</strong> <a href=http://yeongcheon.github.io/2017/10/06/go-swagger01/>지난번 포스트</a>에서도 <code>NotImplemented error</code> 코드를 주석처리하고 실제 원하는 결과를 출력하도록 코드를 수정하는 내용이 있다.</p>
+<p>restapi 폴더에선 <code>configure_helloworld.go</code> 파일이 핵심이라 다른 파일들에 대한 얘기가 너무 소홀했는데 간단하게 말하자면 아래와 같다. <del>사실 몰라도 된다.</del></p>
+<ul>
+<li>doc.go : <code>swagger.yml</code> 에서 선언한 프로젝트명, 호스트, 기본경로 등등 프로젝트의 기초가 되는 정보들을 가지고 있는 파일이다. godoc에서 쓰라고 만든 파일인 것 같다.</li>
+<li>embedded_spec.go : <code>swagger.yml</code> 파일을 json 형식으로 변환한 spec을 가지고 있는 파일이다.</li>
+<li>opertaions 폴더 : REST API 프로그램에 필요한 필수사항들(파라메터 처리, Method 별 분기처리, 기타 등등..)을 구현한 코드. 예제에서는 GET Method만 사용하지 때문에 GET 관련 파일들만 보이지만 추가로 POST, PUT, DELETE Method를 사용할 경우 파일이 추가 생성된다(확실하지 않음).</li>
+</ul>
+<h1 id=한줄-요약>한줄 요약</h1>
+<p><strong><code>configure_helloworld.go</code> 파일을 제외한 다른 파일들은 직접 수정하지 말고 <code>swagger.yml</code>을 수정하여 <code>swagger generate</code> 명령어를 이용하자.</strong></p>
+</article>
+<div class=disqus-comments>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//yeongcheon.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+<ul class="pager article-pager">
+<li class=pager-newer>
+<a href=/posts/2017-12-05-go-swagger-with-gae/ data-toggle=tooltip data-placement=top title="Google App Engine(GAE)에서 go swagger server 실행하기">&lt; Newer</a>
+</li>
+<li class=pager-older>
+<a href=/posts/2017-10-06-go-swagger01/ data-toggle=tooltip data-placement=top title="go swagger 사용법">Older ></a>
+</li>
+</ul>
+</div>
+<div class=site-footer>
+<div class=copyright>&copy; Copyright 2020 YeongCheon</div>
+<ul class=site-footer-items>
+<li class=site-footer-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+<div class=powerdby>
+Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a>
+</div>
+</div>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script>
+</body>
+<script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</html>

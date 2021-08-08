@@ -1,10 +1,100 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>blog - 김영천 블로그</title><meta property="og:title" content="blog - 김영천 블로그"><meta name=twitter:title content="blog - 김영천 블로그"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/tags/blog/"><meta property="og:type" content="website"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.85.0"><link href=/tags/blog/index.xml rel=alternate type=application/rss+xml title="김영천 블로그"><link href=/tags/blog/index.xml rel=feed type=application/rss+xml title="김영천 블로그"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><section class="list term-list"><article class=article><a href=/posts/2019-03-03-github+hugo+orgmode_setup/ class=article-titles><h2 class=article-title>hugo + org-mode + github를 이용해 블로그 셋팅하기</h2></a><ul class=article-meta><li class=article-meta-date><time>March 3, 2019</time></li><li class=article-meta-tags><a href=/tags/hugo/><i class="fas fa-tag"></i>
+<!doctype html><html lang=ko>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<title>blog - 김영천 블로그</title>
+<meta property="og:title" content="blog - 김영천 블로그">
+<meta name=twitter:title content="blog - 김영천 블로그">
+<meta name=author content="YeongCheon Kim">
+<meta property="og:site_name" content="김영천 블로그">
+<meta property="og:url" content="https://yeongcheon.github.io/tags/blog/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:card content="summary">
+<meta name=generator content="Hugo 0.87.0">
+<link href=/tags/blog/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
+<link href=/tags/blog/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
+<link rel=stylesheet href=/css/style.css media=all>
+<link rel=stylesheet href=/css/syntax.css media=all>
+<link rel=stylesheet href=/css/custom.css media=all>
+<script src=/js/script.js></script>
+<script src=/js/custom.js></script>
+<script defer src=/js/fontawesome.js></script>
+</head>
+<body>
+<header class=site-header>
+<nav class=site-navi>
+<h1 class=site-title>
+<a href=/>
+<img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
+</a>
+</h1>
+<ul class=site-navi-items>
+<li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li>
+<li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li>
+<li class=site-navi-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+</nav>
+</header>
+<hr class=site-header-bottom>
+<div class=main role=main>
+<section class="list term-list">
+<article class=article>
+<a href=/posts/2019-03-03-github+hugo+orgmode_setup/ class=article-titles>
+<h2 class=article-title>hugo + org-mode + github를 이용해 블로그 셋팅하기</h2>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>March 3, 2019</time></li>
+<li class=article-meta-tags>
+<a href=/tags/hugo/>
+<i class="fas fa-tag"></i>
 hugo
-</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/github/><i class="fas fa-tag"></i>
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/github/>
+<i class="fas fa-tag"></i>
 github
-</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/org-mode/><i class="fas fa-tag"></i>
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/org-mode/>
+<i class="fas fa-tag"></i>
 org-mode
-</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/blog/><i class="fas fa-tag"></i>
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/blog/>
+<i class="fas fa-tag"></i>
 blog
-</a>&nbsp;</li></ul><div class=article-content>hugo + github + org-mode를 이용해 블로그를 운영하는 법을 알아보자. github에 hugo를 올리는 방법은 웹에 가이드가 이미 많이 있기 때문에 이 포스트에서는 org-mode를 이용해 hugo에 글을 어떻게 쓰는지를 중점적으로 설명한다.
-hugo를 적용하게 된 계기 orgmode에 대한 호기심 원래 jekyll + github 조합으로 블로그를 운영하고 있었다. github 블로그를 운영할 때 가장 대중적인 조합이고 나 초기 셋팅이 좀 번거로웠던거 빼곤 불만이 없었기에 그대로 사용하고 있었다. 블로그에 포스트를 작성할 때 markdown을 이용해서 글을 작성했었는데 최근에 emacs의 킬러 콘텐츠로 불리는 org-mode에 관심이 가기 시작했다.</div><div class=article-readmore><a href=/posts/2019-03-03-github+hugo+orgmode_setup/>Read more...</a></div><div class=article-floatclear></div></article></section></div><div class=site-footer><div class=copyright>&copy; Copyright 2020 YeongCheon</div><ul class=site-footer-items><li class=site-footer-item-rsslink><a href=/tags/blog/index.xml type=application/rss+xml target=_blank title=RSS><i class="fas fa-rss"></i></a></li><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script></body><script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></html>
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+hugo + github + org-mode를 이용해 블로그를 운영하는 법을 알아보자. github에 hugo를 올리는 방법은 웹에 가이드가 이미 많이 있기 때문에 이 포스트에서는 org-mode를 이용해 hugo에 글을 어떻게 쓰는지를 중점적으로 설명한다.
+hugo를 적용하게 된 계기 orgmode에 대한 호기심 원래 jekyll + github 조합으로 블로그를 운영하고 있었다. github 블로그를 운영할 때 가장 대중적인 조합이고 나 초기 셋팅이 좀 번거로웠던거 빼곤 불만이 없었기에 그대로 사용하고 있었다. 블로그에 포스트를 작성할 때 markdown을 이용해서 글을 작성했었는데 최근에 emacs의 킬러 콘텐츠로 불리는 org-mode에 관심이 가기 시작했다.
+</div>
+<div class=article-readmore><a href=/posts/2019-03-03-github+hugo+orgmode_setup/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+</section>
+</div>
+<div class=site-footer>
+<div class=copyright>&copy; Copyright 2020 YeongCheon</div>
+<ul class=site-footer-items>
+<li class=site-footer-item-rsslink>
+<a href=/tags/blog/index.xml type=application/rss+xml target=_blank title=RSS>
+<i class="fas fa-rss"></i>
+</a>
+</li>
+<li class=site-footer-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+<div class=powerdby>
+Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a>
+</div>
+</div>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script>
+</body>
+<script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</html>

@@ -1,9 +1,96 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>hibernate - 김영천 블로그</title><meta property="og:title" content="hibernate - 김영천 블로그"><meta name=twitter:title content="hibernate - 김영천 블로그"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/tags/hibernate/"><meta property="og:type" content="website"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.85.0"><link href=/tags/hibernate/index.xml rel=alternate type=application/rss+xml title="김영천 블로그"><link href=/tags/hibernate/index.xml rel=feed type=application/rss+xml title="김영천 블로그"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><section class="list term-list"><article class=article><a href=/posts/2019-11-14-jpa-one-to-many-collection-set/ class=article-titles><h2 class=article-title>JPA OneToMany 필드의 StackOverflowError</h2><h3 class=article-subtitle>JPA OneToMany 필드 타입을 Set으로 설정할 경우 stackoverflow 발생하는 문제 해결법</h3></a><ul class=article-meta><li class=article-meta-date><time>November 25, 2019</time></li><li class=article-meta-tags><a href=/tags/jpa/><i class="fas fa-tag"></i>
+<!doctype html><html lang=ko>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<title>hibernate - 김영천 블로그</title>
+<meta property="og:title" content="hibernate - 김영천 블로그">
+<meta name=twitter:title content="hibernate - 김영천 블로그">
+<meta name=author content="YeongCheon Kim">
+<meta property="og:site_name" content="김영천 블로그">
+<meta property="og:url" content="https://yeongcheon.github.io/tags/hibernate/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:card content="summary">
+<meta name=generator content="Hugo 0.87.0">
+<link href=/tags/hibernate/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
+<link href=/tags/hibernate/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
+<link rel=stylesheet href=/css/style.css media=all>
+<link rel=stylesheet href=/css/syntax.css media=all>
+<link rel=stylesheet href=/css/custom.css media=all>
+<script src=/js/script.js></script>
+<script src=/js/custom.js></script>
+<script defer src=/js/fontawesome.js></script>
+</head>
+<body>
+<header class=site-header>
+<nav class=site-navi>
+<h1 class=site-title>
+<a href=/>
+<img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
+</a>
+</h1>
+<ul class=site-navi-items>
+<li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li>
+<li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li>
+<li class=site-navi-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+</nav>
+</header>
+<hr class=site-header-bottom>
+<div class=main role=main>
+<section class="list term-list">
+<article class=article>
+<a href=/posts/2019-11-14-jpa-one-to-many-collection-set/ class=article-titles>
+<h2 class=article-title>JPA OneToMany 필드의 StackOverflowError</h2>
+<h3 class=article-subtitle>JPA OneToMany 필드 타입을 Set으로 설정할 경우 stackoverflow 발생하는 문제 해결법</h3>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>November 25, 2019</time></li>
+<li class=article-meta-tags>
+<a href=/tags/jpa/>
+<i class="fas fa-tag"></i>
 JPA
-</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/hibernate/><i class="fas fa-tag"></i>
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/hibernate/>
+<i class="fas fa-tag"></i>
 hibernate
-</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/kotlin/><i class="fas fa-tag"></i>
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/kotlin/>
+<i class="fas fa-tag"></i>
 kotlin
-</a>&nbsp;</li></ul><div class=article-content>JPA를 사용하다 보면 StackOverflow 에러를 종종 만날 수 있다. 이 글에서는 필드 타입이 Set인 Collection 타입에 아이템을 추가할 경우 StackVoerflow 에러가 발생하는 원인과 그 해결법에 대해 알아보자.
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+JPA를 사용하다 보면 StackOverflow 에러를 종종 만날 수 있다. 이 글에서는 필드 타입이 Set인 Collection 타입에 아이템을 추가할 경우 StackVoerflow 에러가 발생하는 원인과 그 해결법에 대해 알아보자.
 `hashcode`, `equals` 메서드와 관계된 이야기이다.
-에러 발생 시나리오 구현 목표 부모객체와 자식객체들을 서버 데이터베이스에 저장하는 기능을 가진 코드가 있었다. 부모객체와 자식객체는 1:n관계로서 하나의 부모가 여러 개의 자식을 가질 수 있고 이 두 객체는 서로의 존재를 알고 있는 양방향 관계다.</div><div class=article-readmore><a href=/posts/2019-11-14-jpa-one-to-many-collection-set/>Read more...</a></div><div class=article-floatclear></div></article></section></div><div class=site-footer><div class=copyright>&copy; Copyright 2020 YeongCheon</div><ul class=site-footer-items><li class=site-footer-item-rsslink><a href=/tags/hibernate/index.xml type=application/rss+xml target=_blank title=RSS><i class="fas fa-rss"></i></a></li><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script></body><script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></html>
+에러 발생 시나리오 구현 목표 부모객체와 자식객체들을 서버 데이터베이스에 저장하는 기능을 가진 코드가 있었다. 부모객체와 자식객체는 1:n관계로서 하나의 부모가 여러 개의 자식을 가질 수 있고 이 두 객체는 서로의 존재를 알고 있는 양방향 관계다.
+</div>
+<div class=article-readmore><a href=/posts/2019-11-14-jpa-one-to-many-collection-set/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+</section>
+</div>
+<div class=site-footer>
+<div class=copyright>&copy; Copyright 2020 YeongCheon</div>
+<ul class=site-footer-items>
+<li class=site-footer-item-rsslink>
+<a href=/tags/hibernate/index.xml type=application/rss+xml target=_blank title=RSS>
+<i class="fas fa-rss"></i>
+</a>
+</li>
+<li class=site-footer-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+<div class=powerdby>
+Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a>
+</div>
+</div>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script>
+</body>
+<script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</html>

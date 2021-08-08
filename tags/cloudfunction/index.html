@@ -1,10 +1,101 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>cloudfunction - 김영천 블로그</title><meta property="og:title" content="cloudfunction - 김영천 블로그"><meta name=twitter:title content="cloudfunction - 김영천 블로그"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/tags/cloudfunction/"><meta property="og:type" content="website"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.85.0"><link href=/tags/cloudfunction/index.xml rel=alternate type=application/rss+xml title="김영천 블로그"><link href=/tags/cloudfunction/index.xml rel=feed type=application/rss+xml title="김영천 블로그"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><section class="list term-list"><article class=article><a href=/posts/2021-02-05-cloud-function-context-problem/ class=article-titles><h2 class=article-title>cloud function 호출 시 context의 중요성에 대해 알아보자.</h2><h3 class=article-subtitle>cloud function을 http trigger로 호출 시 context를 잘못 할당할 경우 발생하는 문제에 대해 알아봅시다.</h3></a><ul class=article-meta><li class=article-meta-date><time>February 5, 2021</time></li><li class=article-meta-tags><a href=/tags/gcp/><i class="fas fa-tag"></i>
+<!doctype html><html lang=ko>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<title>cloudfunction - 김영천 블로그</title>
+<meta property="og:title" content="cloudfunction - 김영천 블로그">
+<meta name=twitter:title content="cloudfunction - 김영천 블로그">
+<meta name=author content="YeongCheon Kim">
+<meta property="og:site_name" content="김영천 블로그">
+<meta property="og:url" content="https://yeongcheon.github.io/tags/cloudfunction/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:card content="summary">
+<meta name=generator content="Hugo 0.87.0">
+<link href=/tags/cloudfunction/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
+<link href=/tags/cloudfunction/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
+<link rel=stylesheet href=/css/style.css media=all>
+<link rel=stylesheet href=/css/syntax.css media=all>
+<link rel=stylesheet href=/css/custom.css media=all>
+<script src=/js/script.js></script>
+<script src=/js/custom.js></script>
+<script defer src=/js/fontawesome.js></script>
+</head>
+<body>
+<header class=site-header>
+<nav class=site-navi>
+<h1 class=site-title>
+<a href=/>
+<img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
+</a>
+</h1>
+<ul class=site-navi-items>
+<li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li>
+<li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li>
+<li class=site-navi-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+</nav>
+</header>
+<hr class=site-header-bottom>
+<div class=main role=main>
+<section class="list term-list">
+<article class=article>
+<a href=/posts/2021-02-05-cloud-function-context-problem/ class=article-titles>
+<h2 class=article-title>cloud function 호출 시 context의 중요성에 대해 알아보자.</h2>
+<h3 class=article-subtitle>cloud function을 http trigger로 호출 시 context를 잘못 할당할 경우 발생하는 문제에 대해 알아봅시다.</h3>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>February 5, 2021</time></li>
+<li class=article-meta-tags>
+<a href=/tags/gcp/>
+<i class="fas fa-tag"></i>
 gcp
-</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/cloudfunction/><i class="fas fa-tag"></i>
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/cloudfunction/>
+<i class="fas fa-tag"></i>
 cloudfunction
-</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/golang/><i class="fas fa-tag"></i>
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/golang/>
+<i class="fas fa-tag"></i>
 golang
-</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/context/><i class="fas fa-tag"></i>
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/context/>
+<i class="fas fa-tag"></i>
 context
-</a>&nbsp;</li></ul><div class=article-content>예전 글에서 언급한 imagick-cf를 테스트 하는 도중 마주한 알 수 없는 특이한 오류와 이를 해결했던 과정을 기록합니다.
-문제 url을 통해서 함수를 실행하면 최초 실행 후 일정 시간동안은 몇번을 호출하든 결과가 정상적으로 반환합니다. 하지만 이후 500 에러를 반환하기 시작합니다. 심지어 이 전에 정상적으로 반환했던 url을 그대로 호출해도 500 error를 반환하는 어처구니 없는 모습을 보여줍니다. 게다가 500 에러를 반환하는 경우엔 로그조차 남지 않아서 원인을 지레짐작으로 파악할 수 밖에 없는 상황입니다.</div><div class=article-readmore><a href=/posts/2021-02-05-cloud-function-context-problem/>Read more...</a></div><div class=article-floatclear></div></article></section></div><div class=site-footer><div class=copyright>&copy; Copyright 2020 YeongCheon</div><ul class=site-footer-items><li class=site-footer-item-rsslink><a href=/tags/cloudfunction/index.xml type=application/rss+xml target=_blank title=RSS><i class="fas fa-rss"></i></a></li><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script></body><script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></html>
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+예전 글에서 언급한 imagick-cf를 테스트 하는 도중 마주한 알 수 없는 특이한 오류와 이를 해결했던 과정을 기록합니다.
+문제 url을 통해서 함수를 실행하면 최초 실행 후 일정 시간동안은 몇번을 호출하든 결과가 정상적으로 반환합니다. 하지만 이후 500 에러를 반환하기 시작합니다. 심지어 이 전에 정상적으로 반환했던 url을 그대로 호출해도 500 error를 반환하는 어처구니 없는 모습을 보여줍니다. 게다가 500 에러를 반환하는 경우엔 로그조차 남지 않아서 원인을 지레짐작으로 파악할 수 밖에 없는 상황입니다.
+</div>
+<div class=article-readmore><a href=/posts/2021-02-05-cloud-function-context-problem/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+</section>
+</div>
+<div class=site-footer>
+<div class=copyright>&copy; Copyright 2020 YeongCheon</div>
+<ul class=site-footer-items>
+<li class=site-footer-item-rsslink>
+<a href=/tags/cloudfunction/index.xml type=application/rss+xml target=_blank title=RSS>
+<i class="fas fa-rss"></i>
+</a>
+</li>
+<li class=site-footer-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+<div class=powerdby>
+Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a>
+</div>
+</div>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script>
+</body>
+<script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</html>

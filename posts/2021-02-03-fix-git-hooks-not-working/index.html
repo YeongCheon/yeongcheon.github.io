@@ -1,8 +1,120 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>git hooks 안되는 문제 해결하기 - 김영천 블로그</title><meta property="og:title" content="git hooks 안되는 문제 해결하기 - 김영천 블로그"><meta name=twitter:title content="git hooks 안되는 문제 해결하기 - 김영천 블로그"><meta name=description content="git hooks(pre-commit)이 동작을 안하는 문제를 해결해보아요."><meta property="og:description" content="git hooks(pre-commit)이 동작을 안하는 문제를 해결해보아요."><meta name=twitter:description content="git hooks(pre-commit)이 동작을 안하는 문제를 해결해보아요."><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2021-02-03-fix-git-hooks-not-working/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.85.0"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>git hooks 안되는 문제 해결하기</h1><h2 class=article-subtitle>git hooks(pre-commit)이 동작을 안하는 문제를 해결해보아요.</h2><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>February 3, 2021</time></li><li class=article-meta-tags><a href=/tags/git/><i class="fas fa-tag"></i>
+<!doctype html><html lang=ko>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<title>git hooks 안되는 문제 해결하기 - 김영천 블로그</title>
+<meta property="og:title" content="git hooks 안되는 문제 해결하기 - 김영천 블로그">
+<meta name=twitter:title content="git hooks 안되는 문제 해결하기 - 김영천 블로그">
+<meta name=description content="git hooks(pre-commit)이 동작을 안하는 문제를 해결해보아요.">
+<meta property="og:description" content="git hooks(pre-commit)이 동작을 안하는 문제를 해결해보아요.">
+<meta name=twitter:description content="git hooks(pre-commit)이 동작을 안하는 문제를 해결해보아요.">
+<meta name=author content="YeongCheon Kim">
+<meta property="og:site_name" content="김영천 블로그">
+<meta property="og:url" content="https://yeongcheon.github.io/posts/2021-02-03-fix-git-hooks-not-working/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:card content="summary">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=stylesheet href=/css/style.css media=all>
+<link rel=stylesheet href=/css/syntax.css media=all>
+<link rel=stylesheet href=/css/custom.css media=all>
+<script src=/js/script.js></script>
+<script src=/js/custom.js></script>
+<script defer src=/js/fontawesome.js></script>
+</head>
+<body>
+<header class=site-header>
+<nav class=site-navi>
+<h1 class=site-title>
+<a href=/>
+<img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
+</a>
+</h1>
+<ul class=site-navi-items>
+<li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li>
+<li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li>
+<li class=site-navi-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+</nav>
+</header>
+<hr class=site-header-bottom>
+<div class=main role=main>
+<article class=article>
+<h1 class=article-title>git hooks 안되는 문제 해결하기</h1>
+<h2 class=article-subtitle>git hooks(pre-commit)이 동작을 안하는 문제를 해결해보아요.</h2>
+<hr class=article-title-bottom>
+<ul class=article-meta>
+<li class=article-meta-date><time>February 3, 2021</time></li>
+<li class=article-meta-tags>
+<a href=/tags/git/>
+<i class="fas fa-tag"></i>
 git
-</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/hooks/><i class="fas fa-tag"></i>
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/hooks/>
+<i class="fas fa-tag"></i>
 hooks
-</a>&nbsp;</li></ul><div id=outline-container-headline-1 class=outline-2><h2 id=headline-1>What</h2><div id=outline-text-headline-1 class=outline-text-2><p>필자는 프로젝트에서 commit을 하기 전에 <a href=https://ko.wikipedia.org/wiki/%EB%A6%B0%ED%8A%B8_(%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4)>lint</a> 명령어를 이용해서 코드 스타일을 관리하고 있습니다. 초기에는 commit을 하기 전에 직접 수동으로 lint를 실행해서 코드를 점검해왔지만 아무래도 사람이 하는지라 종종 까먹고 lint 실행을 까먹는 경우가 발생하였습니다. 이 후 이 동작들을 자동화 하기 위해서 <a href=https://git-scm.com/book/ko/v2/Git%EB%A7%9E%EC%B6%A4-Git-Hooks>git hooks</a>의 pre-commit을 이용하여 자동화를 시켜놨는데 집에서 사용하는 랩탑에서는 pre-commit이 동작하지 않는 문제가 발생하였습니다. 이를 해결하기 위해 열심히 구글링을 해봤지만 답이 나오지 않아 직접 이것저걸 삽질을 진행하다가 문제를 해결하여 이를 기록하고자 합니다.</p></div></div><div id=outline-container-headline-2 class=outline-2><h2 id=headline-2>config가 문제다.</h2><div id=outline-text-headline-2 class=outline-text-2><p>결론부터 얘기하자면 <code>$HOME/.gitconfig</code> 파일이 문제였습니다. git은 기본적으로 각 프로젝트 별로 존재하는 config 파일(기본경로: <code>$PROJECT_DIR/.git/config</code>)을 1순위로 참고하여 동작합니다. 그리고 2순위로 <code>$HOME</code> 폴더에 있는 <code>.gitconfig</code> 를 참고합니다. 이 config 파일에는 git hook을 실행하기 위해서 참조하는 폴더의 위치를 [core] 아래에 기록할 수 있는데(기본값: <code>$GIT_DIR/hooks</code>) 아래와 비슷한 모양입니다.</p><div class="src src-text"><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</a>&nbsp;
+</li>
+</ul>
+<div id=outline-container-headline-1 class=outline-2>
+<h2 id=headline-1>
+What
+</h2>
+<div id=outline-text-headline-1 class=outline-text-2>
+<p>필자는 프로젝트에서 commit을 하기 전에 <a href=https://ko.wikipedia.org/wiki/%EB%A6%B0%ED%8A%B8_(%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4)>lint</a> 명령어를 이용해서 코드 스타일을 관리하고 있습니다. 초기에는 commit을 하기 전에 직접 수동으로 lint를 실행해서 코드를 점검해왔지만 아무래도 사람이 하는지라 종종 까먹고 lint 실행을 까먹는 경우가 발생하였습니다. 이 후 이 동작들을 자동화 하기 위해서 <a href=https://git-scm.com/book/ko/v2/Git%EB%A7%9E%EC%B6%A4-Git-Hooks>git hooks</a>의 pre-commit을 이용하여 자동화를 시켜놨는데 집에서 사용하는 랩탑에서는 pre-commit이 동작하지 않는 문제가 발생하였습니다. 이를 해결하기 위해 열심히 구글링을 해봤지만 답이 나오지 않아 직접 이것저걸 삽질을 진행하다가 문제를 해결하여 이를 기록하고자 합니다.</p>
+</div>
+</div>
+<div id=outline-container-headline-2 class=outline-2>
+<h2 id=headline-2>
+config가 문제다.
+</h2>
+<div id=outline-text-headline-2 class=outline-text-2>
+<p>결론부터 얘기하자면 <code>$HOME/.gitconfig</code> 파일이 문제였습니다. git은 기본적으로 각 프로젝트 별로 존재하는 config 파일(기본경로: <code>$PROJECT_DIR/.git/config</code>)을 1순위로 참고하여 동작합니다. 그리고 2순위로 <code>$HOME</code> 폴더에 있는 <code>.gitconfig</code> 를 참고합니다. 이 config 파일에는 git hook을 실행하기 위해서 참조하는 폴더의 위치를 [core] 아래에 기록할 수 있는데(기본값: <code>$GIT_DIR/hooks</code>) 아래와 비슷한 모양입니다.</p>
+<div class="src src-text">
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>[core]
-     hooks = /WRONG_DIR</code></pre></td></tr></table></div></div></div><p>이런 식으로 config 파일이 작성되어 있을 경우엔 <strong>hooks 값을 지우면 의도한대로 <code>$PROJECT_DIR/.git/hooks</code> 폴더 위치를 참고하여 git hook이 동작하게 됩니다.</strong> 다만 <code>$HOME/.gitconfig</code> 파일을 수정할 경우엔 다른 git 프로젝트에 영향이 갈 수 있으므로 주의해야 합니다.</p></div></div></article><div class=disqus-comments><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//yeongcheon.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><ul class="pager article-pager"><li class=pager-newer><a href=/posts/2021-02-05-cloud-function-context-problem/ data-toggle=tooltip data-placement=top title="cloud function 호출 시 context의 중요성에 대해 알아보자.">&lt; Newer</a></li><li class=pager-older><a href=/posts/2021-02-01-emacs-image-mode-edit-bug/ data-toggle=tooltip data-placement=top title="emacs에서 svg 수정 안되는 문제 해결하기">Older ></a></li></ul></div><div class=site-footer><div class=copyright>&copy; Copyright 2020 YeongCheon</div><ul class=site-footer-items><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script></body><script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></html>
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>[core]
+     hooks = /WRONG_DIR</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<p>
+이런 식으로 config 파일이 작성되어 있을 경우엔 <strong>hooks 값을 지우면 의도한대로 <code>$PROJECT_DIR/.git/hooks</code> 폴더 위치를 참고하여 git hook이 동작하게 됩니다.</strong> 다만 <code>$HOME/.gitconfig</code> 파일을 수정할 경우엔 다른 git 프로젝트에 영향이 갈 수 있으므로 주의해야 합니다.</p>
+</div>
+</div>
+</article>
+<div class=disqus-comments>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//yeongcheon.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+<ul class="pager article-pager">
+<li class=pager-newer>
+<a href=/posts/2021-02-05-cloud-function-context-problem/ data-toggle=tooltip data-placement=top title="cloud function 호출 시 context의 중요성에 대해 알아보자.">&lt; Newer</a>
+</li>
+<li class=pager-older>
+<a href=/posts/2021-02-01-emacs-image-mode-edit-bug/ data-toggle=tooltip data-placement=top title="emacs에서 svg 수정 안되는 문제 해결하기">Older ></a>
+</li>
+</ul>
+</div>
+<div class=site-footer>
+<div class=copyright>&copy; Copyright 2020 YeongCheon</div>
+<ul class=site-footer-items>
+<li class=site-footer-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+<div class=powerdby>
+Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a>
+</div>
+</div>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script>
+</body>
+<script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</html>

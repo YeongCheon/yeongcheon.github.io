@@ -1,28 +1,116 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>go swagger 사용법 - 김영천 블로그</title><meta property="og:title" content="go swagger 사용법 - 김영천 블로그"><meta name=twitter:title content="go swagger 사용법 - 김영천 블로그"><meta name=description content="Intro  이 문서는 goswagger를 이용해 golang으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 ubuntu 16.04LTS, golang 1.8을 사용중이다.
+<!doctype html><html lang=ko>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<title>go swagger 사용법 - 김영천 블로그</title>
+<meta property="og:title" content="go swagger 사용법 - 김영천 블로그">
+<meta name=twitter:title content="go swagger 사용법 - 김영천 블로그">
+<meta name=description content="Intro  이 문서는 goswagger를 이용해 golang으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 ubuntu 16.04LTS, golang 1.8을 사용중이다.
 이 문서를 작성하며 참고한 사이트는 아래와 같다. 사실 이 문서 안보고 아래 목록만 살펴봐도 된다.
  swagger 공식 사이트 goswagger.io yundream님의 사이트, 상당히 정리가 잘 되어있다. 구글링&mldr;  goSwagger 설치  github 페이지의 README 파일을 보면 아래의 명령어를 쓰라고 한다.
-echo &#34;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&#34; | sudo tee -a /etc/apt/sources."><meta property="og:description" content="Intro  이 문서는 goswagger를 이용해 golang으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 ubuntu 16.04LTS, golang 1.8을 사용중이다.
+echo &#34;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&#34; | sudo tee -a /etc/apt/sources.">
+<meta property="og:description" content="Intro  이 문서는 goswagger를 이용해 golang으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 ubuntu 16.04LTS, golang 1.8을 사용중이다.
 이 문서를 작성하며 참고한 사이트는 아래와 같다. 사실 이 문서 안보고 아래 목록만 살펴봐도 된다.
  swagger 공식 사이트 goswagger.io yundream님의 사이트, 상당히 정리가 잘 되어있다. 구글링&mldr;  goSwagger 설치  github 페이지의 README 파일을 보면 아래의 명령어를 쓰라고 한다.
-echo &#34;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&#34; | sudo tee -a /etc/apt/sources."><meta name=twitter:description content="Intro  이 문서는 goswagger를 이용해 golang으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 ubuntu 16.04LTS, golang 1.8을 사용중이다.
+echo &#34;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&#34; | sudo tee -a /etc/apt/sources.">
+<meta name=twitter:description content="Intro  이 문서는 goswagger를 이용해 golang으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 ubuntu 16.04LTS, golang 1.8을 사용중이다.
 이 문서를 작성하며 참고한 사이트는 아래와 같다. 사실 이 문서 안보고 아래 목록만 살펴봐도 된다.
- swagger …"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2017-10-06-go-swagger01/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.85.0"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script><script src=/js/custom.js></script><script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>go swagger 사용법</h1><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>October 6, 2017</time></li><li class=article-meta-tags><a href=/tags/go/><i class="fas fa-tag"></i>
+ swagger …">
+<meta name=author content="YeongCheon Kim">
+<meta property="og:site_name" content="김영천 블로그">
+<meta property="og:url" content="https://yeongcheon.github.io/posts/2017-10-06-go-swagger01/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:card content="summary">
+<meta name=generator content="Hugo 0.87.0">
+<link rel=stylesheet href=/css/style.css media=all>
+<link rel=stylesheet href=/css/syntax.css media=all>
+<link rel=stylesheet href=/css/custom.css media=all>
+<script src=/js/script.js></script>
+<script src=/js/custom.js></script>
+<script defer src=/js/fontawesome.js></script>
+</head>
+<body>
+<header class=site-header>
+<nav class=site-navi>
+<h1 class=site-title>
+<a href=/>
+<img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
+</a>
+</h1>
+<ul class=site-navi-items>
+<li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li>
+<li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li>
+<li class=site-navi-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+</nav>
+</header>
+<hr class=site-header-bottom>
+<div class=main role=main>
+<article class=article>
+<h1 class=article-title>go swagger 사용법</h1>
+<hr class=article-title-bottom>
+<ul class=article-meta>
+<li class=article-meta-date><time>October 6, 2017</time></li>
+<li class=article-meta-tags>
+<a href=/tags/go/>
+<i class="fas fa-tag"></i>
 go
-</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/swagger/><i class="fas fa-tag"></i>
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/swagger/>
+<i class="fas fa-tag"></i>
 swagger
-</a>&nbsp;</li></ul><aside class=toc><nav id=TableOfContents></nav></aside><h1 id=intro>Intro</h1><hr><p>이 문서는 <a href=https://github.com/go-swagger/go-swagger>goswagger</a>를 이용해 <a href=http://golang.org>golang</a>으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 <code>ubuntu 16.04LTS</code>, <code>golang 1.8</code>을 사용중이다.</p><p>이 문서를 작성하며 참고한 사이트는 아래와 같다. <del>사실 이 문서 안보고 아래 목록만 살펴봐도 된다.</del></p><ul><li><a href=http://swagger.io/>swagger 공식 사이트</a></li><li><a href=https://goswagger.io>goswagger.io</a></li><li><a href=https://www.joinc.co.kr/w/man/12/swagger>yundream님의 사이트</a>, 상당히 정리가 잘 되어있다.</li><li>구글링&mldr;</li></ul><h1 id=goswagger-설치>goSwagger 설치</h1><hr><p><a href=https://github.com/go-swagger/go-swagger>github 페이지</a>의 README 파일을 보면 아래의 명령어를 쓰라고 한다.</p><pre><code class=language-command data-lang=command>echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
-</code></pre><p><strong>근데 동작을 안한다&mldr;</strong></p><p><code>go get</code> 명령어를 이용해 소스파일을 직접 컴파일 해도 되지만 여기서는 <code>apt</code> 명령어를 이용해 설치하는 방법을 알아보겠다.</p><pre><code class=language-command data-lang=command>echo &quot;deb [trusted=yes] https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
+</a>&nbsp;
+</li>
+</ul>
+<aside class=toc>
+<nav id=TableOfContents></nav>
+</aside>
+<h1 id=intro>Intro</h1>
+<hr>
+<p>이 문서는 <a href=https://github.com/go-swagger/go-swagger>goswagger</a>를 이용해 <a href=http://golang.org>golang</a>으로 작성된 간단한 REST API SERVER 프로그램을 만드는 방법을 설명한다. 개발환경은 <code>ubuntu 16.04LTS</code>, <code>golang 1.8</code>을 사용중이다.</p>
+<p>이 문서를 작성하며 참고한 사이트는 아래와 같다. <del>사실 이 문서 안보고 아래 목록만 살펴봐도 된다.</del></p>
+<ul>
+<li><a href=http://swagger.io/>swagger 공식 사이트</a></li>
+<li><a href=https://goswagger.io>goswagger.io</a></li>
+<li><a href=https://www.joinc.co.kr/w/man/12/swagger>yundream님의 사이트</a>, 상당히 정리가 잘 되어있다.</li>
+<li>구글링&mldr;</li>
+</ul>
+<h1 id=goswagger-설치>goSwagger 설치</h1>
+<hr>
+<p><a href=https://github.com/go-swagger/go-swagger>github 페이지</a>의 README 파일을 보면 아래의 명령어를 쓰라고 한다.</p>
+<pre><code class=language-command data-lang=command>echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
+</code></pre><p><strong>근데 동작을 안한다&mldr;</strong></p>
+<p><code>go get</code> 명령어를 이용해 소스파일을 직접 컴파일 해도 되지만 여기서는 <code>apt</code> 명령어를 이용해 설치하는 방법을 알아보겠다.</p>
+<pre><code class=language-command data-lang=command>echo &quot;deb [trusted=yes] https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
 sudo apt update
 sudo apt install swagger
-</code></pre><p>위 명령어들 중 첫번째 명령어는 내 apt repository에 dl.bintray.com/swagger 사이트를 추가하겠다는 의미이다. [trusted=yes] 구문이 없을경우 <code>apt update</code> 명령어를 제대로 수행하지 못한다. 아마 인증서 관련 문제로 추측하는데 확실하지는 않다. 그 이후 명령어는 repository 목록에 접근하여 swagger를 설치하는 내용이다. 위 명령어들을 에러없이 무사히 마쳤을 경우 <code>/usr/bin</code> 경로에 swagger 파일이 생성되어 있을것이다.</p><p><em><strong>위 방법을 통해 설치한 swagger는 제대로 동작을 하지 않는다. 아마 바이너리 파일이 제대로 업데이트가 안되어 있는듯 하다. 위 방법은 무시하고 아래의 <code>go get</code> 명령어를 이용해 설치를 하도록 한다.</strong></em></p><pre><code class=language-command data-lang=command>go get -u github.com/go-swagger/go-swagger/cmd/swagger
-</code></pre><p>위 명령어를 실행하면 <code>$GOPATH/bin</code> 폴더 아래에 swagger 파일이 생성되어 있을것이다. <code>$GOPATH/bin</code>을 PATH에 추가하거나 swaager 파일을 <code>/usr/local/bin</code> 폴더로 옮기면 어디서든 swagger 명령어를 사용할 수 있다.</p><h1 id=spec-작성하기>spec 작성하기</h1><hr><p>swagger는 스펙에서 코드를 생성한다. 즉 우리가 스펙만 제대로 정의해주면 코드의 골격은 swagger가 알아서 작성해준다(물론 안의 내용을 구현하는건 개발자 몫이다).그럼 이제 스펙을 만들어보자.</p><ol><li>본인의 <code>$GOPATH/src</code> 폴더에서 아래의 명령어를 실행한다.</li></ol><pre><code class=language-command data-lang=command>swagger init spec \
+</code></pre><p>위 명령어들 중 첫번째 명령어는 내 apt repository에 dl.bintray.com/swagger 사이트를 추가하겠다는 의미이다. [trusted=yes] 구문이 없을경우 <code>apt update</code> 명령어를 제대로 수행하지 못한다. 아마 인증서 관련 문제로 추측하는데 확실하지는 않다. 그 이후 명령어는 repository 목록에 접근하여 swagger를 설치하는 내용이다. 위 명령어들을 에러없이 무사히 마쳤을 경우 <code>/usr/bin</code> 경로에 swagger 파일이 생성되어 있을것이다.</p>
+<p><em><strong>위 방법을 통해 설치한 swagger는 제대로 동작을 하지 않는다. 아마 바이너리 파일이 제대로 업데이트가 안되어 있는듯 하다. 위 방법은 무시하고 아래의 <code>go get</code> 명령어를 이용해 설치를 하도록 한다.</strong></em></p>
+<pre><code class=language-command data-lang=command>go get -u github.com/go-swagger/go-swagger/cmd/swagger
+</code></pre><p>위 명령어를 실행하면 <code>$GOPATH/bin</code> 폴더 아래에 swagger 파일이 생성되어 있을것이다. <code>$GOPATH/bin</code>을 PATH에 추가하거나 swaager 파일을 <code>/usr/local/bin</code> 폴더로 옮기면 어디서든 swagger 명령어를 사용할 수 있다.</p>
+<h1 id=spec-작성하기>spec 작성하기</h1>
+<hr>
+<p>swagger는 스펙에서 코드를 생성한다. 즉 우리가 스펙만 제대로 정의해주면 코드의 골격은 swagger가 알아서 작성해준다(물론 안의 내용을 구현하는건 개발자 몫이다).그럼 이제 스펙을 만들어보자.</p>
+<ol>
+<li>본인의 <code>$GOPATH/src</code> 폴더에서 아래의 명령어를 실행한다.</li>
+</ol>
+<pre><code class=language-command data-lang=command>swagger init spec \
   --title &quot;hello world application&quot; \
   --description &quot;hello go swagger&quot; \
   --version 1.0.0 \
   --scheme http \
   --consumes application/json \
   --produces application/json
-</code></pre><ol start=2><li>위 명령어를 실행하면 아래처럼 생긴 <code>swagger.yml</code> 파일이 생긴다.</li></ol><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</code></pre><ol start=2>
+<li>위 명령어를 실행하면 아래처럼 생긴 <code>swagger.yml</code> 파일이 생긴다.</li>
+</ol>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -36,7 +124,9 @@ sudo apt install swagger
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>consumes</span>:
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>consumes</span>:
 - <span style=color:#ae81ff>application/json</span>
 <span style=color:#f92672>info</span>:
   <span style=color:#f92672>description</span>: <span style=color:#ae81ff>hello go swagger</span>
@@ -50,7 +140,19 @@ sudo apt install swagger
 <span style=color:#f92672>schemes</span>:
   - <span style=color:#ae81ff>http</span>
 <span style=color:#f92672>swagger</span>: <span style=color:#e6db74>&#34;2.0&#34;</span>
-</code></pre></td></tr></table></div></div><ol start=3><li><p>위 파일에서 7번째 줄의 <code>paths:{}</code> 구문을 우리 입맛대로 고쳐줘야 한다. 이번 예제에선 다른 구문들은 건들지 않아도 된다.</p></li><li><p>우리는 이번 예제에서 GET 방식으로 <code>/</code> URL을 호출할 시 hello world를 반환하는 예제를 만드는 게 주 목적이다. 그러기 위해선 <code>swagger.yml</code>의 <code>paths:{}</code> 구문을 제거하고 파일 최하단에 아래 코드를 붙여넣기 한다. 추가로 파일 맨 위의 consumes 구문도 지워준다(버그인지 두번 반복되고 있다).</p></li></ol><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</code></pre></td></tr></table>
+</div>
+</div><ol start=3>
+<li>
+<p>위 파일에서 7번째 줄의 <code>paths:{}</code> 구문을 우리 입맛대로 고쳐줘야 한다. 이번 예제에선 다른 구문들은 건들지 않아도 된다.</p>
+</li>
+<li>
+<p>우리는 이번 예제에서 GET 방식으로 <code>/</code> URL을 호출할 시 hello world를 반환하는 예제를 만드는 게 주 목적이다. 그러기 위해선 <code>swagger.yml</code>의 <code>paths:{}</code> 구문을 제거하고 파일 최하단에 아래 코드를 붙여넣기 한다. 추가로 파일 맨 위의 consumes 구문도 지워준다(버그인지 두번 반복되고 있다).</p>
+</li>
+</ol>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -80,7 +182,9 @@ sudo apt install swagger
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>swagger</span>: <span style=color:#e6db74>&#34;2.0&#34;</span>
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>swagger</span>: <span style=color:#e6db74>&#34;2.0&#34;</span>
 <span style=color:#f92672>info</span>:
   <span style=color:#f92672>description</span>: <span style=color:#ae81ff>hello go swagger</span>
   <span style=color:#f92672>title</span>: <span style=color:#ae81ff>hello world application</span>
@@ -110,7 +214,13 @@ sudo apt install swagger
     <span style=color:#f92672>properties</span>:
       <span style=color:#f92672>result</span>:
         <span style=color:#f92672>type</span>: <span style=color:#ae81ff>string</span>
-</code></pre></td></tr></table></div></div><p><code>swagger.yml</code>파일을 수정할 때 주의할 점은 <code>yml</code> 형식의 파일은 들여쓰기로 <code>\b</code>(공백)을 두번 쓴다는 점이다. 탭이나 띄어쓰기 한 칸으로 할 경우 오류가 발생할 수 있다(작성자는 들여쓰기를 탭으로 했다가 피봤다).</p><p>위 문장 붙여넣기까지 완료한 <code>swagger.yml</code> 파일의 최총 코드는 아래와 같다.</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</code></pre></td></tr></table>
+</div>
+</div><p><code>swagger.yml</code>파일을 수정할 때 주의할 점은 <code>yml</code> 형식의 파일은 들여쓰기로 <code>\b</code>(공백)을 두번 쓴다는 점이다. 탭이나 띄어쓰기 한 칸으로 할 경우 오류가 발생할 수 있다(작성자는 들여쓰기를 탭으로 했다가 피봤다).</p>
+<p>위 문장 붙여넣기까지 완료한 <code>swagger.yml</code> 파일의 최총 코드는 아래와 같다.</p>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -141,7 +251,9 @@ sudo apt install swagger
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>swagger</span>: <span style=color:#e6db74>&#34;2.0&#34;</span>
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>swagger</span>: <span style=color:#e6db74>&#34;2.0&#34;</span>
 <span style=color:#f92672>info</span>:
   <span style=color:#f92672>description</span>: <span style=color:#ae81ff>hello go swagger</span>
   <span style=color:#f92672>title</span>: <span style=color:#ae81ff>hello world application</span>
@@ -172,31 +284,116 @@ sudo apt install swagger
       <span style=color:#f92672>result</span>:
         <span style=color:#f92672>type</span>: <span style=color:#ae81ff>string</span>
 
-</code></pre></td></tr></table></div></div><h1 id=유효성-검사-및-서버코드-생성>유효성 검사 및 서버코드 생성</h1><hr><p><code>swagger.yml</code>을 완성했으면 이 파일을 통해 REST API의 기본 코드를 생성할 수 있다. 그 전에 우리가 작성한 <code>swagger.yml</code> 파일의 유효성 검사를 해 해당 파일에 문제가 있나 확인을 해야한다.</p><p>다음 명령어를 통해 유효성 검사를 할 수 있다.</p><pre><code class=language-command data-lang=command>swagger validate ./swagger.yml
-</code></pre><p>위 명령어 수행 후 <strong>The swagger spec at &ldquo;./swagger.yml&rdquo; is valid against swagger specification 2.0</strong> 메세지가 출력되면 검사결과 문제가 없다는 뜻이다. 이제 골격 코드를 생성해보자. 아래의 명령어를 실행하면 된다.</p><pre><code class=language-command data-lang=command>swagger generate server -A helloworld -f ./swagger.yml
-</code></pre><p>위 명령어는 helloWorld라는 이름의 helloworld라는 이름의 go server application 코드를 생성하는 명령어다. 수행이 완료되면 콘솔창 마지막 부분에 <strong>Generation Complete!</strong> 라는 메세지가 출력되면 정상적으로 수행이 완료된 것이다. 그리고 이 코드를 컴파일 하기 위해서 외부 라이브러리가 몇개 필요하다고 메세지가 뜨는데 <code>go get</code> 명령어를 통해서 내려받을 수 있다. 목록은 아래와 같다. <del>코드생성에 성공했으면 그냥 터미널 창 보고 직접 확인하면 된다.</del></p><ul><li>github.com/go-openapi/runtime</li><li>github.com/tylerb/graceful</li><li>github.com/jessevdk/go-flags</li></ul><p>그런데 generate 명령 실행 시 위 파일만 내려받으면 된다고 하는데 막상 실행하려고 하면 추가로 더 필요한 라이브러리가 있다. 아래의 목록도 마저 내려받도록 하자.</p><ul><li>github.com/docker/go-units</li><li>github.com/go-openapi/analysis</li><li>github.com/go-openapi/spec</li><li>github.com/go-openapi/validate</li></ul><p>만약 <a href=https://github.com/golang/dep>dep</a>를 사용하고 있다면 그냥 <code>dep ensure</code> 명령어만 쓰면 끝난다.<del>세상 편하다.</del></p><h1 id=서버-실행-및-소스-수정>서버 실행 및 소스 수정</h1><hr><p>유효성 검사결과에 이상이 없을 경우 이제 <code>swagger.yml</code> 파일을 이용해 server code를 생성할 수 있다. 아래의 명령어를 이용해 서버를 실행시켜보자.</p><pre><code class=language-command data-lang=command>go run cmd/helloworld-server/main.go --port=9000 --host=127.0.0.1 --socket-path=/tmp/helloworld.sock --scheme=http
-</code></pre><p>위 명령을 실행하면 generate로 생성된 서버 코드가 동작한다. 서버를 실행시킨 상태에서 http://127.0.0.1:9000 URL에 접근하면 <strong>&ldquo;operation .Get has not yet been implemented&rdquo;</strong> 메세지가 뜬다.</p><p><a href=http://swagger.io/>swagger</a>는 우리가 작성한 스펙, 즉 <code>swagger.yml</code>에 따라 end point와 추가로 선언한 모델만 작성해 줄 뿐 실제 비즈니스 로직은 우리가 직접 구현해야 한다. 이번 문서에서 우리는 복잡한 로직이 아니라 단순히 helloworld만 출력하는게 목적이므로 아래의 내용에 따라 소스코드를 살짝만 고쳐주자.</p><ol><li><code>src/restapi/configure_helloworld.go</code> 파일에 접근하여 <code>import</code> 구문 바로 아래에 아래의 코드를 추가한다. 사실 <code>configure_helloworld.go</code> 파일 안이라면 위치는 자기 마음대로 해도 된다(문법이 허용하는 범위 내에).</li></ol><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=유효성-검사-및-서버코드-생성>유효성 검사 및 서버코드 생성</h1>
+<hr>
+<p><code>swagger.yml</code>을 완성했으면 이 파일을 통해 REST API의 기본 코드를 생성할 수 있다. 그 전에 우리가 작성한 <code>swagger.yml</code> 파일의 유효성 검사를 해 해당 파일에 문제가 있나 확인을 해야한다.</p>
+<p>다음 명령어를 통해 유효성 검사를 할 수 있다.</p>
+<pre><code class=language-command data-lang=command>swagger validate ./swagger.yml
+</code></pre><p>위 명령어 수행 후 <strong>The swagger spec at &ldquo;./swagger.yml&rdquo; is valid against swagger specification 2.0</strong> 메세지가 출력되면 검사결과 문제가 없다는 뜻이다. 이제 골격 코드를 생성해보자. 아래의 명령어를 실행하면 된다.</p>
+<pre><code class=language-command data-lang=command>swagger generate server -A helloworld -f ./swagger.yml
+</code></pre><p>위 명령어는 helloWorld라는 이름의 helloworld라는 이름의 go server application 코드를 생성하는 명령어다. 수행이 완료되면 콘솔창 마지막 부분에 <strong>Generation Complete!</strong> 라는 메세지가 출력되면 정상적으로 수행이 완료된 것이다. 그리고 이 코드를 컴파일 하기 위해서 외부 라이브러리가 몇개 필요하다고 메세지가 뜨는데 <code>go get</code> 명령어를 통해서 내려받을 수 있다. 목록은 아래와 같다. <del>코드생성에 성공했으면 그냥 터미널 창 보고 직접 확인하면 된다.</del></p>
+<ul>
+<li>github.com/go-openapi/runtime</li>
+<li>github.com/tylerb/graceful</li>
+<li>github.com/jessevdk/go-flags</li>
+</ul>
+<p>그런데 generate 명령 실행 시 위 파일만 내려받으면 된다고 하는데 막상 실행하려고 하면 추가로 더 필요한 라이브러리가 있다. 아래의 목록도 마저 내려받도록 하자.</p>
+<ul>
+<li>github.com/docker/go-units</li>
+<li>github.com/go-openapi/analysis</li>
+<li>github.com/go-openapi/spec</li>
+<li>github.com/go-openapi/validate</li>
+</ul>
+<p>만약 <a href=https://github.com/golang/dep>dep</a>를 사용하고 있다면 그냥 <code>dep ensure</code> 명령어만 쓰면 끝난다.<del>세상 편하다.</del></p>
+<h1 id=서버-실행-및-소스-수정>서버 실행 및 소스 수정</h1>
+<hr>
+<p>유효성 검사결과에 이상이 없을 경우 이제 <code>swagger.yml</code> 파일을 이용해 server code를 생성할 수 있다. 아래의 명령어를 이용해 서버를 실행시켜보자.</p>
+<pre><code class=language-command data-lang=command>go run cmd/helloworld-server/main.go --port=9000 --host=127.0.0.1 --socket-path=/tmp/helloworld.sock --scheme=http
+</code></pre><p>위 명령을 실행하면 generate로 생성된 서버 코드가 동작한다. 서버를 실행시킨 상태에서 http://127.0.0.1:9000 URL에 접근하면 <strong>&ldquo;operation .Get has not yet been implemented&rdquo;</strong> 메세지가 뜬다.</p>
+<p><a href=http://swagger.io/>swagger</a>는 우리가 작성한 스펙, 즉 <code>swagger.yml</code>에 따라 end point와 추가로 선언한 모델만 작성해 줄 뿐 실제 비즈니스 로직은 우리가 직접 구현해야 한다. 이번 문서에서 우리는 복잡한 로직이 아니라 단순히 helloworld만 출력하는게 목적이므로 아래의 내용에 따라 소스코드를 살짝만 고쳐주자.</p>
+<ol>
+<li><code>src/restapi/configure_helloworld.go</code> 파일에 접근하여 <code>import</code> 구문 바로 아래에 아래의 코드를 추가한다. 사실 <code>configure_helloworld.go</code> 파일 안이라면 위치는 자기 마음대로 해도 된다(문법이 허용하는 범위 내에).</li>
+</ol>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ResultResponse</span> <span style=color:#66d9ef>struct</span> {
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ResultResponse</span> <span style=color:#66d9ef>struct</span> {
 	<span style=color:#a6e22e>Result</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;result&#34;`</span>
 }
 
 <span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>result</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>ResultResponse</span>) <span style=color:#a6e22e>WriteResponse</span>(<span style=color:#a6e22e>w</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>ResponseWriter</span>, <span style=color:#a6e22e>producer</span> <span style=color:#a6e22e>runtime</span>.<span style=color:#a6e22e>Producer</span>) {
 	<span style=color:#a6e22e>producer</span>.<span style=color:#a6e22e>Produce</span>(<span style=color:#a6e22e>w</span>, <span style=color:#a6e22e>result</span>)
 }
-</code></pre></td></tr></table></div></div><ol start=2><li><code>src/restapi/configure_helloworld.go</code> 파일의 <code>configureAPI</code> 함수 안에 <code>api.getHandler</code> 구문의 내부를 수정해줘야 한다. 내부 코드를 살펴보면 아래와 같은 구문이 있을 것이다.</li></ol><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#66d9ef>return</span> <span style=color:#a6e22e>middleware</span>.<span style=color:#a6e22e>NotImplemented</span>(<span style=color:#e6db74>&#34;operation .Get has not yet been implemented&#34;</span>)
-</code></pre></td></tr></table></div></div><p>위 코드는 해당 함수를 아직 개발자가 구현해주지 않았다는 뜻이다. 위 구문 때문에 코드 생성 후 최초로 접근했을 때 <strong>&ldquo;operation .Get has not yet been implemented&rdquo;</strong> 메세지가 떳던 것이다. 이제 이 구문을 삭제, 또는 주석처리 하고 아래의 코드를 입력한다.</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</code></pre></td></tr></table>
+</div>
+</div><ol start=2>
+<li><code>src/restapi/configure_helloworld.go</code> 파일의 <code>configureAPI</code> 함수 안에 <code>api.getHandler</code> 구문의 내부를 수정해줘야 한다. 내부 코드를 살펴보면 아래와 같은 구문이 있을 것이다.</li>
+</ol>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#66d9ef>return</span> <span style=color:#a6e22e>middleware</span>.<span style=color:#a6e22e>NotImplemented</span>(<span style=color:#e6db74>&#34;operation .Get has not yet been implemented&#34;</span>)
+</code></pre></td></tr></table>
+</div>
+</div><p>위 코드는 해당 함수를 아직 개발자가 구현해주지 않았다는 뜻이다. 위 구문 때문에 코드 생성 후 최초로 접근했을 때 <strong>&ldquo;operation .Get has not yet been implemented&rdquo;</strong> 메세지가 떳던 것이다. 이제 이 구문을 삭제, 또는 주석처리 하고 아래의 코드를 입력한다.</p>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#66d9ef>return</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>ResultResponse</span>{
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#66d9ef>return</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>ResultResponse</span>{
 	<span style=color:#a6e22e>Result</span>: <span style=color:#e6db74>&#34;hello world&#34;</span>,
 }
-</code></pre></td></tr></table></div></div><p>이 후 파일 내용을 저장하고 서버를 재시작 하고 http://127.0.0.1:9000 URL에 접근하면 아래와 같은 json 형식의 내용을 출력한다.</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{<span style=color:#f92672>&#34;result&#34;</span>:<span style=color:#e6db74>&#34;hello world&#34;</span>}
-</code></pre></td></tr></table></div></div><p>우리가 출력하고자 한 hello world 구문이 정상적으로 출력된 것을 확인할 수 있다. 이 후 별도의 문서에서 generate 명령어를 이용해 생성된 코드의 구조를 좀 자세히 알아보고자 한다.</p></article><div class=disqus-comments><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//yeongcheon.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><ul class="pager article-pager"><li class=pager-newer><a href=/posts/2017-10-14-go-swagger02/ data-toggle=tooltip data-placement=top title="go swagger 서버파일 구조 분석">&lt; Newer</a></li><li class="pager-older pager-noitem">Older ></li></ul></div><div class=site-footer><div class=copyright>&copy; Copyright 2020 YeongCheon</div><ul class=site-footer-items><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script></body><script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></html>
+</code></pre></td></tr></table>
+</div>
+</div><p>이 후 파일 내용을 저장하고 서버를 재시작 하고 http://127.0.0.1:9000 URL에 접근하면 아래와 같은 json 형식의 내용을 출력한다.</p>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{<span style=color:#f92672>&#34;result&#34;</span>:<span style=color:#e6db74>&#34;hello world&#34;</span>}
+</code></pre></td></tr></table>
+</div>
+</div><p>우리가 출력하고자 한 hello world 구문이 정상적으로 출력된 것을 확인할 수 있다. 이 후 별도의 문서에서 generate 명령어를 이용해 생성된 코드의 구조를 좀 자세히 알아보고자 한다.</p>
+</article>
+<div class=disqus-comments>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//yeongcheon.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+<ul class="pager article-pager">
+<li class=pager-newer>
+<a href=/posts/2017-10-14-go-swagger02/ data-toggle=tooltip data-placement=top title="go swagger 서버파일 구조 분석">&lt; Newer</a>
+</li>
+<li class="pager-older pager-noitem">Older ></li>
+</ul>
+</div>
+<div class=site-footer>
+<div class=copyright>&copy; Copyright 2020 YeongCheon</div>
+<ul class=site-footer-items>
+<li class=site-footer-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+<div class=powerdby>
+Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a>
+</div>
+</div>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-135478508-1','auto'),ga('send','pageview'))</script>
+</body>
+<script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</html>
