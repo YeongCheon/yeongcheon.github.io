@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -164,7 +164,7 @@ GCP
 </code></pre></td></tr></table>
 </div>
 </div><p><code>swagger.yaml</code> 파일을 생성했으면 이제 <code>swagger generate</code> 명령을 이용해 실제로 서버에서 구동될 코드를 생성해보자. [지난번 포스트][last-post]와 동일한 명령어지만 <code>--flag-strategy pflag</code> 옵션이 추가됐다. 코드 생성이 완료되었으면 지난번 포스트를 참고하여 <code>/</code>에 접근 시 hello world가 출력되도록 코드를 수정해놓자.</p>
-<pre><code class=language-command data-lang=command>swagger generate server -A helloworld -f ./swagger.yml --flag-strategy pflag
+<pre tabindex=0><code class=language-command data-lang=command>swagger generate server -A helloworld -f ./swagger.yml --flag-strategy pflag
 </code></pre><p><code>swagger generate</code> 명령어를 쓰기전엔 <code>swagger validate</code> 명령어를 이용해 <code>swagger.yaml</code> 파일의 유효성 검사를 진행하는게 보통이지만 이번 예제에선 생략하도록 한다.</p>
 <h3 id=flag-strategy-pflag-옵션을-주는-이유>flag-strategy pflag 옵션을 주는 이유</h3>
 <blockquote>

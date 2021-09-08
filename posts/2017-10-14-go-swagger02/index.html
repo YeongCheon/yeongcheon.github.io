@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -75,7 +75,7 @@ swagger
 <p><a href=http://yeongcheon.github.io/2017/10/06/go-swagger01/>지난번 포스트</a>에서 만든 hello world 프로젝트의 구성요소들을 분석해보자.</p>
 <h1 id=폴더-구조>폴더 구조</h1>
 <hr>
-<pre><code class=language-tree data-lang=tree>├── cmd
+<pre tabindex=0><code class=language-tree data-lang=tree>├── cmd
 │   └── helloworld-server
 │         └── main.go
 ├── github.com
@@ -99,9 +99,9 @@ swagger
 <h2 id=cmd>cmd</h2>
 <hr>
 <p>서버를 실행시킬 때 사용하는 파일이 들어있다. 지난번 포스트에서 서버를 실행시킬 때 사용했던 명령어는 아래와 같다.</p>
-<pre><code class=language-command data-lang=command>go run cmd/helloworld-server/main.go --port=9000 --host=127.0.0.1 --socket-path=/tmp/helloworld.sock --scheme=http
+<pre tabindex=0><code class=language-command data-lang=command>go run cmd/helloworld-server/main.go --port=9000 --host=127.0.0.1 --socket-path=/tmp/helloworld.sock --scheme=http
 </code></pre><p>구성요소들은 상당히 간소하다. <code>helloworld-server</code> 폴더 아래에 <code>main.go</code> 파일이 전부이다. 여기서 <code>helloworld-server</code>는 해당 프로젝트의 이름으로 <code>go generate</code> 명령어를 사용할 때 <code>-A</code> 옵션을 이용해 지정할 수 있다. 아래의 명령어는 지난 포스트에서 사용했던 명령어이다.</p>
-<pre><code class=language-command data-lang=command>swagger generate server -A helloworld -f ./swagger.yml
+<pre tabindex=0><code class=language-command data-lang=command>swagger generate server -A helloworld -f ./swagger.yml
 </code></pre><p>cmd 폴더 아래의 내용들은 사실 서버를 실행시키기 위한 파일에 불과할 뿐 우리가 <code>swagger.yml</code>에 선언한 내용들이 거의 들어가 있지 않다. 실제 프로그램 구동에 크게 영향을 미치는 파일들은 <code>restapi</code>, <code>models</code> 폴더에 들어있다.</p>
 <h2 id=models>models</h2>
 <hr>

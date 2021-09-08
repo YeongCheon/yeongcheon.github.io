@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link href=/posts/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
 <link href=/posts/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
 <link rel=stylesheet href=/css/style.css media=all>
@@ -43,6 +43,49 @@ Posts
 </div>
 <div class=main role=main>
 <section class="list section-list">
+<article class=article>
+<a href=/posts/2020-11-26-html-download-property/ class=article-titles>
+<h2 class=article-title>HTML의 download 속성</h2>
+<h3 class=article-subtitle>HTML의 download 속성</h3>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>November 28, 2020</time></li>
+<li class=article-meta-tags>
+<a href=/tags/html/>
+<i class="fas fa-tag"></i>
+html
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/a/>
+<i class="fas fa-tag"></i>
+a
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/download/>
+<i class="fas fa-tag"></i>
+download
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+<p>
+특정 파일을 바로 다운받을 수 있는 download 속성에 대해 알아봅시다. 사실 별 내용 없고 그냥 안까먹을 목적으로 작성하는 중입니다. 이 문서보다는 <a href=https://developer.mozilla.org/ko/docs/Web/HTML/Element/a>여기</a>가 더 보기 좋아요.</p>
+<div class="src src-html">
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://imageURL.com&#34;</span> <span style=color:#a6e22e>download</span>&gt;download image&lt;/<span style=color:#f92672>a</span>&gt;</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+<div class=article-readmore><a href=/posts/2020-11-26-html-download-property/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
 <article class=article>
 <a href=/posts/2020-09-06-kotlin-spring-exception-rollback/ class=article-titles>
 <h2 class=article-title>코틀린으로 작성된 스프링 기반 API 트랜잭션 rollback 관리</h2>
@@ -368,39 +411,6 @@ source code 우선 컴파일 하고자 하는 소스코드를 살펴봅시다. �
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 syntax = "proto3";package example;// myService.proto import "google/api/annotations.proto";message StringMessage { string value = 1;}service YourService { rpc Echo(StringMessage) returns (StringMessage) { option (google.
 </div>
 <div class=article-readmore><a href=/posts/2020-04-15-grpc-build-with-googleapis/>Read more...</a></div>
-<div class=article-floatclear></div>
-</article>
-<article class=article>
-<a href=/posts/2020-03-24-proto-buffers-language-guide-proto3/ class=article-titles>
-<h2 class=article-title>프로토 버퍼 언어 안내(proto3) 번역본</h2>
-<h3 class=article-subtitle>proto buffers language guide(proto3)</h3>
-</a>
-<ul class=article-meta>
-<li class=article-meta-date><time>March 24, 2020</time></li>
-<li class=article-meta-tags>
-<a href=/tags/protobuffers/>
-<i class="fas fa-tag"></i>
-protobuffers
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/proto3/>
-<i class="fas fa-tag"></i>
-proto3
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/google/>
-<i class="fas fa-tag"></i>
-google
-</a>&nbsp;
-</li>
-</ul>
-<div class=article-content>
-매번 영어문서 보기 빡쳐서 직접 번역기 돌려가며 쓰는 번역본. 번역기와 의역, 오역 범벅입니다. 가급적이면 공식 문서를 보세요.
-Language Guide(proto3) Defining A Message Type 우선 매우 간단한 예제를 살펴보겠습니다.. 검색 요청을 위한 메세지 타입을 정의하고자 하는데 이 메세지는 쿼리 문자열(역자 주: query), 요청 페이지(역자 주: page_number), 그리고 페이지당 결과 갯수(역자 주: result_per_page)를 가지고 있습니다. 1 2 3 4 5 6 7 syntax = "proto3";message SearchRequest { string query = 1; int32 page_number = 2; int32 result_per_page = 3;} 첫 번째 줄은 이 파일이 proto3 문법을 사용하고 있음을 나타냅니다.
-</div>
-<div class=article-readmore><a href=/posts/2020-03-24-proto-buffers-language-guide-proto3/>Read more...</a></div>
 <div class=article-floatclear></div>
 </article>
 </section>

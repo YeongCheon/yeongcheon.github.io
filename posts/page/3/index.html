@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link href=/posts/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
 <link href=/posts/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
 <link rel=stylesheet href=/css/style.css media=all>
@@ -43,6 +43,39 @@ Posts
 </div>
 <div class=main role=main>
 <section class="list section-list">
+<article class=article>
+<a href=/posts/2020-03-24-proto-buffers-language-guide-proto3/ class=article-titles>
+<h2 class=article-title>프로토 버퍼 언어 안내(proto3) 번역본</h2>
+<h3 class=article-subtitle>proto buffers language guide(proto3)</h3>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>March 24, 2020</time></li>
+<li class=article-meta-tags>
+<a href=/tags/protobuffers/>
+<i class="fas fa-tag"></i>
+protobuffers
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/proto3/>
+<i class="fas fa-tag"></i>
+proto3
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/google/>
+<i class="fas fa-tag"></i>
+google
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+매번 영어문서 보기 빡쳐서 직접 번역기 돌려가며 쓰는 번역본. 번역기와 의역, 오역 범벅입니다. 가급적이면 공식 문서를 보세요.
+Language Guide(proto3) Defining A Message Type 우선 매우 간단한 예제를 살펴보겠습니다.. 검색 요청을 위한 메세지 타입을 정의하고자 하는데 이 메세지는 쿼리 문자열(역자 주: query), 요청 페이지(역자 주: page_number), 그리고 페이지당 결과 갯수(역자 주: result_per_page)를 가지고 있습니다. 1 2 3 4 5 6 7 syntax = "proto3";message SearchRequest { string query = 1; int32 page_number = 2; int32 result_per_page = 3;} 첫 번째 줄은 이 파일이 proto3 문법을 사용하고 있음을 나타냅니다.
+</div>
+<div class=article-readmore><a href=/posts/2020-03-24-proto-buffers-language-guide-proto3/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
 <article class=article>
 <a href=/posts/2020-03-08-emacs-all-package-upgrade/ class=article-titles>
 <h2 class=article-title>emacs에서 내가 사용중인 모든 패키지 업그레이드 하기</h2>
@@ -352,44 +385,6 @@ messaging"
 우리 서비스에 적용하고 싶어(어떻게?) 운영중인 서비스에 인스턴스 메시징 기능을 적용하면 여러가지 이점이 많다. 빠른 의사소통은 물론 사용자의 서비스 체류시간 및 접속빈도 증가 등등.
 </div>
 <div class=article-readmore><a href=/posts/2019-03-07-tinode001/>Read more...</a></div>
-<div class=article-floatclear></div>
-</article>
-<article class=article>
-<a href=/posts/2019-03-03-github+hugo+orgmode_setup/ class=article-titles>
-<h2 class=article-title>hugo + org-mode + github를 이용해 블로그 셋팅하기</h2>
-</a>
-<ul class=article-meta>
-<li class=article-meta-date><time>March 3, 2019</time></li>
-<li class=article-meta-tags>
-<a href=/tags/hugo/>
-<i class="fas fa-tag"></i>
-hugo
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/github/>
-<i class="fas fa-tag"></i>
-github
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/org-mode/>
-<i class="fas fa-tag"></i>
-org-mode
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/blog/>
-<i class="fas fa-tag"></i>
-blog
-</a>&nbsp;
-</li>
-</ul>
-<div class=article-content>
-hugo + github + org-mode를 이용해 블로그를 운영하는 법을 알아보자. github에 hugo를 올리는 방법은 웹에 가이드가 이미 많이 있기 때문에 이 포스트에서는 org-mode를 이용해 hugo에 글을 어떻게 쓰는지를 중점적으로 설명한다.
-hugo를 적용하게 된 계기 orgmode에 대한 호기심 원래 jekyll + github 조합으로 블로그를 운영하고 있었다. github 블로그를 운영할 때 가장 대중적인 조합이고 나 초기 셋팅이 좀 번거로웠던거 빼곤 불만이 없었기에 그대로 사용하고 있었다. 블로그에 포스트를 작성할 때 markdown을 이용해서 글을 작성했었는데 최근에 emacs의 킬러 콘텐츠로 불리는 org-mode에 관심이 가기 시작했다.
-</div>
-<div class=article-readmore><a href=/posts/2019-03-03-github+hugo+orgmode_setup/>Read more...</a></div>
 <div class=article-floatclear></div>
 </article>
 </section>

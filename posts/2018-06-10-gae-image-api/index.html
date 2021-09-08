@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -174,7 +174,7 @@ golang
 <ul>
 <li><strong>로컬 서버에서는 제대로 동작하지 않는다.</strong>(내가 방법을 못 찾은 걸수도 있다.) 로컬에서 <code>dev_appserver.py</code>를 이용해 위 코드를 테스트하면 비정상적인 URL이 반환되는데 이 URL은 동작하지 않는다. 테스트는 꼭 실제 GAE에서 하도록 하자. 정상적인 URL은 아래와 비슷한 모양이다.</li>
 </ul>
-<pre><code>https://lh3.googleusercontent.com/tUcBqKywA1YYVTll2HZzjl7LE80ta8jOseulgwBRuv6FEX989G1E49s00d9yt4pJ0ql1htNcr9MCIlp33oKyha
+<pre tabindex=0><code>https://lh3.googleusercontent.com/tUcBqKywA1YYVTll2HZzjl7LE80ta8jOseulgwBRuv6FEX989G1E49s00d9yt4pJ0ql1htNcr9MCIlp33oKyha
 </code></pre><ul>
 <li>url을 생성하고 GCS에서 해당 이미지를 지워도 URL이 정상적으로 동작한다. 아마 구글 인프라 어딘가에 캐시가 되어있는거 같은데 기간이 생각보다 길다. 개인적으로 테스트를 해봤는데 파일이 지워져도 3일 이상은 계속 URL을 통해서 이미지를 볼 수 있었다. 즉 <strong>이미지를 지울 생각이면 GCS에서 삭제는 물론이고 <a href=https://cloud.google.com/appengine/docs/standard/go/images/reference#DeleteServingURL>DeleteServingURL</a>을 이용해서 URL도 꼭 제거를 해줘야 한다.</strong></li>
 </ul>

@@ -23,7 +23,7 @@ echo &#34;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&#34
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -82,15 +82,15 @@ swagger
 <h1 id=goswagger-설치>goSwagger 설치</h1>
 <hr>
 <p><a href=https://github.com/go-swagger/go-swagger>github 페이지</a>의 README 파일을 보면 아래의 명령어를 쓰라고 한다.</p>
-<pre><code class=language-command data-lang=command>echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
+<pre tabindex=0><code class=language-command data-lang=command>echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
 </code></pre><p><strong>근데 동작을 안한다&mldr;</strong></p>
 <p><code>go get</code> 명령어를 이용해 소스파일을 직접 컴파일 해도 되지만 여기서는 <code>apt</code> 명령어를 이용해 설치하는 방법을 알아보겠다.</p>
-<pre><code class=language-command data-lang=command>echo &quot;deb [trusted=yes] https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
+<pre tabindex=0><code class=language-command data-lang=command>echo &quot;deb [trusted=yes] https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
 sudo apt update
 sudo apt install swagger
 </code></pre><p>위 명령어들 중 첫번째 명령어는 내 apt repository에 dl.bintray.com/swagger 사이트를 추가하겠다는 의미이다. [trusted=yes] 구문이 없을경우 <code>apt update</code> 명령어를 제대로 수행하지 못한다. 아마 인증서 관련 문제로 추측하는데 확실하지는 않다. 그 이후 명령어는 repository 목록에 접근하여 swagger를 설치하는 내용이다. 위 명령어들을 에러없이 무사히 마쳤을 경우 <code>/usr/bin</code> 경로에 swagger 파일이 생성되어 있을것이다.</p>
 <p><em><strong>위 방법을 통해 설치한 swagger는 제대로 동작을 하지 않는다. 아마 바이너리 파일이 제대로 업데이트가 안되어 있는듯 하다. 위 방법은 무시하고 아래의 <code>go get</code> 명령어를 이용해 설치를 하도록 한다.</strong></em></p>
-<pre><code class=language-command data-lang=command>go get -u github.com/go-swagger/go-swagger/cmd/swagger
+<pre tabindex=0><code class=language-command data-lang=command>go get -u github.com/go-swagger/go-swagger/cmd/swagger
 </code></pre><p>위 명령어를 실행하면 <code>$GOPATH/bin</code> 폴더 아래에 swagger 파일이 생성되어 있을것이다. <code>$GOPATH/bin</code>을 PATH에 추가하거나 swaager 파일을 <code>/usr/local/bin</code> 폴더로 옮기면 어디서든 swagger 명령어를 사용할 수 있다.</p>
 <h1 id=spec-작성하기>spec 작성하기</h1>
 <hr>
@@ -98,7 +98,7 @@ sudo apt install swagger
 <ol>
 <li>본인의 <code>$GOPATH/src</code> 폴더에서 아래의 명령어를 실행한다.</li>
 </ol>
-<pre><code class=language-command data-lang=command>swagger init spec \
+<pre tabindex=0><code class=language-command data-lang=command>swagger init spec \
   --title &quot;hello world application&quot; \
   --description &quot;hello go swagger&quot; \
   --version 1.0.0 \
@@ -290,9 +290,9 @@ sudo apt install swagger
 <hr>
 <p><code>swagger.yml</code>을 완성했으면 이 파일을 통해 REST API의 기본 코드를 생성할 수 있다. 그 전에 우리가 작성한 <code>swagger.yml</code> 파일의 유효성 검사를 해 해당 파일에 문제가 있나 확인을 해야한다.</p>
 <p>다음 명령어를 통해 유효성 검사를 할 수 있다.</p>
-<pre><code class=language-command data-lang=command>swagger validate ./swagger.yml
+<pre tabindex=0><code class=language-command data-lang=command>swagger validate ./swagger.yml
 </code></pre><p>위 명령어 수행 후 <strong>The swagger spec at &ldquo;./swagger.yml&rdquo; is valid against swagger specification 2.0</strong> 메세지가 출력되면 검사결과 문제가 없다는 뜻이다. 이제 골격 코드를 생성해보자. 아래의 명령어를 실행하면 된다.</p>
-<pre><code class=language-command data-lang=command>swagger generate server -A helloworld -f ./swagger.yml
+<pre tabindex=0><code class=language-command data-lang=command>swagger generate server -A helloworld -f ./swagger.yml
 </code></pre><p>위 명령어는 helloWorld라는 이름의 helloworld라는 이름의 go server application 코드를 생성하는 명령어다. 수행이 완료되면 콘솔창 마지막 부분에 <strong>Generation Complete!</strong> 라는 메세지가 출력되면 정상적으로 수행이 완료된 것이다. 그리고 이 코드를 컴파일 하기 위해서 외부 라이브러리가 몇개 필요하다고 메세지가 뜨는데 <code>go get</code> 명령어를 통해서 내려받을 수 있다. 목록은 아래와 같다. <del>코드생성에 성공했으면 그냥 터미널 창 보고 직접 확인하면 된다.</del></p>
 <ul>
 <li>github.com/go-openapi/runtime</li>
@@ -310,7 +310,7 @@ sudo apt install swagger
 <h1 id=서버-실행-및-소스-수정>서버 실행 및 소스 수정</h1>
 <hr>
 <p>유효성 검사결과에 이상이 없을 경우 이제 <code>swagger.yml</code> 파일을 이용해 server code를 생성할 수 있다. 아래의 명령어를 이용해 서버를 실행시켜보자.</p>
-<pre><code class=language-command data-lang=command>go run cmd/helloworld-server/main.go --port=9000 --host=127.0.0.1 --socket-path=/tmp/helloworld.sock --scheme=http
+<pre tabindex=0><code class=language-command data-lang=command>go run cmd/helloworld-server/main.go --port=9000 --host=127.0.0.1 --socket-path=/tmp/helloworld.sock --scheme=http
 </code></pre><p>위 명령을 실행하면 generate로 생성된 서버 코드가 동작한다. 서버를 실행시킨 상태에서 http://127.0.0.1:9000 URL에 접근하면 <strong>&ldquo;operation .Get has not yet been implemented&rdquo;</strong> 메세지가 뜬다.</p>
 <p><a href=http://swagger.io/>swagger</a>는 우리가 작성한 스펙, 즉 <code>swagger.yml</code>에 따라 end point와 추가로 선언한 모델만 작성해 줄 뿐 실제 비즈니스 로직은 우리가 직접 구현해야 한다. 이번 문서에서 우리는 복잡한 로직이 아니라 단순히 helloworld만 출력하는게 목적이므로 아래의 내용에 따라 소스코드를 살짝만 고쳐주자.</p>
 <ol>
