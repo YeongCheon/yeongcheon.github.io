@@ -41,6 +41,39 @@
 <div class=main role=main>
 <section class="list home-list">
 <article class=article>
+<a href=/posts/2021-10-03-angular-reuse-strategy/ class=article-titles>
+<h2 class=article-title>angular route reuse strategy</h2>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>October 3, 2021</time></li>
+<li class=article-meta-tags>
+<a href=/tags/angular/>
+<i class="fas fa-tag"></i>
+angular
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/router/>
+<i class="fas fa-tag"></i>
+router
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/routereusestrategy/>
+<i class="fas fa-tag"></i>
+RouteReuseStrategy
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+Intro 웹앱을 개발하다보면 list->detail 패턴의 구조를 흔하게 작성하게 됩니다. list-detail 패턴이란 목록(list)에서 원하는 컨텐츠를 탐색 후 해당 컨텐츠의 상세한 정보를 보는 화면(detail)로 이동하는 방식을 말합니다. 이 때 detail 화면에서 뒤로 가기를 이용해 목록 화면으로 돌아올 경우 Angular는 해당 화면을 구성하는 컴포넌트를 처음부터 다시 생성(ngOnInit 실행)합니다. 이럴 경우엔 다음과 같은 문제가 발생합니다.
+컴포넌트를 다시 생성하기 때문에 성능상 좋지 못합니다.
+컴포넌트를 다시 그리기 때문에 로딩 화면이 보여지거나 스크롤 위치를 기억하지 등 유저 경험에 악영향을 미칩니다.
+</div>
+<div class=article-readmore><a href=/posts/2021-10-03-angular-reuse-strategy/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+<article class=article>
 <a href=/posts/2021-09-08-http-call-in-docker-container/ class=article-titles>
 <h2 class=article-title>도커 컨테이너 안에서 외부 URL 호출하기</h2>
 <h3 class=article-subtitle>도커 컨테이너 내부에서 외부 URL을 호출할 경우 발생하는 에러와 그 해결법을 알아봅시다.</h3>
@@ -369,44 +402,6 @@ Typescript는 마이크로소프트(이하 MS)의 주도로 개발이 되고 있
 emacs 27.
 </div>
 <div class=article-readmore><a href=/posts/2021-01-26-emacs-typescript-eslint-setting/>Read more...</a></div>
-<div class=article-floatclear></div>
-</article>
-<article class=article>
-<a href=/posts/2021-01-06-image-resize-cloud-function/ class=article-titles>
-<h2 class=article-title>Cloud Functions로 실시간 이미지 리사이징 하기</h2>
-<h3 class=article-subtitle>Cloud Functions을 이용해서 On-The-Fly 이미지 리사이징 및 포맷 변경을 해봅시다.</h3>
-</a>
-<ul class=article-meta>
-<li class=article-meta-date><time>January 6, 2021</time></li>
-<li class=article-meta-tags>
-<a href=/tags/gcp/>
-<i class="fas fa-tag"></i>
-gcp
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/cloudfunctions/>
-<i class="fas fa-tag"></i>
-cloudfunctions
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/on-the-fly/>
-<i class="fas fa-tag"></i>
-on-the-fly
-</a>&nbsp;
-</li>
-</ul>
-<div class=article-content>
-당근마켓, 비트윈 등에서 작성한 글을 참고하여 GCP 기반으로 비슷한 기능을 하는 코드를 작성하여 봅시다. 동작 원리는 앞서 말한 글에 자세히 나와있으니 서론은 생략하고 바로 시작합니다.
-이 문서에서는 GCP의 아래 제품들을 사용합니다.
-Cloud Functions
-Cloud Stroage
-Cloud CDN
-Cloud Storage 실제 이미지들이 저장될 storage bucket을 생성해야 합니다. 여기선 특별할게 없으니 공식 가이드로 대체합니다.
-Cloud Functions 코드 수정 및 배포 Cloud Function을 호출하는 방법은 여러가지가 있습니다만 이 문서에서는 http 요청을 통해 호출하는 방법을 사용합니다.
-</div>
-<div class=article-readmore><a href=/posts/2021-01-06-image-resize-cloud-function/>Read more...</a></div>
 <div class=article-floatclear></div>
 </article>
 </section>

@@ -41,6 +41,44 @@
 <div class=main role=main>
 <section class="list home-list">
 <article class=article>
+<a href=/posts/2021-01-06-image-resize-cloud-function/ class=article-titles>
+<h2 class=article-title>Cloud Functions로 실시간 이미지 리사이징 하기</h2>
+<h3 class=article-subtitle>Cloud Functions을 이용해서 On-The-Fly 이미지 리사이징 및 포맷 변경을 해봅시다.</h3>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>January 6, 2021</time></li>
+<li class=article-meta-tags>
+<a href=/tags/gcp/>
+<i class="fas fa-tag"></i>
+gcp
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/cloudfunctions/>
+<i class="fas fa-tag"></i>
+cloudfunctions
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/on-the-fly/>
+<i class="fas fa-tag"></i>
+on-the-fly
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+당근마켓, 비트윈 등에서 작성한 글을 참고하여 GCP 기반으로 비슷한 기능을 하는 코드를 작성하여 봅시다. 동작 원리는 앞서 말한 글에 자세히 나와있으니 서론은 생략하고 바로 시작합니다.
+이 문서에서는 GCP의 아래 제품들을 사용합니다.
+Cloud Functions
+Cloud Stroage
+Cloud CDN
+Cloud Storage 실제 이미지들이 저장될 storage bucket을 생성해야 합니다. 여기선 특별할게 없으니 공식 가이드로 대체합니다.
+Cloud Functions 코드 수정 및 배포 Cloud Function을 호출하는 방법은 여러가지가 있습니다만 이 문서에서는 http 요청을 통해 호출하는 방법을 사용합니다.
+</div>
+<div class=article-readmore><a href=/posts/2021-01-06-image-resize-cloud-function/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+<article class=article>
 <a href=/posts/2020-11-26-html-download-property/ class=article-titles>
 <h2 class=article-title>HTML의 download 속성</h2>
 <h3 class=article-subtitle>HTML의 download 속성</h3>
@@ -428,47 +466,6 @@ emacs
 1 2 3 4 C-x d (Dired mode 실행) Q (찾기/바꾸기 실행) Y (모든 변경 내역 승인) C-x s ! (모든 변경 내역 저장) step by step Dired mode 실행 C-x d : emacs에 기본적으로 탑재된 dired mode 를 실행해보자.
 </div>
 <div class=article-readmore><a href=/posts/2020-05-13-emacs-search-and-replace/>Read more...</a></div>
-<div class=article-floatclear></div>
-</article>
-<article class=article>
-<a href=/posts/2020-04-26-angular-ssr-with-appengine/ class=article-titles>
-<h2 class=article-title>구글 앱엔진에 ssr angular app 배포하기</h2>
-<h3 class=article-subtitle>구글 앱엔진에 server side rendering을 지원하는 앵귤러 프로젝트를 배포해보자.</h3>
-</a>
-<ul class=article-meta>
-<li class=article-meta-date><time>April 26, 2020</time></li>
-<li class=article-meta-tags>
-<a href=/tags/appengine/>
-<i class="fas fa-tag"></i>
-appengine
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/angular/>
-<i class="fas fa-tag"></i>
-angular
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/ssr/>
-<i class="fas fa-tag"></i>
-ssr
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/seo/>
-<i class="fas fa-tag"></i>
-seo
-</a>&nbsp;
-</li>
-</ul>
-<div class=article-content>
-들어가며 이 문서는 기본적으로 앵귤러 공식 SSR 가이드를 따라하며 학습한 내용을 정리한 것입니다. SSR에 대해 궁금하시다면 이 링크를 참고하세요. 이 문서는 angular, appEngine을 사용할 줄 아는 사람을 대상으로 작성되었습니다.
-프로젝트 생성 우선 앵귤러 프로젝트를 하나 생성해봅시다. 이 예제는 angular9 버전을 기준으로 작성되었습니다.
-1 ng new test-project express-engine 추가 생성된 프로젝트 내부에서 아래의 명령어를 실행합니다.
-1 ng add @nguniversal/express-engine 명령어를 성공적으로 실행했다면 아래의 파일이 추가되었을 것입니다.
-</div>
-<div class=article-readmore><a href=/posts/2020-04-26-angular-ssr-with-appengine/>Read more...</a></div>
 <div class=article-floatclear></div>
 </article>
 </section>

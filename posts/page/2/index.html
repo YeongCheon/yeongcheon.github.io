@@ -44,6 +44,44 @@ Posts
 <div class=main role=main>
 <section class="list section-list">
 <article class=article>
+<a href=/posts/2021-01-06-image-resize-cloud-function/ class=article-titles>
+<h2 class=article-title>Cloud Functions로 실시간 이미지 리사이징 하기</h2>
+<h3 class=article-subtitle>Cloud Functions을 이용해서 On-The-Fly 이미지 리사이징 및 포맷 변경을 해봅시다.</h3>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>January 6, 2021</time></li>
+<li class=article-meta-tags>
+<a href=/tags/gcp/>
+<i class="fas fa-tag"></i>
+gcp
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/cloudfunctions/>
+<i class="fas fa-tag"></i>
+cloudfunctions
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/on-the-fly/>
+<i class="fas fa-tag"></i>
+on-the-fly
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+당근마켓, 비트윈 등에서 작성한 글을 참고하여 GCP 기반으로 비슷한 기능을 하는 코드를 작성하여 봅시다. 동작 원리는 앞서 말한 글에 자세히 나와있으니 서론은 생략하고 바로 시작합니다.
+이 문서에서는 GCP의 아래 제품들을 사용합니다.
+Cloud Functions
+Cloud Stroage
+Cloud CDN
+Cloud Storage 실제 이미지들이 저장될 storage bucket을 생성해야 합니다. 여기선 특별할게 없으니 공식 가이드로 대체합니다.
+Cloud Functions 코드 수정 및 배포 Cloud Function을 호출하는 방법은 여러가지가 있습니다만 이 문서에서는 http 요청을 통해 호출하는 방법을 사용합니다.
+</div>
+<div class=article-readmore><a href=/posts/2021-01-06-image-resize-cloud-function/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+<article class=article>
 <a href=/posts/2020-11-26-html-download-property/ class=article-titles>
 <h2 class=article-title>HTML의 download 속성</h2>
 <h3 class=article-subtitle>HTML의 download 속성</h3>
@@ -383,34 +421,6 @@ seo
 1 ng add @nguniversal/express-engine 명령어를 성공적으로 실행했다면 아래의 파일이 추가되었을 것입니다.
 </div>
 <div class=article-readmore><a href=/posts/2020-04-26-angular-ssr-with-appengine/>Read more...</a></div>
-<div class=article-floatclear></div>
-</article>
-<article class=article>
-<a href=/posts/2020-04-15-grpc-build-with-googleapis/ class=article-titles>
-<h2 class=article-title>grpc-gateway를 이용한 JSON 통신</h2>
-<h3 class=article-subtitle>google.api.http option을 포함한 protobuf 파일을 컴파일 해봅시다.</h3>
-</a>
-<ul class=article-meta>
-<li class=article-meta-date><time>April 15, 2020</time></li>
-<li class=article-meta-tags>
-<a href=/tags/grpc/>
-<i class="fas fa-tag"></i>
-grpc
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/protobuf/>
-<i class="fas fa-tag"></i>
-protobuf
-</a>&nbsp;
-</li>
-</ul>
-<div class=article-content>
-목표 grpc-gateway를 이용한 통신을 하기 위해 작성한 .proto 파일을 컴파일 하는 방법을 알아보겠습니다.
-source code 우선 컴파일 하고자 하는 소스코드를 살펴봅시다. 이 코드는 grpc-gateway에 있는 예제와 동일합니다.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 syntax = "proto3";package example;// myService.proto import "google/api/annotations.proto";message StringMessage { string value = 1;}service YourService { rpc Echo(StringMessage) returns (StringMessage) { option (google.
-</div>
-<div class=article-readmore><a href=/posts/2020-04-15-grpc-build-with-googleapis/>Read more...</a></div>
 <div class=article-floatclear></div>
 </article>
 </section>

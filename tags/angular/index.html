@@ -41,6 +41,39 @@
 <div class=main role=main>
 <section class="list term-list">
 <article class=article>
+<a href=/posts/2021-10-03-angular-reuse-strategy/ class=article-titles>
+<h2 class=article-title>angular route reuse strategy</h2>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>October 3, 2021</time></li>
+<li class=article-meta-tags>
+<a href=/tags/angular/>
+<i class="fas fa-tag"></i>
+angular
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/router/>
+<i class="fas fa-tag"></i>
+router
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/routereusestrategy/>
+<i class="fas fa-tag"></i>
+RouteReuseStrategy
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+Intro 웹앱을 개발하다보면 list->detail 패턴의 구조를 흔하게 작성하게 됩니다. list-detail 패턴이란 목록(list)에서 원하는 컨텐츠를 탐색 후 해당 컨텐츠의 상세한 정보를 보는 화면(detail)로 이동하는 방식을 말합니다. 이 때 detail 화면에서 뒤로 가기를 이용해 목록 화면으로 돌아올 경우 Angular는 해당 화면을 구성하는 컴포넌트를 처음부터 다시 생성(ngOnInit 실행)합니다. 이럴 경우엔 다음과 같은 문제가 발생합니다.
+컴포넌트를 다시 생성하기 때문에 성능상 좋지 못합니다.
+컴포넌트를 다시 그리기 때문에 로딩 화면이 보여지거나 스크롤 위치를 기억하지 등 유저 경험에 악영향을 미칩니다.
+</div>
+<div class=article-readmore><a href=/posts/2021-10-03-angular-reuse-strategy/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+<article class=article>
 <a href=/posts/2021-07-23-angular-ssr-chrome-inspect/ class=article-titles>
 <h2 class=article-title>angular universal 메모리 누수 개선하기 - 003</h2>
 <h3 class=article-subtitle>Chrome Inspect를 사용해서 Angular Universal 메모리 누수 개선하기</h3>
