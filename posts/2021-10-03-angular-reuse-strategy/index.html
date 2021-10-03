@@ -110,7 +110,7 @@ Intro
 <p>컴포넌트를 다시 그리기 때문에 로딩 화면이 보여지거나 스크롤 위치를 기억하지 등 유저 경험에 악영향을 미칩니다.</p>
 </li>
 <li>
-<p>API 서버와 통신을 해 목록을 불러올 경우에 불필요한 네트워크 통신을 수행하게 됩니다.</p>
+<p>API 서버와 통신을 통해 목록을 불러올 경우에 불필요한 네트워크 통신을 수행하게 됩니다.</p>
 </li>
 </ul>
 <p>뒤로 가기를 이용해 다시 이전 페이지에 접근할 경우엔 이미 이전에 생성해 둔 페이지를 다시 사용할 수 있다면 위에서 나열한 문제를 모두 해결할 수 있습니다. Angular에서는 <a href=https://angular.io/api/router/RouteReuseStrategy>RouteReuseStrategy</a>를 이용해 재사용 기능을 구현할 수 있습니다.</p>
@@ -128,8 +128,6 @@ RouteReuseStrategy 동작 방식
 </h3>
 <div id=outline-text-headline-3 class=outline-text-3>
 <p>RouteReuseStrategy는 총 5개의 함수로 이루어져 있습니다.</p>
-<p>
-list화면에서 detail 화면으로 이동한다는 시나리오를 가정하여 5개 함수의 역할과 각 함수들의 실행 시점을 알아보겠습니다(<a href=https://itnext.io/cache-components-with-angular-routereusestrategy-3e4c8b174d5f>참고</a>).</p>
 <p>
 각 함수가 호출되는 순서는 아래 나열되는 순서와 동일합니다.</p>
 <ol>
