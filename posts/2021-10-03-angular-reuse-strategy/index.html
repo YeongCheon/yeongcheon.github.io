@@ -239,11 +239,11 @@ app-routing.module.ts
 </span><span style=color:#75715e></span>    },
   },
   {
-    <span style=color:#a6e22e>path</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;/items&#39;</span>,
+    <span style=color:#a6e22e>path</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;/items/:itemId&#39;</span>,
     <span style=color:#a6e22e>pathMatch</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;full&#39;</span>,
-    <span style=color:#a6e22e>component</span>: <span style=color:#66d9ef>ItemListComponent</span>,
+    <span style=color:#a6e22e>component</span>: <span style=color:#66d9ef>ItemDetailComponent</span>,
     <span style=color:#a6e22e>data</span><span style=color:#f92672>:</span> {
-      <span style=color:#a6e22e>isReuse</span>: <span style=color:#66d9ef>true</span>  <span style=color:#75715e>// isReuse가 true일 경우에만 RouteReuseStrategy에서 재사용됩니다.
+      <span style=color:#a6e22e>isReuse</span>: <span style=color:#66d9ef>false</span>  <span style=color:#75715e>// isReuse가 true일 경우에만 RouteReuseStrategy에서 재사용됩니다.
 </span><span style=color:#75715e></span>    }
   }
 ];
