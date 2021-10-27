@@ -44,6 +44,45 @@ Posts
 <div class=main role=main>
 <section class="list section-list">
 <article class=article>
+<a href=/posts/2021-01-26-emacs-typescript-eslint-setting/ class=article-titles>
+<h2 class=article-title>emacs에서 Typescript 개발환경 구축하기</h2>
+<h3 class=article-subtitle>emacs에서 lsp-mode 기반의 Typescript 개발환경을 구축하는 법을 알아봅니다.</h3>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>January 26, 2021</time></li>
+<li class=article-meta-tags>
+<a href=/tags/emacs/>
+<i class="fas fa-tag"></i>
+emacs
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/typescript/>
+<i class="fas fa-tag"></i>
+typescript
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/lsp-mode/>
+<i class="fas fa-tag"></i>
+lsp-mode
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/eslint/>
+<i class="fas fa-tag"></i>
+eslint
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+Typescript는 마이크로소프트(이하 MS)의 주도로 개발이 되고 있기 때문인지 Vscode에서 아주 편안하게 개발이 가능합니다. 사실 이번 글에서 주로 사용할 lsp-mode도 MS에서 개발한 LSP에 기반하여 작성된 모드입니다. 이 외에도 css languag server 등등 많은 부분을 MS에서 작성한 프로그램에 의존하고 있는데 이쯤되면 그냥 속편하게 Vscode를 쓰는게 낫지 않을까 싶지만 몇년동안 정들었던 이맥스를 포기하기엔 아쉬움이 많이 남기에 Typescript 개발환경 구축 방법을 기록하고자 합니다. 이 글은 다음과 같은 내용을 기준으로 작성되었습니다.
+emacs 27.
+</div>
+<div class=article-readmore><a href=/posts/2021-01-26-emacs-typescript-eslint-setting/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+<article class=article>
 <a href=/posts/2021-01-06-image-resize-cloud-function/ class=article-titles>
 <h2 class=article-title>Cloud Functions로 실시간 이미지 리사이징 하기</h2>
 <h3 class=article-subtitle>Cloud Functions을 이용해서 On-The-Fly 이미지 리사이징 및 포맷 변경을 해봅시다.</h3>
@@ -380,47 +419,6 @@ emacs
 1 2 3 4 C-x d (Dired mode 실행) Q (찾기/바꾸기 실행) Y (모든 변경 내역 승인) C-x s ! (모든 변경 내역 저장) step by step Dired mode 실행 C-x d : emacs에 기본적으로 탑재된 dired mode 를 실행해보자.
 </div>
 <div class=article-readmore><a href=/posts/2020-05-13-emacs-search-and-replace/>Read more...</a></div>
-<div class=article-floatclear></div>
-</article>
-<article class=article>
-<a href=/posts/2020-04-26-angular-ssr-with-appengine/ class=article-titles>
-<h2 class=article-title>구글 앱엔진에 ssr angular app 배포하기</h2>
-<h3 class=article-subtitle>구글 앱엔진에 server side rendering을 지원하는 앵귤러 프로젝트를 배포해보자.</h3>
-</a>
-<ul class=article-meta>
-<li class=article-meta-date><time>April 26, 2020</time></li>
-<li class=article-meta-tags>
-<a href=/tags/appengine/>
-<i class="fas fa-tag"></i>
-appengine
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/angular/>
-<i class="fas fa-tag"></i>
-angular
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/ssr/>
-<i class="fas fa-tag"></i>
-ssr
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/seo/>
-<i class="fas fa-tag"></i>
-seo
-</a>&nbsp;
-</li>
-</ul>
-<div class=article-content>
-들어가며 이 문서는 기본적으로 앵귤러 공식 SSR 가이드를 따라하며 학습한 내용을 정리한 것입니다. SSR에 대해 궁금하시다면 이 링크를 참고하세요. 이 문서는 angular, appEngine을 사용할 줄 아는 사람을 대상으로 작성되었습니다.
-프로젝트 생성 우선 앵귤러 프로젝트를 하나 생성해봅시다. 이 예제는 angular9 버전을 기준으로 작성되었습니다.
-1 ng new test-project express-engine 추가 생성된 프로젝트 내부에서 아래의 명령어를 실행합니다.
-1 ng add @nguniversal/express-engine 명령어를 성공적으로 실행했다면 아래의 파일이 추가되었을 것입니다.
-</div>
-<div class=article-readmore><a href=/posts/2020-04-26-angular-ssr-with-appengine/>Read more...</a></div>
 <div class=article-floatclear></div>
 </article>
 </section>

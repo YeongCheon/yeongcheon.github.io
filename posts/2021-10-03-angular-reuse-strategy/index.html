@@ -5,13 +5,9 @@
 <title>angular route reuse strategy - 김영천 블로그</title>
 <meta property="og:title" content="angular route reuse strategy - 김영천 블로그">
 <meta name=twitter:title content="angular route reuse strategy - 김영천 블로그">
-<meta name=description content="Intro  웹앱을 개발하다보면 list->detail 패턴의 구조를 흔하게 작성하게 됩니다. list-detail 패턴이란 목록(list)에서 원하는 컨텐츠를 탐색 후 해당 컨텐츠의 상세한 정보를 보는 화면(detail)로 이동하는 방식을 말합니다. 이 때 detail 화면에서 뒤로 가기를 이용해 목록 화면으로 돌아올 경우 Angular는 해당 화면을 구성하는 컴포넌트를 처음부터 다시 생성(ngOnInit 실행)합니다. 이럴 경우엔 다음과 같은 문제가 발생합니다.
-  컴포넌트를 다시 생성하기 때문에 성능상 좋지 못합니다.
-  컴포넌트를 다시 그리기 때문에 로딩 화면이 보여지거나 스크롤 위치를 기억하지 등 유저 경험에 악영향을 미칩니다.">
-<meta property="og:description" content="Intro  웹앱을 개발하다보면 list->detail 패턴의 구조를 흔하게 작성하게 됩니다. list-detail 패턴이란 목록(list)에서 원하는 컨텐츠를 탐색 후 해당 컨텐츠의 상세한 정보를 보는 화면(detail)로 이동하는 방식을 말합니다. 이 때 detail 화면에서 뒤로 가기를 이용해 목록 화면으로 돌아올 경우 Angular는 해당 화면을 구성하는 컴포넌트를 처음부터 다시 생성(ngOnInit 실행)합니다. 이럴 경우엔 다음과 같은 문제가 발생합니다.
-  컴포넌트를 다시 생성하기 때문에 성능상 좋지 못합니다.
-  컴포넌트를 다시 그리기 때문에 로딩 화면이 보여지거나 스크롤 위치를 기억하지 등 유저 경험에 악영향을 미칩니다.">
-<meta name=twitter:description content="Intro  웹앱을 개발하다보면 list->detail 패턴의 구조를 흔하게 작성하게 됩니다. list-detail 패턴이란 목록(list)에서 원하는 컨텐츠를 탐색 후 해당 컨텐츠의 상세한 정보를 보는 화면(detail)로 이동하는 방식을 말합니다. 이 때 detail 화면에서 뒤로 가기를 이용해 목록 화면으로 돌아올 경우 Angular는 해당 화면 …">
+<meta name=description content="Angular의 RouteReuseStrategy가 어떻게 동작하는지 알아봅니다.">
+<meta property="og:description" content="Angular의 RouteReuseStrategy가 어떻게 동작하는지 알아봅니다.">
+<meta name=twitter:description content="Angular의 RouteReuseStrategy가 어떻게 동작하는지 알아봅니다.">
 <meta name=author content="YeongCheon Kim">
 <meta property="og:site_name" content="김영천 블로그">
 <meta property="og:url" content="https://yeongcheon.github.io/posts/2021-10-03-angular-reuse-strategy/">
@@ -46,6 +42,7 @@
 <div class=main role=main>
 <article class=article>
 <h1 class=article-title>angular route reuse strategy</h1>
+<h2 class=article-subtitle>Angular의 RouteReuseStrategy가 어떻게 동작하는지 알아봅니다.</h2>
 <hr class=article-title-bottom>
 <ul class=article-meta>
 <li class=article-meta-date><time>October 3, 2021</time></li>
@@ -379,7 +376,9 @@ custom-route-reuse-stragety.module.ts
 <a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
 </div>
 <ul class="pager article-pager">
-<li class="pager-newer pager-noitem">&lt; Newer</li>
+<li class=pager-newer>
+<a href=/posts/2021-10-27-spring-boot-bean-naming-rule/ data-toggle=tooltip data-placement=top title="스프링 Bean 클래스 이름 오류(postfix *Listener)">&lt; Newer</a>
+</li>
 <li class=pager-older>
 <a href=/posts/2021-09-08-http-call-in-docker-container/ data-toggle=tooltip data-placement=top title="도커 컨테이너 안에서 외부 URL 호출하기">Older ></a>
 </li>

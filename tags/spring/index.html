@@ -41,6 +41,40 @@
 <div class=main role=main>
 <section class="list term-list">
 <article class=article>
+<a href=/posts/2021-10-27-spring-boot-bean-naming-rule/ class=article-titles>
+<h2 class=article-title>스프링 Bean 클래스 이름 오류(postfix *Listener)</h2>
+<h3 class=article-subtitle>스프링 Bean 클래스 이름이 "Listener"로 끝날 경우 생기는 문제점</h3>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>October 27, 2021</time></li>
+<li class=article-meta-tags>
+<a href=/tags/springboot/>
+<i class="fas fa-tag"></i>
+springboot
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/spring/>
+<i class="fas fa-tag"></i>
+spring
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/bean/>
+<i class="fas fa-tag"></i>
+bean
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+문제 스프링부트 환경(version: 2.5.x)에서 Bean 클래스 작성 시 클래스 이름이 Listener 로 끝날 경우 bean 생성 중 에러가 발생한다.
+incorrect example 아래의 예제처럼 클래스 이름이 Listener 로 끝날 경우 bean 생성이 정상적으로 이루어지지 않는다.
+1 2 3 4 @Service class CustomEventListener { } correct example 1 2 3 4 @Service class CustomEventReceiver { } 위와 같이 클래스 이름을 Receiver 로 변경해주면 bean 생성이 정상적으로 마무리 된다.
+</div>
+<div class=article-readmore><a href=/posts/2021-10-27-spring-boot-bean-naming-rule/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+<article class=article>
 <a href=/posts/2020-09-06-kotlin-spring-exception-rollback/ class=article-titles>
 <h2 class=article-title>코틀린으로 작성된 스프링 기반 API 트랜잭션 rollback 관리</h2>
 <h3 class=article-subtitle>코틀린으로 작성된 스프링 기반 API에서 Checked Exception 발생 시 rollback이 되지 않도록 해봅시다.</h3>

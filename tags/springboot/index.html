@@ -2,19 +2,19 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-<title>RouteReuseStrategy - 김영천 블로그</title>
-<meta property="og:title" content="RouteReuseStrategy - 김영천 블로그">
-<meta name=twitter:title content="RouteReuseStrategy - 김영천 블로그">
+<title>springboot - 김영천 블로그</title>
+<meta property="og:title" content="springboot - 김영천 블로그">
+<meta name=twitter:title content="springboot - 김영천 블로그">
 <meta name=author content="YeongCheon Kim">
 <meta property="og:site_name" content="김영천 블로그">
-<meta property="og:url" content="https://yeongcheon.github.io/tags/routereusestrategy/">
+<meta property="og:url" content="https://yeongcheon.github.io/tags/springboot/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
 <meta name=generator content="Hugo 0.88.1">
-<link href=/tags/routereusestrategy/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
-<link href=/tags/routereusestrategy/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
+<link href=/tags/springboot/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
+<link href=/tags/springboot/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -41,37 +41,37 @@
 <div class=main role=main>
 <section class="list term-list">
 <article class=article>
-<a href=/posts/2021-10-03-angular-reuse-strategy/ class=article-titles>
-<h2 class=article-title>angular route reuse strategy</h2>
-<h3 class=article-subtitle>Angular의 RouteReuseStrategy가 어떻게 동작하는지 알아봅니다.</h3>
+<a href=/posts/2021-10-27-spring-boot-bean-naming-rule/ class=article-titles>
+<h2 class=article-title>스프링 Bean 클래스 이름 오류(postfix *Listener)</h2>
+<h3 class=article-subtitle>스프링 Bean 클래스 이름이 "Listener"로 끝날 경우 생기는 문제점</h3>
 </a>
 <ul class=article-meta>
-<li class=article-meta-date><time>October 3, 2021</time></li>
+<li class=article-meta-date><time>October 27, 2021</time></li>
 <li class=article-meta-tags>
-<a href=/tags/angular/>
+<a href=/tags/springboot/>
 <i class="fas fa-tag"></i>
-angular
+springboot
 </a>&nbsp;
 </li>
 <li class=article-meta-tags>
-<a href=/tags/router/>
+<a href=/tags/spring/>
 <i class="fas fa-tag"></i>
-router
+spring
 </a>&nbsp;
 </li>
 <li class=article-meta-tags>
-<a href=/tags/routereusestrategy/>
+<a href=/tags/bean/>
 <i class="fas fa-tag"></i>
-RouteReuseStrategy
+bean
 </a>&nbsp;
 </li>
 </ul>
 <div class=article-content>
-Intro 웹앱을 개발하다보면 list->detail 패턴의 구조를 흔하게 작성하게 됩니다. list-detail 패턴이란 목록(list)에서 원하는 컨텐츠를 탐색 후 해당 컨텐츠의 상세한 정보를 보는 화면(detail)로 이동하는 방식을 말합니다. 이 때 detail 화면에서 뒤로 가기를 이용해 목록 화면으로 돌아올 경우 Angular는 해당 화면을 구성하는 컴포넌트를 처음부터 다시 생성(ngOnInit 실행)합니다. 이럴 경우엔 다음과 같은 문제가 발생합니다.
-컴포넌트를 다시 생성하기 때문에 성능상 좋지 못합니다.
-컴포넌트를 다시 그리기 때문에 로딩 화면이 보여지거나 스크롤 위치를 기억하지 등 유저 경험에 악영향을 미칩니다.
+문제 스프링부트 환경(version: 2.5.x)에서 Bean 클래스 작성 시 클래스 이름이 Listener 로 끝날 경우 bean 생성 중 에러가 발생한다.
+incorrect example 아래의 예제처럼 클래스 이름이 Listener 로 끝날 경우 bean 생성이 정상적으로 이루어지지 않는다.
+1 2 3 4 @Service class CustomEventListener { } correct example 1 2 3 4 @Service class CustomEventReceiver { } 위와 같이 클래스 이름을 Receiver 로 변경해주면 bean 생성이 정상적으로 마무리 된다.
 </div>
-<div class=article-readmore><a href=/posts/2021-10-03-angular-reuse-strategy/>Read more...</a></div>
+<div class=article-readmore><a href=/posts/2021-10-27-spring-boot-bean-naming-rule/>Read more...</a></div>
 <div class=article-floatclear></div>
 </article>
 </section>
@@ -80,7 +80,7 @@ Intro 웹앱을 개발하다보면 list->detail 패턴의 구조를 흔하게 �
 <div class=copyright>&copy; Copyright 2020 YeongCheon</div>
 <ul class=site-footer-items>
 <li class=site-footer-item-rsslink>
-<a href=/tags/routereusestrategy/index.xml type=application/rss+xml target=_blank title=RSS>
+<a href=/tags/springboot/index.xml type=application/rss+xml target=_blank title=RSS>
 <i class="fas fa-rss"></i>
 </a>
 </li>
