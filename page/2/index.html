@@ -41,45 +41,6 @@
 <div class=main role=main>
 <section class="list home-list">
 <article class=article>
-<a href=/posts/2021-01-26-emacs-typescript-eslint-setting/ class=article-titles>
-<h2 class=article-title>emacs에서 Typescript 개발환경 구축하기</h2>
-<h3 class=article-subtitle>emacs에서 lsp-mode 기반의 Typescript 개발환경을 구축하는 법을 알아봅니다.</h3>
-</a>
-<ul class=article-meta>
-<li class=article-meta-date><time>January 26, 2021</time></li>
-<li class=article-meta-tags>
-<a href=/tags/emacs/>
-<i class="fas fa-tag"></i>
-emacs
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/typescript/>
-<i class="fas fa-tag"></i>
-typescript
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/lsp-mode/>
-<i class="fas fa-tag"></i>
-lsp-mode
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/eslint/>
-<i class="fas fa-tag"></i>
-eslint
-</a>&nbsp;
-</li>
-</ul>
-<div class=article-content>
-Typescript는 마이크로소프트(이하 MS)의 주도로 개발이 되고 있기 때문인지 Vscode에서 아주 편안하게 개발이 가능합니다. 사실 이번 글에서 주로 사용할 lsp-mode도 MS에서 개발한 LSP에 기반하여 작성된 모드입니다. 이 외에도 css languag server 등등 많은 부분을 MS에서 작성한 프로그램에 의존하고 있는데 이쯤되면 그냥 속편하게 Vscode를 쓰는게 낫지 않을까 싶지만 몇년동안 정들었던 이맥스를 포기하기엔 아쉬움이 많이 남기에 Typescript 개발환경 구축 방법을 기록하고자 합니다. 이 글은 다음과 같은 내용을 기준으로 작성되었습니다.
-emacs 27.
-</div>
-<div class=article-readmore><a href=/posts/2021-01-26-emacs-typescript-eslint-setting/>Read more...</a></div>
-<div class=article-floatclear></div>
-</article>
-<article class=article>
 <a href=/posts/2021-01-06-image-resize-cloud-function/ class=article-titles>
 <h2 class=article-title>Cloud Functions로 실시간 이미지 리사이징 하기</h2>
 <h3 class=article-subtitle>Cloud Functions을 이용해서 On-The-Fly 이미지 리사이징 및 포맷 변경을 해봅시다.</h3>
@@ -483,6 +444,28 @@ emacs
 1 2 3 4 5 6 7 (global-set-key (kbd "M-a") 'backward-char) ; Alt+a (global-set-key (kbd "C-a") 'backward-char) ; Ctrl+a (global-set-key (kbd "C-c t") 'backward-char) ; Ctrl+c t (global-set-key (kbd "&lt;f7> &lt;f8>") 'whitespace-mode) ; F7 F8 딱히 설명이 필요 없을 정도로 간단하지만 굳이 첨언을 하자면 모든 buffer에서 사용할 수 있는 단축키를 지정할때는 위와 같이 사용합니다.
 </div>
 <div class=article-readmore><a href=/posts/2020-05-18-emacs-configure-shortcut/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+<article class=article>
+<a href=/posts/2020-05-13-emacs-search-and-replace/ class=article-titles>
+<h2 class=article-title>이맥스에서 여러 파일 찾아 바꾸기</h2>
+<h3 class=article-subtitle>이맥스 Dired에서 여러 파일을 대상으로 키워드 검색 후 내용을 바꾸는 방법을 알아보자.</h3>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>May 13, 2020</time></li>
+<li class=article-meta-tags>
+<a href=/tags/emacs/>
+<i class="fas fa-tag"></i>
+emacs
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+대부분의 편집기에서 기본적으로 Ctrl + Shift + h 단축키에 해당하는 파일에서 찾기/바꾸기 기능을 emacs에서 사용해보자.
+단축키 요약 구구절절 설명하기 전에 우선 단축키 요약본을 보자
+1 2 3 4 C-x d (Dired mode 실행) Q (찾기/바꾸기 실행) Y (모든 변경 내역 승인) C-x s ! (모든 변경 내역 저장) step by step Dired mode 실행 C-x d : emacs에 기본적으로 탑재된 dired mode 를 실행해보자.
+</div>
+<div class=article-readmore><a href=/posts/2020-05-13-emacs-search-and-replace/>Read more...</a></div>
 <div class=article-floatclear></div>
 </article>
 </section>

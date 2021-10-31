@@ -41,54 +41,6 @@
 <div class=main role=main>
 <section class="list home-list">
 <article class=article>
-<a href=/posts/2019-06-19-emacs-hangul/ class=article-titles>
-<h2 class=article-title>이맥스 폰트, 세벌식 셋팅하기</h2>
-</a>
-<ul class=article-meta>
-<li class=article-meta-date><time>June 19, 2019</time></li>
-<li class=article-meta-tags>
-<a href=/tags/emacs/>
-<i class="fas fa-tag"></i>
-emacs
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/>
-<i class="fas fa-tag"></i>
-세벌식
-</a>&nbsp;
-</li>
-</ul>
-<div class=article-content>
-<p>
-아래의 내용을 <code class=verbatim>.emacs</code> 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다.</p>
-<div class="src src-lisp">
-<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
-<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp>(set-fontset-font <span style=color:#66d9ef>t</span> <span style=color:#e6db74>&#39;hangul</span> (font-spec <span style=color:#e6db74>:family</span> <span style=color:#e6db74>&#34;D2Coding&#34;</span>))
-
-(set-language-environment <span style=color:#e6db74>&#34;Korean&#34;</span>)
-(prefer-coding-system <span style=color:#e6db74>&#39;utf-8</span>)
-(<span style=color:#66d9ef>setq</span> default-input-method <span style=color:#e6db74>&#34;korean-hangul390&#34;</span>)
-(<span style=color:#66d9ef>setq</span> default-korean-keyboard <span style=color:#e6db74>&#34;390&#34;</span>)
-(global-set-key (kbd <span style=color:#e6db74>&#34;&lt;S-kana&gt;&#34;</span>) <span style=color:#e6db74>&#39;toggle-input-method</span>)</code></pre></td></tr></table>
-</div>
-</div>
-</div>
-</div>
-<div class=article-readmore><a href=/posts/2019-06-19-emacs-hangul/>Read more...</a></div>
-<div class=article-floatclear></div>
-</article>
-<article class=article>
 <a href=/posts/2019-05-28-tinode002/ class=article-titles>
 <h2 class=article-title>tinode series.002 - Install & Run</h2>
 </a>
@@ -409,6 +361,38 @@ golang
 요구사항 GAE를 통해 업로드 된 이미지를 Google Cloud Storage(이하 GCS)에 보관, 파일 관련 정보를 datastore에 별도로 저장한다(업로드 한 사용자, 업로드 파일명, 업로드 날짜 등등). 이 이미지를 웹사이트를 통해 서비스를 하고싶다. 이 이미지는 사이즈가 모두 제각각인데 DSLR로 찍은 수십메가짜리 이미지부터 조그마한 썸네일 이미지까지 크기가 천차만별이다. 동일한 이미지를 여러가지 사이즈로 출력해야 한다. 가령 DSLR로 찍은 이미지를 제공할 경우 우선 100px짜리 썸네일로 제공, 사용자가 썸네일을 클릭할 경우 이미지의 원본을 보여주고 싶다.
 </div>
 <div class=article-readmore><a href=/posts/2018-06-10-gae-image-api/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+<article class=article>
+<a href=/posts/2018-05-12-datastore-projection-error/ class=article-titles>
+<h2 class=article-title>datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기</h2>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>May 12, 2018</time></li>
+<li class=article-meta-tags>
+<a href=/tags/gcp/>
+<i class="fas fa-tag"></i>
+GCP
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/gae/>
+<i class="fas fa-tag"></i>
+GAE
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/golang/>
+<i class="fas fa-tag"></i>
+golang
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+요구사항 datastore에 내 프로필을 방문한 사용자의 ID와 방문시간을 각각 string, time.Time 형식으로 저장하고 있다. 구조체로 보면 다음과 같다.
+1 2 3 4 5 type Visitor struct { UserId string //조회한 프로필의 Id VisitorId string //방문자 Id VisitTime time.Time } 이 데이터를 단순히 조회하면 한 사용자가 나를 여러번 방문할 경우 결과 리스트에 그 방문자가 여러번 출력된다. 나는 동일한 사용자가 여러번 반복해도 가장 최근에 방문한 기록만 보길 원했다.
+</div>
+<div class=article-readmore><a href=/posts/2018-05-12-datastore-projection-error/>Read more...</a></div>
 <div class=article-floatclear></div>
 </article>
 </section>
