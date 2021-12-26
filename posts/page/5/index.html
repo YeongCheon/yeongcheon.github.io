@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.91.2">
 <link href=/posts/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
 <link href=/posts/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
 <link rel=stylesheet href=/css/style.css media=all>
@@ -43,6 +43,33 @@ Posts
 </div>
 <div class=main role=main>
 <section class="list section-list">
+<article class=article>
+<a href=/posts/2018-04-29-gae-datastore-indexes/ class=article-titles>
+<h2 class=article-title>Googlde App Engine(GAE) datastore index 관련 에러 해결하기</h2>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>April 29, 2018</time></li>
+<li class=article-meta-tags>
+<a href=/tags/gcp/>
+<i class="fas fa-tag"></i>
+GCP
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/gae/>
+<i class="fas fa-tag"></i>
+GAE
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+들어가며 google app engine을 이용해 REST API를 작성하던 중 발생했던 datastore의 index 관련 이슈와 그 해결법에 대해 기록한다. 참고, 여기도 참고
+에러발생 상황 내 프로필을 조회한 사람들의 목록을 반환해주는 API를 작성했다. 코드는 딱히 별거 없고 그냥 datastore에 있는 데이터들을 불러오는 내용이다. 핵심코드는 아래와 같다.
+1 q := datastore.NewQuery(userDao.VisitorEntity).Filter("UserId=", userId).Order("-VisitTime") UserId 필드의 값을 기준으로 필터링을 하고 VisitTime을 최근순으로 정렬하는 간단한 코드다. 위 쿼리문을 베이스로 한 API는 로컬테스트는 무사히 통과하고 배포까지 정상적으로 완료, 이 후 클라우드에 올라간 API를 테스트 했는데 다음과 같은 에러로그를 내뿜었다.
+</div>
+<div class=article-readmore><a href=/posts/2018-04-29-gae-datastore-indexes/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
 <article class=article>
 <a href=/posts/2018-02-08-emacs-command/ class=article-titles>
 <h2 class=article-title>emacs 명령어 목록</h2>
@@ -212,13 +239,13 @@ echo "deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main" | sudo
 <a href=/posts/page/4/ aria-label="Page 4" class=page-link role=button>4</a>
 </li>
 <li class="page-item active">
-<a href=# aria-current=page aria-label="Page 5" class=page-link role=button>5</a>
+<a aria-current=page aria-label="Page 5" class=page-link role=button>5</a>
 </li>
 <li class="page-item disabled">
-<a href=# aria-disabled=true aria-label=Next class=page-link role=button tabindex=-1><span aria-hidden=true>&#187;</span></a>
+<a aria-disabled=true aria-label=Next class=page-link role=button tabindex=-1><span aria-hidden=true>&#187;</span></a>
 </li>
 <li class="page-item disabled">
-<a href=# aria-disabled=true aria-label=Last class=page-link role=button tabindex=-1><span aria-hidden=true>&#187;&#187;</span></a>
+<a aria-disabled=true aria-label=Last class=page-link role=button tabindex=-1><span aria-hidden=true>&#187;&#187;</span></a>
 </li>
 </ul>
 </div>

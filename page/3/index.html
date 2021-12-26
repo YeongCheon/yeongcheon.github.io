@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.91.2">
 <link href=/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
 <link href=/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
 <link rel=stylesheet href=/css/style.css media=all>
@@ -40,6 +40,28 @@
 <hr class=site-header-bottom>
 <div class=main role=main>
 <section class="list home-list">
+<article class=article>
+<a href=/posts/2020-05-13-emacs-search-and-replace/ class=article-titles>
+<h2 class=article-title>이맥스에서 여러 파일 찾아 바꾸기</h2>
+<h3 class=article-subtitle>이맥스 Dired에서 여러 파일을 대상으로 키워드 검색 후 내용을 바꾸는 방법을 알아보자.</h3>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>May 13, 2020</time></li>
+<li class=article-meta-tags>
+<a href=/tags/emacs/>
+<i class="fas fa-tag"></i>
+emacs
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+대부분의 편집기에서 기본적으로 Ctrl + Shift + h 단축키에 해당하는 파일에서 찾기/바꾸기 기능을 emacs에서 사용해보자.
+단축키 요약 구구절절 설명하기 전에 우선 단축키 요약본을 보자
+1 2 3 4 C-x d (Dired mode 실행) Q (찾기/바꾸기 실행) Y (모든 변경 내역 승인) C-x s ! (모든 변경 내역 저장) step by step Dired mode 실행 C-x d : emacs에 기본적으로 탑재된 dired mode 를 실행해보자.
+</div>
+<div class=article-readmore><a href=/posts/2020-05-13-emacs-search-and-replace/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
 <article class=article>
 <a href=/posts/2020-04-26-angular-ssr-with-appengine/ class=article-titles>
 <h2 class=article-title>구글 앱엔진에 ssr angular app 배포하기</h2>
@@ -315,54 +337,6 @@ LSP란? lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨�
 <div class=article-readmore><a href=/posts/2019-06-31-emcs-lsp-java-setup/>Read more...</a></div>
 <div class=article-floatclear></div>
 </article>
-<article class=article>
-<a href=/posts/2019-06-19-emacs-hangul/ class=article-titles>
-<h2 class=article-title>이맥스 폰트, 세벌식 셋팅하기</h2>
-</a>
-<ul class=article-meta>
-<li class=article-meta-date><time>June 19, 2019</time></li>
-<li class=article-meta-tags>
-<a href=/tags/emacs/>
-<i class="fas fa-tag"></i>
-emacs
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/>
-<i class="fas fa-tag"></i>
-세벌식
-</a>&nbsp;
-</li>
-</ul>
-<div class=article-content>
-<p>
-아래의 내용을 <code class=verbatim>.emacs</code> 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다.</p>
-<div class="src src-lisp">
-<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
-<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp>(set-fontset-font <span style=color:#66d9ef>t</span> <span style=color:#e6db74>&#39;hangul</span> (font-spec <span style=color:#e6db74>:family</span> <span style=color:#e6db74>&#34;D2Coding&#34;</span>))
-
-(set-language-environment <span style=color:#e6db74>&#34;Korean&#34;</span>)
-(prefer-coding-system <span style=color:#e6db74>&#39;utf-8</span>)
-(<span style=color:#66d9ef>setq</span> default-input-method <span style=color:#e6db74>&#34;korean-hangul390&#34;</span>)
-(<span style=color:#66d9ef>setq</span> default-korean-keyboard <span style=color:#e6db74>&#34;390&#34;</span>)
-(global-set-key (kbd <span style=color:#e6db74>&#34;&lt;S-kana&gt;&#34;</span>) <span style=color:#e6db74>&#39;toggle-input-method</span>)</code></pre></td></tr></table>
-</div>
-</div>
-</div>
-</div>
-<div class=article-readmore><a href=/posts/2019-06-19-emacs-hangul/>Read more...</a></div>
-<div class=article-floatclear></div>
-</article>
 </section>
 <ul class="pagination pagination-default">
 <li class=page-item>
@@ -378,7 +352,7 @@ emacs
 <a href=/page/2/ aria-label="Page 2" class=page-link role=button>2</a>
 </li>
 <li class="page-item active">
-<a href=# aria-current=page aria-label="Page 3" class=page-link role=button>3</a>
+<a aria-current=page aria-label="Page 3" class=page-link role=button>3</a>
 </li>
 <li class=page-item>
 <a href=/page/4/ aria-label="Page 4" class=page-link role=button>4</a>

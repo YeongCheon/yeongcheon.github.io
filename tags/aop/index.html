@@ -1,0 +1,97 @@
+<!doctype html><html lang=ko>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<title>aop - 김영천 블로그</title>
+<meta property="og:title" content="aop - 김영천 블로그">
+<meta name=twitter:title content="aop - 김영천 블로그">
+<meta name=author content="YeongCheon Kim">
+<meta property="og:site_name" content="김영천 블로그">
+<meta property="og:url" content="https://yeongcheon.github.io/tags/aop/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
+<meta name=twitter:card content="summary">
+<meta name=generator content="Hugo 0.91.2">
+<link href=/tags/aop/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
+<link href=/tags/aop/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
+<link rel=stylesheet href=/css/style.css media=all>
+<link rel=stylesheet href=/css/syntax.css media=all>
+<link rel=stylesheet href=/css/custom.css media=all>
+<script src=/js/script.js></script>
+<script src=/js/custom.js></script>
+<script defer src=/js/fontawesome.js></script>
+</head>
+<body>
+<header class=site-header>
+<nav class=site-navi>
+<h1 class=site-title>
+<a href=/>
+<img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
+</a>
+</h1>
+<ul class=site-navi-items>
+<li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li>
+<li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li>
+<li class=site-navi-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+</nav>
+</header>
+<hr class=site-header-bottom>
+<div class=main role=main>
+<section class="list term-list">
+<article class=article>
+<a href=/posts/2021-12-26-spring-aop-superclass/ class=article-titles>
+<h2 class=article-title>Spring Pointcut 표현식에 부모 클래스 표현하기</h2>
+<h3 class=article-subtitle>Spring AOP에서 사용하는 Pointcut 표현식을 이용해 특정 클래스를 상속하는 모든 클래스를 표현하는 방법에 대해 알아봅니다.</h3>
+</a>
+<ul class=article-meta>
+<li class=article-meta-date><time>December 26, 2021</time></li>
+<li class=article-meta-tags>
+<a href=/tags/spring/>
+<i class="fas fa-tag"></i>
+spring
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/aop/>
+<i class="fas fa-tag"></i>
+aop
+</a>&nbsp;
+</li>
+<li class=article-meta-tags>
+<a href=/tags/pointcut/>
+<i class="fas fa-tag"></i>
+pointcut
+</a>&nbsp;
+</li>
+</ul>
+<div class=article-content>
+들어가며 이 문서는 기본적으로 Spring AOP에 대해 사전 지식이 있다는 전제 하에 작성되었습니다.
+요구사항 Fruit 클래스를 상속받는 Apple, Banana 클래스가 있습니다. Apple 또는 Banana 클래스를 반환하는 모든 메서드 마지막에 로그를 남기는 기능을 작성하고자 합니다.
+Basic Code Model 1 2 3 4 5 6 7 8 9 10 11 12 13 package dev.yeongcheon.example.aop.model abstract class Fruit( val name: String ) class Apple: Fruit( name = "apple" ) class Banana: Fruit( name = "banana" ) Controller 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 package dev.
+</div>
+<div class=article-readmore><a href=/posts/2021-12-26-spring-aop-superclass/>Read more...</a></div>
+<div class=article-floatclear></div>
+</article>
+</section>
+</div>
+<div class=site-footer>
+<div class=copyright>&copy; Copyright 2020 YeongCheon</div>
+<ul class=site-footer-items>
+<li class=site-footer-item-rsslink>
+<a href=/tags/aop/index.xml type=application/rss+xml target=_blank title=RSS>
+<i class="fas fa-rss"></i>
+</a>
+</li>
+<li class=site-footer-item-about><a href=/about/ title=About>About</a></li>
+</ul>
+<div class=powerdby>
+Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a>
+</div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-0YT8RHXZR3',{anonymize_ip:!1})}</script>
+</body>
+<script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
+</html>
