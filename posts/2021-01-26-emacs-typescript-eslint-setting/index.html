@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -74,21 +74,11 @@ eslint
 <p>
 <a href=https://www.typescriptlang.org/>Typescript</a>는 마이크로소프트(이하 MS)의 주도로 개발이 되고 있기 때문인지 Vscode에서 아주 편안하게 개발이 가능합니다. 사실 이번 글에서 주로 사용할 <a href=https://emacs-lsp.github.io/lsp-mode/page/installation/>lsp-mode</a>도 MS에서 개발한 LSP에 기반하여 작성된 모드입니다. 이 외에도 <a href=https://emacs-lsp.github.io/lsp-mode/page/lsp-css/>css languag server</a> 등등 많은 부분을 MS에서 작성한 프로그램에 의존하고 있는데 이쯤되면 그냥 속편하게 Vscode를 쓰는게 낫지 않을까 싶지만 몇년동안 정들었던 이맥스를 포기하기엔 아쉬움이 많이 남기에 Typescript 개발환경 구축 방법을 기록하고자 합니다. 이 글은 다음과 같은 내용을 기준으로 작성되었습니다.</p>
 <ul>
-<li>
-<p>emacs 27.1, ubuntu 20.04 LTS 버전을 기준으로 작성되었습니다.</p>
-</li>
-<li>
-<p>npm이 설치되어 있다고 가정합니다.</p>
-</li>
-<li>
-<p>lsp-mode는 이미 설치되어 있다고 가정합니다.</p>
-</li>
-<li>
-<p><a href=https://www.flycheck.org/en/latest/>flycheck</a>는 이미 설치되어 있다고 가정합니다.</p>
-</li>
-<li>
-<p><a href=https://company-mode.github.io/>company-mode</a>는 이미 설치되어 있다고 가정합니다.</p>
-</li>
+<li>emacs 27.1, ubuntu 20.04 LTS 버전을 기준으로 작성되었습니다.</li>
+<li>npm이 설치되어 있다고 가정합니다.</li>
+<li>lsp-mode는 이미 설치되어 있다고 가정합니다.</li>
+<li><a href=https://www.flycheck.org/en/latest/>flycheck</a>는 이미 설치되어 있다고 가정합니다.</li>
+<li><a href=https://company-mode.github.io/>company-mode</a>는 이미 설치되어 있다고 가정합니다.</li>
 </ul>
 <p>
 이번 글도 마찬가지로 개인 기록이 목적이기에 <a href=https://emacs-lsp.github.io/lsp-mode/page/installation/>공식 가이드</a>를 보시는걸 좀 더 추천드립니다.</p>

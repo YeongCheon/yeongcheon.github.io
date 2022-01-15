@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link href=/posts/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
 <link href=/posts/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
 <link rel=stylesheet href=/css/style.css media=all>
@@ -111,10 +111,7 @@ on-the-fly
 <div class=article-content>
 당근마켓, 비트윈 등에서 작성한 글을 참고하여 GCP 기반으로 비슷한 기능을 하는 코드를 작성하여 봅시다. 동작 원리는 앞서 말한 글에 자세히 나와있으니 서론은 생략하고 바로 시작합니다.
 이 문서에서는 GCP의 아래 제품들을 사용합니다.
-Cloud Functions
-Cloud Stroage
-Cloud CDN
-Cloud Storage 실제 이미지들이 저장될 storage bucket을 생성해야 합니다. 여기선 특별할게 없으니 공식 가이드로 대체합니다.
+Cloud Functions Cloud Stroage Cloud CDN Cloud Storage 실제 이미지들이 저장될 storage bucket을 생성해야 합니다. 여기선 특별할게 없으니 공식 가이드로 대체합니다.
 Cloud Functions 코드 수정 및 배포 Cloud Function을 호출하는 방법은 여러가지가 있습니다만 이 문서에서는 http 요청을 통해 호출하는 방법을 사용합니다.
 </div>
 <div class=article-readmore><a href=/posts/2021-01-06-image-resize-cloud-function/>Read more...</a></div>
@@ -204,8 +201,7 @@ rollback
 <div class=article-content>
 Kotlin + Spring boot을 조합해 작성한 REST API에서 CheckedException이 발생해도 Rollback이 되지 않는 문제와 그 해결법에 대해 알아봅시다. 이 글은 Spring, RDB, JPA에 대한 기본적인 이해가 있다는 가정 하에 작성되었습니다.
 Checked Exception? 우선 Checked Exception에 대해서 알아봅시다. Kotlin에서 Exception은 크게 두가지로 나눌 수 있습니다.
-Checked Exception: 컴파일 시 체크되는 예외입니다. Runtime Exception에 해당되지 않는 모든 Exception은 Checked Exception이 됩니다.
-Runtime(Unchecked) Exception: 컴파일 단계에서 체크되지 않으며(Unchecked) 실행 중(Runtime) 발생하는 예외입니다(Ex: IndexOutOfBoundsException, IllegalArgumentException, etc…).
+Checked Exception: 컴파일 시 체크되는 예외입니다. Runtime Exception에 해당되지 않는 모든 Exception은 Checked Exception이 됩니다. Runtime(Unchecked) Exception: 컴파일 단계에서 체크되지 않으며(Unchecked) 실행 중(Runtime) 발생하는 예외입니다(Ex: IndexOutOfBoundsException, IllegalArgumentException, etc…).
 </div>
 <div class=article-readmore><a href=/posts/2020-09-06-kotlin-spring-exception-rollback/>Read more...</a></div>
 <div class=article-floatclear></div>

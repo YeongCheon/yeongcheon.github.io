@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link href=/tags/spring/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
 <link href=/tags/spring/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
 <link rel=stylesheet href=/css/style.css media=all>
@@ -115,8 +115,7 @@ rollback
 <div class=article-content>
 Kotlin + Spring boot을 조합해 작성한 REST API에서 CheckedException이 발생해도 Rollback이 되지 않는 문제와 그 해결법에 대해 알아봅시다. 이 글은 Spring, RDB, JPA에 대한 기본적인 이해가 있다는 가정 하에 작성되었습니다.
 Checked Exception? 우선 Checked Exception에 대해서 알아봅시다. Kotlin에서 Exception은 크게 두가지로 나눌 수 있습니다.
-Checked Exception: 컴파일 시 체크되는 예외입니다. Runtime Exception에 해당되지 않는 모든 Exception은 Checked Exception이 됩니다.
-Runtime(Unchecked) Exception: 컴파일 단계에서 체크되지 않으며(Unchecked) 실행 중(Runtime) 발생하는 예외입니다(Ex: IndexOutOfBoundsException, IllegalArgumentException, etc…).
+Checked Exception: 컴파일 시 체크되는 예외입니다. Runtime Exception에 해당되지 않는 모든 Exception은 Checked Exception이 됩니다. Runtime(Unchecked) Exception: 컴파일 단계에서 체크되지 않으며(Unchecked) 실행 중(Runtime) 발생하는 예외입니다(Ex: IndexOutOfBoundsException, IllegalArgumentException, etc…).
 </div>
 <div class=article-readmore><a href=/posts/2020-09-06-kotlin-spring-exception-rollback/>Read more...</a></div>
 <div class=article-floatclear></div>

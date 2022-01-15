@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -100,15 +100,9 @@ Intro
 <div id=outline-text-headline-1 class=outline-text-2>
 <p>웹앱을 개발하다보면 list->detail 패턴의 구조를 흔하게 작성하게 됩니다. list-detail 패턴이란 목록(list)에서 원하는 컨텐츠를 탐색 후 해당 컨텐츠의 상세한 정보를 보는 화면(detail)로 이동하는 방식을 말합니다. 이 때 detail 화면에서 <strong>뒤로 가기를 이용해 목록 화면으로 돌아올 경우 Angular는 해당 화면을 구성하는 컴포넌트를 처음부터 다시 생성(<code>ngOnInit</code> 실행)합니다.</strong> 이럴 경우엔 다음과 같은 문제가 발생합니다.</p>
 <ul>
-<li>
-<p>컴포넌트를 다시 생성하기 때문에 성능상 좋지 못합니다.</p>
-</li>
-<li>
-<p>컴포넌트를 다시 그리기 때문에 로딩 화면이 보여지거나 스크롤 위치를 기억하지 등 유저 경험에 악영향을 미칩니다.</p>
-</li>
-<li>
-<p>API 서버와 통신을 통해 목록을 불러올 경우에 불필요한 네트워크 통신을 수행하게 됩니다.</p>
-</li>
+<li>컴포넌트를 다시 생성하기 때문에 성능상 좋지 못합니다.</li>
+<li>컴포넌트를 다시 그리기 때문에 로딩 화면이 보여지거나 스크롤 위치를 기억하지 등 유저 경험에 악영향을 미칩니다.</li>
+<li>API 서버와 통신을 통해 목록을 불러올 경우에 불필요한 네트워크 통신을 수행하게 됩니다.</li>
 </ul>
 <p>뒤로 가기를 이용해 다시 이전 페이지에 접근할 경우엔 이미 이전에 생성해 둔 페이지를 다시 사용할 수 있다면 위에서 나열한 문제를 모두 해결할 수 있습니다. Angular에서는 <a href=https://angular.io/api/router/RouteReuseStrategy>RouteReuseStrategy</a>를 이용해 재사용 기능을 구현할 수 있습니다.</p>
 </div>
@@ -128,21 +122,11 @@ RouteReuseStrategy 동작 방식
 <p>
 각 함수가 호출되는 순서는 아래 나열되는 순서와 동일합니다.</p>
 <ol>
-<li>
-<p><strong>shouldReuseRoute</strong>: route간 이동이 발생할 때마다 동작합니다. 이 메서드가 true를 반환하면 route 이동은 발생하지 않습니다. false를 반환할 경우 기존 Angular Life Cycle이 그대로 동작합니다.</p>
-</li>
-<li>
-<p><strong>shouldAttach</strong>: 이동할 페이지(detail 화면)를 <code>store</code> 함수를 통해 저장한 내역에서 불러올지 여부를 반환하는 함수입니다. true를 반환하면 <code>retrieve</code> 함수를 호출하여 화면을 불러옵니다.</p>
-</li>
-<li>
-<p><strong>shouldDetach</strong>: 다른 페이지로 이동하기 전에 현재 페이지를 나중에 재사용 할지 여부를 반환하는 함수입니다. true를 반환하면 <code>store</code> 함수를 호출하여 화면을 저장합니다.</p>
-</li>
-<li>
-<p><strong>store</strong>: <code>shouldDetach</code> 함수의 결과값이 true일 경우 현재 보고 있는 화면(list 화면)을 저장하는 함수입니다.</p>
-</li>
-<li>
-<p><strong>retrieve</strong>: <code>shouldAttach</code> 함수의 반환값이 true일 경우 <code>store</code> 함수를 통해 저장한 내역에서 불러옵니다. </p>
-</li>
+<li><strong>shouldReuseRoute</strong>: route간 이동이 발생할 때마다 동작합니다. 이 메서드가 true를 반환하면 route 이동은 발생하지 않습니다. false를 반환할 경우 기존 Angular Life Cycle이 그대로 동작합니다.</li>
+<li><strong>shouldAttach</strong>: 이동할 페이지(detail 화면)를 <code>store</code> 함수를 통해 저장한 내역에서 불러올지 여부를 반환하는 함수입니다. true를 반환하면 <code>retrieve</code> 함수를 호출하여 화면을 불러옵니다.</li>
+<li><strong>shouldDetach</strong>: 다른 페이지로 이동하기 전에 현재 페이지를 나중에 재사용 할지 여부를 반환하는 함수입니다. true를 반환하면 <code>store</code> 함수를 호출하여 화면을 저장합니다.</li>
+<li><strong>store</strong>: <code>shouldDetach</code> 함수의 결과값이 true일 경우 현재 보고 있는 화면(list 화면)을 저장하는 함수입니다.</li>
+<li><strong>retrieve</strong>: <code>shouldAttach</code> 함수의 반환값이 true일 경우 <code>store</code> 함수를 통해 저장한 내역에서 불러옵니다. </li>
 </ol>
 </div>
 </div>

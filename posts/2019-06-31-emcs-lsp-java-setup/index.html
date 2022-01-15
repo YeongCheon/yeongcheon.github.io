@@ -6,24 +6,13 @@
 <meta property="og:title" content="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기 - 김영천 블로그">
 <meta name=twitter:title content="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기 - 김영천 블로그">
 <meta name=description content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
-  OS: ubuntu 18.04 LTS
-  emacs: GNU Emacs 25.2.2
-  java: openjdk version &#34;1.8.0_212&#34;
-  gradle: Gradle 4.10.2
-  이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자
-LSP란?  lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다).">
+ OS: ubuntu 18.04 LTS emacs: GNU Emacs 25.2.2 java: openjdk version &#34;1.8.0_212&#34; gradle: Gradle 4.10.2  이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자
+LSP란?  lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다). 간단히 말하자면 각 개발툴마다 제각각 다뤄왔던 자동완성, jump to definition 등등의 기능을 하나의 프로토콜로 표준화 하여 하나의 language server를 여러 개발툴에서 동일하게 사용할 수 있도록 하는 규약(프로토콜)을 의미한다.">
 <meta property="og:description" content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
-  OS: ubuntu 18.04 LTS
-  emacs: GNU Emacs 25.2.2
-  java: openjdk version &#34;1.8.0_212&#34;
-  gradle: Gradle 4.10.2
-  이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자
-LSP란?  lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다).">
+ OS: ubuntu 18.04 LTS emacs: GNU Emacs 25.2.2 java: openjdk version &#34;1.8.0_212&#34; gradle: Gradle 4.10.2  이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자
+LSP란?  lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다). 간단히 말하자면 각 개발툴마다 제각각 다뤄왔던 자동완성, jump to definition 등등의 기능을 하나의 프로토콜로 표준화 하여 하나의 language server를 여러 개발툴에서 동일하게 사용할 수 있도록 하는 규약(프로토콜)을 의미한다.">
 <meta name=twitter:description content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
-  OS: ubuntu 18.04 LTS
-  emacs: GNU Emacs 25.2.2
-  java: openjdk version &#34;1.8.0_212&#34;
-  gradle: Gradle …">
+ OS: ubuntu 18.04 LTS emacs: GNU Emacs 25.2.2 java: openjdk version &#34;1.8.0_212&#34; gradle: Gradle 4.10.2  이 포 …">
 <meta name=author content="YeongCheon Kim">
 <meta property="og:site_name" content="김영천 블로그">
 <meta property="og:url" content="https://yeongcheon.github.io/posts/2019-06-31-emcs-lsp-java-setup/">
@@ -31,7 +20,7 @@ LSP란?  lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -83,18 +72,10 @@ lsp
 <p>
 이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.</p>
 <ul>
-<li>
-<p>OS: <code class=verbatim>ubuntu 18.04 LTS</code></p>
-</li>
-<li>
-<p>emacs: <code class=verbatim>GNU Emacs 25.2.2</code></p>
-</li>
-<li>
-<p>java: <code class=verbatim>openjdk version "1.8.0_212"</code></p>
-</li>
-<li>
-<p>gradle: <code class=verbatim>Gradle 4.10.2</code></p>
-</li>
+<li>OS: <code class=verbatim>ubuntu 18.04 LTS</code></li>
+<li>emacs: <code class=verbatim>GNU Emacs 25.2.2</code></li>
+<li>java: <code class=verbatim>openjdk version "1.8.0_212"</code></li>
+<li>gradle: <code class=verbatim>Gradle 4.10.2</code></li>
 </ul>
 <p>이 포스트에선 개발환경 셋팅을 위해서 <a href=https://github.com/emacs-lsp/lsp-mode>lsp-mode</a>를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자</p>
 <div id=outline-container-headline-1 class=outline-2>
@@ -128,15 +109,9 @@ M-x package-install dash</code></pre></td></tr></table>
 <p>
 총 3개의 패키지를 설치한다.</p>
 <ul>
-<li>
-<p><a href=https://github.com/jwiegley/use-package>use-package</a></p>
-</li>
-<li>
-<p><a href=https://github.com/emacs-lsp/lsp-java>lsp-java</a></p>
-</li>
-<li>
-<p><a href=https://github.com/magnars/dash.el>dash</a></p>
-</li>
+<li><a href=https://github.com/jwiegley/use-package>use-package</a></li>
+<li><a href=https://github.com/emacs-lsp/lsp-java>lsp-java</a></li>
+<li><a href=https://github.com/magnars/dash.el>dash</a></li>
 </ul>
 <p>dash 패키지의 경우 공식 가이드에서 설치하라는 설명은 없었지만 셋팅이 제대로 진행되지 않아 나름 구글링을 해본 결과 얻어낸 답이다.</p>
 <div class="src src-elisp">

@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -121,15 +121,9 @@ JPA를 사용하다 보면 StackOverflow 에러를 종종 만날 수 있다. 이
 <p>
 수정 후 테스트를 해보았다. </p>
 <ul>
-<li>
-<p>부모만 단독으로 추가할 경우 성공</p>
-</li>
-<li>
-<p>부모객체 하나에 자식객체 하나를 추가할 경우 성공</p>
-</li>
-<li>
-<p><strong>부모객체 하나에 2개 이상의 자식 객체를 담아서 추가할 경우 실패</strong> - StackOverFlowError 발생</p>
-</li>
+<li>부모만 단독으로 추가할 경우 성공</li>
+<li>부모객체 하나에 자식객체 하나를 추가할 경우 성공</li>
+<li><strong>부모객체 하나에 2개 이상의 자식 객체를 담아서 추가할 경우 실패</strong> - StackOverFlowError 발생</li>
 </ul>
 <p>비즈니스 로직 코드는 원래 문제가 없었으니 이번에 수정한 Entity Model 관련 코드를 살펴보자.</p>
 </div>
@@ -228,49 +222,27 @@ Child.kt
 <li>
 <p>List Collection</p>
 <ul>
-<li>
-<p>순서가 있는 데이터의 모임</p>
-</li>
-<li>
-<p><strong>중복을 허용한다.</strong></p>
-</li>
-<li>
-<p>대표적으로 ArrayList 와 LinkedList 가 있다.</p>
-</li>
+<li>순서가 있는 데이터의 모임</li>
+<li><strong>중복을 허용한다.</strong></li>
+<li>대표적으로 ArrayList 와 LinkedList 가 있다.</li>
 </ul>
 </li>
 <li>
 <p>Set Collection</p>
 <ul>
-<li>
-<p>순서가 없는 데이터의 모임(구현체에 따라 순서가 있는 경우도 있다.)</p>
-</li>
-<li>
-<p><strong>중복을 허용하지 않는다.</strong></p>
-</li>
-<li>
-<p>대표적으로 HashSet 이 있다.</p>
-</li>
+<li>순서가 없는 데이터의 모임(구현체에 따라 순서가 있는 경우도 있다.)</li>
+<li><strong>중복을 허용하지 않는다.</strong></li>
+<li>대표적으로 HashSet 이 있다.</li>
 </ul>
 </li>
 </ul>
 <p>이 중에서 우리가 주목해야 할 특징은 중복 여부이다. 앞서 테스트 케이스에서 성공 케이스와 실패 케이스를 살펴보면 자식객체가 2개 이상일 경우에만 에러가 발생했는데 이 때 코드가 동작하는 순서는 아래와 같다.</p>
 <ol>
-<li>
-<p>Parent 객체를 생성한다.</p>
-</li>
-<li>
-<p>Parent 객체에 종속된 Child 객체를 생성해서 Parent.childs(MutableSet) 필드에 추가한다.</p>
-</li>
-<li>
-<p>Child 객체를 하나 더 생성해서 마찬가지로 Parent.childs 필드에 추가한다.</p>
-</li>
-<li>
-<p>이 때 childs 필드에 이미 객체가 존재하므로 추가하려는 객체와 동일한 객체인지 확인한다. - <strong>이 때 에러 발생</strong></p>
-</li>
-<li>
-<p>동일한 객체가 아닐 경우 Parent.childs 필드에 객체를 추가한다.</p>
-</li>
+<li>Parent 객체를 생성한다.</li>
+<li>Parent 객체에 종속된 Child 객체를 생성해서 Parent.childs(MutableSet) 필드에 추가한다.</li>
+<li>Child 객체를 하나 더 생성해서 마찬가지로 Parent.childs 필드에 추가한다.</li>
+<li>이 때 childs 필드에 이미 객체가 존재하므로 추가하려는 객체와 동일한 객체인지 확인한다. - <strong>이 때 에러 발생</strong></li>
+<li>동일한 객체가 아닐 경우 Parent.childs 필드에 객체를 추가한다.</li>
 </ol>
 <p>동일한 객체인지 판단할때 에러가 발생하는 이유를 알고자 하면 우선 Set Collection이 중복 체크를 어떻게 하는지 알아야 한다.</p>
 <p>

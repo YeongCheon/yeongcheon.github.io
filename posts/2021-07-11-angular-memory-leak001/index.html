@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -133,12 +133,8 @@ static
 <p>
 node를 기반으로 돌아가고 있던 앵귤러 서버가 일정시간마다 죽는 문제가 발생하였습니다.</p>
 <ul>
-<li>
-<p>로컬 테스트 및 개발 서버에선 발생하지 않고 실제 프로덕션 환경(개발서버 환경은 <a href=https://cloud.google.com/appengine>GAE</a>)에서만 발생하며,</p>
-</li>
-<li>
-<p>트래픽 양과 비례하여 발생주기가 짧아지는 특징이 있었습니다.</p>
-</li>
+<li>로컬 테스트 및 개발 서버에선 발생하지 않고 실제 프로덕션 환경(개발서버 환경은 <a href=https://cloud.google.com/appengine>GAE</a>)에서만 발생하며,</li>
+<li>트래픽 양과 비례하여 발생주기가 짧아지는 특징이 있었습니다.</li>
 </ul>
 <p>다만 이 이상의 특징은 찾을 수 없었으며, 재현도 쉽지 않고 정확한 발생 조건도 파악이 안되는 답도 없는 상황이 되어버렸습니다.</p>
 </div>
@@ -178,15 +174,9 @@ node를 기반으로 돌아가고 있던 앵귤러 서버가 일정시간마다 
 <p>
 이를 토대로 다음과 같은 단서를 얻었습니다.</p>
 <ol>
-<li>
-<p>동일한 페이지를 꽤 긴 텀(2~3초)을 두고 호출만 반복했을 뿐인데 서버가 죽었으니 이건 높은 확률로 메모리 누수 문제일 것이다.</p>
-</li>
-<li>
-<p>메모리 누수가 문제라면 SSR 처리를 하지 않는다면 서버는 죽지 않을 것이다(<a href=https://www.sarah-note.com/%ED%81%B4%EB%A1%A0%EC%BD%94%EB%94%A9/posting2/>CSR</a>은 단순히 파일서버의 역할만 하므로).</p>
-</li>
-<li>
-<p>문제가 되는 코드는 해당 페이지 해당 페이지 구현에 필요한 모듈 내부의 코드일 확률이 높을 것이다.</p>
-</li>
+<li>동일한 페이지를 꽤 긴 텀(2~3초)을 두고 호출만 반복했을 뿐인데 서버가 죽었으니 이건 높은 확률로 메모리 누수 문제일 것이다.</li>
+<li>메모리 누수가 문제라면 SSR 처리를 하지 않는다면 서버는 죽지 않을 것이다(<a href=https://www.sarah-note.com/%ED%81%B4%EB%A1%A0%EC%BD%94%EB%94%A9/posting2/>CSR</a>은 단순히 파일서버의 역할만 하므로).</li>
+<li>문제가 되는 코드는 해당 페이지 해당 페이지 구현에 필요한 모듈 내부의 코드일 확률이 높을 것이다.</li>
 </ol>
 <p>2번 가설을 확인하기 위해서 SSR을 제공하지 않는 버전으로 새로 빌드를 하여 동일한 테스트를 해 본 결과, 서버는 죽지 않고 잘 버티는 모습을 보여주었습니다.</p>
 </div>
@@ -249,12 +239,8 @@ static?
 </h3>
 <div id=outline-text-headline-13 class=outline-text-3>
 <ul>
-<li>
-<p>SSR 기능을 제공하는 angular(그 외 다른 node 기반 서버) 서버 구동 시 메모리 누수는 치명적인 문제를 일으킬 수 있습니다.</p>
-</li>
-<li>
-<p>static 변수를 사용할 땐 상당히 주의를 하며 사용해야 합니다. 자칫하면 메모리 누수의 원인이 될 수 있습니다.</p>
-</li>
+<li>SSR 기능을 제공하는 angular(그 외 다른 node 기반 서버) 서버 구동 시 메모리 누수는 치명적인 문제를 일으킬 수 있습니다.</li>
+<li>static 변수를 사용할 땐 상당히 주의를 하며 사용해야 합니다. 자칫하면 메모리 누수의 원인이 될 수 있습니다.</li>
 </ul>
 </div>
 </div>

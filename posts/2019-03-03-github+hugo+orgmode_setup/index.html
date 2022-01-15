@@ -18,7 +18,7 @@ hugo를 적용하게 된 계기  orgmode에 대한 호기심  원래 jekyll + gi
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -124,23 +124,17 @@ jekyll에서 orgmode 적용 실패
 여차저차해서 피씨에서 <code class=verbatim>jekyll serve</code> 명령어를 이용한 테스트에 성공하고 github에 업로드를 했더니 github에선 동작을 하지 않아서 바로 때려쳤다.
 사실 예전부터 hugo로 갈아타고 싶은 마음이 있었기에 미련없이 jekyll은 버리기로 했다. jekyll을 버리고 hugo로 갈아탄 <strong>개인적인</strong> 이유는 다음과 같다.</p>
 <ul>
-<li>
-<p>jekyll은 ruby로 만들어졌다. 그래서 초기 셋팅때 <code class=verbatim>gem</code> 같은 명령어를 쓰거나 <code class=verbatim>gemfile</code> 관리 등 번거로운 작업이 많았는데 영 익숙치가 않았다(나는 ruby를 전혀 모른다).</p>
-</li>
+<li>jekyll은 ruby로 만들어졌다. 그래서 초기 셋팅때 <code class=verbatim>gem</code> 같은 명령어를 쓰거나 <code class=verbatim>gemfile</code> 관리 등 번거로운 작업이 많았는데 영 익숙치가 않았다(나는 ruby를 전혀 모른다).</li>
 </ul>
 <p>그러다가 알게 된 hugo는 go로 작성되어 있었고 단지 이 이유 하나 때문에 hugo가 마음에 들어버렸다. 물론 그렇다고 내가 블로그 셋팅을 하는데 go의 소스코드를 볼 일은 전혀 없었다.</p>
 <ul>
-<li>
-<p><strong>내 피씨에서 빌드해서 올리고 싶다.</strong></p>
-</li>
+<li><strong>내 피씨에서 빌드해서 올리고 싶다.</strong></li>
 </ul>
 <p>jekyll은 일단 기본적으로 작성한 글을 github에 push하면 github 서버에서 빌드된 다음 배포된다. 이게 처음에는 상당히 매력적으로 보였는데 org-mode 관련 셋팅을 하다가 고생을 많이했다.
 내 피씨에서 관련 플러그인을 설치해서 빌드를 하면 정상 동작하던 글이 github 서버에서 빌드되서 배포되면 제대로 동작하지 않는 문제가 있었는데 해결법을 찾기가 너무 힘들었다.(<del>결국 못찾았다</del>)
 이럴바엔 그냥 내 PC에서 빌드된 버전을 그대로 서비스하는 방법이 낫겠다 싶었고 그렇다면 빌드속도도 빠르고 트러블 대응이 쉬운 hugo가 낫다고 판단했다. 대응이 쉽다고 생각한 이유는 내가 ruby는 모르지만 go는 조금 알고 있기 때문이다.</p>
 <ul>
-<li>
-<p><del>그냥</del></p>
-</li>
+<li><del>그냥</del></li>
 </ul>
 </div>
 </div>
@@ -156,12 +150,8 @@ hugo + org-mode 설정하기
 <p>
 간단하게 각 단계를 나열하면 아래와 같다.</p>
 <ul>
-<li>
-<p>org 확장자 파일을 만들어 글을 작성한다.</p>
-</li>
-<li>
-<p>org 확장자를 md 파일로 export 한다.(<code class=verbatim>C-c C-e H H</code>)</p>
-</li>
+<li>org 확장자 파일을 만들어 글을 작성한다.</li>
+<li>org 확장자를 md 파일로 export 한다.(<code class=verbatim>C-c C-e H H</code>)</li>
 </ul>
 <p>별다른 설정 없이 <a href=https://gohugo.io/getting-started/quick-start/>hugo 공식 가이드</a>를 따랐다면 아마 디렉토리 구조는 아래와 비슷할 것이다.</p>
 <div class="src src-text">

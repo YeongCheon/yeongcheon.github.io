@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
 <meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.91.2">
+<meta name=generator content="Hugo 0.92.0">
 <link rel=stylesheet href=/css/style.css media=all>
 <link rel=stylesheet href=/css/syntax.css media=all>
 <link rel=stylesheet href=/css/custom.css media=all>
@@ -197,12 +197,8 @@ Defining A Message Type
 </div>
 </div>
 <ul>
-<li>
-<p>첫 번째 줄은 이 파일이 <strong>proto3</strong> 문법을 사용하고 있음을 나타냅니다. 만약 이 구문이 없으면 컴파일러는 이 파일이 <a href=https://developers.google.com/protocol-buffers/docs/proto>proto2</a> 문법을 사용하고 있다고 인식합니다. 이 구문은 무조건 파일의 제일 첫 번째 줄에 와야하며 앞에 공백이나 주석조차 허용하지 않습니다.</p>
-</li>
-<li>
-<p><code>SearchRequest</code> 메세지는 세 가지 필드를 정의하고 있습니다(이름/값 쌍), 각 필드는 이름과 타입으로 이루어져 있습니다.</p>
-</li>
+<li>첫 번째 줄은 이 파일이 <strong>proto3</strong> 문법을 사용하고 있음을 나타냅니다. 만약 이 구문이 없으면 컴파일러는 이 파일이 <a href=https://developers.google.com/protocol-buffers/docs/proto>proto2</a> 문법을 사용하고 있다고 인식합니다. 이 구문은 무조건 파일의 제일 첫 번째 줄에 와야하며 앞에 공백이나 주석조차 허용하지 않습니다.</li>
+<li><code>SearchRequest</code> 메세지는 세 가지 필드를 정의하고 있습니다(이름/값 쌍), 각 필드는 이름과 타입으로 이루어져 있습니다.</li>
 </ul>
 <div id=outline-container-headline-3 class=outline-4>
 <h4 id=headline-3>
@@ -229,12 +225,8 @@ Specifying Field Rules
 <div id=outline-text-headline-5 class=outline-text-4>
 <p>메세지 필드는 다음 중 하나일 수 있습니다,</p>
 <ul>
-<li>
-<p>단일 필드: 잘 디자인 된 메세지는 0개 또는 하나의 단일 필드 형식을 갖습니다(하나 이하). 그리고 단일 필드는 프로토 버퍼3 문법에서 기본 필드입니다.</p>
-</li>
-<li>
-<p>반복 필드: 이 필드는 0을 포함해서 여러번 반복될 수 있습니다. 반복되는 값은 순서는 유지됩니다.</p>
-</li>
+<li>단일 필드: 잘 디자인 된 메세지는 0개 또는 하나의 단일 필드 형식을 갖습니다(하나 이하). 그리고 단일 필드는 프로토 버퍼3 문법에서 기본 필드입니다.</li>
+<li>반복 필드: 이 필드는 0을 포함해서 여러번 반복될 수 있습니다. 반복되는 값은 순서는 유지됩니다.</li>
 </ul>
 <p><code>proto3</code> 에서, 스칼라 숫자 타입 <code>반복</code> 필드는 기본적으로 <code>압축(packed)</code> 인코딩을 사용합니다.</p>
 <p>
@@ -339,27 +331,13 @@ What's Generated From Your <strong>.proto</strong>?
 <div id=outline-text-headline-9 class=outline-text-4>
 <p><code>.porto</code> 파일을 프로토 버퍼 컴파일러를 이용해 컴파일 하면 컴파일러는 당신이 선택한 언어로 코드를 생성합니다. 당신은 해당 메세지 타입에 해당하는 필드값 입출력, 메세지 출력 스트림에 대한 직렬화 작업, 그리고 입력 스트림에 대한 파싱 작업을 수행해야 합니다.</p>
 <ul>
-<li>
-<p><strong>C++</strong> 언어의 경우, 컴파일러는 <code>.proto</code> 파일마다 각 메세지별로 클래스 파일, <code>.h</code> , 그리고 <code>.cc</code> 파일을 생성합니다.</p>
-</li>
-<li>
-<p><strong>Python</strong> 언어는 조금 다릅니다. 파이썬 컴파일러는 <code>.proto</code> 파일에 일는 메세지마다 정적 디스크립터 모듈을 생성한 후 메타 클래스와 런타임에 필요한 데이터 접근 클래스를 생성하는 데 사용합니다.</p>
-</li>
-<li>
-<p>*Go * 언어의 경우, 컴파일러는 파일 안의 각 메세지마다 <code>.pb.go</code> 파일을 생성합니다.</p>
-</li>
-<li>
-<p><strong>Ruby</strong> 언어의 경우, 컴파일러는 메세지 타입마다 <strong>.rb</strong> 파일을 생성합니다.</p>
-</li>
-<li>
-<p><strong>Objective-C</strong> 언어의 경우, 컴파일러는 파일에 설명 된 각 메시지 유형에 대한 클래스와 함께 각 <code>.proto</code> 에서 <code>pbobjc.h</code> 및 <code>pbobjc.m</code> 파일을 생성합니다.</p>
-</li>
-<li>
-<p><strong>C#</strong> 언어의 경우, 컴파일러는 각 <code>.proto</code> 파일에 설명 된 각 메시지 유형에 대한 클래스와 함께 <code>.cs</code> 파일을 생성합니다.</p>
-</li>
-<li>
-<p><strong>Dart</strong> 언어의 경우, 컴파일러는 파일의 각 메시지 유형에 대한 클래스와 함께 <code>.pb.dart</code> 파일을 생성합니다.</p>
-</li>
+<li><strong>C++</strong> 언어의 경우, 컴파일러는 <code>.proto</code> 파일마다 각 메세지별로 클래스 파일, <code>.h</code> , 그리고 <code>.cc</code> 파일을 생성합니다.</li>
+<li><strong>Python</strong> 언어는 조금 다릅니다. 파이썬 컴파일러는 <code>.proto</code> 파일에 일는 메세지마다 정적 디스크립터 모듈을 생성한 후 메타 클래스와 런타임에 필요한 데이터 접근 클래스를 생성하는 데 사용합니다.</li>
+<li>*Go * 언어의 경우, 컴파일러는 파일 안의 각 메세지마다 <code>.pb.go</code> 파일을 생성합니다.</li>
+<li><strong>Ruby</strong> 언어의 경우, 컴파일러는 메세지 타입마다 <strong>.rb</strong> 파일을 생성합니다.</li>
+<li><strong>Objective-C</strong> 언어의 경우, 컴파일러는 파일에 설명 된 각 메시지 유형에 대한 클래스와 함께 각 <code>.proto</code> 에서 <code>pbobjc.h</code> 및 <code>pbobjc.m</code> 파일을 생성합니다.</li>
+<li><strong>C#</strong> 언어의 경우, 컴파일러는 각 <code>.proto</code> 파일에 설명 된 각 메시지 유형에 대한 클래스와 함께 <code>.cs</code> 파일을 생성합니다.</li>
+<li><strong>Dart</strong> 언어의 경우, 컴파일러는 파일의 각 메시지 유형에 대한 클래스와 함께 <code>.pb.dart</code> 파일을 생성합니다.</li>
 </ul>
 <p>다른 언어에 대한 튜토리얼을 통해 API 사용법을 좀 더 자세히 알아볼 수 있습니다(proto3 버전은 출시 예정). 더 자세한 <a href=https://developers.google.com/protocol-buffers/docs/reference/overview>API 사용법</a>은 관련 API를 참조(proto3 버전은 출시 예정).</p>
 </div>
@@ -580,24 +558,12 @@ Default Values
 <div id=outline-text-headline-11 class=outline-text-3>
 <p>메세지를 파싱할 때 인코딩 된 메세지에 특정 특이 요소가 포함되어 있지 않으면 파싱된 객체의 해당 필드가 해당 필드의 기본값으로 설정됩니다. 이 기본값은 유형별로 다릅니다.</p>
 <ul>
-<li>
-<p>String 타입의 경우, 기본값은 빈 문자열 값입니다.</p>
-</li>
-<li>
-<p>bytes 타입의 경우, 기본값은 빈 bytes 값입니다.</p>
-</li>
-<li>
-<p>bools 타입의 경우, 기본값은 false 입니다.</p>
-</li>
-<li>
-<p>숫자 타입의 경우, 기본값은 0 입니다.</p>
-</li>
-<li>
-<p><a href=https://developers.google.com/protocol-buffers/docs/proto3#enum>enums</a> 타입의 경우, 기본값은 가장 처음 정의된 enum 값이며 0이어야 합니다.</p>
-</li>
-<li>
-<p>메세지 필드의 경우, 필드 값은 셋팅되지 않습니다. 정확한 값은 종속된 언에 따라 다릅니다. 자세한 내용은 <a href=https://developers.google.com/protocol-buffers/docs/reference/overview>코드 생성 가이드</a>를 참고하세요.</p>
-</li>
+<li>String 타입의 경우, 기본값은 빈 문자열 값입니다.</li>
+<li>bytes 타입의 경우, 기본값은 빈 bytes 값입니다.</li>
+<li>bools 타입의 경우, 기본값은 false 입니다.</li>
+<li>숫자 타입의 경우, 기본값은 0 입니다.</li>
+<li><a href=https://developers.google.com/protocol-buffers/docs/proto3#enum>enums</a> 타입의 경우, 기본값은 가장 처음 정의된 enum 값이며 0이어야 합니다.</li>
+<li>메세지 필드의 경우, 필드 값은 셋팅되지 않습니다. 정확한 값은 종속된 언에 따라 다릅니다. 자세한 내용은 <a href=https://developers.google.com/protocol-buffers/docs/reference/overview>코드 생성 가이드</a>를 참고하세요.</li>
 </ul>
 <p>반복 필드 타입의 기본값은 빈 값입니다(일반적으로 프로그래밍 언어에선 빈 list 타입을 갖습니다).</p>
 <p>
@@ -652,12 +618,8 @@ Enumerations
 </div>
 <p>위 예제에서 보시다시피, <code>Corpus</code> enum의 첫번재 상수값은 0이어야 합니다. 모든 enum은 <strong>무조건</strong> 첫번째 상수값으로 0을 가지고 있어야 합니다. 그 이유는 아래와 같습니다.</p>
 <ul>
-<li>
-<p>0이어야 하는 이유는 0이 숫자 타입의 <a href=https://developers.google.com/protocol-buffers/docs/proto3#default>기본값</a>이기 때문입니다.</p>
-</li>
-<li>
-<p>0이 첫번째 요소에 있어야 하는 이유는 <a href=https://developers.google.com/protocol-buffers/docs/proto>proto2</a> 문법과 호환을 위해서인데, proto2에선 항상 enum의 첫번째 요소가 기본값입니다.</p>
-</li>
+<li>0이어야 하는 이유는 0이 숫자 타입의 <a href=https://developers.google.com/protocol-buffers/docs/proto3#default>기본값</a>이기 때문입니다.</li>
+<li>0이 첫번째 요소에 있어야 하는 이유는 <a href=https://developers.google.com/protocol-buffers/docs/proto>proto2</a> 문법과 호환을 위해서인데, proto2에선 항상 enum의 첫번째 요소가 기본값입니다.</li>
 </ul>
 <p>동일한 enum 값에 서로 다른 별칭을 지정할 수 있습니다. 이를 위해서는 <code>allow_alias</code> 옵션이 <code>true</code> 이어야 합니다. <code>true</code> 로 지정하지 않고 별칭을 사용한다면 컴파일러는 에러를 발생할 것입니다.</p>
 <div class="src src-proto">
@@ -921,39 +883,17 @@ Updating A Message Type
 <div id=outline-text-headline-18 class=outline-text-3>
 <p>기존에 존재하는 메세지 타입이 더이상 요구사항을 충족하지 못하는 경우가 생길 수 있습니다. 예를 들어, 메세지 타입 형식은 유지하고 새로운 필드 타입을 추가하여 메세지 타입을 업데이트 하는 것은 매우 간단합니다. 아래의 규칙을 따라주세요.</p>
 <ul>
-<li>
-<p>기존에 존재하는 필드 번호를 변경하지 마세요</p>
-</li>
-<li>
-<p>만약 당신이 새 필드를 추가해도 기존의 메세지들도 여전히 새로 생성된 코드를 통해서 파싱 후 직렬화 될 것입니다. 새로 추가된 코드와 기존 코드가 잘 상호작용 할 수 있도록 <a href=https://developers.google.com/protocol-buffers/docs/proto3#default>기본값</a>에 신경쓰세요. 새 코드로 작성된 메세지는 여전히 기존 코드를 파싱할 수 있습니다. 기존 코드는 새로 추가된 필드를 무시합니다. 자세한 내용은 <a href=https://developers.google.com/protocol-buffers/docs/proto3#unknowns>알 수 없는 필드</a> 섹션을 참고하세요.</p>
-</li>
-<li>
-<p>메세지 필드는 제거할 수 있지만, 해당 필드 번호가 추 후 재사용 되지 않도록 주의해야 합니다.</p>
-</li>
-<li>
-<p>필드 이름을 바꾸고 싶다면 필드 이름 앞에 "OBSOLETE_" 접두사를 추가하거나 필드 번호를 <a href=https://developers.google.com/protocol-buffers/docs/proto3#reserved>예약</a>하여 향 후 <code>.proto</code> 사용자가 실수로라도 번호를 재사용 할 수 없도록 할 수 있습니다.</p>
-</li>
-<li>
-<p><code>int32</code>, <code>uint32</code>, <code>int64</code>, <code>uint64</code>, <code>bool</code> 타입은 모두 호환 가능합니다. 이 말은 이러한 필드 타입을 변형 없이 다른 필드 타입으로 변경할 수 있다는 뜻입니다<sup>(역자 주: int32 -> uint32 또는 int64 -> uint64 변경 가능)</sup>. 만약 규격을 벗어난 숫자를 타입 변경하면 C++ 언어에서 해당 타입으로 숫자를 캐스팅 한 것과 같은 효과를 얻을 수 있습니다(예: 64비트 숫자를 int32로 읽은 경우, 32bit로 잘립니다).</p>
-</li>
-<li>
-<p><code>sint32</code>, <code>sint64</code> 필드는 서로 호환되지만 다른 integer 타입과는 호환되지 않습니다.</p>
-</li>
-<li>
-<p><code>string</code>, <code>bytes</code> 타입의 경우 bytes 타입이 유효한 UTF-8 값이면 서로 호환됩니다.</p>
-</li>
-<li>
-<p>메세지 필드 타입의 경우 bytes에 인코딩 된 메세지의 버전이 포함되어 있는 경우 bytes와 호환됩니다.</p>
-</li>
-<li>
-<p><code>fixed32</code> 타입은 <code>sfixed32</code> 타입과 호환됩니다. 그리고 <code>fixed64</code> 타입은 <code>sfixed64</code> 필드와 호환됩니다.</p>
-</li>
-<li>
-<p><code>enum</code> 타입은 <code>int32</code>, <code>uint32</code>, <code>int64</code>, <code>uint64</code> 필드와 유효한 값 범위 내에서 호환됩니다(값이 만약 범위를 벗어날 경우 숫자가 잘립니다). 그러나 메세지가 역직렬화 될 때 클라이언트 코드가 코드를 다르게 취급할 수 있습니다. 예를 들어, 인식할 수 없는 proto3 버전의 <code>enum</code> 타입은 메세지에 보존되지만 메세지가 역질렬화 할 때 이 값이 어떻게 표현되는지는 언어에 따라 다릅니다. Int 필드는 항상 값을 유지해야 합니다.</p>
-</li>
-<li>
-<p>단일 멤버를 <strong>새</strong> <code>멤버</code> 로 변경하는 것은 안전하고 바이너리 호환이 가능합니다. 두 개 이상의 <code>멤버</code> 가 코드에 한번에 셋팅되지 않은 경우엔 여러 개의 기존 필드를 새 필드로 안전하게 옮길 수 있습니다. 특정 멤버를 를 기존 <code>멤버</code> 로 옮기는 것은 안전하지 않습니다.</p>
-</li>
+<li>기존에 존재하는 필드 번호를 변경하지 마세요</li>
+<li>만약 당신이 새 필드를 추가해도 기존의 메세지들도 여전히 새로 생성된 코드를 통해서 파싱 후 직렬화 될 것입니다. 새로 추가된 코드와 기존 코드가 잘 상호작용 할 수 있도록 <a href=https://developers.google.com/protocol-buffers/docs/proto3#default>기본값</a>에 신경쓰세요. 새 코드로 작성된 메세지는 여전히 기존 코드를 파싱할 수 있습니다. 기존 코드는 새로 추가된 필드를 무시합니다. 자세한 내용은 <a href=https://developers.google.com/protocol-buffers/docs/proto3#unknowns>알 수 없는 필드</a> 섹션을 참고하세요.</li>
+<li>메세지 필드는 제거할 수 있지만, 해당 필드 번호가 추 후 재사용 되지 않도록 주의해야 합니다.</li>
+<li>필드 이름을 바꾸고 싶다면 필드 이름 앞에 "OBSOLETE_" 접두사를 추가하거나 필드 번호를 <a href=https://developers.google.com/protocol-buffers/docs/proto3#reserved>예약</a>하여 향 후 <code>.proto</code> 사용자가 실수로라도 번호를 재사용 할 수 없도록 할 수 있습니다.</li>
+<li><code>int32</code>, <code>uint32</code>, <code>int64</code>, <code>uint64</code>, <code>bool</code> 타입은 모두 호환 가능합니다. 이 말은 이러한 필드 타입을 변형 없이 다른 필드 타입으로 변경할 수 있다는 뜻입니다<sup>(역자 주: int32 -> uint32 또는 int64 -> uint64 변경 가능)</sup>. 만약 규격을 벗어난 숫자를 타입 변경하면 C++ 언어에서 해당 타입으로 숫자를 캐스팅 한 것과 같은 효과를 얻을 수 있습니다(예: 64비트 숫자를 int32로 읽은 경우, 32bit로 잘립니다).</li>
+<li><code>sint32</code>, <code>sint64</code> 필드는 서로 호환되지만 다른 integer 타입과는 호환되지 않습니다.</li>
+<li><code>string</code>, <code>bytes</code> 타입의 경우 bytes 타입이 유효한 UTF-8 값이면 서로 호환됩니다.</li>
+<li>메세지 필드 타입의 경우 bytes에 인코딩 된 메세지의 버전이 포함되어 있는 경우 bytes와 호환됩니다.</li>
+<li><code>fixed32</code> 타입은 <code>sfixed32</code> 타입과 호환됩니다. 그리고 <code>fixed64</code> 타입은 <code>sfixed64</code> 필드와 호환됩니다.</li>
+<li><code>enum</code> 타입은 <code>int32</code>, <code>uint32</code>, <code>int64</code>, <code>uint64</code> 필드와 유효한 값 범위 내에서 호환됩니다(값이 만약 범위를 벗어날 경우 숫자가 잘립니다). 그러나 메세지가 역직렬화 될 때 클라이언트 코드가 코드를 다르게 취급할 수 있습니다. 예를 들어, 인식할 수 없는 proto3 버전의 <code>enum</code> 타입은 메세지에 보존되지만 메세지가 역질렬화 할 때 이 값이 어떻게 표현되는지는 언어에 따라 다릅니다. Int 필드는 항상 값을 유지해야 합니다.</li>
+<li>단일 멤버를 <strong>새</strong> <code>멤버</code> 로 변경하는 것은 안전하고 바이너리 호환이 가능합니다. 두 개 이상의 <code>멤버</code> 가 코드에 한번에 셋팅되지 않은 경우엔 여러 개의 기존 필드를 새 필드로 안전하게 옮길 수 있습니다. 특정 멤버를 를 기존 <code>멤버</code> 로 옮기는 것은 안전하지 않습니다.</li>
 </ul>
 </div>
 </div>
@@ -1101,18 +1041,12 @@ Oneof Features
 </div>
 </div>
 </li>
-<li>
-<p>파서가 여러 oneof 멤버를 발견하면, 파서는 마지막으로 파싱 된 oneof 멤버만 사용하여 메세지를 파싱합니다.</p>
-</li>
+<li>파서가 여러 oneof 멤버를 발견하면, 파서는 마지막으로 파싱 된 oneof 멤버만 사용하여 메세지를 파싱합니다.</li>
 <li>
 <p>oneof는 <code>repeated</code> 구문을 사용할 수 없습니다.</p>
 <ul>
-<li>
-<p>Reflection APIs도 oneof 필드에 사용할 수 있습니다.</p>
-</li>
-<li>
-<p>oneof 필드를 기본값으로 설정하면(예: int32를 oneof 필드로 설정할 경우 0 셋팅) oneof 필드의 "case"가 설정되며, 이 값은 직렬화 될 때 사용됩니다.</p>
-</li>
+<li>Reflection APIs도 oneof 필드에 사용할 수 있습니다.</li>
+<li>oneof 필드를 기본값으로 설정하면(예: int32를 oneof 필드로 설정할 경우 0 셋팅) oneof 필드의 "case"가 설정되며, 이 값은 직렬화 될 때 사용됩니다.</li>
 <li>
 <p>만약 C++를 사용한다면, 코드가 메모리 충돌을 일으키지 않도록 주의하세요. 아래의 예제 코드에선 <code>sub_message</code> 가 <code>set_name()</code> 메서드 호출됨으로 인해 삭제되어 충돌을 일으킵니다.</p>
 <div class="src src-proto">
@@ -1174,15 +1108,9 @@ Tag Reuse Issues
 </h5>
 <div id=outline-text-headline-25 class=outline-text-5>
 <ul>
-<li>
-<p><strong>oneof 요소로 이동 또는 제외할 경우</strong>: 메세지가 직렬화, 파싱될 경우 일부 정보가 손실될 수 있습니다(일부 필드는 지워짐). 그러나 단일 필드를 새 필드로 안전하게 이동할 수 있으며 oneof 요소로 하나만 설정되어 있으면 여러 필드를 이동할 수 있습니다.</p>
-</li>
-<li>
-<p><strong>oneof 필드 요소로 추가하거나 제거할 경우</strong>: 메세지가 직렬화, 파싱된 후에는 현재 셋팅된 oneof 필드가 지워질 수 있습니다.</p>
-</li>
-<li>
-<p><strong>onfof 분할 또는 병합할 경우</strong>: 이 이슈는 일반 필드 이동 이슈와 유사합니다.</p>
-</li>
+<li><strong>oneof 요소로 이동 또는 제외할 경우</strong>: 메세지가 직렬화, 파싱될 경우 일부 정보가 손실될 수 있습니다(일부 필드는 지워짐). 그러나 단일 필드를 새 필드로 안전하게 이동할 수 있으며 oneof 요소로 하나만 설정되어 있으면 여러 필드를 이동할 수 있습니다.</li>
+<li><strong>oneof 필드 요소로 추가하거나 제거할 경우</strong>: 메세지가 직렬화, 파싱된 후에는 현재 셋팅된 oneof 필드가 지워질 수 있습니다.</li>
+<li><strong>onfof 분할 또는 병합할 경우</strong>: 이 이슈는 일반 필드 이동 이슈와 유사합니다.</li>
 </ul>
 </div>
 </div>
@@ -1220,21 +1148,11 @@ Maps
 </div>
 </div>
 <ul>
-<li>
-<p>map 필드엔 <code>repeated</code> 구문을 사용할 수 없습니다.</p>
-</li>
-<li>
-<p>포맷 순서, map의 값에는 순서가 정의되어 있지 않습니다. 따라서 map 내부의 키, 값의 순서는 신뢰할 수 없습니다.</p>
-</li>
-<li>
-<p><code>.proto</code> 파일 내부 텍스트를 정리(formatting)할 때, map은 key값 순서대로 정렬됩니다. 숫자타입의 key는 오름차순으로 정렬됩니다.</p>
-</li>
-<li>
-<p>데이터를 파싱하거나 병합(머지)할 때, map의 key가 중복될 경우 마지막으로 선언된 key 값이 사용됩니다. <code>.proto</code> 파일에서 파싱할 때 중복이 있을 경우엔 파싱이 실패합니다.</p>
-</li>
-<li>
-<p>만약 키만 있고 값이 없는 맵이 있을 경우, 각 언어에 의존하여 처리됩니다. C++, Java, Python 같은 경우엔 기본값으로 직렬화 되고, 그 외의 언어의 경우엔 아무것도 직렬화 되지 않습니다.</p>
-</li>
+<li>map 필드엔 <code>repeated</code> 구문을 사용할 수 없습니다.</li>
+<li>포맷 순서, map의 값에는 순서가 정의되어 있지 않습니다. 따라서 map 내부의 키, 값의 순서는 신뢰할 수 없습니다.</li>
+<li><code>.proto</code> 파일 내부 텍스트를 정리(formatting)할 때, map은 key값 순서대로 정렬됩니다. 숫자타입의 key는 오름차순으로 정렬됩니다.</li>
+<li>데이터를 파싱하거나 병합(머지)할 때, map의 key가 중복될 경우 마지막으로 선언된 key 값이 사용됩니다. <code>.proto</code> 파일에서 파싱할 때 중복이 있을 경우엔 파싱이 실패합니다.</li>
+<li>만약 키만 있고 값이 없는 맵이 있을 경우, 각 언어에 의존하여 처리됩니다. C++, Java, Python 같은 경우엔 기본값으로 직렬화 되고, 그 외의 언어의 경우엔 아무것도 직렬화 되지 않습니다.</li>
 </ul>
 <p>map 생성 API는 현재 proto3를 지원하는 모든 언어에서 사용 가능합니다. map API에 대해 각 언어별로 자세히 알아보고 싶으면 <a href=https://developers.google.com/protocol-buffers/docs/reference/overview>API reference</a>를 참고하세요.</p>
 <div id=outline-container-headline-27 class=outline-4>
@@ -1307,24 +1225,12 @@ Packages
 </div>
 <p>패키지 구문이 생성된 코드에 영향을 주는 방식은 선택한 언어마다 다릅니다.</p>
 <ul>
-<li>
-<p><strong>C++</strong> 의 경우에는 작명 규칙에 따라 클래스들이 생성됩니다. 예를들어, <code>Open</code> 은 <code>foo::bar</code> 안에 있을 것입니다.</p>
-</li>
-<li>
-<p><strong>Java</strong> 의 경우에는 <code>.proto</code> 파일에 <code>open java_package</code> 라고 명시하지 않는 한 패키지를 자바 패키지로 사용합니다.</p>
-</li>
-<li>
-<p><strong>Python</strong> 의 경우에는 파일 시스템의 위치에 따라 Python 모듈이 구성되므로 패키지 구문을 무시합니다.</p>
-</li>
-<li>
-<p><strong>Go</strong> 의 경우에는 <code>.proto</code> 파일에 <code>option go_package</code> 라고 명시하지 않는 한 패키지를 Go 패키지 이름으로 사용합니다.</p>
-</li>
-<li>
-<p><strong>Ruby</strong> 의 경우에는 Ruby 작명 규칙에 따라 클래스가 생성되며 Ruby 특유의 대문자 표기 스타일로 변경됩니다(첫번째 문자는 대문자로 변경되며, 알파벳이 아닐 경우엔 앞에 <code>PB_</code> 문자가 붙습니다). 예를 들어, <code>Open</code> 은 <code>Foo::Bar</code> 안에 있을 것입니다.</p>
-</li>
-<li>
-<p><strong>C#</strong> 의 경우에는 <code>.proto</code> 파일에 <code>option csharp_namespace</code> 라고 명시하지 않는 한 파스칼 형식으로 변환된 후 작명 규칙에 따라 코드를 생성합니다. 예를 들어, <code>Open</code> 은 <code>Foo::Bar</code> 안에 있을 것입니다.</p>
-</li>
+<li><strong>C++</strong> 의 경우에는 작명 규칙에 따라 클래스들이 생성됩니다. 예를들어, <code>Open</code> 은 <code>foo::bar</code> 안에 있을 것입니다.</li>
+<li><strong>Java</strong> 의 경우에는 <code>.proto</code> 파일에 <code>open java_package</code> 라고 명시하지 않는 한 패키지를 자바 패키지로 사용합니다.</li>
+<li><strong>Python</strong> 의 경우에는 파일 시스템의 위치에 따라 Python 모듈이 구성되므로 패키지 구문을 무시합니다.</li>
+<li><strong>Go</strong> 의 경우에는 <code>.proto</code> 파일에 <code>option go_package</code> 라고 명시하지 않는 한 패키지를 Go 패키지 이름으로 사용합니다.</li>
+<li><strong>Ruby</strong> 의 경우에는 Ruby 작명 규칙에 따라 클래스가 생성되며 Ruby 특유의 대문자 표기 스타일로 변경됩니다(첫번째 문자는 대문자로 변경되며, 알파벳이 아닐 경우엔 앞에 <code>PB_</code> 문자가 붙습니다). 예를 들어, <code>Open</code> 은 <code>Foo::Bar</code> 안에 있을 것입니다.</li>
+<li><strong>C#</strong> 의 경우에는 <code>.proto</code> 파일에 <code>option csharp_namespace</code> 라고 명시하지 않는 한 파스칼 형식으로 변환된 후 작명 규칙에 따라 코드를 생성합니다. 예를 들어, <code>Open</code> 은 <code>Foo::Bar</code> 안에 있을 것입니다.</li>
 </ul>
 <div id=outline-container-headline-29 class=outline-4>
 <h4 id=headline-29>
@@ -1512,18 +1418,10 @@ JSON options
 <div id=outline-text-headline-32 class=outline-text-4>
 <p>proto3의 JSON에선 아래의 옵션들을 제공할 수 있습니다..</p>
 <ul>
-<li>
-<p><strong>기본값을 가진 필드</strong>: proto3의 JSON 출력값에선 기본값이 있는 필드는 기본적으로 생략됩니다. 실제 구현 및 동작 시 기본값 출력을 기본값으로 재정의하는 옵션을 제공할 수 있습니다.</p>
-</li>
-<li>
-<p><strong>알 수 없는 필드 제외</strong>: Proto3의 JSON 파서는 기본적으로 파싱 시 알 수 없는 필드가 있을 시 거부되지만, 알 수 없는 필드를 그냥 무시하는 옵션을 제공할 수 있습니다.</p>
-</li>
-<li>
-<p><strong>lowerCamelCase 이름 대신 proto 필드 이름 사용</strong>: proto3의 JSON에선 기본적으로 필드 이름을 lowerCamelCase로 변환해서 사용합니다. 실제 구현시에는 proto 필드 이름을 Json 이름으로 대신 사용할 수 있는 옵션을 제공할 수 있습니다. 변환된 lowerCamelCase 이름과 proto 필드 이름을 모두 사용하려면 Proto3 JSON 파서가 필요합니다.</p>
-</li>
-<li>
-<p><strong>enum 값을 string 대신 숫자로 출력</strong>: JSON 출력 시 enum은 기본적으로 값의 이름이 출력됩니다. 이 대신 enum 값의 숫자 값을 사용하는 옵션을 제공할 수 있습니다.</p>
-</li>
+<li><strong>기본값을 가진 필드</strong>: proto3의 JSON 출력값에선 기본값이 있는 필드는 기본적으로 생략됩니다. 실제 구현 및 동작 시 기본값 출력을 기본값으로 재정의하는 옵션을 제공할 수 있습니다.</li>
+<li><strong>알 수 없는 필드 제외</strong>: Proto3의 JSON 파서는 기본적으로 파싱 시 알 수 없는 필드가 있을 시 거부되지만, 알 수 없는 필드를 그냥 무시하는 옵션을 제공할 수 있습니다.</li>
+<li><strong>lowerCamelCase 이름 대신 proto 필드 이름 사용</strong>: proto3의 JSON에선 기본적으로 필드 이름을 lowerCamelCase로 변환해서 사용합니다. 실제 구현시에는 proto 필드 이름을 Json 이름으로 대신 사용할 수 있는 옵션을 제공할 수 있습니다. 변환된 lowerCamelCase 이름과 proto 필드 이름을 모두 사용하려면 Proto3 JSON 파서가 필요합니다.</li>
+<li><strong>enum 값을 string 대신 숫자로 출력</strong>: JSON 출력 시 enum은 기본적으로 값의 이름이 출력됩니다. 이 대신 enum 값의 숫자 값을 사용하는 옵션을 제공할 수 있습니다.</li>
 </ul>
 </div>
 </div>
@@ -1540,9 +1438,7 @@ Options
 <p>
 아래는 일반적으로 쓰이는 일부 옵션들입니다.</p>
 <ul>
-<li>
-<p><code>java_package</code> (file option): 생성되는 자바 클래스 파일들을 위한 패키지를 선언합니다. <code>java_package</code> 옵션을 <code>.proto</code> 파일에 작성하지 않은 경우에는 기본적으로 proto 패키지(<code>.proto</code> 파일에 "package" 키워드를 사용하여 선언한 값)가 사용됩니다. 그러나 프로토 패키지는 리버스 도메인으로 시작하지 않기 때문에 좋은 Java 패키지를 만들지 않습니다. 만약 자바 코드를 생성하지 않는다면 이 옵션은 적용되지 않습니다..</p>
-</li>
+<li><code>java_package</code> (file option): 생성되는 자바 클래스 파일들을 위한 패키지를 선언합니다. <code>java_package</code> 옵션을 <code>.proto</code> 파일에 작성하지 않은 경우에는 기본적으로 proto 패키지(<code>.proto</code> 파일에 "package" 키워드를 사용하여 선언한 값)가 사용됩니다. 그러나 프로토 패키지는 리버스 도메인으로 시작하지 않기 때문에 좋은 Java 패키지를 만들지 않습니다. 만약 자바 코드를 생성하지 않는다면 이 옵션은 적용되지 않습니다..</li>
 </ul>
 <div class="src src-proto">
 <div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
@@ -1557,9 +1453,7 @@ Options
 </div>
 </div>
 <ul>
-<li>
-<p><code>java_multiple_files</code> (file option): 최상위 레벨 메세지, enum, 서비스가 <code>.proto</code> 파일의 이름을 딴 외부 클래스가 아닌 패키지 수준에서 정의되도록 합니다.</p>
-</li>
+<li><code>java_multiple_files</code> (file option): 최상위 레벨 메세지, enum, 서비스가 <code>.proto</code> 파일의 이름을 딴 외부 클래스가 아닌 패키지 수준에서 정의되도록 합니다.</li>
 </ul>
 <div class="src src-proto">
 <div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
@@ -1574,9 +1468,7 @@ Options
 </div>
 </div>
 <ul>
-<li>
-<p><code>java_outer_classname</code> (file_option): 클래스 이름(및 파일 이름)을 가장 최상위에 있는 자바 클래스 이름으로 생성합니다. <code>.proto</code> 파일에 <code>java_outer_classname</code> 이 선언되지 않은 경우엔 <code>.proto</code> 파일 이름을 camel-case로 변환하여 클래스 이름으로 사용합니다(예를 들어 foo_bar.proto는 FooBar.java가 됩니다). Java 코드를 생성하지 않는다면 이 옵션은 적용되지 않습니다.</p>
-</li>
+<li><code>java_outer_classname</code> (file_option): 클래스 이름(및 파일 이름)을 가장 최상위에 있는 자바 클래스 이름으로 생성합니다. <code>.proto</code> 파일에 <code>java_outer_classname</code> 이 선언되지 않은 경우엔 <code>.proto</code> 파일 이름을 camel-case로 변환하여 클래스 이름으로 사용합니다(예를 들어 foo_bar.proto는 FooBar.java가 됩니다). Java 코드를 생성하지 않는다면 이 옵션은 적용되지 않습니다.</li>
 </ul>
 <div class="src src-proto">
 <div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
@@ -1594,15 +1486,9 @@ Options
 <li>
 <p><code>optimize_for</code> (file_option): <code>SPEED</code>, <code>CODE_SIZE</code>, <code>LITE_RUNTIME</code> 중 하나를 사용할 수 있습니다. 이는 아래와 같은 방식으로 C++과 Java 코드(및 서드파티 코드 생성) 생성에 영향을 미칩니다.</p>
 <ul>
-<li>
-<p><code>SPEED</code> (default): 프로토버퍼 컴파일러는 직렬화, 파싱, 그리고 작업을 수행하기 위한 코드를 생성합니다. 이 코드는 고도로 최적화되어 있습니다.</p>
-</li>
-<li>
-<p><code>CODE_SIZE</code>: 프로토콜 버퍼 컴파일러는 최소한의 클래스를 생성하며 직렬화, 파싱 및 기타 다양한 작업을 구현하기 위해 공유 리플렉션 기반 코드를 사용합니다. 생성된 코드는 <code>SPEED</code> 옵션을 사용해 생성한 코드보다는 크기가 훨씬 작지만 동작 속도는 느려집니다. 클래스들은 <code>SPEED</code> 옵션을 사용해 구현한 코드와 동일한 public API를 구현합니다. 이 모드는 매우 많은 수의 .proto 파일이 포함된 앱에서 가장 유용합니다. 모든 파일이 맹목적으로 빠를 필요는 없으니깐요.</p>
-</li>
-<li>
-<p><code>LITE_RUNTIME</code>: 프로토콜 버퍼 컴파일러가 "lite" 런타임 라이브러리에만 의존하는 클래스를 생성합니다(<code>libprotobuf</code> 대신 <code>libprotobuf-lite</code> 에 의존). lite 런타임 라이브러리는 전체 라이브러리보다 훨씬 작지만(약 10배정도) descriptor와 reflection과 같은 특정 기능을 생략합니다. 이 기능은 모바일 기기같은 제한된 플랫폼에서 실행되는 앱에 특히 유용합니다. 컴파일러는 <code>SPEED</code> 모드에서와 같이 여전히 빠른 메서드를 구현합니다. 생성된 클래스는 각 언어로 MessageLite 인터페이스를 구현하며, 전체 Message 인터페이스 메소드 중 일부만 제공합니다.</p>
-</li>
+<li><code>SPEED</code> (default): 프로토버퍼 컴파일러는 직렬화, 파싱, 그리고 작업을 수행하기 위한 코드를 생성합니다. 이 코드는 고도로 최적화되어 있습니다.</li>
+<li><code>CODE_SIZE</code>: 프로토콜 버퍼 컴파일러는 최소한의 클래스를 생성하며 직렬화, 파싱 및 기타 다양한 작업을 구현하기 위해 공유 리플렉션 기반 코드를 사용합니다. 생성된 코드는 <code>SPEED</code> 옵션을 사용해 생성한 코드보다는 크기가 훨씬 작지만 동작 속도는 느려집니다. 클래스들은 <code>SPEED</code> 옵션을 사용해 구현한 코드와 동일한 public API를 구현합니다. 이 모드는 매우 많은 수의 .proto 파일이 포함된 앱에서 가장 유용합니다. 모든 파일이 맹목적으로 빠를 필요는 없으니깐요.</li>
+<li><code>LITE_RUNTIME</code>: 프로토콜 버퍼 컴파일러가 "lite" 런타임 라이브러리에만 의존하는 클래스를 생성합니다(<code>libprotobuf</code> 대신 <code>libprotobuf-lite</code> 에 의존). lite 런타임 라이브러리는 전체 라이브러리보다 훨씬 작지만(약 10배정도) descriptor와 reflection과 같은 특정 기능을 생략합니다. 이 기능은 모바일 기기같은 제한된 플랫폼에서 실행되는 앱에 특히 유용합니다. 컴파일러는 <code>SPEED</code> 모드에서와 같이 여전히 빠른 메서드를 구현합니다. 생성된 클래스는 각 언어로 MessageLite 인터페이스를 구현하며, 전체 Message 인터페이스 메소드 중 일부만 제공합니다.</li>
 </ul>
 </li>
 </ul>
@@ -1619,15 +1505,9 @@ Options
 </div>
 </div>
 <ul>
-<li>
-<p><code>cc_enable_arenas</code> (file_option): C++ 코드를 생성할 때 <a href=https://developers.google.com/protocol-buffers/docs/reference/arenas>arena allocation</a>을 활성화합니다.</p>
-</li>
-<li>
-<p><code>objc_class_prefix</code> (file_option): <code>.proto</code> 파일에서 생성된 Objective-C 클래스와 enum에 접두어를 붙입니다. 이건 기본값이 아닙니다. <a href=https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Conventions/Conventions.html#//apple_ref/doc/uid/TP40011210-CH10-SW4>Apple에서 권장</a>하는대로 3-5자의 대문자로 된 접두사를 사용하는게 좋습니다. 참고로 Apple은 두 글자의 접두사를 모두 선점했습니다.</p>
-</li>
-<li>
-<p><code>deprecated</code> (field option): <code>true</code> 로 설정할 경우, 이 필드는 향 후 새로 생성되는 코드에선 더이상 사용하지 않음을 표시합니다. 대부분의 언어에서 이것은 실제로 효과가 없습니다. Java의 경우 <code>@Deprecated</code> 어노테이션이 생성됩니다. 향 후 각 언어별 코드 생성기는 필드 접근자에 대해 지원 중단을 경고하는 주석을 생성할 수 있으며, 이로 인해 코드를 컴파일 할 때 경고가 발생합니다. 다른 사람이 필드를 사용하지 않고 새 사용자가 필드를 사용하지 못하게 하려면 필드 선언을 <a href=https://developers.google.com/protocol-buffers/docs/proto3#reserved>예약 구문</a>으로 바꾸세요.</p>
-</li>
+<li><code>cc_enable_arenas</code> (file_option): C++ 코드를 생성할 때 <a href=https://developers.google.com/protocol-buffers/docs/reference/arenas>arena allocation</a>을 활성화합니다.</li>
+<li><code>objc_class_prefix</code> (file_option): <code>.proto</code> 파일에서 생성된 Objective-C 클래스와 enum에 접두어를 붙입니다. 이건 기본값이 아닙니다. <a href=https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Conventions/Conventions.html#//apple_ref/doc/uid/TP40011210-CH10-SW4>Apple에서 권장</a>하는대로 3-5자의 대문자로 된 접두사를 사용하는게 좋습니다. 참고로 Apple은 두 글자의 접두사를 모두 선점했습니다.</li>
+<li><code>deprecated</code> (field option): <code>true</code> 로 설정할 경우, 이 필드는 향 후 새로 생성되는 코드에선 더이상 사용하지 않음을 표시합니다. 대부분의 언어에서 이것은 실제로 효과가 없습니다. Java의 경우 <code>@Deprecated</code> 어노테이션이 생성됩니다. 향 후 각 언어별 코드 생성기는 필드 접근자에 대해 지원 중단을 경고하는 주석을 생성할 수 있으며, 이로 인해 코드를 컴파일 할 때 경고가 발생합니다. 다른 사람이 필드를 사용하지 않고 새 사용자가 필드를 사용하지 못하게 하려면 필드 선언을 <a href=https://developers.google.com/protocol-buffers/docs/proto3#reserved>예약 구문</a>으로 바꾸세요.</li>
 </ul>
 <div class="src src-proto">
 <div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
@@ -1672,42 +1552,22 @@ Generating Your Classes
 </div>
 </div>
 <ul>
-<li>
-<p><code>IMPORT_PATH</code> 는 <code>import</code> 구문을 수행하기 위해 <code>.proto</code> 파일이 위치한 디렉토리 위치를 지정합니다. 만약 입력하지 않았다면 기본적으로 현재 디렉토리가 사용됩니다. 여러 개의 폴더를 지정해야 할 경우엔 <code>--proto_path</code> 옵션을 여러번 입력하여 지정할 수 있습니다. 순차적으로 검색될 것입니다. <code>--proto_path</code> 명령어를 짧게 사용하고 싶다면 <code>-I=/IMPORT_PATH/</code> 명령어를 사용할 수 있습니다.</p>
-</li>
+<li><code>IMPORT_PATH</code> 는 <code>import</code> 구문을 수행하기 위해 <code>.proto</code> 파일이 위치한 디렉토리 위치를 지정합니다. 만약 입력하지 않았다면 기본적으로 현재 디렉토리가 사용됩니다. 여러 개의 폴더를 지정해야 할 경우엔 <code>--proto_path</code> 옵션을 여러번 입력하여 지정할 수 있습니다. 순차적으로 검색될 것입니다. <code>--proto_path</code> 명령어를 짧게 사용하고 싶다면 <code>-I=/IMPORT_PATH/</code> 명령어를 사용할 수 있습니다.</li>
 <li>
 <p>하나 이상의 코드 생성 지시문을 제공할 수 있습니다.</p>
 <ul>
-<li>
-<p><code>--cpp_out</code> 명령어는 C++ 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/cpp-generated>C++ 코드 생성 레퍼런스</a>를 참고하세요.</p>
-</li>
-<li>
-<p><code>--java_out</code> 명령어는 Java 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/java-generated>Java 코드 생성 레퍼런스</a>를 참고하세요.</p>
-</li>
-<li>
-<p><code>--python_out</code> 명령어는 Python 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/python-generated>Python 코드 생성 레퍼런스</a>를 참고하세요.</p>
-</li>
-<li>
-<p><code>--go_out</code> 명령어는 Go 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/go-generated>Go 코드 생성 레퍼런스</a>를 참고하세요.</p>
-</li>
-<li>
-<p><code>--ruby_out</code> 명령어는 Ruby 코드를 <code>DST_DIR</code> 안에 생성합니다. 루비 코드 생성 레퍼런스는 곧 공개됩니다!</p>
-</li>
-<li>
-<p><code>--objc_out</code> 명령어는 Objective-C 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/objective-c-generated>Objective-C 코드 생성 레퍼런스</a>를 참고하세요.</p>
-</li>
-<li>
-<p><code>--csharp_out</code> 명령어는 C# 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/csharp-generated>C# 코드 생성 레퍼런스</a>를 참고하세요.</p>
-</li>
-<li>
-<p><code>--php_out</code> 명령어는 PHP 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/php-generated>PHP 코드 생성 레퍼런스</a>를 참고하세요.</p>
-</li>
+<li><code>--cpp_out</code> 명령어는 C++ 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/cpp-generated>C++ 코드 생성 레퍼런스</a>를 참고하세요.</li>
+<li><code>--java_out</code> 명령어는 Java 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/java-generated>Java 코드 생성 레퍼런스</a>를 참고하세요.</li>
+<li><code>--python_out</code> 명령어는 Python 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/python-generated>Python 코드 생성 레퍼런스</a>를 참고하세요.</li>
+<li><code>--go_out</code> 명령어는 Go 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/go-generated>Go 코드 생성 레퍼런스</a>를 참고하세요.</li>
+<li><code>--ruby_out</code> 명령어는 Ruby 코드를 <code>DST_DIR</code> 안에 생성합니다. 루비 코드 생성 레퍼런스는 곧 공개됩니다!</li>
+<li><code>--objc_out</code> 명령어는 Objective-C 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/objective-c-generated>Objective-C 코드 생성 레퍼런스</a>를 참고하세요.</li>
+<li><code>--csharp_out</code> 명령어는 C# 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/csharp-generated>C# 코드 생성 레퍼런스</a>를 참고하세요.</li>
+<li><code>--php_out</code> 명령어는 PHP 코드를 <code>DST_DIR</code> 안에 생성합니다. <a href=https://developers.google.com/protocol-buffers/docs/reference/php-generated>PHP 코드 생성 레퍼런스</a>를 참고하세요.</li>
 </ul>
 <p>편의상 <code>DST_DIR</code> 이 <code>.zip</code>, <code>.jar</code> 로 끝날 경우 컴파일러는 지정된 이름으로 된 단일 zip 형식의 압축 파일에 코드를 생성합니다. <code>.jar</code> 파일 생성 시에도 JAVA JAR 파일에 필요한 매니페스트 파일이 제공됩니다. 참고로 압축파일이 이미 존재할 경우엔 덮어씌워집니다. 압축 파일에 파일을 추가할 정도로 컴파일러가 똑똑하진 못해요.</p>
 </li>
-<li>
-<p>하나 이상의 <code>.proto</code> 파일들을 입력할 수 있습니다. 한번에 여러 <code>.proto</code> 파일들을 지정할 수 있습니다. 파일 이름은 현재 디렉토리와 연관이 있지만 컴파일러가 표준 이름을 결정할 수 있도록 각 파일은 <code>IMPORT_PATH</code> 중 하나에 있어야 합니다.</p>
-</li>
+<li>하나 이상의 <code>.proto</code> 파일들을 입력할 수 있습니다. 한번에 여러 <code>.proto</code> 파일들을 지정할 수 있습니다. 파일 이름은 현재 디렉토리와 연관이 있지만 컴파일러가 표준 이름을 결정할 수 있도록 각 파일은 <code>IMPORT_PATH</code> 중 하나에 있어야 합니다.</li>
 </ul>
 </div>
 </div>
