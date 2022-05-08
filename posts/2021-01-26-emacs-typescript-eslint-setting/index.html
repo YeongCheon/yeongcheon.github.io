@@ -1,222 +1,70 @@
-<!doctype html><html lang=ko>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-<title>emacs에서 Typescript 개발환경 구축하기 - 김영천 블로그</title>
-<meta property="og:title" content="emacs에서 Typescript 개발환경 구축하기 - 김영천 블로그">
-<meta name=twitter:title content="emacs에서 Typescript 개발환경 구축하기 - 김영천 블로그">
-<meta name=description content="emacs에서 lsp-mode 기반의 Typescript 개발환경을 구축하는 법을 알아봅니다.">
-<meta property="og:description" content="emacs에서 lsp-mode 기반의 Typescript 개발환경을 구축하는 법을 알아봅니다.">
-<meta name=twitter:description content="emacs에서 lsp-mode 기반의 Typescript 개발환경을 구축하는 법을 알아봅니다.">
-<meta name=author content="YeongCheon Kim">
-<meta property="og:site_name" content="김영천 블로그">
-<meta property="og:url" content="https://yeongcheon.github.io/posts/2021-01-26-emacs-typescript-eslint-setting/">
-<meta property="og:type" content="article">
-<meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
-<meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
-<meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.92.0">
-<link rel=stylesheet href=/css/style.css media=all>
-<link rel=stylesheet href=/css/syntax.css media=all>
-<link rel=stylesheet href=/css/custom.css media=all>
-<script src=/js/script.js></script>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>emacs에서 Typescript 개발환경 구축하기 - 김영천 블로그</title><meta property="og:title" content="emacs에서 Typescript 개발환경 구축하기 - 김영천 블로그"><meta name=twitter:title content="emacs에서 Typescript 개발환경 구축하기 - 김영천 블로그"><meta name=description content="emacs에서 lsp-mode 기반의 Typescript 개발환경을 구축하는 법을 알아봅니다."><meta property="og:description" content="emacs에서 lsp-mode 기반의 Typescript 개발환경을 구축하는 법을 알아봅니다."><meta name=twitter:description content="emacs에서 lsp-mode 기반의 Typescript 개발환경을 구축하는 법을 알아봅니다."><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2021-01-26-emacs-typescript-eslint-setting/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.98.0"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script>
 <script src=/js/custom.js></script>
-<script defer src=/js/fontawesome.js></script>
-</head>
-<body>
-<header class=site-header>
-<nav class=site-navi>
-<h1 class=site-title>
-<a href=/>
-<img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
-</a>
-</h1>
-<ul class=site-navi-items>
-<li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li>
-<li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li>
-<li class=site-navi-item-about><a href=/about/ title=About>About</a></li>
-</ul>
-</nav>
-</header>
-<hr class=site-header-bottom>
-<div class=main role=main>
-<article class=article>
-<h1 class=article-title>emacs에서 Typescript 개발환경 구축하기</h1>
-<h2 class=article-subtitle>emacs에서 lsp-mode 기반의 Typescript 개발환경을 구축하는 법을 알아봅니다.</h2>
-<hr class=article-title-bottom>
-<ul class=article-meta>
-<li class=article-meta-date><time>January 26, 2021</time></li>
-<li class=article-meta-tags>
-<a href=/tags/emacs/>
-<i class="fas fa-tag"></i>
+<script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>emacs에서 Typescript 개발환경 구축하기</h1><h2 class=article-subtitle>emacs에서 lsp-mode 기반의 Typescript 개발환경을 구축하는 법을 알아봅니다.</h2><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>January 26, 2021</time></li><li class=article-meta-tags><a href=/tags/emacs/><i class="fas fa-tag"></i>
 emacs
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/typescript/>
-<i class="fas fa-tag"></i>
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/typescript/><i class="fas fa-tag"></i>
 typescript
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/lsp-mode/>
-<i class="fas fa-tag"></i>
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/lsp-mode/><i class="fas fa-tag"></i>
 lsp-mode
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/eslint/>
-<i class="fas fa-tag"></i>
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/eslint/><i class="fas fa-tag"></i>
 eslint
-</a>&nbsp;
-</li>
-</ul>
-<p>
-<a href=https://www.typescriptlang.org/>Typescript</a>는 마이크로소프트(이하 MS)의 주도로 개발이 되고 있기 때문인지 Vscode에서 아주 편안하게 개발이 가능합니다. 사실 이번 글에서 주로 사용할 <a href=https://emacs-lsp.github.io/lsp-mode/page/installation/>lsp-mode</a>도 MS에서 개발한 LSP에 기반하여 작성된 모드입니다. 이 외에도 <a href=https://emacs-lsp.github.io/lsp-mode/page/lsp-css/>css languag server</a> 등등 많은 부분을 MS에서 작성한 프로그램에 의존하고 있는데 이쯤되면 그냥 속편하게 Vscode를 쓰는게 낫지 않을까 싶지만 몇년동안 정들었던 이맥스를 포기하기엔 아쉬움이 많이 남기에 Typescript 개발환경 구축 방법을 기록하고자 합니다. 이 글은 다음과 같은 내용을 기준으로 작성되었습니다.</p>
-<ul>
-<li>emacs 27.1, ubuntu 20.04 LTS 버전을 기준으로 작성되었습니다.</li>
-<li>npm이 설치되어 있다고 가정합니다.</li>
-<li>lsp-mode는 이미 설치되어 있다고 가정합니다.</li>
-<li><a href=https://www.flycheck.org/en/latest/>flycheck</a>는 이미 설치되어 있다고 가정합니다.</li>
-<li><a href=https://company-mode.github.io/>company-mode</a>는 이미 설치되어 있다고 가정합니다.</li>
-</ul>
-<p>
-이번 글도 마찬가지로 개인 기록이 목적이기에 <a href=https://emacs-lsp.github.io/lsp-mode/page/installation/>공식 가이드</a>를 보시는걸 좀 더 추천드립니다.</p>
-<div id=outline-container-headline-1 class=outline-2>
-<h2 id=headline-1>
-typescript-language-server 설치
-</h2>
-<div id=outline-text-headline-1 class=outline-text-2>
-<p>npm 명령어를 이용해서 typescript-language-server, typescript 패키지를 설치합니다. 명령어 수행 중 권한 관련 에러가 발생한다면 sudo 권한으로 설치를 진행합니다(<a href=https://emacs-lsp.github.io/lsp-mode/page/lsp-typescript/>공식 가이드 참고</a>).</p>
-<div class="src src-bash">
-<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
-<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm i -g typescript-language-server; npm i -g typescript</code></pre></td></tr></table>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id=outline-container-headline-2 class=outline-2>
-<h2 id=headline-2>
-eslint 설치
-</h2>
-<div id=outline-text-headline-2 class=outline-text-2>
-<p><a href=https://www.npmjs.com/package/tslint>tslint</a>는 deprecated 되었기 때문에 <a href=https://eslint.org/>eslint</a>를 사용해야 합니다. 이맥스에서 M-x(알트-x)를 누른 후 <code>lsp-install-server</code> 를 입력 후 <code>eslint</code> 를 입력하고 엔터를 누릅니다(<a href=https://emacs-lsp.github.io/lsp-mode/page/lsp-eslint/>공식 가이드 참고</a>).</p>
-</div>
-</div>
-<div id=outline-container-headline-3 class=outline-2>
-<h2 id=headline-3>
-.emacs 구성
-</h2>
-<div id=outline-text-headline-3 class=outline-text-2>
-<p>필요한 플러그인은 모두 설치했으니 이제 <code>.emacs</code> 파일을 구성해봅시다. 각 코드의 역할은 주석으로 표시해놓았습니다.</p>
-<div class="src src-lisp">
-<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
-<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
-</span></code></pre></td>
-<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp>(<span style=color:#a6e22e>require</span> <span style=color:#e6db74>&#39;lsp-mode</span>)
-
-<span style=color:#75715e>;; typescript-mode가 활성화되면 lsp-mode도 활성화합니다.</span>
-(<span style=color:#a6e22e>use-package</span> lsp-mode
-  <span style=color:#e6db74>:hook</span> (typescript-mode <span style=color:#f92672>.</span> lsp)
-  <span style=color:#e6db74>:commands</span> lsp)
-
-<span style=color:#75715e>;; typescript-mode가 활성화되면 수행할 함수를 정의합니다.</span>
-(defun setup-typescript-mode ()
-  (interactive)
-  (flycheck-mode <span style=color:#ae81ff>+1</span>)
-  (<span style=color:#66d9ef>setq</span> flycheck-check-syntax-automatically <span style=color:#f92672>&#39;</span>(save mode-enabled))
-
-  <span style=color:#75715e>;; M-.(jump to definition) 명령어를 통해 이동한 커서 위치를 이전으로 되돌리는 명령어입니다.</span>
-  (local-set-key (kbd <span style=color:#e6db74>&#34;M-*&#34;</span>) <span style=color:#e6db74>&#39;pop-tag-mark</span>) 
-  <span style=color:#75715e>;; 디버깅용 breakpoint를 설정/해제하는 토글 단축키입니다.</span>
-  (local-set-key (kbd <span style=color:#e6db74>&#34;&lt;f8&gt;&#34;</span>) <span style=color:#e6db74>&#39;dap-breakpoint-toggle</span>)
-
-  <span style=color:#75715e>;; 저장하기 이전에 eslint를 이용해서 코드 formatting을 진행합니다. </span>
-  <span style=color:#75715e>;; 어떤 설정이 문제인지는 몰라도 테스트 결과 typescript는 lsp-format-buffer가 올바르게 동작하지 않기 때문에 </span>
-  <span style=color:#75715e>;; lsp-eslint-fix-all 명령어로 대체했습니다.</span>
-  (add-hook <span style=color:#e6db74>&#39;before-save-hook</span> <span style=color:#e6db74>&#39;lsp-eslint-fix-all</span>) 
-
-  <span style=color:#75715e>;; company-mode를 활성화합니다.</span>
-  (company-mode <span style=color:#ae81ff>+1</span>)
-)
-
-<span style=color:#75715e>;; typescript-mode가 활성화되면 위에서 선언한 setup-typescript-mode 함수가 실행됩니다.</span>
-(add-hook <span style=color:#e6db74>&#39;typescript-mode-hook</span> <span style=color:#a6e22e>#&#39;</span>setup-typescript-mode)</code></pre></td></tr></table>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id=outline-container-headline-4 class=outline-2>
-<h2 id=headline-4>
-마무리
-</h2>
-<div id=outline-text-headline-4 class=outline-text-2>
-<p>위의 과정이 모두 마무리 되었다면 이맥스를 재시작 후 *.ts 파일에 접근하면 lsp를 실행 여부를 묻는데 이 때 yes를 입력하면 이 후 항상 lsp가 실행됩니다. 이 때 해당 프로젝트에 .eslintrc.json이나 tsconfig.json같은 설정파일이 존재해야 합니다.</p>
-</div>
-</div>
-</article>
-<div class=disqus-comments>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//yeongcheon.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-<ul class="pager article-pager">
-<li class=pager-newer>
-<a href=/posts/2021-02-01-emacs-image-mode-edit-bug/ data-toggle=tooltip data-placement=top title="emacs에서 svg 수정 안되는 문제 해결하기">&lt; Newer</a>
-</li>
-<li class=pager-older>
-<a href=/posts/2021-01-06-image-resize-cloud-function/ data-toggle=tooltip data-placement=top title="Cloud Functions로 실시간 이미지 리사이징 하기">Older ></a>
-</li>
-</ul>
-</div>
-<div class=site-footer>
-<div class=copyright>&copy; Copyright 2020 YeongCheon</div>
-<ul class=site-footer-items>
-<li class=site-footer-item-about><a href=/about/ title=About>About</a></li>
-</ul>
-<div class=powerdby>
-Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a>
-</div>
-</div>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-0YT8RHXZR3',{anonymize_ip:!1})}</script>
-</body>
-<script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
-</html>
+</a>&nbsp;</li></ul><p><a href=https://www.typescriptlang.org/>Typescript</a>는 마이크로소프트(이하 MS)의 주도로 개발이 되고 있기 때문인지 Vscode에서 아주 편안하게 개발이 가능합니다. 사실 이번 글에서 주로 사용할 <a href=https://emacs-lsp.github.io/lsp-mode/page/installation/>lsp-mode</a>도 MS에서 개발한 LSP에 기반하여 작성된 모드입니다. 이 외에도 <a href=https://emacs-lsp.github.io/lsp-mode/page/lsp-css/>css languag server</a> 등등 많은 부분을 MS에서 작성한 프로그램에 의존하고 있는데 이쯤되면 그냥 속편하게 Vscode를 쓰는게 낫지 않을까 싶지만 몇년동안 정들었던 이맥스를 포기하기엔 아쉬움이 많이 남기에 Typescript 개발환경 구축 방법을 기록하고자 합니다. 이 글은 다음과 같은 내용을 기준으로 작성되었습니다.</p><ul><li>emacs 27.1, ubuntu 20.04 LTS 버전을 기준으로 작성되었습니다.</li><li>npm이 설치되어 있다고 가정합니다.</li><li>lsp-mode는 이미 설치되어 있다고 가정합니다.</li><li><a href=https://www.flycheck.org/en/latest/>flycheck</a>는 이미 설치되어 있다고 가정합니다.</li><li><a href=https://company-mode.github.io/>company-mode</a>는 이미 설치되어 있다고 가정합니다.</li></ul><p>이번 글도 마찬가지로 개인 기록이 목적이기에 <a href=https://emacs-lsp.github.io/lsp-mode/page/installation/>공식 가이드</a>를 보시는걸 좀 더 추천드립니다.</p><div id=outline-container-headline-1 class=outline-2><h2 id=headline-1>typescript-language-server 설치</h2><div id=outline-text-headline-1 class=outline-text-2><p>npm 명령어를 이용해서 typescript-language-server, typescript 패키지를 설치합니다. 명령어 수행 중 권한 관련 에러가 발생한다면 sudo 권한으로 설치를 진행합니다(<a href=https://emacs-lsp.github.io/lsp-mode/page/lsp-typescript/>공식 가이드 참고</a>).</p><div class="src src-bash"><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>npm i -g typescript-language-server; npm i -g typescript</span></span></code></pre></td></tr></table></div></div></div></div></div><div id=outline-container-headline-2 class=outline-2><h2 id=headline-2>eslint 설치</h2><div id=outline-text-headline-2 class=outline-text-2><p><a href=https://www.npmjs.com/package/tslint>tslint</a>는 deprecated 되었기 때문에 <a href=https://eslint.org/>eslint</a>를 사용해야 합니다. 이맥스에서 M-x(알트-x)를 누른 후 <code>lsp-install-server</code> 를 입력 후 <code>eslint</code> 를 입력하고 엔터를 누릅니다(<a href=https://emacs-lsp.github.io/lsp-mode/page/lsp-eslint/>공식 가이드 참고</a>).</p></div></div><div id=outline-container-headline-3 class=outline-2><h2 id=headline-3>.emacs 구성</h2><div id=outline-text-headline-3 class=outline-text-2><p>필요한 플러그인은 모두 설치했으니 이제 <code>.emacs</code> 파일을 구성해봅시다. 각 코드의 역할은 주석으로 표시해놓았습니다.</p><div class="src src-lisp"><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp><span style=display:flex><span>(<span style=color:#a6e22e>require</span> <span style=color:#e6db74>&#39;lsp-mode</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; typescript-mode가 활성화되면 lsp-mode도 활성화합니다.</span>
+</span></span><span style=display:flex><span>(<span style=color:#a6e22e>use-package</span> lsp-mode
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>:hook</span> (typescript-mode <span style=color:#f92672>.</span> lsp)
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>:commands</span> lsp)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; typescript-mode가 활성화되면 수행할 함수를 정의합니다.</span>
+</span></span><span style=display:flex><span>(defun setup-typescript-mode ()
+</span></span><span style=display:flex><span>  (interactive)
+</span></span><span style=display:flex><span>  (flycheck-mode <span style=color:#ae81ff>+1</span>)
+</span></span><span style=display:flex><span>  (<span style=color:#66d9ef>setq</span> flycheck-check-syntax-automatically <span style=color:#f92672>&#39;</span>(save mode-enabled))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>;; M-.(jump to definition) 명령어를 통해 이동한 커서 위치를 이전으로 되돌리는 명령어입니다.</span>
+</span></span><span style=display:flex><span>  (local-set-key (kbd <span style=color:#e6db74>&#34;M-*&#34;</span>) <span style=color:#e6db74>&#39;pop-tag-mark</span>) 
+</span></span><span style=display:flex><span>  <span style=color:#75715e>;; 디버깅용 breakpoint를 설정/해제하는 토글 단축키입니다.</span>
+</span></span><span style=display:flex><span>  (local-set-key (kbd <span style=color:#e6db74>&#34;&lt;f8&gt;&#34;</span>) <span style=color:#e6db74>&#39;dap-breakpoint-toggle</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>;; 저장하기 이전에 eslint를 이용해서 코드 formatting을 진행합니다. </span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>;; 어떤 설정이 문제인지는 몰라도 테스트 결과 typescript는 lsp-format-buffer가 올바르게 동작하지 않기 때문에 </span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>;; lsp-eslint-fix-all 명령어로 대체했습니다.</span>
+</span></span><span style=display:flex><span>  (add-hook <span style=color:#e6db74>&#39;before-save-hook</span> <span style=color:#e6db74>&#39;lsp-eslint-fix-all</span>) 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>;; company-mode를 활성화합니다.</span>
+</span></span><span style=display:flex><span>  (company-mode <span style=color:#ae81ff>+1</span>)
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; typescript-mode가 활성화되면 위에서 선언한 setup-typescript-mode 함수가 실행됩니다.</span>
+</span></span><span style=display:flex><span>(add-hook <span style=color:#e6db74>&#39;typescript-mode-hook</span> <span style=color:#a6e22e>#&#39;</span>setup-typescript-mode)</span></span></code></pre></td></tr></table></div></div></div></div></div><div id=outline-container-headline-4 class=outline-2><h2 id=headline-4>마무리</h2><div id=outline-text-headline-4 class=outline-text-2><p>위의 과정이 모두 마무리 되었다면 이맥스를 재시작 후 *.ts 파일에 접근하면 lsp를 실행 여부를 묻는데 이 때 yes를 입력하면 이 후 항상 lsp가 실행됩니다. 이 때 해당 프로젝트에 .eslintrc.json이나 tsconfig.json같은 설정파일이 존재해야 합니다.</p></div></div></article><div class=disqus-comments><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//yeongcheon.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><ul class="pager article-pager"><li class=pager-newer><a href=/posts/2021-02-01-emacs-image-mode-edit-bug/ data-toggle=tooltip data-placement=top title="emacs에서 svg 수정 안되는 문제 해결하기">&lt; Newer</a></li><li class=pager-older><a href=/posts/2021-01-06-image-resize-cloud-function/ data-toggle=tooltip data-placement=top title="Cloud Functions로 실시간 이미지 리사이징 하기">Older ></a></li></ul></div><div class=site-footer><div class=copyright>&copy; Copyright 2020 YeongCheon</div><ul class=site-footer-items><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-0YT8RHXZR3",{anonymize_ip:!1})}</script></body><script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></html>

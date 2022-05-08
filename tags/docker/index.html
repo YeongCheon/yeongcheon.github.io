@@ -1,91 +1,10 @@
-<!doctype html><html lang=ko>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-<title>docker - 김영천 블로그</title>
-<meta property="og:title" content="docker - 김영천 블로그">
-<meta name=twitter:title content="docker - 김영천 블로그">
-<meta name=author content="YeongCheon Kim">
-<meta property="og:site_name" content="김영천 블로그">
-<meta property="og:url" content="https://yeongcheon.github.io/tags/docker/">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
-<meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
-<meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.92.0">
-<link href=/tags/docker/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
-<link href=/tags/docker/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
-<link rel=stylesheet href=/css/style.css media=all>
-<link rel=stylesheet href=/css/syntax.css media=all>
-<link rel=stylesheet href=/css/custom.css media=all>
-<script src=/js/script.js></script>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>docker - 김영천 블로그</title><meta property="og:title" content="docker - 김영천 블로그"><meta name=twitter:title content="docker - 김영천 블로그"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/tags/docker/"><meta property="og:type" content="website"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.98.0"><link href=/tags/docker/index.xml rel=alternate type=application/rss+xml title="김영천 블로그"><link href=/tags/docker/index.xml rel=feed type=application/rss+xml title="김영천 블로그"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script>
 <script src=/js/custom.js></script>
-<script defer src=/js/fontawesome.js></script>
-</head>
-<body>
-<header class=site-header>
-<nav class=site-navi>
-<h1 class=site-title>
-<a href=/>
-<img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
-</a>
-</h1>
-<ul class=site-navi-items>
-<li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li>
-<li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li>
-<li class=site-navi-item-about><a href=/about/ title=About>About</a></li>
-</ul>
-</nav>
-</header>
-<hr class=site-header-bottom>
-<div class=main role=main>
-<section class="list term-list">
-<article class=article>
-<a href=/posts/2021-09-08-http-call-in-docker-container/ class=article-titles>
-<h2 class=article-title>도커 컨테이너 안에서 외부 URL 호출하기</h2>
-<h3 class=article-subtitle>도커 컨테이너 내부에서 외부 URL을 호출할 경우 발생하는 에러와 그 해결법을 알아봅시다.</h3>
-</a>
-<ul class=article-meta>
-<li class=article-meta-date><time>September 8, 2021</time></li>
-<li class=article-meta-tags>
-<a href=/tags/docker/>
-<i class="fas fa-tag"></i>
+<script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><section class="list term-list"><article class=article><a href=/posts/2021-09-08-http-call-in-docker-container/ class=article-titles><h2 class=article-title>도커 컨테이너 안에서 외부 URL 호출하기</h2><h3 class=article-subtitle>도커 컨테이너 내부에서 외부 URL을 호출할 경우 발생하는 에러와 그 해결법을 알아봅시다.</h3></a><ul class=article-meta><li class=article-meta-date><time>September 8, 2021</time></li><li class=article-meta-tags><a href=/tags/docker/><i class="fas fa-tag"></i>
 docker
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/x509/>
-<i class="fas fa-tag"></i>
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/x509/><i class="fas fa-tag"></i>
 x509
-</a>&nbsp;
-</li>
-</ul>
-<div class=article-content>
-도커 컨테이너 내부에서 외부 URL을 호출해야 하는 경우가 종종 있습니다(Ex: 네이버 API 호출). 평소에는 아무 생각없이 불러오던 URL이 도커 컨테이너에서 사용하면 에러가 발생하는 경우가 있습니다. 에러 메세지는 x509: certificate signed by unknown authority 대충 이런 모양인데 이는 도커 컨테이너에 사용한 이미지의 TLS 인증서에 문제가 있음을 의미합니다.
+</a>&nbsp;</li></ul><div class=article-content>도커 컨테이너 내부에서 외부 URL을 호출해야 하는 경우가 종종 있습니다(Ex: 네이버 API 호출). 평소에는 아무 생각없이 불러오던 URL이 도커 컨테이너에서 사용하면 에러가 발생하는 경우가 있습니다. 에러 메세지는 x509: certificate signed by unknown authority 대충 이런 모양인데 이는 도커 컨테이너에 사용한 이미지의 TLS 인증서에 문제가 있음을 의미합니다.
 우분투 이미지 기반 컨테이너를 기준으로 해결방법은 아래와 같습니다. 사용하고 있는 Dockerfile 에 다음 내용을 입력합니다.
-1 2 3 RUN apt updateRUN apt install -y ca-certificatesRUN update-ca-certificates 컨테이너를 다시 빌드하면 이제 에러 없이 URL을 정상적으로 호출하는걸 확인할 수 있습니다.
-</div>
-<div class=article-readmore><a href=/posts/2021-09-08-http-call-in-docker-container/>Read more...</a></div>
-<div class=article-floatclear></div>
-</article>
-</section>
-</div>
-<div class=site-footer>
-<div class=copyright>&copy; Copyright 2020 YeongCheon</div>
-<ul class=site-footer-items>
-<li class=site-footer-item-rsslink>
-<a href=/tags/docker/index.xml type=application/rss+xml target=_blank title=RSS>
-<i class="fas fa-rss"></i>
-</a>
-</li>
-<li class=site-footer-item-about><a href=/about/ title=About>About</a></li>
-</ul>
-<div class=powerdby>
-Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a>
-</div>
-</div>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-0YT8RHXZR3',{anonymize_ip:!1})}</script>
-</body>
-<script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
-</html>
+1 2 3 RUN apt updateRUN apt install -y ca-certificatesRUN update-ca-certificates 컨테이너를 다시 빌드하면 이제 에러 없이 URL을 정상적으로 호출하는걸 확인할 수 있습니다.</div><div class=article-readmore><a href=/posts/2021-09-08-http-call-in-docker-container/>Read more...</a></div><div class=article-floatclear></div></article></section></div><div class=site-footer><div class=copyright>&copy; Copyright 2020 YeongCheon</div><ul class=site-footer-items><li class=site-footer-item-rsslink><a href=/tags/docker/index.xml type=application/rss+xml target=_blank title=RSS><i class="fas fa-rss"></i></a></li><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-0YT8RHXZR3",{anonymize_ip:!1})}</script></body><script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></html>

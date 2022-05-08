@@ -1,102 +1,13 @@
-<!doctype html><html lang=ko>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-<title>static - 김영천 블로그</title>
-<meta property="og:title" content="static - 김영천 블로그">
-<meta name=twitter:title content="static - 김영천 블로그">
-<meta name=author content="YeongCheon Kim">
-<meta property="og:site_name" content="김영천 블로그">
-<meta property="og:url" content="https://yeongcheon.github.io/tags/static/">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
-<meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
-<meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.92.0">
-<link href=/tags/static/index.xml rel=alternate type=application/rss+xml title="김영천 블로그">
-<link href=/tags/static/index.xml rel=feed type=application/rss+xml title="김영천 블로그">
-<link rel=stylesheet href=/css/style.css media=all>
-<link rel=stylesheet href=/css/syntax.css media=all>
-<link rel=stylesheet href=/css/custom.css media=all>
-<script src=/js/script.js></script>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>static - 김영천 블로그</title><meta property="og:title" content="static - 김영천 블로그"><meta name=twitter:title content="static - 김영천 블로그"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/tags/static/"><meta property="og:type" content="website"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.98.0"><link href=/tags/static/index.xml rel=alternate type=application/rss+xml title="김영천 블로그"><link href=/tags/static/index.xml rel=feed type=application/rss+xml title="김영천 블로그"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script>
 <script src=/js/custom.js></script>
-<script defer src=/js/fontawesome.js></script>
-</head>
-<body>
-<header class=site-header>
-<nav class=site-navi>
-<h1 class=site-title>
-<a href=/>
-<img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
-</a>
-</h1>
-<ul class=site-navi-items>
-<li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li>
-<li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li>
-<li class=site-navi-item-about><a href=/about/ title=About>About</a></li>
-</ul>
-</nav>
-</header>
-<hr class=site-header-bottom>
-<div class=main role=main>
-<section class="list term-list">
-<article class=article>
-<a href=/posts/2021-07-11-angular-memory-leak001/ class=article-titles>
-<h2 class=article-title>angular universal 메모리 누수 개선하기 - 001</h2>
-<h3 class=article-subtitle>SSR 동작 시 발생하는 heap out of memory 수정하기</h3>
-</a>
-<ul class=article-meta>
-<li class=article-meta-date><time>July 11, 2021</time></li>
-<li class=article-meta-tags>
-<a href=/tags/angular/>
-<i class="fas fa-tag"></i>
+<script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><section class="list term-list"><article class=article><a href=/posts/2021-07-11-angular-memory-leak001/ class=article-titles><h2 class=article-title>angular universal 메모리 누수 개선하기 - 001</h2><h3 class=article-subtitle>SSR 동작 시 발생하는 heap out of memory 수정하기</h3></a><ul class=article-meta><li class=article-meta-date><time>July 11, 2021</time></li><li class=article-meta-tags><a href=/tags/angular/><i class="fas fa-tag"></i>
 angular
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/node/>
-<i class="fas fa-tag"></i>
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/node/><i class="fas fa-tag"></i>
 node
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/memory-leak/>
-<i class="fas fa-tag"></i>
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/memory-leak/><i class="fas fa-tag"></i>
 memory-leak
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/static/>
-<i class="fas fa-tag"></i>
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/static/><i class="fas fa-tag"></i>
 static
-</a>&nbsp;
-</li>
-</ul>
-<div class=article-content>
-앵귤러 기반 웹사이트를 개발하면서 발생한 메모리 누수의 다양한 원인들과 그 해결법을 기록합니다.
-들어가며 부끄럽지만 앵귤러 기반 웹 프로젝트를 진행하며 메모리 누수같은 문제는 사실 전혀 신경을 안(못)쓰고 있었습니다. 어차피 사용자 브라우저에서 돌아가니깐 새로고침만 하면 해당 페이지의 메모리는 초기화될테니 속도만 느리지 않다면 된다는 생각이었지요. 당연히 이는 크게 잘못된 생각이었고 서버사이드 렌더링(이하 SSR)를 적용하면서 문제는 상당히 심각하게 흘러갑니다. 지금부터 제가 개발하면서 만나본 다양한 메모리 누수(memory leak) 문제를 살펴보고 그 해결법을 기록하고자 합니다.
-</div>
-<div class=article-readmore><a href=/posts/2021-07-11-angular-memory-leak001/>Read more...</a></div>
-<div class=article-floatclear></div>
-</article>
-</section>
-</div>
-<div class=site-footer>
-<div class=copyright>&copy; Copyright 2020 YeongCheon</div>
-<ul class=site-footer-items>
-<li class=site-footer-item-rsslink>
-<a href=/tags/static/index.xml type=application/rss+xml target=_blank title=RSS>
-<i class="fas fa-rss"></i>
-</a>
-</li>
-<li class=site-footer-item-about><a href=/about/ title=About>About</a></li>
-</ul>
-<div class=powerdby>
-Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a>
-</div>
-</div>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-0YT8RHXZR3',{anonymize_ip:!1})}</script>
-</body>
-<script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
-</html>
+</a>&nbsp;</li></ul><div class=article-content>앵귤러 기반 웹사이트를 개발하면서 발생한 메모리 누수의 다양한 원인들과 그 해결법을 기록합니다.
+들어가며 부끄럽지만 앵귤러 기반 웹 프로젝트를 진행하며 메모리 누수같은 문제는 사실 전혀 신경을 안(못)쓰고 있었습니다. 어차피 사용자 브라우저에서 돌아가니깐 새로고침만 하면 해당 페이지의 메모리는 초기화될테니 속도만 느리지 않다면 된다는 생각이었지요. 당연히 이는 크게 잘못된 생각이었고 서버사이드 렌더링(이하 SSR)를 적용하면서 문제는 상당히 심각하게 흘러갑니다. 지금부터 제가 개발하면서 만나본 다양한 메모리 누수(memory leak) 문제를 살펴보고 그 해결법을 기록하고자 합니다.</div><div class=article-readmore><a href=/posts/2021-07-11-angular-memory-leak001/>Read more...</a></div><div class=article-floatclear></div></article></section></div><div class=site-footer><div class=copyright>&copy; Copyright 2020 YeongCheon</div><ul class=site-footer-items><li class=site-footer-item-rsslink><a href=/tags/static/index.xml type=application/rss+xml target=_blank title=RSS><i class="fas fa-rss"></i></a></li><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-0YT8RHXZR3",{anonymize_ip:!1})}</script></body><script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></html>

@@ -1,130 +1,23 @@
-<!doctype html><html lang=ko>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
-<title>emacs에서 tslint 이용하기 - 김영천 블로그</title>
-<meta property="og:title" content="emacs에서 tslint 이용하기 - 김영천 블로그">
-<meta name=twitter:title content="emacs에서 tslint 이용하기 - 김영천 블로그">
-<meta name=description content="나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. tide를 이용해서 환경을 구성했는데 tslint가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.
-vscode는 그냥 되던데? 이게 내가 헤매게 된 가장 큰 이유다. vscode는 마켓플레이스에 그냥 tslint 패키지를 내려받으면 알아서 잘 동작한다. 개발자가 따로 뭐 설정하고 해줄 필요가 없다.(물론 tslint.json이 필요하지만 angular 프로젝트는 생성 시 지가 알아서 만들어준다.">
-<meta property="og:description" content="나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. tide를 이용해서 환경을 구성했는데 tslint가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.
-vscode는 그냥 되던데? 이게 내가 헤매게 된 가장 큰 이유다. vscode는 마켓플레이스에 그냥 tslint 패키지를 내려받으면 알아서 잘 동작한다. 개발자가 따로 뭐 설정하고 해줄 필요가 없다.(물론 tslint.json이 필요하지만 angular 프로젝트는 생성 시 지가 알아서 만들어준다.">
-<meta name=twitter:description content="나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. tide를 이용해서 환경을 구성했는데 tslint가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.
-vscode는 그냥 되 …">
-<meta name=author content="YeongCheon Kim">
-<meta property="og:site_name" content="김영천 블로그">
-<meta property="og:url" content="https://yeongcheon.github.io/posts/2018-09-21-tslint-in-emacs/">
-<meta property="og:type" content="article">
-<meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png">
-<meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png">
-<meta name=twitter:card content="summary">
-<meta name=generator content="Hugo 0.92.0">
-<link rel=stylesheet href=/css/style.css media=all>
-<link rel=stylesheet href=/css/syntax.css media=all>
-<link rel=stylesheet href=/css/custom.css media=all>
-<script src=/js/script.js></script>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>emacs에서 tslint 이용하기 - 김영천 블로그</title><meta property="og:title" content="emacs에서 tslint 이용하기 - 김영천 블로그"><meta name=twitter:title content="emacs에서 tslint 이용하기 - 김영천 블로그"><meta name=description content="나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. tide를 이용해서 환경을 구성했는데 tslint가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.
+vscode는 그냥 되던데? 이게 내가 헤매게 된 가장 큰 이유다. vscode는 마켓플레이스에 그냥 tslint 패키지를 내려받으면 알아서 잘 동작한다. 개발자가 따로 뭐 설정하고 해줄 필요가 없다.(물론 tslint.json이 필요하지만 angular 프로젝트는 생성 시 지가 알아서 만들어준다."><meta property="og:description" content="나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. tide를 이용해서 환경을 구성했는데 tslint가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.
+vscode는 그냥 되던데? 이게 내가 헤매게 된 가장 큰 이유다. vscode는 마켓플레이스에 그냥 tslint 패키지를 내려받으면 알아서 잘 동작한다. 개발자가 따로 뭐 설정하고 해줄 필요가 없다.(물론 tslint.json이 필요하지만 angular 프로젝트는 생성 시 지가 알아서 만들어준다."><meta name=twitter:description content="나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. tide를 이용해서 환경을 구성했는데 tslint가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.
+vscode는 그냥 되 …"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2018-09-21-tslint-in-emacs/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.98.0"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script>
 <script src=/js/custom.js></script>
-<script defer src=/js/fontawesome.js></script>
-</head>
-<body>
-<header class=site-header>
-<nav class=site-navi>
-<h1 class=site-title>
-<a href=/>
-<img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
-</a>
-</h1>
-<ul class=site-navi-items>
-<li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li>
-<li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li>
-<li class=site-navi-item-about><a href=/about/ title=About>About</a></li>
-</ul>
-</nav>
-</header>
-<hr class=site-header-bottom>
-<div class=main role=main>
-<article class=article>
-<h1 class=article-title>emacs에서 tslint 이용하기</h1>
-<hr class=article-title-bottom>
-<ul class=article-meta>
-<li class=article-meta-date><time>September 21, 2018</time></li>
-<li class=article-meta-tags>
-<a href=/tags/emacs/>
-<i class="fas fa-tag"></i>
+<script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>emacs에서 tslint 이용하기</h1><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>September 21, 2018</time></li><li class=article-meta-tags><a href=/tags/emacs/><i class="fas fa-tag"></i>
 emacs
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/typescript/>
-<i class="fas fa-tag"></i>
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/typescript/><i class="fas fa-tag"></i>
 typescript
-</a>&nbsp;
-</li>
-<li class=article-meta-tags>
-<a href=/tags/angular/>
-<i class="fas fa-tag"></i>
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/angular/><i class="fas fa-tag"></i>
 angular
-</a>&nbsp;
-</li>
-</ul>
-<p>나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. <a href=https://github.com/ananthakumaran/tide>tide</a>를 이용해서 환경을 구성했는데 <a href=https://github.com/ananthakumaran/tide>tslint</a>가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.</p>
-<h2 id=vscode는-그냥-되던데>vscode는 그냥 되던데?</h2>
-<p>이게 내가 헤매게 된 가장 큰 이유다. vscode는 마켓플레이스에 그냥 tslint 패키지를 내려받으면 알아서 잘 동작한다. 개발자가 따로 뭐 설정하고 해줄 필요가 없다.(물론 <code>tslint.json</code>이 필요하지만 angular 프로젝트는 생성 시 지가 알아서 만들어준다.)</p>
-<p>이맥스도 tide만 깔면 알아서 잘 될줄 알았는데 <strong>그런거 없다.</strong></p>
-<h2 id=해결책은>해결책은?</h2>
-<p>별거 없다. tslint를 설치하자.</p>
-<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
-<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Install the global CLI and its peer dependency</span>
-$ yarn global add tslint typescript
-</code></pre></td></tr></table>
-</div>
-</div><p>혹시 yarn이 설치되어 있지 않다면 아래 내용을 터미널에서 실행해보자.</p>
-<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
-<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo <span style=color:#e6db74>&#34;deb https://dl.yarnpkg.com/debian/ stable main&#34;</span> | sudo tee /etc/apt/sources.list.d/yarn.list
-$ sudo apt-get update <span style=color:#f92672>&amp;&amp;</span> sudo apt-get install yarn
-</code></pre></td></tr></table>
-</div>
-</div><h2 id=한줄평>한줄평</h2>
-<p>툴이 알아서 다 해줄거라는 생각은 버려라.</p>
-</article>
-<div class=disqus-comments>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//yeongcheon.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-<ul class="pager article-pager">
-<li class=pager-newer>
-<a href=/posts/2018-09-27-emacs-selectall/ data-toggle=tooltip data-placement=top title="emacs에서 커서이동 없이 buffer 전체 복사하기">&lt; Newer</a>
-</li>
-<li class=pager-older>
-<a href=/posts/2018-08-01-s2-geometry/ data-toggle=tooltip data-placement=top title="S2 library를 이용하여 가까운 위치의 사용자 찾기">Older ></a>
-</li>
-</ul>
-</div>
-<div class=site-footer>
-<div class=copyright>&copy; Copyright 2020 YeongCheon</div>
-<ul class=site-footer-items>
-<li class=site-footer-item-about><a href=/about/ title=About>About</a></li>
-</ul>
-<div class=powerdby>
-Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a>
-</div>
-</div>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-0YT8RHXZR3',{anonymize_ip:!1})}</script>
-</body>
-<script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
-</html>
+</a>&nbsp;</li></ul><p>나는 angular6를 이용해 웹 프로젝트를 진행하는걸 선호하는데 툴은 emacs를 주로 쓰고있다(OS는 ubuntu). vscode를 쓸까 했는데 그냥 이맥스가 좋아서(이유는 없다) 이맥스에 꾸역꾸역 개발환경을 구축했다. <a href=https://github.com/ananthakumaran/tide>tide</a>를 이용해서 환경을 구성했는데 <a href=https://github.com/ananthakumaran/tide>tslint</a>가 작동하지 않아서 잠깐 했던 삽질을 여기에 짤막하게 기록한다.</p><h2 id=vscode는-그냥-되던데>vscode는 그냥 되던데?</h2><p>이게 내가 헤매게 된 가장 큰 이유다. vscode는 마켓플레이스에 그냥 tslint 패키지를 내려받으면 알아서 잘 동작한다. 개발자가 따로 뭐 설정하고 해줄 필요가 없다.(물론 <code>tslint.json</code>이 필요하지만 angular 프로젝트는 생성 시 지가 알아서 만들어준다.)</p><p>이맥스도 tide만 깔면 알아서 잘 될줄 알았는데 <strong>그런거 없다.</strong></p><h2 id=해결책은>해결책은?</h2><p>별거 없다. tslint를 설치하자.</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install the global CLI and its peer dependency</span>
+</span></span><span style=display:flex><span>$ yarn global add tslint typescript
+</span></span></code></pre></td></tr></table></div></div><p>혹시 yarn이 설치되어 있지 않다면 아래 내용을 터미널에서 실행해보자.</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;deb https://dl.yarnpkg.com/debian/ stable main&#34;</span> | sudo tee /etc/apt/sources.list.d/yarn.list
+</span></span><span style=display:flex><span>$ sudo apt-get update <span style=color:#f92672>&amp;&amp;</span> sudo apt-get install yarn
+</span></span></code></pre></td></tr></table></div></div><h2 id=한줄평>한줄평</h2><p>툴이 알아서 다 해줄거라는 생각은 버려라.</p></article><div class=disqus-comments><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//yeongcheon.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><ul class="pager article-pager"><li class=pager-newer><a href=/posts/2018-09-27-emacs-selectall/ data-toggle=tooltip data-placement=top title="emacs에서 커서이동 없이 buffer 전체 복사하기">&lt; Newer</a></li><li class=pager-older><a href=/posts/2018-08-01-s2-geometry/ data-toggle=tooltip data-placement=top title="S2 library를 이용하여 가까운 위치의 사용자 찾기">Older ></a></li></ul></div><div class=site-footer><div class=copyright>&copy; Copyright 2020 YeongCheon</div><ul class=site-footer-items><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-0YT8RHXZR3",{anonymize_ip:!1})}</script></body><script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></html>
