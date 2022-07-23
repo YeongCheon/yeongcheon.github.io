@@ -1,0 +1,157 @@
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Google App Engine(GAE)에서 go swagger server 실행하기 - 김영천 블로그</title><meta name=Description content="This is my cool site"><meta property="og:title" content="Google App Engine(GAE)에서 go swagger server 실행하기"><meta property="og:description" content="Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실"><meta property="og:type" content="article"><meta property="og:url" content="https://yeongcheon.github.io/2017-12-05-go-swagger-with-gae/"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-12-05T17:00:00+09:00"><meta property="article:modified_time" content="2019-03-03T18:35:34+09:00"><meta property="og:site_name" content="My cool site"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:title content="Google App Engine(GAE)에서 go swagger server 실행하기"><meta name=twitter:description content="Intro [지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 Google App Engine(이하 GAE)에서 실"><meta name=application-name content="김영천 블로그"><meta name=apple-mobile-web-app-title content="김영천 블로그"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://yeongcheon.github.io/2017-12-05-go-swagger-with-gae/><link rel=prev href=https://yeongcheon.github.io/2017-10-14-go-swagger02/><link rel=next href=https://yeongcheon.github.io/2017-12-26-emacs-shortcut/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Google App Engine(GAE)에서 go swagger server 실행하기","inLanguage":"ko","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/yeongcheon.github.io\/2017-12-05-go-swagger-with-gae\/"},"genre":"posts","keywords":"go, swagger, GAE, GCP","wordcount":1617,"url":"https:\/\/yeongcheon.github.io\/2017-12-05-go-swagger-with-gae\/","datePublished":"2017-12-05T17:00:00+09:00","dateModified":"2019-03-03T18:35:34+09:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"YeongCheon Kim"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="김영천 블로그"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/profile_no_background.png data-srcset="/images/profile_no_background.png, /images/profile_no_background.png 1.5x, /images/profile_no_background.png 2x" data-sizes=auto alt=/images/profile_no_background.png title=/images/profile_no_background.png>김영천 블로그<span class=header-title-post><sup>"게을러지고 싶으면 공부해야 합니다."</sup></span></a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>Posts </a><a class=menu-item href=/tags/>Tags </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="테마 변경">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="김영천 블로그"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/profile_no_background.png data-srcset="/images/profile_no_background.png, /images/profile_no_background.png 1.5x, /images/profile_no_background.png 2x" data-sizes=auto alt=/images/profile_no_background.png title=/images/profile_no_background.png>김영천 블로그<span class=header-title-post><sup>"게을러지고 싶으면 공부해야 합니다."</sup></span></a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a href=javascript:void(0); class="menu-item theme-switch" title="테마 변경">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>목차</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Google App Engine(GAE)에서 go swagger server 실행하기</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://github.com/yeongcheon title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>YeongCheon Kim</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2017-12-05>2017-12-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;1617 단어&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;읽는데 약 4분&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>목차</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#spec을-이용해-서버코드-생성하기>spec을 이용해 서버코드 생성하기</a><ul><li><a href=#flag-strategy-pflag-옵션을-주는-이유>flag-strategy pflag 옵션을 주는 이유</a></li></ul></li><li><a href=#maingo-코드-수정하기>main.go 코드 수정하기</a></li><li><a href=#로컬서버를-구동하여-테스트해보기>로컬서버를 구동하여 테스트해보기</a></li><li><a href=#gae에-실제로-배포하기>GAE에 실제로 배포하기</a></li><li><a href=#마치며>마치며</a></li></ul></nav></div></div><div class=content id=content><h1 id=intro>Intro</h1><p>[지난번 포스트][last-post]에서 습득한 지식을 바탕으로 go-swagger를 이용해 작성한 서버를 <a href=https://cloud.google.com/appengine/ target=_blank rel="noopener noreffer">Google App Engine(이하 GAE)</a>에서 실행시켜보자.</p><hr><h2 id=spec을-이용해-서버코드-생성하기>spec을 이용해 서버코드 생성하기</h2><p>[지난번 포스트][last-post]에서 작성한 <code>swagger.yaml</code>을 이용해 서버코드를 생성해보자. <code>swagger.yaml</code> 내용은 아래와 같다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>swagger</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;2.0&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>info</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class=l>hello go swagger</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>title</span><span class=p>:</span><span class=w> </span><span class=l>hello world application</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=m>1.0.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>produces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=l>application/json</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>consumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=l>application/json</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>schemes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=l>http</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>paths</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>/</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>get</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>responses</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>200</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class=l>list the todo operations</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>schema</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>type</span><span class=p>:</span><span class=w> </span><span class=l>array</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;result : helloworld&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>items</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>$ref</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;#/definitions/item&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>definitions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>item</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>type</span><span class=p>:</span><span class=w> </span><span class=l>object</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>required</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>result</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>properties</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>result</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>type</span><span class=p>:</span><span class=w> </span><span class=l>string</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p><code>swagger.yaml</code> 파일을 생성했으면 이제 <code>swagger generate</code> 명령을 이용해 실제로 서버에서 구동될 코드를 생성해보자. [지난번 포스트][last-post]와 동일한 명령어지만 <code>--flag-strategy pflag</code> 옵션이 추가됐다. 코드 생성이 완료되었으면 지난번 포스트를 참고하여 <code>/</code>에 접근 시 hello world가 출력되도록 코드를 수정해놓자.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>swagger generate server -A helloworld -f ./swagger.yml --flag-strategy pflag
+</span></span></code></pre></td></tr></table></div></div><p><code>swagger generate</code> 명령어를 쓰기전엔 <code>swagger validate</code> 명령어를 이용해 <code>swagger.yaml</code> 파일의 유효성 검사를 진행하는게 보통이지만 이번 예제에선 생략하도록 한다.</p><h3 id=flag-strategy-pflag-옵션을-주는-이유>flag-strategy pflag 옵션을 주는 이유</h3><blockquote><p>이 옵션을 생략하고 generate 명령어를 실행할 경우 생성된 서버코드에 <a href=http://github.com/jessevdk/go-flags target=_blank rel="noopener noreffer">github.com/jessevdk/go-flags</a>에 의존성이 생긴다. 이 패키지에서는 GAE에서 사용할 수 없는 syscall 패키지를 사용하기 때문에 GAE 환경에서는 실행할 수 없다. 그래서 <code>--flag-strategy pflag</code> 옵션을 이용해 위의 패키지 대신 <a href=github.com/spf13/pflag rel>github.com/spf13/pflag</a>를 대신 사용하도록 한다. 좀 더 자세한 내용은 <a href=https://goswagger.io/generate/server.html target=_blank rel="noopener noreffer">공식 사이트의 문서</a>를 참고하자.</p></blockquote><hr><h2 id=maingo-코드-수정하기>main.go 코드 수정하기</h2><p>본래 <code>main.go</code> 파일은 수정하지 않는게 원칙이다. 하지만 GAE라는 조금 특수한 상황에서 코드가 동작하게 하려면 수정이 불가피하다. 이 내용은 <a href=https://github.com/go-swagger/go-swagger/issues/925 target=_blank rel="noopener noreffer">이 링크</a>에서 얻은 정보를 바탕으로 작성하였다.</p><ol><li>우선 <code>main</code> 함수의 이름을 <code>init</code>로 교체한다.</li><li><code>net/http</code> 패키지를 import 한다.</li><li>server.ConfigureAPI() 구문 바로 다음줄에 http.Handle("/", server.GetHandler()) 을 입력한다.</li><li>flag와 기타 다른 코드들을 삭제한다.</li><li>위 단계를 모두 수행한 코드의 결과는 아래와 같다.</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=c1>// Code generated by go-swagger; DO NOT EDIT.
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kn>package</span> <span class=nx>main</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;log&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=nx>loads</span> <span class=s>&#34;github.com/go-openapi/loads&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;net/http&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;test/restapi&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;test/restapi/operations&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// This file was generated by the swagger tool.
+</span></span></span><span class=line><span class=cl><span class=c1>// Make sure not to overwrite this file after you generated it because all your edits would be lost!
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>init</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=nx>swaggerSpec</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>loads</span><span class=p>.</span><span class=nf>Analyzed</span><span class=p>(</span><span class=nx>restapi</span><span class=p>.</span><span class=nx>SwaggerJSON</span><span class=p>,</span> <span class=s>&#34;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>log</span><span class=p>.</span><span class=nf>Fatalln</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=kd>var</span> <span class=nx>server</span> <span class=o>*</span><span class=nx>restapi</span><span class=p>.</span><span class=nx>Server</span> <span class=c1>// make sure init is called
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=nx>api</span> <span class=o>:=</span> <span class=nx>operations</span><span class=p>.</span><span class=nf>NewHelloworldAPI</span><span class=p>(</span><span class=nx>swaggerSpec</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=c1>// get server with flag values filled out
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=nx>server</span> <span class=p>=</span> <span class=nx>restapi</span><span class=p>.</span><span class=nf>NewServer</span><span class=p>(</span><span class=nx>api</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=k>defer</span> <span class=nx>server</span><span class=p>.</span><span class=nf>Shutdown</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>	<span class=nx>server</span><span class=p>.</span><span class=nf>ConfigureAPI</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>	<span class=nx>http</span><span class=p>.</span><span class=nf>Handle</span><span class=p>(</span><span class=s>&#34;/&#34;</span><span class=p>,</span> <span class=nx>server</span><span class=p>.</span><span class=nf>GetHandler</span><span class=p>())</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>여기까지 진행했다면 이제 GAE 환경에서 코드를 실행할 준비가 모두 완료된 것이다. 참고로 import된 restapi의 경로는 환경에 따라 달라질 수 있다.</p><hr><h2 id=로컬서버를-구동하여-테스트해보기>로컬서버를 구동하여 테스트해보기</h2><p>GAE에서는 개발자의 PC에서 먼저 테스트를 해볼 수 있도록 SDK를 배포하고 있다. <a href=https://cloud.google.com/appengine/docs/go/ target=_blank rel="noopener noreffer">이 곳</a>을 참고하여 우선 GAE 개발환경을 셋팅해보자.(생각보다 되게 간단하다)</p><p>환경셋팅이 끝났다면 <code>main.go</code> 파일과 같은 위치에 <code>app.yaml</code>을 생성하자. 내용은 <a href=https://raw.githubusercontent.com/GoogleCloudPlatform/appengine-guestbook-go/part1-helloworld/app.yaml target=_blank rel="noopener noreffer">이 파일</a>과 동일하다.</p><p>마지막으로 로컬서버를 구동하기 전에 우리가 생성한 코드의 의존 패키지들을 내려받아야 한다. 명령창에서 아래의 명령어들을 실행한다. 참고로 <a href=https://github.com/golang/dep target=_blank rel="noopener noreffer">dep</a>를 이용할 시 로컬서버에서는 제대로 동작하지만 deploy가 제대로 되지 않는다. 2017-12-05 현재 원인은 파악하지 못했는데 파악되는대로 내용을 업데이트 하겠다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>go get -u github.com/go-openapi/loads
+</span></span><span class=line><span class=cl>go get -u github.com/go-openapi/errors
+</span></span><span class=line><span class=cl>go get -u github.com/go-openapi/runtime
+</span></span><span class=line><span class=cl>go get -u github.com/go-openapi/runtime/flagext
+</span></span><span class=line><span class=cl>go get -u github.com/go-openapi/runtime/middleware
+</span></span><span class=line><span class=cl>go get -u github.com/go-openapi/swag
+</span></span><span class=line><span class=cl>go get -u github.com/spf13/pflag
+</span></span><span class=line><span class=cl>go get -u github.com/tylerb/graceful
+</span></span><span class=line><span class=cl>go get -u github.com/go-openapi/spec
+</span></span><span class=line><span class=cl>go get -u github.com/go-openapi/strfmt
+</span></span><span class=line><span class=cl>go get -u github.com/go-openapi/validate
+</span></span></code></pre></td></tr></table></div></div><p>서버 실행 후 <a href=http://127.0.0.1:8080 target=_blank rel="noopener noreffer">http://127.0.0.1:8080</a>에 접근하면 hello world가 json 형태로 제대로 반환되는 모습을 확인할 수 있다.</p><h2 id=gae에-실제로-배포하기>GAE에 실제로 배포하기</h2><p>테스트까지 무사히 마쳤으니 이제 실제 GAE에 코드를 올리는 일만 남았다. 아래의 명령어를 실행해서 코드를 배포해보자.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>gcloud app deploy
+</span></span></code></pre></td></tr></table></div></div><p>GAE 공식 가이드를 잘 따랐다면 위 명령어가 정상동작 할 것이다. 만약에 에러가 발생했다면 <a href=https://cloud.google.com/appengine/docs/standard/go/quickstart target=_blank rel="noopener noreffer">GAE quickStart 문서</a>를 보고 다시 시도해보길 바란다.</p><hr><h2 id=마치며>마치며</h2><p>이번 포스트는 일단 실행에는 성공했지만 원인을 제대로 파악하지 못한 이슈들이 제법있다. <strong>일단 나는 위 가이드를 따라하며 앱 배포까지 성공했지만 다른사람들도 성공할 수 있을지 솔직히 자신이 없다.</strong> 만약 위 가이드에 잘못되거나 추가할 내용이 있다면 작성자에게 <a href=mailto:kyc1682@gmail.com rel>메일</a>을 보내주거나 문서를 직접 수정해서 push request를 해주시길 바란다.</p><p>[last-post]: {% post_url 2017-10-06-go-swagger01 %}</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>수정: 2019-03-03</span></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/2017-12-05-go-swagger-with-gae/index.md target=_blank>마크다운 읽기</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="공유하기 Twitter" data-sharer=twitter data-url=https://yeongcheon.github.io/2017-12-05-go-swagger-with-gae/ data-title="Google App Engine(GAE)에서 go swagger server 실행하기" data-hashtags=go,swagger,GAE,GCP><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="공유하기 Facebook" data-sharer=facebook data-url=https://yeongcheon.github.io/2017-12-05-go-swagger-with-gae/ data-hashtag=go><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="공유하기 Hacker News" data-sharer=hackernews data-url=https://yeongcheon.github.io/2017-12-05-go-swagger-with-gae/ data-title="Google App Engine(GAE)에서 go swagger server 실행하기"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="공유하기 Pocket" data-sharer=pocket data-url=https://yeongcheon.github.io/2017-12-05-go-swagger-with-gae/><i class="fab fa-get-pocket fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/go/>go</a>,&nbsp;<a href=/tags/swagger/>swagger</a>,&nbsp;<a href=/tags/gae/>GAE</a>,&nbsp;<a href=/tags/gcp/>GCP</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>뒤로</a></span>&nbsp;|&nbsp;<span><a href=/>홈</a></span></section></div><div class=post-nav><a href=/2017-10-14-go-swagger02/ class=prev rel=prev title="go swagger 서버파일 구조 분석"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>go swagger 서버파일 구조 분석</a>
+<a href=/2017-12-26-emacs-shortcut/ class=next rel=next title="emacs 단축키 목록">emacs 단축키 목록<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a>로 제작된 사이트 | 테마 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden=true></i> LoveIt</a></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2017 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://github.com/yeongcheon target=_blank>YeongCheon Kim</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="맨 위로"><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title="댓글 보기"><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/cookieconsent/cookieconsent.min.css><script type=text/javascript src=https://yeongcheon.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/contrib/auto-render.min.js></script><script type=text/javascript src=/lib/katex/contrib/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/contrib/mhchem.min.js></script><script type=text/javascript src=/lib/cookieconsent/cookieconsent.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"복사하기",maxShownLines:50},comment:{},cookieconsent:{content:{dismiss:"알겠습니다",link:"더 보기",message:"본 웹사이트는 웹 환경 개선을 위해 쿠키를 사용합니다."},enable:!0,palette:{button:{background:"#f0f0f0"},popup:{background:"#1aa3ff"}},theme:"edgeless"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"\\begin{equation}",right:"\\end{equation}"},{display:!0,left:"\\begin{equation*}",right:"\\end{equation*}"},{display:!0,left:"\\begin{align}",right:"\\end{align}"},{display:!0,left:"\\begin{align*}",right:"\\end{align*}"},{display:!0,left:"\\begin{alignat}",right:"\\end{alignat}"},{display:!0,left:"\\begin{alignat*}",right:"\\end{alignat*}"},{display:!0,left:"\\begin{gather}",right:"\\end{gather}"},{display:!0,left:"\\begin{CD}",right:"\\end{CD}"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1}}</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-0YT8RHXZR3",{anonymize_ip:!0})</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3" async></script></body></html>

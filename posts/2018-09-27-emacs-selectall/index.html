@@ -1,13 +1,150 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>emacs에서 커서이동 없이 buffer 전체 복사하기 - 김영천 블로그</title><meta property="og:title" content="emacs에서 커서이동 없이 buffer 전체 복사하기 - 김영천 블로그"><meta name=twitter:title content="emacs에서 커서이동 없이 buffer 전체 복사하기 - 김영천 블로그"><meta name=description content="보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>emacs에서 커서이동 없이 buffer 전체 복사하기 - 김영천 블로그</title>
+  <meta property="og:title" content="emacs에서 커서이동 없이 buffer 전체 복사하기 - 김영천 블로그" />
+  <meta name="twitter:title" content="emacs에서 커서이동 없이 buffer 전체 복사하기 - 김영천 블로그" />
+  <meta name="description" content="보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
 원래는 어떻게 쓰고 있었어요? 내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와 같다.
-M - <, M - SPC, M - >, M - w
-이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다."><meta property="og:description" content="보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
+M - &lt;, M - SPC, M - &gt;, M - w
+이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다.">
+  <meta property="og:description" content="보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
 원래는 어떻게 쓰고 있었어요? 내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와 같다.
-M - <, M - SPC, M - >, M - w
-이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다."><meta name=twitter:description content="보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
-원래는 어떻게 쓰고 있었어요? 내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와  …"><meta name=author content="YeongCheon Kim"><meta property="og:site_name" content="김영천 블로그"><meta property="og:url" content="https://yeongcheon.github.io/posts/2018-09-27-emacs-selectall/"><meta property="og:type" content="article"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.101.0"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script>
-<script src=/js/custom.js></script>
-<script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/><img src=/images/profile_no_background.png>김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.</a></h1><ul class=site-navi-items><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-archives><a href=/posts/ title=Archives>Archives</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><article class=article><h1 class=article-title>emacs에서 커서이동 없이 buffer 전체 복사하기</h1><hr class=article-title-bottom><ul class=article-meta><li class=article-meta-date><time>September 27, 2018</time></li><li class=article-meta-tags><a href=/tags/emacs/><i class="fas fa-tag"></i>
-emacs
-</a>&nbsp;</li></ul><p>보편적인 현대 에디터에서 <code>ctrl-a</code> <code>ctrl-c</code>, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.</p><h2 id=원래는-어떻게-쓰고-있었어요>원래는 어떻게 쓰고 있었어요?</h2><p>내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와 같다.</p><p><code>M - &lt;</code>, <code>M - SPC</code>, <code>M - ></code>, <code>M - w</code></p><p>이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다. 그래서 다른 방법을 찾아보았다.</p><h2 id=커서를-움직이지-않고-버퍼-전체-복사하기>커서를 움직이지 않고 버퍼 전체 복사하기</h2><p><a href=https://emacs.stackexchange.com/questions/827/selecting-text-without-moving-the-cursor>이 링크</a>를 참고하였다. 자세한 내용은 링크에 나와있으니 간단하게 단축키만 알아보도록 하자.</p><p><code>C - x h</code>, <code>M - w</code>, <code>C - u C - SPC</code>, <code>C - u C - SPC</code></p><p>이 방법은 정확이 말하자면 커서가 움직이지 않는 방법은 아니다. 하지만 단축키를 모두 입력하면 최종적으로 커서가 원래 있던 곳으로 돌아오니 과정이야 어찌됐든 결과는 동일하다.</p><h2 id=후기>후기</h2><p>현대 에디터에서는 단순하기 그지없는 작업인데 이맥스는 너무 복잡하다는 생각이 든다. 하지만 뭐 자주 쓸 단축키도 아니고 현재까지는 실보단 득이 많으니 일단은 참고 넘어가도록 하자. 그래도 첨부된 링크의 expand-region 패키지를 활용하면 좀 더 단순하게 할 수 있지 않을까 싶다.</p></article><div class=disqus-comments><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//yeongcheon.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><ul class="pager article-pager"><li class=pager-newer><a href=/posts/2018-11-11-springboot-jpa-cloudsql-connect/ data-toggle=tooltip data-placement=top title="appengine + springboot + kotlin + jpa + cloudsql 연동하기">&lt; Newer</a></li><li class=pager-older><a href=/posts/2018-09-21-tslint-in-emacs/ data-toggle=tooltip data-placement=top title="emacs에서 tslint 이용하기">Older ></a></li></ul></div><div class=site-footer><div class=copyright>&copy; Copyright 2020 YeongCheon</div><ul class=site-footer-items><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-0YT8RHXZR3",{anonymize_ip:!1})}</script></body><script data-ad-client=ca-pub-4599234083355765 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script></html>
+M - &lt;, M - SPC, M - &gt;, M - w
+이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다.">
+  <meta name="twitter:description" content="보편적인 현대 에디터에서 ctrl-a ctrl-c, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.
+원래는 어떻게 쓰고 있었어요? 내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와  …">
+  <meta name="author" content="YeongCheon Kim"/>
+  <meta property="og:site_name" content="김영천 블로그" />
+  <meta property="og:url" content="https://yeongcheon.github.io/posts/2018-09-27-emacs-selectall/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png" />
+  <meta name="twitter:image" content="https://yeongcheon.github.io/images/profile_no_background.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="generator" content="Hugo 0.74.2" />
+
+
+  <link rel="stylesheet" href="/css/style.css" media="all" />
+  <link rel="stylesheet" href="/css/syntax.css" media="all" />
+  <link rel="stylesheet" href="/css/custom.css" media="all" />
+
+  <script src="/js/script.js"></script>
+  <script src="/js/custom.js"></script>
+  <script defer src="/js/fontawesome.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="site-navi">
+      <h1 class="site-title">
+		  <a href="/">
+			  <img src="/images/profile_no_background.png" />김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
+		  </a>
+	  </h1>
+    <ul class="site-navi-items">
+      <li class="site-navi-item-tags"><a href="/tags/" title="Tags">Tags</a></li>
+      <li class="site-navi-item-archives"><a href="/posts/" title="Archives">Archives</a></li>
+      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+<hr class="site-header-bottom">
+
+
+  <div class="main" role="main">
+    <article class="article">
+      
+      
+      <h1 class="article-title">emacs에서 커서이동 없이 buffer 전체 복사하기</h1>
+      
+      <hr class="article-title-bottom">
+      <ul class="article-meta">
+        <li class="article-meta-date"><time>September 27, 2018</time></li>
+        <li class="article-meta-tags">
+          <a href="/tags/emacs/">
+            <i class="fas fa-tag"></i>
+            emacs
+          </a>&nbsp;
+        </li>
+      </ul>
+      
+      <p>보편적인 현대 에디터에서 <code>ctrl-a</code> <code>ctrl-c</code>, 그러니까 현재 편집중인 파일의 모든 내용을 선택해서 복사하는 방법을 이맥스에서 사용하는 방법을 알아보자.</p>
+<h2 id="원래는-어떻게-쓰고-있었어요">원래는 어떻게 쓰고 있었어요?</h2>
+<p>내가 원래 쓰던 방법은 커서를 버퍼 최상단으로 이동시킨 뒤 마크 세팅, 그리고 커서를 버퍼 마지막으로 이동시킨 뒤 복사하는 방법을 사용했었다. 단축키로 표현하자면 아래와 같다.</p>
+<p><code>M - &lt;</code>, <code>M - SPC</code>, <code>M - &gt;</code>, <code>M - w</code></p>
+<p>이 방법을 사용하면 복사 자체는 문제가 없지만 커서가 항상 버퍼 마지막에 위치하게 된다는 문제가 있다. 그래서 다른 방법을 찾아보았다.</p>
+<h2 id="커서를-움직이지-않고-버퍼-전체-복사하기">커서를 움직이지 않고 버퍼 전체 복사하기</h2>
+<p><a href="https://emacs.stackexchange.com/questions/827/selecting-text-without-moving-the-cursor">이 링크</a>를 참고하였다. 자세한 내용은 링크에 나와있으니 간단하게 단축키만 알아보도록 하자.</p>
+<p><code>C - x h</code>, <code>M - w</code>, <code>C - u C - SPC</code>, <code>C - u C - SPC</code></p>
+<p>이 방법은 정확이 말하자면 커서가 움직이지 않는 방법은 아니다. 하지만 단축키를 모두 입력하면 최종적으로 커서가 원래 있던 곳으로 돌아오니 과정이야 어찌됐든 결과는 동일하다.</p>
+<h2 id="후기">후기</h2>
+<p>현대 에디터에서는 단순하기 그지없는 작업인데 이맥스는 너무 복잡하다는 생각이 든다. 하지만 뭐 자주 쓸 단축키도 아니고 현재까지는 실보단 득이 많으니 일단은 참고 넘어가도록 하자. 그래도 첨부된 링크의 expand-region 패키지를 활용하면 좀 더 단순하게 할 수 있지 않을까 싶다.</p>
+
+    </article>
+
+    
+
+    <div class="disqus-comments">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yeongcheon" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    <ul class="pager article-pager">
+      <li class="pager-newer">
+          <a href="/posts/2018-11-11-springboot-jpa-cloudsql-connect/" data-toggle="tooltip" data-placement="top" title="appengine &#43; springboot &#43; kotlin &#43; jpa &#43; cloudsql 연동하기">&lt; Newer</a>
+      </li>
+      <li class="pager-older">
+        <a href="/posts/2018-09-21-tslint-in-emacs/" data-toggle="tooltip" data-placement="top" title="emacs에서 tslint 이용하기">Older &gt;</a>
+      </li>
+    </ul>
+  </div>
+
+
+<div class="site-footer">
+  <div class="copyright">&copy; Copyright 2020 YeongCheon</div>
+  <ul class="site-footer-items">
+    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
+  </ul>
+  <div class="powerdby">
+    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
+  </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-135478508-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+</body>
+<script data-ad-client="ca-pub-4599234083355765" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</html>
