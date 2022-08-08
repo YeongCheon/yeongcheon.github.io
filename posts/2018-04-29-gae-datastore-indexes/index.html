@@ -1,195 +1,29 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Googlde App Engine(GAE) datastore index 관련 에러 해결하기 - 김영천 블로그</title>
-  <meta property="og:title" content="Googlde App Engine(GAE) datastore index 관련 에러 해결하기 - 김영천 블로그" />
-  <meta name="twitter:title" content="Googlde App Engine(GAE) datastore index 관련 에러 해결하기 - 김영천 블로그" />
-  <meta name="description" content="들어가며 google app engine을 이용해 REST API를 작성하던 중 발생했던 datastore의 index 관련 이슈와 그 해결법에 대해 기록한다. 참고, 여기도 참고
-에러발생 상황 내 프로필을 조회한 사람들의 목록을 반환해주는 API를 작성했다. 코드는 딱히 별거 없고 그냥 datastore에 있는 데이터들을 불러오는 내용이다. 핵심코드는 아래와 같다.
-1  q := datastore.NewQuery(userDao.VisitorEntity).Filter(&#34;UserId=&#34;, userId).Order(&#34;-VisitTime&#34;)   UserId 필드의 값을 기준으로 필터링을 하고 VisitTime을 최근순으로 정렬하는 간단한 코드다. 위 쿼리문을 베이스로 한 API는 로컬테스트는 무사히 통과하고 배포까지 정상적으로 완료, 이 후 클라우드에 올라간 API를 테스트 했는데 다음과 같은 에러로그를 내뿜었다.">
-  <meta property="og:description" content="들어가며 google app engine을 이용해 REST API를 작성하던 중 발생했던 datastore의 index 관련 이슈와 그 해결법에 대해 기록한다. 참고, 여기도 참고
-에러발생 상황 내 프로필을 조회한 사람들의 목록을 반환해주는 API를 작성했다. 코드는 딱히 별거 없고 그냥 datastore에 있는 데이터들을 불러오는 내용이다. 핵심코드는 아래와 같다.
-1  q := datastore.NewQuery(userDao.VisitorEntity).Filter(&#34;UserId=&#34;, userId).Order(&#34;-VisitTime&#34;)   UserId 필드의 값을 기준으로 필터링을 하고 VisitTime을 최근순으로 정렬하는 간단한 코드다. 위 쿼리문을 베이스로 한 API는 로컬테스트는 무사히 통과하고 배포까지 정상적으로 완료, 이 후 클라우드에 올라간 API를 테스트 했는데 다음과 같은 에러로그를 내뿜었다.">
-  <meta name="twitter:description" content="들어가며 google app engine을 이용해 REST API를 작성하던 중 발생했던 datastore의 index 관련 이슈와 그 해결법에 대해 기록한다. 참고, 여기도 참고
-에러발생 상황 내 프로필을 조회한 사람들의 목록을 반환해주는 API를 작성했다. 코드는 딱히 별거 없고 그냥 datastore에 있는 데이터들을 불러오는 내용이다. 핵심코드는 아 …">
-  <meta name="author" content="YeongCheon Kim"/>
-  <meta property="og:site_name" content="김영천 블로그" />
-  <meta property="og:url" content="https://yeongcheon.github.io/posts/2018-04-29-gae-datastore-indexes/" />
-  <meta property="og:type" content="article" />
-  <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png" />
-  <meta name="twitter:image" content="https://yeongcheon.github.io/images/profile_no_background.png" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.74.2" />
-
-
-  <link rel="stylesheet" href="/css/style.css" media="all" />
-  <link rel="stylesheet" href="/css/syntax.css" media="all" />
-  <link rel="stylesheet" href="/css/custom.css" media="all" />
-
-  <script src="/js/script.js"></script>
-  <script src="/js/custom.js"></script>
-  <script defer src="/js/fontawesome.js"></script>
-</head>
-
-<body>
-
-<header class="site-header">
-  <nav class="site-navi">
-      <h1 class="site-title">
-		  <a href="/">
-			  <img src="/images/profile_no_background.png" />김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
-		  </a>
-	  </h1>
-    <ul class="site-navi-items">
-      <li class="site-navi-item-tags"><a href="/tags/" title="Tags">Tags</a></li>
-      <li class="site-navi-item-archives"><a href="/posts/" title="Archives">Archives</a></li>
-      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
-    </ul>
-  </nav>
-</header>
-<hr class="site-header-bottom">
-
-
-  <div class="main" role="main">
-    <article class="article">
-      
-      
-      <h1 class="article-title">Googlde App Engine(GAE) datastore index 관련 에러 해결하기</h1>
-      
-      <hr class="article-title-bottom">
-      <ul class="article-meta">
-        <li class="article-meta-date"><time>April 29, 2018</time></li>
-        <li class="article-meta-tags">
-          <a href="/tags/gcp/">
-            <i class="fas fa-tag"></i>
-            GCP
-          </a>&nbsp;
-        </li>
-        <li class="article-meta-tags">
-          <a href="/tags/gae/">
-            <i class="fas fa-tag"></i>
-            GAE
-          </a>&nbsp;
-        </li>
-      </ul>
-      
-      <h2 id="들어가며">들어가며</h2>
-<p>google app engine을 이용해 REST API를 작성하던 중 발생했던 datastore의 index 관련 이슈와 그 해결법에 대해 기록한다. <a href="https://cloud.google.com/datastore/docs/concepts/indexes">참고</a>, <a href="https://groups.google.com/forum/#!topic/google-appengine-java/zKjWwNjcTsE">여기도 참고</a></p>
-<h2 id="에러발생-상황">에러발생 상황</h2>
-<p>내 프로필을 조회한 사람들의 목록을 반환해주는 API를 작성했다. 코드는 딱히 별거 없고 그냥 datastore에 있는 데이터들을 불러오는 내용이다. 핵심코드는 아래와 같다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#a6e22e">q</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">datastore</span>.<span style="color:#a6e22e">NewQuery</span>(<span style="color:#a6e22e">userDao</span>.<span style="color:#a6e22e">VisitorEntity</span>).<span style="color:#a6e22e">Filter</span>(<span style="color:#e6db74">&#34;UserId=&#34;</span>, <span style="color:#a6e22e">userId</span>).<span style="color:#a6e22e">Order</span>(<span style="color:#e6db74">&#34;-VisitTime&#34;</span>)
-</code></pre></td></tr></table>
-</div>
-</div><p>UserId 필드의 값을 기준으로 필터링을 하고 VisitTime을 최근순으로 정렬하는 간단한 코드다. 위 쿼리문을 베이스로 한 API는 로컬테스트는 무사히 통과하고 배포까지 정상적으로 완료, 이 후 클라우드에 올라간 API를 테스트 했는데 다음과 같은 에러로그를 내뿜었다.</p>
-<pre><code>API error 4 (datastore_v3: NEED_INDEX): no matching index found. recommended index is:
-- kind: kindname
-  properties:
-  - name: fieldName1
-  - name: FiendName2
-    direction: desc&quot;
-</code></pre><h2 id="해결방안">해결방안</h2>
-<p>위 에러메세지는 배포 명령 실행 시 파라메터를 누락시켰기 때문에 발생하는 메세지이다. 코드 작성 후 로컬 dev_appserver.py 를 이용해 로컬에서 서버를 실행하면 <code>index.yaml</code> 파일이 자동으로 생성된다. 이 파일은 맨 위에 작성된 쿼리문을 바탕으로 <strong>인덱싱 정보들을 담아놓은 파일</strong>인데 deploy 명령어를 쓸 때 직접 명시를 해주어야 한다. 기존에 내가 쓰던 deploy 명령어는 아래와 같다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud app deploy
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>위 명령어를 이용해 배포하면 제대로 동작하지 않는다.</strong> 아래의 명령어를 살펴보자.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud app deploy index.yaml
-</code></pre></td></tr></table>
-</div>
-</div><p>위와 같이 자동 생성된 <code>index.yaml</code> 파일을 직접 명시해주지 않으면 배포될 때 서버에 함께 올라가지 않는다.<a href="https://cloud.google.com/sdk/gcloud/reference/app/deploy">공식문서</a>. 공식 문서의 내용을 굳이 설명하자면 depoy 명령어 뒤에 yaml을 명시하지 않으면 기본값으로 app.yaml 파일을 사용한다. <code>index.yaml</code> 파일도 함께 deploy 했다면 이제 API를 다시 호출해보자. 새로운 에러 메세지를 만날 수 있다.</p>
-<pre><code>API error 4 (datastore_v3: NEED_INDEX): The index for this query is not ready to serve. See the Datastore Indexes page in the Admin Console.
-</code></pre><p>일단 해결법부터 말하자면 <strong>그냥 기다리면 된다.</strong> <code>index.yaml</code> 파일의 내용을 기반으로 한 인덱싱 작업이 아직 완료되지 않아서 사용할 수 없다는 내용이다. 클라우드 콘솔 페이지(<a href="https://console.cloud.google.com/datastore/indexes?project=project-name">https://console.cloud.google.com/datastore/indexes?project=project-name</a>)에 접근하면 열심히 인덱싱 작업중이라는 메세지가 나온다. 인덱싱 작업에 걸리는 시간은 기준은 정확이 모르지만 필자의 경우 datastore에 데이터가 거의 없고 쿼리내용도 별로 복잡하지 않았는데 약 30분 정도 걸렸다. 구글 검색결과 해외의 어느 유저분은 4시간이 걸렸다고 한다. 자세한 내용은 <a href="https://cloud.google.com/datastore/docs/concepts/indexes">공식 문서</a>를 참고해보자.</p>
-<h2 id="수정내용2018-05-01">수정내용(2018-05-01)</h2>
-<p><code>gcloud app deploy index.yaml</code> 명령어로 배포를 할 경우 서버코드는 배포되지 않고 인덱스 설정만 배포된다. 서버코드를 수정하고 배포할 경우 아래의 명령어를 사용해야 한다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gcloud app deploy app.yaml index.yaml
-</code></pre></td></tr></table>
-</div>
-</div><p>인덱스 내용에 변경사항이 없을 경우 <code>index.yaml</code>은 생략해도 된다.</p>
-
-    </article>
-
-    
-
-    <div class="disqus-comments">
-      <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "yeongcheon" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div>
-
-    <ul class="pager article-pager">
-      <li class="pager-newer">
-          <a href="/posts/2018-05-12-datastore-projection-error/" data-toggle="tooltip" data-placement="top" title="datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기">&lt; Newer</a>
-      </li>
-      <li class="pager-older">
-        <a href="/posts/2018-02-08-emacs-command/" data-toggle="tooltip" data-placement="top" title="emacs 명령어 목록">Older &gt;</a>
-      </li>
-    </ul>
-  </div>
-
-
-<div class="site-footer">
-  <div class="copyright">&copy; Copyright 2020 YeongCheon</div>
-  <ul class="site-footer-items">
-    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
-  </ul>
-  <div class="powerdby">
-    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
-  </div>
-</div>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-135478508-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
-
-</body>
-<script data-ad-client="ca-pub-4599234083355765" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-</html>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Googlde App Engine(GAE) datastore index 관련 에러 해결하기 - 김영천 블로그</title><meta name=Description content="게을러지고 싶으면 공부해야 합니다."><meta property="og:title" content="Googlde App Engine(GAE) datastore index 관련 에러 해결하기"><meta property="og:description" content="들어가며 google app engine을 이용해 REST API를 작성하던 중 발생했던 datastore의 index 관련 이슈와 그 해결법에 대해 기록한다. 참고, 여기도 참고 에러발생"><meta property="og:type" content="article"><meta property="og:url" content="https://yeongcheon.github.io/posts/2018-04-29-gae-datastore-indexes/"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-04-29T21:30:00+09:00"><meta property="article:modified_time" content="2019-03-03T18:35:34+09:00"><meta property="og:site_name" content="김영천 블로그"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:title content="Googlde App Engine(GAE) datastore index 관련 에러 해결하기"><meta name=twitter:description content="들어가며 google app engine을 이용해 REST API를 작성하던 중 발생했던 datastore의 index 관련 이슈와 그 해결법에 대해 기록한다. 참고, 여기도 참고 에러발생"><meta name=application-name content="김영천 블로그"><meta name=apple-mobile-web-app-title content="김영천 블로그"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://yeongcheon.github.io/posts/2018-04-29-gae-datastore-indexes/><link rel=prev href=https://yeongcheon.github.io/posts/2018-02-08-emacs-command/><link rel=next href=https://yeongcheon.github.io/posts/2018-05-12-datastore-projection-error/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Googlde App Engine(GAE) datastore index 관련 에러 해결하기","inLanguage":"ko","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/yeongcheon.github.io\/posts\/2018-04-29-gae-datastore-indexes\/"},"genre":"posts","keywords":"GCP, GAE","wordcount":1045,"url":"https:\/\/yeongcheon.github.io\/posts\/2018-04-29-gae-datastore-indexes\/","datePublished":"2018-04-29T21:30:00+09:00","dateModified":"2019-03-03T18:35:34+09:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"YeongCheon Kim"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="김영천 블로그"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/profile_no_background.png data-srcset="/images/profile_no_background.png, /images/profile_no_background.png 1.5x, /images/profile_no_background.png 2x" data-sizes=auto alt=/images/profile_no_background.png title=/images/profile_no_background.png>김영천 블로그<span class=header-title-post><sup>"게을러지고 싶으면 공부해야 합니다."</sup></span></a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>Posts </a><a class=menu-item href=/tags/>Tags </a><a class=menu-item href=/about/>About </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="테마 변경">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="김영천 블로그"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/profile_no_background.png data-srcset="/images/profile_no_background.png, /images/profile_no_background.png 1.5x, /images/profile_no_background.png 2x" data-sizes=auto alt=/images/profile_no_background.png title=/images/profile_no_background.png>김영천 블로그<span class=header-title-post><sup>"게을러지고 싶으면 공부해야 합니다."</sup></span></a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/about/ title>About</a><a href=javascript:void(0); class="menu-item theme-switch" title="테마 변경">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>목차</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Googlde App Engine(GAE) datastore index 관련 에러 해결하기</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://github.com/yeongcheon title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>YeongCheon Kim</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2018-04-29>2018-04-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;1045 단어&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;읽는데 약 3분&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>목차</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#들어가며>들어가며</a></li><li><a href=#에러발생-상황>에러발생 상황</a></li><li><a href=#해결방안>해결방안</a></li><li><a href=#수정내용2018-05-01>수정내용(2018-05-01)</a></li></ul></nav></div></div><div class=content id=content><h2 id=들어가며>들어가며</h2><p>google app engine을 이용해 REST API를 작성하던 중 발생했던 datastore의 index 관련 이슈와 그 해결법에 대해 기록한다. <a href=https://cloud.google.com/datastore/docs/concepts/indexes target=_blank rel="noopener noreffer">참고</a>, <a href=https://groups.google.com/forum/#!topic/google-appengine-java/zKjWwNjcTsE target=_blank rel="noopener noreffer">여기도 참고</a></p><h2 id=에러발생-상황>에러발생 상황</h2><p>내 프로필을 조회한 사람들의 목록을 반환해주는 API를 작성했다. 코드는 딱히 별거 없고 그냥 datastore에 있는 데이터들을 불러오는 내용이다. 핵심코드는 아래와 같다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=nx>q</span> <span class=o>:=</span> <span class=nx>datastore</span><span class=p>.</span><span class=nf>NewQuery</span><span class=p>(</span><span class=nx>userDao</span><span class=p>.</span><span class=nx>VisitorEntity</span><span class=p>).</span><span class=nf>Filter</span><span class=p>(</span><span class=s>&#34;UserId=&#34;</span><span class=p>,</span> <span class=nx>userId</span><span class=p>).</span><span class=nf>Order</span><span class=p>(</span><span class=s>&#34;-VisitTime&#34;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>UserId 필드의 값을 기준으로 필터링을 하고 VisitTime을 최근순으로 정렬하는 간단한 코드다. 위 쿼리문을 베이스로 한 API는 로컬테스트는 무사히 통과하고 배포까지 정상적으로 완료, 이 후 클라우드에 올라간 API를 테스트 했는데 다음과 같은 에러로그를 내뿜었다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>API error 4 (datastore_v3: NEED_INDEX): no matching index found. recommended index is:
+</span></span><span class=line><span class=cl>- kind: kindname
+</span></span><span class=line><span class=cl>  properties:
+</span></span><span class=line><span class=cl>  - name: fieldName1
+</span></span><span class=line><span class=cl>  - name: FiendName2
+</span></span><span class=line><span class=cl>    direction: desc&#34;
+</span></span></code></pre></td></tr></table></div></div><h2 id=해결방안>해결방안</h2><p>위 에러메세지는 배포 명령 실행 시 파라메터를 누락시켰기 때문에 발생하는 메세지이다. 코드 작성 후 로컬 dev_appserver.py 를 이용해 로컬에서 서버를 실행하면 <code>index.yaml</code> 파일이 자동으로 생성된다. 이 파일은 맨 위에 작성된 쿼리문을 바탕으로 <strong>인덱싱 정보들을 담아놓은 파일</strong>인데 deploy 명령어를 쓸 때 직접 명시를 해주어야 한다. 기존에 내가 쓰던 deploy 명령어는 아래와 같다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>gcloud app deploy
+</span></span></code></pre></td></tr></table></div></div><p><strong>위 명령어를 이용해 배포하면 제대로 동작하지 않는다.</strong> 아래의 명령어를 살펴보자.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>gcloud app deploy index.yaml
+</span></span></code></pre></td></tr></table></div></div><p>위와 같이 자동 생성된 <code>index.yaml</code> 파일을 직접 명시해주지 않으면 배포될 때 서버에 함께 올라가지 않는다.<a href=https://cloud.google.com/sdk/gcloud/reference/app/deploy target=_blank rel="noopener noreffer">공식문서</a>. 공식 문서의 내용을 굳이 설명하자면 depoy 명령어 뒤에 yaml을 명시하지 않으면 기본값으로 app.yaml 파일을 사용한다. <code>index.yaml</code> 파일도 함께 deploy 했다면 이제 API를 다시 호출해보자. 새로운 에러 메세지를 만날 수 있다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>API error 4 (datastore_v3: NEED_INDEX): The index for this query is not ready to serve. See the Datastore Indexes page in the Admin Console.
+</span></span></code></pre></td></tr></table></div></div><p>일단 해결법부터 말하자면 <strong>그냥 기다리면 된다.</strong> <code>index.yaml</code> 파일의 내용을 기반으로 한 인덱싱 작업이 아직 완료되지 않아서 사용할 수 없다는 내용이다. 클라우드 콘솔 페이지(<a href="https://console.cloud.google.com/datastore/indexes?project=project-name" target=_blank rel="noopener noreffer">https://console.cloud.google.com/datastore/indexes?project=project-name</a>)에 접근하면 열심히 인덱싱 작업중이라는 메세지가 나온다. 인덱싱 작업에 걸리는 시간은 기준은 정확이 모르지만 필자의 경우 datastore에 데이터가 거의 없고 쿼리내용도 별로 복잡하지 않았는데 약 30분 정도 걸렸다. 구글 검색결과 해외의 어느 유저분은 4시간이 걸렸다고 한다. 자세한 내용은 <a href=https://cloud.google.com/datastore/docs/concepts/indexes target=_blank rel="noopener noreffer">공식 문서</a>를 참고해보자.</p><h2 id=수정내용2018-05-01>수정내용(2018-05-01)</h2><p><code>gcloud app deploy index.yaml</code> 명령어로 배포를 할 경우 서버코드는 배포되지 않고 인덱스 설정만 배포된다. 서버코드를 수정하고 배포할 경우 아래의 명령어를 사용해야 한다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>gcloud app deploy app.yaml index.yaml
+</span></span></code></pre></td></tr></table></div></div><p>인덱스 내용에 변경사항이 없을 경우 <code>index.yaml</code>은 생략해도 된다.</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>수정: 2019-03-03</span></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/posts/2018-04-29-gae-datastore-indexes/index.md target=_blank>마크다운 읽기</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="공유하기 Twitter" data-sharer=twitter data-url=https://yeongcheon.github.io/posts/2018-04-29-gae-datastore-indexes/ data-title="Googlde App Engine(GAE) datastore index 관련 에러 해결하기" data-hashtags=GCP,GAE><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="공유하기 Facebook" data-sharer=facebook data-url=https://yeongcheon.github.io/posts/2018-04-29-gae-datastore-indexes/ data-hashtag=GCP><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="공유하기 Hacker News" data-sharer=hackernews data-url=https://yeongcheon.github.io/posts/2018-04-29-gae-datastore-indexes/ data-title="Googlde App Engine(GAE) datastore index 관련 에러 해결하기"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="공유하기 Pocket" data-sharer=pocket data-url=https://yeongcheon.github.io/posts/2018-04-29-gae-datastore-indexes/><i class="fab fa-get-pocket fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/gcp/>GCP</a>,&nbsp;<a href=/tags/gae/>GAE</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>뒤로</a></span>&nbsp;|&nbsp;<span><a href=/>홈</a></span></section></div><div class=post-nav><a href=/posts/2018-02-08-emacs-command/ class=prev rel=prev title="emacs 명령어 목록"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>emacs 명령어 목록</a>
+<a href=/posts/2018-05-12-datastore-projection-error/ class=next rel=next title="datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기">datastore에서 projection query 실행 시 time.Time이 int64로 반환되는 문제 해결하기<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a>로 제작된 사이트 | 테마 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden=true></i> LoveIt</a></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2017 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://github.com/yeongcheon target=_blank>YeongCheon Kim</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="맨 위로"><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title="댓글 보기"><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/cookieconsent/cookieconsent.min.css><script type=text/javascript src=https://yeongcheon.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/contrib/auto-render.min.js></script><script type=text/javascript src=/lib/katex/contrib/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/contrib/mhchem.min.js></script><script type=text/javascript src=/lib/cookieconsent/cookieconsent.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"복사하기",maxShownLines:50},comment:{},cookieconsent:{content:{dismiss:"알겠습니다",link:"더 보기",message:"본 웹사이트는 웹 환경 개선을 위해 쿠키를 사용합니다."},enable:!0,palette:{button:{background:"#f0f0f0"},popup:{background:"#1aa3ff"}},theme:"edgeless"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"\\begin{equation}",right:"\\end{equation}"},{display:!0,left:"\\begin{equation*}",right:"\\end{equation*}"},{display:!0,left:"\\begin{align}",right:"\\end{align}"},{display:!0,left:"\\begin{align*}",right:"\\end{align*}"},{display:!0,left:"\\begin{alignat}",right:"\\end{alignat}"},{display:!0,left:"\\begin{alignat*}",right:"\\end{alignat*}"},{display:!0,left:"\\begin{gather}",right:"\\end{gather}"},{display:!0,left:"\\begin{CD}",right:"\\end{CD}"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1}}</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-0YT8RHXZR3",{anonymize_ip:!0})</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3" async></script></body></html>

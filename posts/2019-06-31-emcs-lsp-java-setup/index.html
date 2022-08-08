@@ -1,296 +1,58 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기 - 김영천 블로그</title>
-  <meta property="og:title" content="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기 - 김영천 블로그" />
-  <meta name="twitter:title" content="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기 - 김영천 블로그" />
-  <meta name="description" content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
-  OS: ubuntu 18.04 LTS
-  emacs: GNU Emacs 25.2.2
-  java: openjdk version &#34;1.8.0_212&#34;
-  gradle: Gradle 4.10.2
-  이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자
-LSP란?  lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다).">
-  <meta property="og:description" content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
-  OS: ubuntu 18.04 LTS
-  emacs: GNU Emacs 25.2.2
-  java: openjdk version &#34;1.8.0_212&#34;
-  gradle: Gradle 4.10.2
-  이 포스트에선 개발환경 셋팅을 위해서 lsp-mode를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자
-LSP란?  lsp는 Language Server Protocol의 약자이다(링크를 보는게 훨씬 도움이 된다).">
-  <meta name="twitter:description" content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.
-  OS: ubuntu 18.04 LTS
-  emacs: GNU Emacs 25.2.2
-  java: openjdk version &#34;1.8.0_212&#34;
-  gradle: Gradle …">
-  <meta name="author" content="YeongCheon Kim"/>
-  <meta property="og:site_name" content="김영천 블로그" />
-  <meta property="og:url" content="https://yeongcheon.github.io/posts/2019-06-31-emcs-lsp-java-setup/" />
-  <meta property="og:type" content="article" />
-  <meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png" />
-  <meta name="twitter:image" content="https://yeongcheon.github.io/images/profile_no_background.png" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="generator" content="Hugo 0.74.2" />
-
-
-  <link rel="stylesheet" href="/css/style.css" media="all" />
-  <link rel="stylesheet" href="/css/syntax.css" media="all" />
-  <link rel="stylesheet" href="/css/custom.css" media="all" />
-
-  <script src="/js/script.js"></script>
-  <script src="/js/custom.js"></script>
-  <script defer src="/js/fontawesome.js"></script>
-</head>
-
-<body>
-
-<header class="site-header">
-  <nav class="site-navi">
-      <h1 class="site-title">
-		  <a href="/">
-			  <img src="/images/profile_no_background.png" />김영천 블로그 - 게을러지고 싶으면 공부해야 합니다.
-		  </a>
-	  </h1>
-    <ul class="site-navi-items">
-      <li class="site-navi-item-tags"><a href="/tags/" title="Tags">Tags</a></li>
-      <li class="site-navi-item-archives"><a href="/posts/" title="Archives">Archives</a></li>
-      <li class="site-navi-item-about"><a href="/about/" title="About">About</a></li>
-    </ul>
-  </nav>
-</header>
-<hr class="site-header-bottom">
-
-
-  <div class="main" role="main">
-    <article class="article">
-      
-      
-      <h1 class="article-title">이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기</h1>
-      
-      <hr class="article-title-bottom">
-      <ul class="article-meta">
-        <li class="article-meta-date"><time>June 30, 2019</time></li>
-        <li class="article-meta-tags">
-          <a href="/tags/emacs/">
-            <i class="fas fa-tag"></i>
-            emacs
-          </a>&nbsp;
-        </li>
-        <li class="article-meta-tags">
-          <a href="/tags/java/">
-            <i class="fas fa-tag"></i>
-            java
-          </a>&nbsp;
-        </li>
-        <li class="article-meta-tags">
-          <a href="/tags/lsp/">
-            <i class="fas fa-tag"></i>
-            lsp
-          </a>&nbsp;
-        </li>
-      </ul>
-      
-      
-<p>
-이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.</p>
-<ul>
-<li>
-<p>OS: <code class="verbatim">ubuntu 18.04 LTS</code></p>
-</li>
-<li>
-<p>emacs: <code class="verbatim">GNU Emacs 25.2.2</code></p>
-</li>
-<li>
-<p>java: <code class="verbatim">openjdk version &#34;1.8.0_212&#34;</code></p>
-</li>
-<li>
-<p>gradle: <code class="verbatim">Gradle 4.10.2</code></p>
-</li>
-</ul>
-<p>이 포스트에선 개발환경 셋팅을 위해서 <a href="https://github.com/emacs-lsp/lsp-mode">lsp-mode</a>를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자</p>
-<div id="outline-container-headline-1" class="outline-2">
-<h2 id="headline-1">
-LSP란?
-</h2>
-<div id="outline-text-headline-1" class="outline-text-2">
-<p>lsp는 <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a>의 약자이다(링크를 보는게 훨씬 도움이 된다). 간단히 말하자면 각 개발툴마다 제각각 다뤄왔던 자동완성, jump to definition 등등의 기능을 하나의 프로토콜로 표준화 하여 하나의 language server를 여러 개발툴에서 동일하게 사용할 수 있도록 하는 규약(프로토콜)을 의미한다. (<del>번역기 발췌</del>)</p>
-</div>
-</div>
-<div id="outline-container-headline-2" class="outline-2">
-<h2 id="headline-2">
-lsp-mode 설치하기
-</h2>
-<div id="outline-text-headline-2" class="outline-text-2">
-<p>lsp의 뜻을 알아봤으니 그럼 이제 본격적으로 셋팅작업에 들어가보자. 이맥스의 lsp-mode는 기본적으로 <a href="https://github.com/emacs-lsp/lsp-mode">여기</a>를 베이스로 한다. 이번 포스트는 java 환경을 구축하는게 목적이니 <a href="https://github.com/emacs-lsp/lsp-java">lsp-java</a>를 설치해주자. 설치하는 방법은 링크의 <a href="https://github.com/emacs-lsp/lsp-java/blob/master/README.md">READMD.md</a>에 자세하게 나와있다. 내가 실행한 명령어는 아래와 같다.</p>
-<div class="src src-text">
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">M-x package-install use-package
-M-x package-install lsp-java
-M-x package-install dash</code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>
-  총 3개의 패키지를 설치한다.</p>
-<ul>
-<li>
-<p><a href="https://github.com/jwiegley/use-package">use-package</a></p>
-</li>
-<li>
-<p><a href="https://github.com/emacs-lsp/lsp-java">lsp-java</a></p>
-</li>
-<li>
-<p><a href="https://github.com/magnars/dash.el">dash</a></p>
-</li>
-</ul>
-<p>dash 패키지의 경우 공식 가이드에서 설치하라는 설명은 없었지만 셋팅이 제대로 진행되지 않아 나름 구글링을 해본 결과 얻어낸 답이다.</p>
-<div class="src src-elisp">
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elisp" data-lang="elisp">(require <span style="color:#e6db74">&#39;lsp-java</span>)
-(add-hook <span style="color:#e6db74">&#39;java-mode-hook</span> <span style="color:#a6e22e">#&#39;</span>lsp)
-(add-hook <span style="color:#e6db74">&#39;java-mode-hook</span> <span style="color:#e6db74">&#39;flycheck-mode</span>)
-(add-hook <span style="color:#e6db74">&#39;java-mode-hook</span> <span style="color:#e6db74">&#39;company-mode</span>)
-
-(require <span style="color:#e6db74">&#39;cc-mode</span>)
-
-(use-package projectile :ensure <span style="color:#66d9ef">t</span>)
-(use-package yasnippet :ensure <span style="color:#66d9ef">t</span>)
-(use-package lsp-mode :ensure <span style="color:#66d9ef">t</span>)
-(use-package hydra :ensure <span style="color:#66d9ef">t</span>)
-(use-package company-lsp :ensure <span style="color:#66d9ef">t</span>)
-(use-package lsp-ui :ensure <span style="color:#66d9ef">t</span>)
-(use-package lsp-java :ensure <span style="color:#66d9ef">t</span> :after lsp
-:config (add-hook <span style="color:#e6db74">&#39;java-mode-hook</span> <span style="color:#e6db74">&#39;lsp</span>))
-
-(use-package dap-mode
-:ensure <span style="color:#66d9ef">t</span> :after lsp-mode
-:config
-(dap-mode <span style="color:#66d9ef">t</span>)
-(dap-ui-mode <span style="color:#66d9ef">t</span>))
-
-(use-package dap-java :after (lsp-java))</code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>
-모든 과정을 끝냈다면 이제 기본적인 셋팅은 마무리가 된 상태다. 그럼 이제 실제로 자바 프로젝트를 생성한 후 이맥스에서 자동완성, jump to difinition 등등이 제대로 동작하는지 확인해보자. 자바프로젝트 생성은 gradle를 이용한다. 아래의 명령어를 터미널에 입력해보자.</p>
-<div class="src src-bash">
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gradle init --type java-library</code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>
-프로젝트가 정상적으로 프로젝트가 생성되었다면 이맥스에서 src/main/java/Library.java 파일을 열어보자. 셋팅 후 최초로 자바파일을 열었을 경우 <a href="https://projects.eclipse.org/projects/eclipse.jdt.ls">Eclipse JDT Language Server</a>를 설치할건지 묻는 메세지가 뜬다. y를 입력해서 language server를 설치해주도록 하자. 참고로 이 내용은 <a href="https://github.com/emacs-lsp/lsp-java#eclipse-jdt-language-server">공식 가이드</a>에서도 나오는 내용이다(<del>그니깐 이거 말고 공식 가이드 읽으세요</del>).</p>
-<p>
-설치를 마치고 이맥스를 재시작 한 후 다시 Library.java를 열어서 이것저것 코드를 입력해보자.</p>
-<p>
-<img src="/images/2019-06-30_22-39-45.png" alt="/images/2019-06-30_22-39-45.png" title="/images/2019-06-30_22-39-45.png" /></p>
-<p>
-이제 기본적인 셋팅이 마무리 되었다. 코드 실행, 디버깅 방법은 이후 별도의 포스팅에서 다루도록 하겠다.</p>
-</div>
-</div>
-
-    </article>
-
-    
-
-    <div class="disqus-comments">
-      <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "yeongcheon" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div>
-
-    <ul class="pager article-pager">
-      <li class="pager-newer">
-          <a href="/posts/2019-08-05-intellij-appengine-error/" data-toggle="tooltip" data-placement="top" title="IntelliJ 업데이트 후 appengine local 실행 이슈 해결하기">&lt; Newer</a>
-      </li>
-      <li class="pager-older">
-        <a href="/posts/2019-06-19-emacs-hangul/" data-toggle="tooltip" data-placement="top" title="이맥스 폰트, 세벌식 셋팅하기">Older &gt;</a>
-      </li>
-    </ul>
-  </div>
-
-
-<div class="site-footer">
-  <div class="copyright">&copy; Copyright 2020 YeongCheon</div>
-  <ul class="site-footer-items">
-    <li class="site-footer-item-about"><a href="/about/" title="About">About</a></li>
-  </ul>
-  <div class="powerdby">
-    Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/taikii/whiteplain">Whiteplain</a>
-  </div>
-</div>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-135478508-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
-
-</body>
-<script data-ad-client="ca-pub-4599234083355765" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-</html>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기 - 김영천 블로그</title><meta name=Description content="게을러지고 싶으면 공부해야 합니다."><meta property="og:title" content="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기"><meta property="og:description" content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다. OS: ubuntu 18.04 LTS emacs: GNU Emacs"><meta property="og:type" content="article"><meta property="og:url" content="https://yeongcheon.github.io/posts/2019-06-31-emcs-lsp-java-setup/"><meta property="og:image" content="https://yeongcheon.github.io/images/profile_no_background.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-06-30T21:00:00+09:00"><meta property="article:modified_time" content="2020-03-08T15:39:32+09:00"><meta property="og:site_name" content="김영천 블로그"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://yeongcheon.github.io/images/profile_no_background.png"><meta name=twitter:title content="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기"><meta name=twitter:description content="이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다. OS: ubuntu 18.04 LTS emacs: GNU Emacs"><meta name=application-name content="김영천 블로그"><meta name=apple-mobile-web-app-title content="김영천 블로그"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://yeongcheon.github.io/posts/2019-06-31-emcs-lsp-java-setup/><link rel=prev href=https://yeongcheon.github.io/posts/2019-06-19-emacs-hangul/><link rel=next href=https://yeongcheon.github.io/posts/2019-08-05-intellij-appengine-error/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기","inLanguage":"ko","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/yeongcheon.github.io\/posts\/2019-06-31-emcs-lsp-java-setup\/"},"genre":"posts","keywords":"emacs, java, lsp","wordcount":939,"url":"https:\/\/yeongcheon.github.io\/posts\/2019-06-31-emcs-lsp-java-setup\/","datePublished":"2019-06-30T21:00:00+09:00","dateModified":"2020-03-08T15:39:32+09:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"yeongcheon"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="김영천 블로그"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/profile_no_background.png data-srcset="/images/profile_no_background.png, /images/profile_no_background.png 1.5x, /images/profile_no_background.png 2x" data-sizes=auto alt=/images/profile_no_background.png title=/images/profile_no_background.png>김영천 블로그<span class=header-title-post><sup>"게을러지고 싶으면 공부해야 합니다."</sup></span></a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>Posts </a><a class=menu-item href=/tags/>Tags </a><a class=menu-item href=/about/>About </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="테마 변경">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="김영천 블로그"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/images/profile_no_background.png data-srcset="/images/profile_no_background.png, /images/profile_no_background.png 1.5x, /images/profile_no_background.png 2x" data-sizes=auto alt=/images/profile_no_background.png title=/images/profile_no_background.png>김영천 블로그<span class=header-title-post><sup>"게을러지고 싶으면 공부해야 합니다."</sup></span></a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/about/ title>About</a><a href=javascript:void(0); class="menu-item theme-switch" title="테마 변경">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>목차</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://github.com/yeongcheon title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>yeongcheon</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2019-06-30>2019-06-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;939 단어&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;읽는데 약 2분&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>목차</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#headline-1>LSP란?</a></li><li><a href=#headline-2>lsp-mode 설치하기</a></li></ul></nav></div></div><div class=content id=content><p>이맥스에서 자바 개발환경을 셋팅해보자. 우선 기본적으로 이맥스와 자바, gradle 등등은 설치가 되어있다고 가정한다. 포스트 작성 기준은 아래와 같다.</p><ul><li>OS: <code class=verbatim>ubuntu 18.04 LTS</code></li><li>emacs: <code class=verbatim>GNU Emacs 25.2.2</code></li><li>java: <code class=verbatim>openjdk version "1.8.0_212"</code></li><li>gradle: <code class=verbatim>Gradle 4.10.2</code></li></ul><p>이 포스트에선 개발환경 셋팅을 위해서 <a href=https://github.com/emacs-lsp/lsp-mode>lsp-mode</a>를 이용할 예정이다. 본격적으로 셋팅하기에 앞어서 lsp가 무엇인지 간단하게 한번 알아보자</p><div id=outline-container-headline-1 class=outline-2><h2 id=headline-1>LSP란?</h2><div id=outline-text-headline-1 class=outline-text-2><p>lsp는 <a href=https://microsoft.github.io/language-server-protocol/>Language Server Protocol</a>의 약자이다(링크를 보는게 훨씬 도움이 된다). 간단히 말하자면 각 개발툴마다 제각각 다뤄왔던 자동완성, jump to definition 등등의 기능을 하나의 프로토콜로 표준화 하여 하나의 language server를 여러 개발툴에서 동일하게 사용할 수 있도록 하는 규약(프로토콜)을 의미한다. (<del>번역기 발췌</del>)</p></div></div><div id=outline-container-headline-2 class=outline-2><h2 id=headline-2>lsp-mode 설치하기</h2><div id=outline-text-headline-2 class=outline-text-2><p>lsp의 뜻을 알아봤으니 그럼 이제 본격적으로 셋팅작업에 들어가보자. 이맥스의 lsp-mode는 기본적으로 <a href=https://github.com/emacs-lsp/lsp-mode>여기</a>를 베이스로 한다. 이번 포스트는 java 환경을 구축하는게 목적이니 <a href=https://github.com/emacs-lsp/lsp-java>lsp-java</a>를 설치해주자. 설치하는 방법은 링크의 <a href=https://github.com/emacs-lsp/lsp-java/blob/master/README.md>READMD.md</a>에 자세하게 나와있다. 내가 실행한 명령어는 아래와 같다.</p><div class="src src-text"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>M-x package-install use-package
+</span></span><span class=line><span class=cl>M-x package-install lsp-java
+</span></span><span class=line><span class=cl>M-x package-install dash</span></span></code></pre></td></tr></table></div></div></div><p>총 3개의 패키지를 설치한다.</p><ul><li><a href=https://github.com/jwiegley/use-package>use-package</a></li><li><a href=https://github.com/emacs-lsp/lsp-java>lsp-java</a></li><li><a href=https://github.com/magnars/dash.el>dash</a></li></ul><p>dash 패키지의 경우 공식 가이드에서 설치하라는 설명은 없었지만 셋팅이 제대로 진행되지 않아 나름 구글링을 해본 결과 얻어낸 답이다.</p><div class="src src-elisp"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-elisp data-lang=elisp><span class=line><span class=cl><span class=p>(</span><span class=nb>require</span> <span class=ss>&#39;lsp-java</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nv>add-hook</span> <span class=ss>&#39;java-mode-hook</span> <span class=nf>#&#39;</span><span class=nv>lsp</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nv>add-hook</span> <span class=ss>&#39;java-mode-hook</span> <span class=ss>&#39;flycheck-mode</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nv>add-hook</span> <span class=ss>&#39;java-mode-hook</span> <span class=ss>&#39;company-mode</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nb>require</span> <span class=ss>&#39;cc-mode</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nb>use-package</span> <span class=nv>projectile</span> <span class=nb>:ensure</span> <span class=no>t</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nb>use-package</span> <span class=nv>yasnippet</span> <span class=nb>:ensure</span> <span class=no>t</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nb>use-package</span> <span class=nv>lsp-mode</span> <span class=nb>:ensure</span> <span class=no>t</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nb>use-package</span> <span class=nv>hydra</span> <span class=nb>:ensure</span> <span class=no>t</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nb>use-package</span> <span class=nv>company-lsp</span> <span class=nb>:ensure</span> <span class=no>t</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nb>use-package</span> <span class=nv>lsp-ui</span> <span class=nb>:ensure</span> <span class=no>t</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nb>use-package</span> <span class=nv>lsp-java</span> <span class=nb>:ensure</span> <span class=no>t</span> <span class=nb>:after</span> <span class=nv>lsp</span>
+</span></span><span class=line><span class=cl><span class=nb>:config</span> <span class=p>(</span><span class=nv>add-hook</span> <span class=ss>&#39;java-mode-hook</span> <span class=ss>&#39;lsp</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nb>use-package</span> <span class=nv>dap-mode</span>
+</span></span><span class=line><span class=cl><span class=nb>:ensure</span> <span class=no>t</span> <span class=nb>:after</span> <span class=nv>lsp-mode</span>
+</span></span><span class=line><span class=cl><span class=nb>:config</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nv>dap-mode</span> <span class=no>t</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nv>dap-ui-mode</span> <span class=no>t</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nb>use-package</span> <span class=nv>dap-java</span> <span class=nb>:after</span> <span class=p>(</span><span class=nv>lsp-java</span><span class=p>))</span></span></span></code></pre></td></tr></table></div></div></div><p>모든 과정을 끝냈다면 이제 기본적인 셋팅은 마무리가 된 상태다. 그럼 이제 실제로 자바 프로젝트를 생성한 후 이맥스에서 자동완성, jump to difinition 등등이 제대로 동작하는지 확인해보자. 자바프로젝트 생성은 gradle를 이용한다. 아래의 명령어를 터미널에 입력해보자.</p><div class="src src-bash"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>gradle init --type java-library</span></span></code></pre></td></tr></table></div></div></div><p>프로젝트가 정상적으로 프로젝트가 생성되었다면 이맥스에서 src/main/java/Library.java 파일을 열어보자. 셋팅 후 최초로 자바파일을 열었을 경우 <a href=https://projects.eclipse.org/projects/eclipse.jdt.ls>Eclipse JDT Language Server</a>를 설치할건지 묻는 메세지가 뜬다. y를 입력해서 language server를 설치해주도록 하자. 참고로 이 내용은 <a href=https://github.com/emacs-lsp/lsp-java#eclipse-jdt-language-server>공식 가이드</a>에서도 나오는 내용이다(<del>그니깐 이거 말고 공식 가이드 읽으세요</del>).</p><p>설치를 마치고 이맥스를 재시작 한 후 다시 Library.java를 열어서 이것저것 코드를 입력해보자.</p><p><img src=/images/2019-06-30_22-39-45.png alt=/images/2019-06-30_22-39-45.png title=/images/2019-06-30_22-39-45.png></p><p>이제 기본적인 셋팅이 마무리 되었다. 코드 실행, 디버깅 방법은 이후 별도의 포스팅에서 다루도록 하겠다.</p></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>수정: 2020-03-08</span></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/posts/2019-06-31-emcs-lsp-java-setup/index.md target=_blank>마크다운 읽기</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="공유하기 Twitter" data-sharer=twitter data-url=https://yeongcheon.github.io/posts/2019-06-31-emcs-lsp-java-setup/ data-title="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기" data-hashtags=emacs,java,lsp><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="공유하기 Facebook" data-sharer=facebook data-url=https://yeongcheon.github.io/posts/2019-06-31-emcs-lsp-java-setup/ data-hashtag=emacs><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="공유하기 Hacker News" data-sharer=hackernews data-url=https://yeongcheon.github.io/posts/2019-06-31-emcs-lsp-java-setup/ data-title="이맥스에서 lsp-mode를 이용해 자바 개발환경 셋팅하기"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="공유하기 Pocket" data-sharer=pocket data-url=https://yeongcheon.github.io/posts/2019-06-31-emcs-lsp-java-setup/><i class="fab fa-get-pocket fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/emacs/>emacs</a>,&nbsp;<a href=/tags/java/>java</a>,&nbsp;<a href=/tags/lsp/>lsp</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>뒤로</a></span>&nbsp;|&nbsp;<span><a href=/>홈</a></span></section></div><div class=post-nav><a href=/posts/2019-06-19-emacs-hangul/ class=prev rel=prev title="이맥스 폰트, 세벌식 셋팅하기"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>이맥스 폰트, 세벌식 셋팅하기</a>
+<a href=/posts/2019-08-05-intellij-appengine-error/ class=next rel=next title="IntelliJ 업데이트 후 appengine local 실행 이슈 해결하기">IntelliJ 업데이트 후 appengine local 실행 이슈 해결하기<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a>로 제작된 사이트 | 테마 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden=true></i> LoveIt</a></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2017 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://github.com/yeongcheon target=_blank>YeongCheon Kim</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="맨 위로"><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title="댓글 보기"><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/cookieconsent/cookieconsent.min.css><script type=text/javascript src=https://yeongcheon.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/contrib/auto-render.min.js></script><script type=text/javascript src=/lib/katex/contrib/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/contrib/mhchem.min.js></script><script type=text/javascript src=/lib/cookieconsent/cookieconsent.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"복사하기",maxShownLines:50},comment:{},cookieconsent:{content:{dismiss:"알겠습니다",link:"더 보기",message:"본 웹사이트는 웹 환경 개선을 위해 쿠키를 사용합니다."},enable:!0,palette:{button:{background:"#f0f0f0"},popup:{background:"#1aa3ff"}},theme:"edgeless"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"\\begin{equation}",right:"\\end{equation}"},{display:!0,left:"\\begin{equation*}",right:"\\end{equation*}"},{display:!0,left:"\\begin{align}",right:"\\end{align}"},{display:!0,left:"\\begin{align*}",right:"\\end{align*}"},{display:!0,left:"\\begin{alignat}",right:"\\end{alignat}"},{display:!0,left:"\\begin{alignat*}",right:"\\end{alignat*}"},{display:!0,left:"\\begin{gather}",right:"\\end{gather}"},{display:!0,left:"\\begin{CD}",right:"\\end{CD}"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1}}</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-0YT8RHXZR3",{anonymize_ip:!0})</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-0YT8RHXZR3" async></script></body></html>
