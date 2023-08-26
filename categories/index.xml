@@ -1,15 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Categories on 김영천 블로그</title>
-    <link>https://yeongcheon.github.io/categories/</link>
-    <description>Recent content in Categories on 김영천 블로그</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>ko</language>
-    <copyright>&amp;copy; Copyright 2020 YeongCheon</copyright>
-    
-	<atom:link href="https://yeongcheon.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-  </channel>
-</rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Categories - 카테고리 - 김영천 블로그</title><link>https://yeongcheon.github.io/categories/</link><description>Categories - 카테고리 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><managingEditor>kyc1682@gmail.com (YeongCheon Kim)</managingEditor><webMaster>kyc1682@gmail.com (YeongCheon Kim)</webMaster><atom:link href="https://yeongcheon.github.io/categories/" rel="self" type="application/rss+xml"/></channel></rss>
