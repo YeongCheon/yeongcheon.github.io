@@ -1,1 +1,12 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Download - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/download/</link><description>Download - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><managingEditor>kyc1682@gmail.com (YeongCheon Kim)</managingEditor><webMaster>kyc1682@gmail.com (YeongCheon Kim)</webMaster><lastBuildDate>Sat, 28 Nov 2020 22:00:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/download/" rel="self" type="application/rss+xml"/><item><title>HTML의 download 속성</title><link>https://yeongcheon.github.io/posts/2020-11-26-html-download-property/</link><pubDate>Sat, 28 Nov 2020 22:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2020-11-26-html-download-property/</guid><description>특정 파일을 바로 다운받을 수 있는 download 속성에 대해 알아봅시다. 사실 별 내용 없고 그냥 안까먹을 목적으로 작성하는 중입니다. 이 문서보다는 여기가 더 보기 좋아요. 1 &amp;lt;a</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Download - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/download/</link><description>Download - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sat, 28 Nov 2020 22:00:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/download/" rel="self" type="application/rss+xml"/><item><title>HTML의 download 속성</title><link>https://yeongcheon.github.io/posts/2020-11-26-html-download-property/</link><pubDate>Sat, 28 Nov 2020 22:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2020-11-26-html-download-property/</guid><description><![CDATA[<p>
+특정 파일을 바로 다운받을 수 있는 download 속성에 대해 알아봅시다. 사실 별 내용 없고 그냥 안까먹을 목적으로 작성하는 중입니다. 이 문서보다는 <a href="https://developer.mozilla.org/ko/docs/Web/HTML/Element/a">여기</a>가 더 보기 좋아요.</p>
+<div class="src src-html">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://imageURL.com&#34;</span> <span class="na">download</span><span class="p">&gt;</span>download image<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>]]></description></item></channel></rss>

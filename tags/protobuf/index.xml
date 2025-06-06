@@ -1,1 +1,19 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Protobuf - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/protobuf/</link><description>Protobuf - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><managingEditor>kyc1682@gmail.com (YeongCheon Kim)</managingEditor><webMaster>kyc1682@gmail.com (YeongCheon Kim)</webMaster><lastBuildDate>Sat, 16 Sep 2023 01:00:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/protobuf/" rel="self" type="application/rss+xml"/><item><title>Descriptor of Protobuf</title><link>https://yeongcheon.github.io/posts/2023-09-16-protobuf-descriptor/</link><pubDate>Sat, 16 Sep 2023 01:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2023-09-16-protobuf-descriptor/</guid><description>Descriptor의 정의와 목적 protobuf에는 Descriptor라는 개념이 있습니다. 각 출처별로 Descriptor의 정의에 대해 알아보</description></item><item><title>grpc-gateway를 이용한 JSON 통신</title><link>https://yeongcheon.github.io/posts/2020-04-15-grpc-build-with-googleapis/</link><pubDate>Wed, 15 Apr 2020 19:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2020-04-15-grpc-build-with-googleapis/</guid><description>목표 grpc-gateway를 이용한 통신을 하기 위해 작성한 .proto 파일을 컴파일 하는 방법을 알아보겠습니다. source code 우선 컴파일 하고자 하는 소스코드를 살펴봅시다</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Protobuf - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/protobuf/</link><description>Protobuf - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sat, 16 Sep 2023 01:00:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/protobuf/" rel="self" type="application/rss+xml"/><item><title>Descriptor of Protobuf</title><link>https://yeongcheon.github.io/posts/2023-09-16-protobuf-descriptor/</link><pubDate>Sat, 16 Sep 2023 01:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2023-09-16-protobuf-descriptor/</guid><description><![CDATA[<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+Descriptor의 정의와 목적
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>protobuf에는 Descriptor라는 개념이 있습니다. 각 출처별로 Descriptor의 정의에 대해 알아보고자 합니다.</p>]]></description></item><item><title>grpc-gateway를 이용한 JSON 통신</title><link>https://yeongcheon.github.io/posts/2020-04-15-grpc-build-with-googleapis/</link><pubDate>Wed, 15 Apr 2020 19:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2020-04-15-grpc-build-with-googleapis/</guid><description><![CDATA[<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+목표
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p><a href="https://blog.banksalad.com/tech/production-ready-grpc-in-golang/#grpc-gateway%25EB%25A5%25BC-%25EC%259D%25B4%25EC%259A%25A9%25ED%2595%259C-json-%25ED%2586%25B5%25EC%258B%25A0">grpc-gateway를 이용한 통신</a>을 하기 위해 작성한 <code>.proto</code> 파일을 컴파일 하는 방법을 알아보겠습니다.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+source code
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>우선 컴파일 하고자 하는 소스코드를 살펴봅시다. 이 코드는 <a href="https://github.com/grpc-ecosystem/grpc-gateway#usage">grpc-gateway</a>에 있는 예제와 동일합니다.</p>]]></description></item></channel></rss>

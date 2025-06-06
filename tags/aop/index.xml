@@ -1,1 +1,14 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Aop - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/aop/</link><description>Aop - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><managingEditor>kyc1682@gmail.com (YeongCheon Kim)</managingEditor><webMaster>kyc1682@gmail.com (YeongCheon Kim)</webMaster><lastBuildDate>Sun, 26 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/aop/" rel="self" type="application/rss+xml"/><item><title>Spring Pointcut 표현식에 부모 클래스 표현하기</title><link>https://yeongcheon.github.io/posts/2021-12-26-spring-aop-superclass/</link><pubDate>Sun, 26 Dec 2021 00:00:00 +0000</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2021-12-26-spring-aop-superclass/</guid><description>들어가며 이 문서는 기본적으로 Spring AOP에 대해 사전 지식이 있다는 전제 하에 작성되었습니다. 요구사항 Fruit 클래스를 상속받는 Apple, Banana 클래스가 있습니다. Apple 또는 Banana 클래</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Aop - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/aop/</link><description>Aop - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sun, 26 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/aop/" rel="self" type="application/rss+xml"/><item><title>Spring Pointcut 표현식에 부모 클래스 표현하기</title><link>https://yeongcheon.github.io/posts/2021-12-26-spring-aop-superclass/</link><pubDate>Sun, 26 Dec 2021 00:00:00 +0000</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2021-12-26-spring-aop-superclass/</guid><description><![CDATA[<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+들어가며
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>이 문서는 기본적으로 Spring AOP에 대해 사전 지식이 있다는 전제 하에 작성되었습니다.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+요구사항
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p><code class="verbatim">Fruit</code> 클래스를 상속받는 <code class="verbatim">Apple</code>, <code class="verbatim">Banana</code> 클래스가 있습니다. <code class="verbatim">Apple</code> 또는 <code class="verbatim">Banana</code> 클래스를 반환하는 모든 메서드 마지막에 로그를 남기는 기능을 작성하고자 합니다.</p>]]></description></item></channel></rss>

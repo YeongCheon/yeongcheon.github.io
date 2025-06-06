@@ -1,1 +1,37 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>About - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/about/</link><description>About - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><managingEditor>kyc1682@gmail.com (YeongCheon Kim)</managingEditor><webMaster>kyc1682@gmail.com (YeongCheon Kim)</webMaster><lastBuildDate>Sun, 23 Aug 2020 00:00:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/about/" rel="self" type="application/rss+xml"/><item><title>about me</title><link>https://yeongcheon.github.io/about/</link><pubDate>Sun, 23 Aug 2020 00:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/about/</guid><description>안녕하세요. 웹 개발자에요. 크리에이터와 팬들의 소통 커뮤니티 쉘터를 개발하고 있어요. 어렵네요. Email kyc1682@gmail.com dev@shelter.id 👍 Like Angular Emacs Firebase GCP Golang Kotlin ORM(JPA) Spring Typescript Ubuntu Web</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>About - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/about/</link><description>About - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sun, 23 Aug 2020 00:00:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/about/" rel="self" type="application/rss+xml"/><item><title>about me</title><link>https://yeongcheon.github.io/about/</link><pubDate>Sun, 23 Aug 2020 00:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/about/</guid><description><![CDATA[<div class="center-block" style="text-align: center; margin-left: auto; margin-right: auto;">
+<p></p>
+</div>
+<p>
+안녕하세요. 웹 개발자에요.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+Email
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<ul>
+<li><a href="mailto:kyc1682@gmail.com">kyc1682@gmail.com</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+👍 Like
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<ul>
+<li>Angular</li>
+<li>Emacs</li>
+<li>Firebase</li>
+<li>GCP</li>
+<li>Golang</li>
+<li>Kotlin</li>
+<li>ORM(JPA)</li>
+<li>Spring</li>
+<li>Typescript</li>
+<li>Ubuntu</li>
+<li>Web</li>
+<li>Zed</li>
+<li>Rust</li>
+</ul>
+</div>
+</div>]]></description></item></channel></rss>

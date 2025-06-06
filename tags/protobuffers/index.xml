@@ -1,1 +1,13 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Protobuffers - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/protobuffers/</link><description>Protobuffers - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><managingEditor>kyc1682@gmail.com (YeongCheon Kim)</managingEditor><webMaster>kyc1682@gmail.com (YeongCheon Kim)</webMaster><lastBuildDate>Tue, 24 Mar 2020 22:00:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/protobuffers/" rel="self" type="application/rss+xml"/><item><title>프로토 버퍼 언어 안내(proto3) 번역본</title><link>https://yeongcheon.github.io/posts/2020-03-24-proto-buffers-language-guide-proto3/</link><pubDate>Tue, 24 Mar 2020 22:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2020-03-24-proto-buffers-language-guide-proto3/</guid><description>매번 영어문서 보기 빡쳐서 직접 번역기 돌려가며 쓰는 번역본. 번역기와 의역, 오역 범벅입니다. 가급적이면 공식 문서를 보세요. Language Guide(proto3) Defining A Message Type 우선 매우 간단한 예제</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Protobuffers - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/protobuffers/</link><description>Protobuffers - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Tue, 24 Mar 2020 22:00:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/protobuffers/" rel="self" type="application/rss+xml"/><item><title>프로토 버퍼 언어 안내(proto3) 번역본</title><link>https://yeongcheon.github.io/posts/2020-03-24-proto-buffers-language-guide-proto3/</link><pubDate>Tue, 24 Mar 2020 22:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2020-03-24-proto-buffers-language-guide-proto3/</guid><description><![CDATA[<p>
+매번 <a href="https://developers.google.com/protocol-buffers/docs/proto3#simple">영어문서</a> 보기 빡쳐서 직접 번역기 돌려가며 쓰는 번역본. <del>번역기와 의역, 오역 범벅입니다.</del> 가급적이면 공식 문서를 보세요.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+Language Guide(proto3)
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+Defining A Message Type
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>우선 매우 간단한 예제를 살펴보겠습니다.. 검색 요청을 위한 메세지 타입을 정의하고자 하는데 이 메세지는 쿼리 문자열<sup>(역자 주: query)</sup>, 요청 페이지<sup>(역자 주: page_number)</sup>, 그리고 페이지당 결과 갯수<sup>(역자 주: result_per_page)</sup>를 가지고 있습니다. </p>]]></description></item></channel></rss>

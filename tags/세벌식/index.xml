@@ -1,1 +1,24 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>세벌식 - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/</link><description>세벌식 - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><managingEditor>kyc1682@gmail.com (YeongCheon Kim)</managingEditor><webMaster>kyc1682@gmail.com (YeongCheon Kim)</webMaster><lastBuildDate>Wed, 19 Jun 2019 00:00:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/" rel="self" type="application/rss+xml"/><item><title>이맥스 폰트, 세벌식 셋팅하기</title><link>https://yeongcheon.github.io/posts/2019-06-19-emacs-hangul/</link><pubDate>Wed, 19 Jun 2019 00:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2019-06-19-emacs-hangul/</guid><description><![CDATA[아래의 내용을 .emacs 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다. 1 2 3 4 5 6 7 (set-fontset-font t &#39;hangul (font-spec :family &#34;D2Coding&#34;)) (set-language-environment &#34;Korean&#34;) (prefer-coding-system &#39;utf-8) (setq default-input-method &#34;korean-hangul390&#34;) (setq default-korean-keyboard &#34;390&#34;) (global-set-key (kbd &#34;&lt;S-kana&gt;&#34;) &#39;toggle-input-method)]]></description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>세벌식 - 태그 - 김영천 블로그</title><link>https://yeongcheon.github.io/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/</link><description>세벌식 - 태그 - 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Wed, 19 Jun 2019 00:00:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/tags/%EC%84%B8%EB%B2%8C%EC%8B%9D/" rel="self" type="application/rss+xml"/><item><title>이맥스 폰트, 세벌식 셋팅하기</title><link>https://yeongcheon.github.io/posts/2019-06-19-emacs-hangul/</link><pubDate>Wed, 19 Jun 2019 00:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2019-06-19-emacs-hangul/</guid><description><![CDATA[<p>
+아래의 내용을 <code class="verbatim">.emacs</code> 파일 안에 복붙해주자. 세벌식 버전은 최종이 아닌 390버전이다.</p>
+<div class="src src-lisp">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">t</span> <span class="ss">&#39;hangul</span> <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">&#34;D2Coding&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">set-language-environment</span> <span class="s">&#34;Korean&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">prefer-coding-system</span> <span class="ss">&#39;utf-8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">default-input-method</span> <span class="s">&#34;korean-hangul390&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">default-korean-keyboard</span> <span class="s">&#34;390&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;S-kana&gt;&#34;</span><span class="p">)</span> <span class="ss">&#39;toggle-input-method</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>]]></description></item></channel></rss>

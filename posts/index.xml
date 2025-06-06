@@ -1,1 +1,247 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>모든 글 - 김영천 블로그</title><link>https://yeongcheon.github.io/posts/</link><description>모든 글 | 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><managingEditor>kyc1682@gmail.com (YeongCheon Kim)</managingEditor><webMaster>kyc1682@gmail.com (YeongCheon Kim)</webMaster><lastBuildDate>Thu, 25 Apr 2024 09:23:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/posts/" rel="self" type="application/rss+xml"/><item><title>google ID 토큰 콘텐츠 팁</title><link>https://yeongcheon.github.io/posts/2024-04-25-google-tokeninfo-sub/</link><pubDate>Thu, 25 Apr 2024 09:23:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2024-04-25-google-tokeninfo-sub/</guid><description>구글의 ID 토큰 콘텐츠는 인증한 사용자의 정보를 간단하게 보여줍니다. 이 중 sub 필드는 인증한 사용자의 고유한 ID 값인데, 이 값은 aud 필드의 값이 달라도 인증한 계정이 동</description></item><item><title>타입스크립트 import 절대경로로 설정하기</title><link>https://yeongcheon.github.io/posts/2024-02-27-tsconfig-baseurl/</link><pubDate>Tue, 27 Feb 2024 09:00:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2024-02-27-tsconfig-baseurl/</guid><description><![CDATA[타입스크립트 개발을 하다 보면 import 구문이 절대경로가 아니라 상대 경로로 포함되는 경우가 있습니다. 1 2 3 import { MY_MODULE } from &#39;../../../../my_module&#39;; // incorrect import { MY_MODULE } from &#39;src/modules/my_module&#39;; // correct import 구문을 절대 경로로]]></description></item><item><title>TTL vs TTI</title><link>https://yeongcheon.github.io/posts/2023-12-10-ttl-vs-tti/</link><pubDate>Sun, 10 Dec 2023 19:00:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2023-12-10-ttl-vs-tti/</guid><description>Spring 환경에서 로컬 캐시를 위해 많이 사용되는 Ehcache는 캐시 유효 시간 설정을 위해 다음과 같은 옵션을 제공합니다. [공식 문서] No Expiry 캐시가 절대 만료되지 않고</description></item><item><title>Descriptor of Protobuf</title><link>https://yeongcheon.github.io/posts/2023-09-16-protobuf-descriptor/</link><pubDate>Sat, 16 Sep 2023 01:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2023-09-16-protobuf-descriptor/</guid><description>Descriptor의 정의와 목적 protobuf에는 Descriptor라는 개념이 있습니다. 각 출처별로 Descriptor의 정의에 대해 알아보</description></item><item><title>Android WebView에서 firebase Auth 오류 해결하기</title><link>https://yeongcheon.github.io/posts/2023-08-26/android-webview-firebase-auth-error/</link><pubDate>Sat, 26 Aug 2023 00:00:00 +0000</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2023-08-26/android-webview-firebase-auth-error/</guid><description>증상 안드로이드에서 WebView 기반 앱을 개발하고 있습니다. 대부분의 기능을 웹뷰에 의존한 형태의 단순한 앱이고, 웹뷰는 Angular, Firebase 조합의 코드가 동작하고 있습니다. 사용자 인</description></item><item><title>Ubuntu 22.04 설치 후 특정 도메인에 접근 못하는 문제 수정</title><link>https://yeongcheon.github.io/posts/2022-09-24-ubuntu22.04-dns-issue/</link><pubDate>Sat, 24 Sep 2022 01:00:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2022-09-24-ubuntu22.04-dns-issue/</guid><description>증상 Ubuntu 22.04.1 설치 후 Github.com 사이트에 접근이 안되는 문제가 발생했다. 다른 사이트는 모두 접근이 가능하고, 심지어 와이파이로 인터넷 연결 시에는 Github.com 사이트도 접근이 가능하지</description></item><item><title>Emacs LSP 환경에서 Rust 자동완성 안되는 문제 수정</title><link>https://yeongcheon.github.io/posts/2022-09-24-rust-lsp-autocomplete-issue/</link><pubDate>Sat, 24 Sep 2022 00:00:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2022-09-24-rust-lsp-autocomplete-issue/</guid><description>증상 Ubuntu + Emacs(lsp-mode) 조합으로 Rust 개발환경을 셋팅하는 도중 wasm 관련 코드가 자동완성이 안되는 문제가 발생했다. Sample Code Cargo.toml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 [package]</description></item><item><title>Klaytn Transaction Hash를 통해 NFT Token ID 조회하기</title><link>https://yeongcheon.github.io/posts/2022-08-03-get-token-id-after-klip-nft-minting/</link><pubDate>Wed, 03 Aug 2022 23:40:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2022-08-03-get-token-id-after-klip-nft-minting/</guid><description>목표 Klip에서 제공하는 Mint Card To User API를 호출하면 결과값으로 클레이튼 네트워크의 Transaction Hash를 반환하다. 반환된 Transaction Hash는 Klaytn Scope에 입력해서 어</description></item><item><title>한 줄 한 줄 짜면서 익히는 러스트 프로그래밍 책 리뷰</title><link>https://yeongcheon.github.io/posts/2022-07-23-rust-in-action-review/</link><pubDate>Sat, 23 Jul 2022 21:29:01 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2022-07-23-rust-in-action-review/</guid><description>서론 우선 나는 웹 개발자다. 어렸을때 C언어를 겉핥기로 배우면서 프로그래밍의 기초를 배우고 이후 php를 통해 처음으로 웹 개발을 접하게 되었다. 그 후 자바와 스프</description></item><item><title>Android Cross-App Scripting 해결하기</title><link>https://yeongcheon.github.io/posts/2022-05-08-android-cross-app-scripting/</link><pubDate>Sun, 08 May 2022 00:00:00 +0000</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2022-05-08-android-cross-app-scripting/</guid><description>문제 운영중인 안드로이드 앱을 플레이스토어에 업데이트 하다가 구글 측에서 교차 앱 스크립팅 취약정 문제가 있다는 메일을 받았습니다. 구글 측에서 제공한 가이드대로</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>모든 글 - 김영천 블로그</title><link>https://yeongcheon.github.io/posts/</link><description>모든 글 | 김영천 블로그</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Thu, 25 Apr 2024 09:23:00 +0900</lastBuildDate><atom:link href="https://yeongcheon.github.io/posts/" rel="self" type="application/rss+xml"/><item><title>google ID 토큰 콘텐츠 팁</title><link>https://yeongcheon.github.io/posts/2024-04-25-google-tokeninfo-sub/</link><pubDate>Thu, 25 Apr 2024 09:23:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2024-04-25-google-tokeninfo-sub/</guid><description><![CDATA[<p>
+<a href="https://cloud.google.com/docs/authentication/token-types?hl=ko#id-contents">구글의 ID 토큰 콘텐츠</a>는 인증한 사용자의 정보를 간단하게 보여줍니다. 이 중 <code>sub</code> 필드는 인증한 사용자의 고유한 ID 값인데, 이 값은 <code>aud</code> 필드의 값이 달라도 인증한 계정이 동일한 구글 계정이라면 <code>sub</code> 필드는 항상 동일한 값을 반환합니다. 심지어 <strong>서로 다른 GCP 프로젝트를 통해 인증해도 동일한 구글 계정이라면 동일한 값을 반환합니다.</strong></p>]]></description></item><item><title>타입스크립트 import 절대경로로 설정하기</title><link>https://yeongcheon.github.io/posts/2024-02-27-tsconfig-baseurl/</link><pubDate>Tue, 27 Feb 2024 09:00:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2024-02-27-tsconfig-baseurl/</guid><description><![CDATA[<p>
+타입스크립트 개발을 하다 보면 <code>import</code> 구문이 절대경로가 아니라 상대 경로로 포함되는 경우가 있습니다.</p>
+<div class="src src-typescript">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">MY_MODULE</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../../../../my_module&#39;</span><span class="p">;</span> <span class="c1">// incorrect
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">MY_MODULE</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;src/modules/my_module&#39;</span><span class="p">;</span> <span class="c1">// correct
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<p>
+<code>import</code> 구문을 절대 경로로 포함하길 원한다면 <code>tsconfig.json</code> 파일의 <code>compilerOptions</code> 속성 내부에 <code>baseUrl</code> 속성을 지정하면 됩니다.</p>]]></description></item><item><title>TTL vs TTI</title><link>https://yeongcheon.github.io/posts/2023-12-10-ttl-vs-tti/</link><pubDate>Sun, 10 Dec 2023 19:00:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2023-12-10-ttl-vs-tti/</guid><description><![CDATA[<p>
+Spring 환경에서 로컬 캐시를 위해 많이 사용되는 <a href="https://www.ehcache.org/">Ehcache</a>는 캐시 유효 시간 설정을 위해 다음과 같은 옵션을 제공합니다. [<a href="https://www.ehcache.org/documentation/3.10/expiry.html">공식 문서</a>]</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+No Expiry
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>캐시가 절대 만료되지 않고 무한히 유지됩니다.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+TTL (Time To Live)
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>캐시된 객체가 <strong>지정된 시간동안 유효하고, 지정된 시간이 지나면 만료됩니다.</strong></p>]]></description></item><item><title>Descriptor of Protobuf</title><link>https://yeongcheon.github.io/posts/2023-09-16-protobuf-descriptor/</link><pubDate>Sat, 16 Sep 2023 01:00:00 +0900</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2023-09-16-protobuf-descriptor/</guid><description><![CDATA[<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+Descriptor의 정의와 목적
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>protobuf에는 Descriptor라는 개념이 있습니다. 각 출처별로 Descriptor의 정의에 대해 알아보고자 합니다.</p>]]></description></item><item><title>Android WebView에서 firebase Auth 오류 해결하기</title><link>https://yeongcheon.github.io/posts/2023-08-26/android-webview-firebase-auth-error/</link><pubDate>Sat, 26 Aug 2023 00:00:00 +0000</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2023-08-26/android-webview-firebase-auth-error/</guid><description><![CDATA[<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+증상
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>안드로이드에서 <a href="https://developer.android.com/reference/android/webkit/WebView">WebView</a> 기반 앱을 개발하고 있습니다. 대부분의 기능을 웹뷰에 의존한 형태의 단순한 앱이고, 웹뷰는 <a href="https://angular.io">Angular</a>, <a href="https://firebase.google.com">Firebase</a> 조합의 코드가 동작하고 있습니다. 사용자 인증 관련 기능은 Firebase의 Auth를 사용하였는데, 특정 조건에서 <a href="https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#onauthstatechanged">onAuthStateChanged</a> 함수가 동작하지 않는 문제가 발생하였습니다. 해당 조건은 다음과 같습니다.</p>]]></description></item><item><title>Ubuntu 22.04 설치 후 특정 도메인에 접근 못하는 문제 수정</title><link>https://yeongcheon.github.io/posts/2022-09-24-ubuntu22.04-dns-issue/</link><pubDate>Sat, 24 Sep 2022 01:00:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2022-09-24-ubuntu22.04-dns-issue/</guid><description><![CDATA[<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+증상
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>Ubuntu 22.04.1 설치 후 Github.com 사이트에 접근이 안되는 문제가 발생했다. 다른 사이트는 모두 접근이 가능하고, 심지어 와이파이로 인터넷 연결 시에는 Github.com 사이트도 접근이 가능하지만 유선 인터넷 연결 시에는 Github.com 도메인을 포함한 일부 도메인은 접근을 못하는 문제가 발생하고 있는 상태이다.</p>]]></description></item><item><title>Emacs LSP 환경에서 Rust 자동완성 안되는 문제 수정</title><link>https://yeongcheon.github.io/posts/2022-09-24-rust-lsp-autocomplete-issue/</link><pubDate>Sat, 24 Sep 2022 00:00:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2022-09-24-rust-lsp-autocomplete-issue/</guid><description><![CDATA[<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+증상
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>Ubuntu + Emacs(lsp-mode) 조합으로 Rust 개발환경을 셋팅하는 도중 <code>wasm</code> 관련 코드가 자동완성이 안되는 문제가 발생했다.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+Sample Code
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+Cargo.toml
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<div class="src src-rust">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="p">[</span><span class="n">package</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;helloWasm&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;0.1.0&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">edition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;2021&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>#<span class="w"> </span><span class="n">See</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">keys</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">their</span><span class="w"> </span><span class="n">definitions</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">https</span>:<span class="c1">//doc.rust-lang.org/cargo/reference/manifest.html
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="n">lib</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">crate</span><span class="o">-</span><span class="k">type</span> <span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&#34;cdylib&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="n">dependencies</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">js</span><span class="o">-</span><span class="n">sys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;0.3.60&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">wasm</span><span class="o">-</span><span class="n">bindgen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;0.2.83&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="n">dependencies</span><span class="p">.</span><span class="n">web</span><span class="o">-</span><span class="n">sys</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;0.3.60&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="na">&#39;CanvasRenderingContext2d&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="na">&#39;Document&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="na">&#39;Element&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="na">&#39;HtmlCanvasElement&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="na">&#39;Window&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">]</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+lib.rs
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
+<div class="src src-rust">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[wasm_bindgen]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">start</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">window</span>: <span class="nc">Window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">web_sys</span>::<span class="n">window</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">document</span>: <span class="nc">Document</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">window</span><span class="p">.</span><span class="n">document</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">canvas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">document</span><span class="p">.</span><span class="n">get_element_by_id</span><span class="p">(</span><span class="s">&#34;canvas&#34;</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">canvas</span>: <span class="nc">web_sys</span>::<span class="n">HtmlCanvasElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">canvas</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">dyn_into</span>::<span class="o">&lt;</span><span class="n">web_sys</span>::<span class="n">HtmlCanvasElement</span><span class="o">&gt;</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">map_err</span><span class="p">(</span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">canvas</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">get_context</span><span class="p">(</span><span class="s">&#34;2d&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">unwrap</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">unwrap</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">dyn_into</span>::<span class="o">&lt;</span><span class="n">web_sys</span>::<span class="n">CanvasRenderingContext2d</span><span class="o">&gt;</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">context</span><span class="p">.</span><span class="n">begin_path</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Draw the outer circle.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">context</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">arc</span><span class="p">(</span><span class="mf">75.0</span><span class="p">,</span><span class="w"> </span><span class="mf">75.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="kt">f64</span>::<span class="n">consts</span>::<span class="no">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Draw the mouth.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">context</span><span class="p">.</span><span class="n">move_to</span><span class="p">(</span><span class="mf">110.0</span><span class="p">,</span><span class="w"> </span><span class="mf">75.0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">context</span><span class="p">.</span><span class="n">arc</span><span class="p">(</span><span class="mf">75.0</span><span class="p">,</span><span class="w"> </span><span class="mf">75.0</span><span class="p">,</span><span class="w"> </span><span class="mf">35.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="kt">f64</span>::<span class="n">consts</span>::<span class="no">PI</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Draw the left eye.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">context</span><span class="p">.</span><span class="n">move_to</span><span class="p">(</span><span class="mf">65.0</span><span class="p">,</span><span class="w"> </span><span class="mf">65.0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">context</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">arc</span><span class="p">(</span><span class="mf">60.0</span><span class="p">,</span><span class="w"> </span><span class="mf">65.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="kt">f64</span>::<span class="n">consts</span>::<span class="no">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Draw the right eye.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">context</span><span class="p">.</span><span class="n">move_to</span><span class="p">(</span><span class="mf">95.0</span><span class="p">,</span><span class="w"> </span><span class="mf">65.0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">context</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">arc</span><span class="p">(</span><span class="mf">90.0</span><span class="p">,</span><span class="w"> </span><span class="mf">65.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="kt">f64</span>::<span class="n">consts</span>::<span class="no">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">context</span><span class="p">.</span><span class="n">stroke</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+해결법
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<p>해당 프로젝트 내에서 <code>cargo check</code> 명령어를 실행하면 다음과 같은 에러가 발생한다.</p>]]></description></item><item><title>Klaytn Transaction Hash를 통해 NFT Token ID 조회하기</title><link>https://yeongcheon.github.io/posts/2022-08-03-get-token-id-after-klip-nft-minting/</link><pubDate>Wed, 03 Aug 2022 23:40:00 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2022-08-03-get-token-id-after-klip-nft-minting/</guid><description><![CDATA[<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+목표
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>Klip에서 제공하는 Mint Card To User API를 호출하면 결과값으로 클레이튼 네트워크의 Transaction Hash를 반환하다. 반환된 Transaction Hash는 <a href="https://scope.klaytn.com/">Klaytn Scope</a>에 입력해서 어떤 작업을 수행했는지 내용을 상세하게 확인할 수 있는데 이 때 발생된 NFT의 Token ID도 확인할 수 있다.</p>]]></description></item><item><title>한 줄 한 줄 짜면서 익히는 러스트 프로그래밍 책 리뷰</title><link>https://yeongcheon.github.io/posts/2022-07-23-rust-in-action-review/</link><pubDate>Sat, 23 Jul 2022 21:29:01 +0900</pubDate><author>YeongCheon Kim</author><guid>https://yeongcheon.github.io/posts/2022-07-23-rust-in-action-review/</guid><description><![CDATA[<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+서론
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>우선 나는 웹 개발자다. 어렸을때 C언어를 겉핥기로 배우면서 프로그래밍의 기초를 배우고 이후 php를 통해 처음으로 웹 개발을 접하게 되었다. 그 후 자바와 스프링을 배우면서 웹 개발을 본격적으로 했지만 항상 JVM 위에서 돌아가고 보통의 exe 파일이 아닌 jar(또는 war) 파일이 빌드 결과물로 나오는게 내심 복잡하고 어렵게 느껴졌다. 그러던 즈음 구글에서 <a href="https://go.dev/">Go언어</a>를 발표했다. 문법도 간결하고 성능도 준수하고 JVM같은 가상머신이 필요 없는 빌드 결과물이 상당히 매력적으로 느껴졌다. 하지만 당시나 지금이나 Go언어는 자바/스프링 진영보다 국내 시장 점유율이 낮았기 때문에 Go언어를 사용해 일을 할 기회는 많이 없었지만 개인적인 토이 프로젝트나 업무에서 가볍게 쓸 프로그램을 짤 때는 항상 우선순위로 염두해두는 언어가 되었다.</p>]]></description></item><item><title>Android Cross-App Scripting 해결하기</title><link>https://yeongcheon.github.io/posts/2022-05-08-android-cross-app-scripting/</link><pubDate>Sun, 08 May 2022 00:00:00 +0000</pubDate><author>yeongcheon</author><guid>https://yeongcheon.github.io/posts/2022-05-08-android-cross-app-scripting/</guid><description><![CDATA[<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+문제
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>운영중인 안드로이드 앱을 플레이스토어에 업데이트 하다가 구글 측에서 <a href="https://support.google.com/faqs/answer/9084685">교차 앱 스크립팅</a> 취약정 문제가 있다는 메일을 받았습니다. 구글 측에서 제공한 가이드대로 조치를 취했는데도 여전히 문제가 있다는 리포트를 받아서 문제의 원인 해결방법을 기록하고자 합니다.</p>]]></description></item></channel></rss>
